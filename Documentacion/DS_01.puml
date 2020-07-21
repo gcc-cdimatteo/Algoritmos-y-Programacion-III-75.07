@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title unaPreguntaDeVFRecibeRespuestasYAsignaPuntos
+
+actor Test
+participant ": PreguntaVF" as pregunta
+
+activate Test
+
+    create pregunta
+    Test --> pregunta: new("Una manzana es fruta", true)
+        activate pregunta
+            Test -> pregunta: responder(respuestas)
+            loop porCadaRespuesta
+                pregunta -> pregunta: puntuar(respuesta)
+                activate pregunta
+                    pregunta --> pregunta: unPunto
+                deactivate pregunta
+            end
+            pregunta --> Test: puntos: ArrayList<Integer>   
+        deactivate pregunta
+
+deactivate Test
+
+
+@enduml
