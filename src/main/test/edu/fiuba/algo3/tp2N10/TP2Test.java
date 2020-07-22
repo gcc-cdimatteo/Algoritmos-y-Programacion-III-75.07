@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestTP2 {
+public class TP2Test {
 
     @Test
     public void unaPreguntaDeVFPuedeCrearseSiSeIndicaLaRtaCorreta(){
