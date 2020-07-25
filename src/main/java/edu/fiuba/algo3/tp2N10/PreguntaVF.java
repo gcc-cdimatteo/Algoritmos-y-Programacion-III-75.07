@@ -5,20 +5,20 @@ import java.util.ArrayList;
 public class PreguntaVF {
 
     private String pregunta;
-    private boolean respuestaCorrecta;
+    protected Respuesta respuestaCorrecta;
 
-    public PreguntaVF(String pregunta, boolean respuestaCorrecta) {
+    public PreguntaVF(String pregunta, Respuesta respuestaCorrecta) {
         this.pregunta = pregunta;
         this.respuestaCorrecta = respuestaCorrecta;
     }
 
-    public Integer puntuar(boolean rta) {
-        if (rta == respuestaCorrecta) { return 1;}
+    public Integer puntuar(Respuesta unaRespuesta) {
+        if (unaRespuesta.esCorrecta(this.respuestaCorrecta)) { return 1; }
         return 0;
     }
 
-    public ArrayList<Integer> responder(ArrayList<Boolean> respuestas) {
-        ArrayList<Integer> puntos = new ArrayList<Integer>();
+    public ArrayList<Integer> responder(ArrayList<Respuesta> respuestas) {
+        ArrayList<Integer> puntos = new ArrayList();
         respuestas.forEach(respuesta ->
                 puntos.add(puntuar(respuesta))
         );
