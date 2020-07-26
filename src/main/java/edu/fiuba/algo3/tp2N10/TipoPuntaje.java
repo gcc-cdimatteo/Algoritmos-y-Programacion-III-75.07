@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface TipoPuntaje {
 
-    int puntuar(Respuesta respuesta);
+    int puntuar(Respuesta unaRespuesta);
 
     int puntuar(ArrayList<Respuesta> respuestas);
 }

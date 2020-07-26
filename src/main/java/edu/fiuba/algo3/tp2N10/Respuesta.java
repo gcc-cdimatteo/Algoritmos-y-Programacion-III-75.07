@@ -8,8 +8,4 @@ public class Respuesta {
         this.valor = unValor;
     }
 
-    public boolean equals(Respuesta unaRespuesta) {
-        return this.valor == unaRespuesta.valor;
-    }
-
 }

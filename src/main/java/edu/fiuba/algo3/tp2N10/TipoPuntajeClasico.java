@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class TipoPuntajeClasico implements TipoPuntaje {
 
-    private ArrayList<Respuesta> respuestasCorrectas;
+    private final ArrayList<Respuesta> respuestasCorrectas;
 
     public TipoPuntajeClasico(Respuesta unaRespuestaCorrecta) {
         this.respuestasCorrectas = new ArrayList<Respuesta>(Arrays.asList(unaRespuestaCorrecta));
@@ -16,8 +16,8 @@ public class TipoPuntajeClasico implements TipoPuntaje {
     }
 
     @Override
-    public int puntuar(Respuesta respuesta) {
-        return (this.respuestasCorrectas.contains(respuesta)) ? 1 : 0;
+    public int puntuar(Respuesta unaRespuesta) {
+        return (this.respuestasCorrectas.contains(unaRespuesta)) ? 1 : 0;
     }
 
     @Override

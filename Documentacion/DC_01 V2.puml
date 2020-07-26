@@ -1,0 +1,72 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class MultipleChoice {
+    + puntuar(ArrayList<Respuesta>: respuestas): int
+    + responder(ArrayList<ArrayList<Respuesta>>: respuestas): ArrayList<Integer>
+}
+
+class MultipleChoiceClasico
+
+class MultipleChoiceParcial
+
+class Pregunta {
+    - enunciado: String
+}
+
+class Respuesta {
+    - valor: Object
+}
+
+class VerdaderoFalso {
+    + puntuar(Respuesta: unaRespuesta): int
+    + responder(ArrayList<Respuesta>: respuestas): ArrayList<Integer>
+}
+
+class VerdaderoFalsoClasico
+
+class VerdaderoFalsoConPenalidad
+
+interface TipoPuntaje {
+    + puntuar(unaRespuesta: Respuesta): int
+    + puntuar(respuestas: ArrayList<Respuesta>): int
+}
+
+class TipoPuntajeClasico {
+    - respuestasCorrectas: ArrayList<Respuesta>
+}
+
+class TipoPuntajeConPenalidad {
+    - respuestasCorrectas: ArrayList<Respuesta>
+}
+
+class TipoPuntajeParcial {
+    - respuestasCorrectas: ArrayList<Respuesta>
+}
+
+'Ordenamiento De Cuadrados
+
+'Herencia --|> cumple la relación 'es un'
+Pregunta <|-- MultipleChoice
+Pregunta <|-- VerdaderoFalso
+MultipleChoice <|-- MultipleChoiceClasico
+MultipleChoice <|-- MultipleChoiceParcial
+VerdaderoFalso <|-- VerdaderoFalsoClasico
+VerdaderoFalso <|-- VerdaderoFalsoConPenalidad
+
+'Asociacion --> un objeto guarda a otro
+Pregunta "1" --> "1..n" Respuesta
+Pregunta -up-> TipoPuntaje
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+
+'Composicion --* un objeto es dueño de otro
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+TipoPuntaje <|.up. TipoPuntajeClasico 
+TipoPuntaje <|.up. TipoPuntajeConPenalidad
+TipoPuntaje <|.up. TipoPuntajeParcial
+
+@enduml

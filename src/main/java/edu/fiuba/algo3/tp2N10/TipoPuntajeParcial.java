@@ -11,8 +11,8 @@ public class TipoPuntajeParcial implements TipoPuntaje {
     }
 
     @Override
-    public int puntuar(Respuesta respuesta) {
-        return (this.respuestasCorrectas.contains(respuesta)) ? 1 : -1;
+    public int puntuar(Respuesta unaRespuesta) {
+        return (this.respuestasCorrectas.contains(unaRespuesta)) ? 1 : -1;
     }
 
     @Override
