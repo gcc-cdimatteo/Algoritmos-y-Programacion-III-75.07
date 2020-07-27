@@ -17,10 +17,8 @@ public abstract class VerdaderoFalso implements Pregunta {
     @Override
     public ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas) {
         ArrayList<Integer> puntos = new ArrayList();
-        for (ArrayList<Respuesta> r : respuestas) {
-            for (Respuesta respuesta : r) {
-                puntos.add(valuar(respuesta));
-            }
+        for (ArrayList<Respuesta> respuesta : respuestas) {
+            puntos.add(valuar(respuesta.get(0)));
         }
         return puntos;
     }
