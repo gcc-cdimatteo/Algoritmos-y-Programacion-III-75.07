@@ -2,22 +2,26 @@ package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
 
-public class VerdaderoFalso extends Pregunta {
+public abstract class VerdaderoFalso implements Pregunta {
 
-    public VerdaderoFalso(String unEnunciado, Respuesta unaRespuestaCorrecta, TipoPuntaje unTipoPuntaje) {
-        super(unEnunciado, unaRespuestaCorrecta, unTipoPuntaje);
+    private final ArrayList<Respuesta> opciones;
+    private final String enunciado;
+
+    public VerdaderoFalso(String unEnunciado, ArrayList<Respuesta> opciones) {
+        this.enunciado = unEnunciado;
+        this.opciones = opciones;
     }
 
-    public int puntuar(Respuesta unaRespuesta) {
-        return this.tipoPuntaje.puntuar(unaRespuesta);
-    }
+    public abstract int valuar(Respuesta respuesta);
 
-    public ArrayList<Integer> responder(ArrayList<Respuesta> respuestas) {
+    @Override
+    public ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas) {
         ArrayList<Integer> puntos = new ArrayList();
-        for (Respuesta respuesta : respuestas) {
-            puntos.add(puntuar(respuesta));
+        for (ArrayList<Respuesta> r : respuestas) {
+            for (Respuesta respuesta : r) {
+                puntos.add(valuar(respuesta));
+            }
         }
         return puntos;
     }
-
 }

@@ -2,20 +2,23 @@ package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
 
-public class MultipleChoice extends Pregunta {
+public abstract class MultipleChoice implements Pregunta {
 
-    public MultipleChoice(String unEnunciado, ArrayList<Respuesta> respuestasCorrectas, TipoPuntaje unTipoPuntaje) {
-        super(unEnunciado, respuestasCorrectas, unTipoPuntaje);
+
+    private final String enunciado;
+    protected ArrayList<Respuesta> opciones;
+
+    public MultipleChoice(String unEnunciado, ArrayList<Respuesta> opciones) {
+        this.enunciado = unEnunciado;
+        this.opciones = opciones;
     }
 
-    public int puntuar(ArrayList<Respuesta> respuestas) {
-        return this.tipoPuntaje.puntuar(respuestas);
-    }
+    public abstract int valuar(ArrayList<Respuesta> respuestas);
 
     public ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas) {
         ArrayList<Integer> puntos = new ArrayList();
         for (ArrayList<Respuesta> respuestasUsuario : respuestas) {
-            puntos.add(puntuar(respuestasUsuario));
+            puntos.add(valuar(respuestasUsuario));
         }
         return puntos;
     }

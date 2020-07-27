@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.tp2N10;
 
-public class Respuesta {
+public abstract class Respuesta {
 
-    private Object valor;
+    private final String respuesta;
 
-    public Respuesta(Object unValor) {
-        this.valor = unValor;
+    public Respuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
-
+    public abstract Integer valorClasico();
+    public abstract Integer valorConPenalidad();
 }
