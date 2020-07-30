@@ -1,11 +1,11 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-title unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntos
+title unaPreguntaDeVFConPenalidadRecibeRespuestasYAsignaPuntos
 
 actor Test
 participant "Respuesta" as respuesta
-participant ": VerdaderoFalsoClasico" as preguntaVF
+participant ": VerdaderoFalsoConPenalidad" as preguntaVF
 
 activate Test
 
@@ -30,13 +30,13 @@ activate Test
         loop porCadaRespuesta
             preguntaVF -> preguntaVF: valuar()
             activate preguntaVF #DarkSalmon
-                preguntaVF -> respuesta: valorClasico()
+                preguntaVF -> respuesta: valorConPenalidad()
                 activate respuesta
                     respuesta --> preguntaVF: 
                 deactivate respuesta
             deactivate preguntaVF
         end
-        preguntaVF --> Test: {1, 0}
+        preguntaVF --> Test: {1, -1}
     deactivate preguntaVF
 
 deactivate Test

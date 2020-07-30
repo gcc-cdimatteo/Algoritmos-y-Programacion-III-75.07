@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title unaPreguntaDeVFClasicoAsignaPuntosARespuestaIncorrecta
+
+actor Test
+participant "unaRespuestaIncorrecta: RespuestaIncorrecta" as respuesta
+participant ": VerdaderoFalsoClasico" as preguntaVF
+
+activate Test
+
+    create respuesta
+    Test --> respuesta: new("Falso")
+    activate respuesta
+        respuesta --> Test
+    deactivate respuesta
+
+    create preguntaVF
+    Test --> preguntaVF: new(unEnunciado, {unaRespuestaCorrecta, unaRespuestaIncorrecta})
+    activate preguntaVF
+        preguntaVF --> Test
+    deactivate preguntaVF
+
+    Test -> preguntaVF: valuar(unaRespuestaIncorrecta)
+    activate preguntaVF
+        preguntaVF -> respuesta: valorClasico()
+        activate respuesta
+            respuesta --> preguntaVF: 0
+        deactivate respuesta
+        preguntaVF --> Test: 0
+    deactivate preguntaVF
+
+deactivate Test
+
+
+@enduml

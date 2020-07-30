@@ -1,0 +1,62 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title unaPreguntaDeMCClasicoRecibeRespuestasYAsignaPuntos
+
+actor Test
+participant "Respuesta" as respuesta
+participant ": MultipleChoiceClasico" as preguntaMC
+
+activate Test
+
+    Test --> respuesta: new("Una fruta")
+    activate respuesta
+        respuesta --> Test
+    deactivate respuesta
+
+    Test --> respuesta: new("De color rojo")
+    activate respuesta
+        respuesta --> Test
+    deactivate respuesta
+
+    Test --> respuesta: new("Muy rica")
+    activate respuesta
+        respuesta --> Test
+    deactivate respuesta
+
+    Test --> respuesta: new("Carne")
+    activate respuesta
+        respuesta --> Test
+    deactivate respuesta
+
+    create preguntaMC
+    Test --> preguntaMC: new("Una manzana es...", {unaFruta, deColorRojo, muyRica})
+    activate preguntaMC
+        preguntaMC --> Test
+    deactivate preguntaMC
+
+    Test -> preguntaMC: responder({{deColorRojo, unaFruta, muyRica}, {deColorRojo, carne, muyRica}})
+    activate preguntaMC
+        loop porCadaUsuario
+            preguntaMC -> preguntaMC: valuar({respuestaDelUsuario})
+            activate preguntaMC #DarkSalmon
+                loop porCadaRespuesta
+                    preguntaMC -> respuesta: valorConPenalidad()
+                    activate respuesta
+                        respuesta --> preguntaMC: unValor
+                    deactivate respuesta
+                end
+                alt totalDeRespuestasEvaluadas == totalRespuestasCorrectas
+                    preguntaMC --> preguntaMC: 1
+                else totalDeRespuestasEvaluadas != totalRespuestasCorrectas
+                    preguntaMC --> preguntaMC: 0
+                end group
+            deactivate preguntaMC
+        end
+        preguntaMC --> Test: {1, 0}
+    deactivate preguntaMC
+
+deactivate Test
+
+
+@enduml
