@@ -1,72 +1,93 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class MultipleChoice {
-    + puntuar(ArrayList<Respuesta>: respuestas): int
-    + responder(ArrayList<ArrayList<Respuesta>>: respuestas): ArrayList<Integer>
+interface Pregunta {
+    + responder(ArrayList<Arraylist<Respuesta>>: respuestasDeJugadores): ArrayList<Integer>
 }
 
-class MultipleChoiceClasico
-
-class MultipleChoiceParcial
-
-class Pregunta {
+abstract class MultipleChoice {
     - enunciado: String
+    - opciones: ArrayList<Respuesta>
+    + responder(ArrayList<Arraylist<Respuesta>>: respuestasDeJugadores): ArrayList<Integer>
+    + {abstract} valuar(ArrayList<Respuesta>: respuestas): Integer
 }
 
-class Respuesta {
-    - valor: Object
+class MultipleChoiceClasico{
+    + valuar(ArrayList<Respuesta>: respuestas): Integer
 }
 
-class VerdaderoFalso {
-    + puntuar(Respuesta: unaRespuesta): int
-    + responder(ArrayList<Respuesta>: respuestas): ArrayList<Integer>
+class MultipleChoiceParcial{
+    + valuar(ArrayList<Respuesta>: respuestas): Integer
 }
 
-class VerdaderoFalsoClasico
-
-class VerdaderoFalsoConPenalidad
-
-interface TipoPuntaje {
-    + puntuar(unaRespuesta: Respuesta): int
-    + puntuar(respuestas: ArrayList<Respuesta>): int
+class MultipleChoiceConPenalidad{
+    + valuar(ArrayList<Respuesta>: respuestas): Integer
 }
 
-class TipoPuntajeClasico {
-    - respuestasCorrectas: ArrayList<Respuesta>
+abstract class VerdaderoFalso {
+    - enunciado: String
+    + responder(ArrayList<Arraylist<Respuesta>>: respuestasDeJugadores): ArrayList<Integer>
+    + {abstract} valuar(Respuesta: respuesta): Integer
 }
 
-class TipoPuntajeConPenalidad {
-    - respuestasCorrectas: ArrayList<Respuesta>
+class VerdaderoFalsoClasico{
+    + valuar(Respuesta: respuesta): Integer
 }
 
-class TipoPuntajeParcial {
-    - respuestasCorrectas: ArrayList<Respuesta>
+class VerdaderoFalsoConPenalidad{
+    + valuar(Respuesta: respuesta): Integer
+}
+
+abstract class Respuesta {
+    - respuesta: String
+    + valorClasico(): Integer
+    + {abstract} valorConPenalidad(): Integer
+}
+
+class RespuestaCorrecta{
+    + valorClasico(): Integer
+    +  valorConPenalidad(): Integer
+}
+
+class RespuestaIncorrecta{
+    + valorClasico(): Integer
+    + valorConPenalidad(): Integer
+}
+
+class Ronda{
+    +procesarRespuestas(ArrayList<Respuesta>: respuestaUno, ArrayList<Respuesta>: respuestaDos)
+}
+
+class Jugador{
+    - puntos: Integer
+    + nombrar(String: nombre)
 }
 
 'Ordenamiento De Cuadrados
 
 'Herencia --|> cumple la relación 'es un'
-Pregunta <|-- MultipleChoice
-Pregunta <|-- VerdaderoFalso
-MultipleChoice <|-- MultipleChoiceClasico
-MultipleChoice <|-- MultipleChoiceParcial
+MultipleChoice <|-down- MultipleChoiceClasico
+MultipleChoice <|-down- MultipleChoiceParcial
+MultipleChoice <|-- MultipleChoiceConPenalidad
 VerdaderoFalso <|-- VerdaderoFalsoClasico
 VerdaderoFalso <|-- VerdaderoFalsoConPenalidad
 
 'Asociacion --> un objeto guarda a otro
-Pregunta "1" --> "1..n" Respuesta
-Pregunta -up-> TipoPuntaje
+Pregunta -up-> "1..n" Respuesta
 
 'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+Jugador "2" -up-o Ronda
+Pregunta -left-o Ronda
 
 'Composicion --* un objeto es dueño de otro
 
 'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
 
 'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
-TipoPuntaje <|.up. TipoPuntajeClasico 
-TipoPuntaje <|.up. TipoPuntajeConPenalidad
-TipoPuntaje <|.up. TipoPuntajeParcial
+Pregunta <|.. MultipleChoice 
+Pregunta <|.. VerdaderoFalso
+Respuesta <|.up. RespuestaCorrecta
+Respuesta <|.up. RespuestaIncorrecta
+
 
 @enduml
