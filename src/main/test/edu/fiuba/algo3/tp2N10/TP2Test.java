@@ -17,13 +17,16 @@ public class TP2Test {
 
     private MultipleChoiceClasico unaPreguntaDeMCClasico;
     private MultipleChoiceParcial unaPreguntaDeMCParcial;
+
+    private MultipleChoiceConPenalidad unaPreguntaDeMCConPenalidad;
+
     private Respuesta respuestaCorrectaMCUno;
     private Respuesta respuestaCorrectaMCDos;
     private Respuesta respuestaCorrectaMCTres;
     private Respuesta respuestaIncorrectaMCUno;
 
     public void setupRespuestasVF() {
-        this.respuestaCorrectaVF = new RespuestaCorrecta("Verdadero");
+        this.respuestaCorrectaVF = new RespuestaCorrecta("Verdadero|jaja|jasjdj|jjasdsj|jajsdjj|jajsdj");
         this.respuestaIncorrectaVF = new RespuestaIncorrecta("Falso");
     }
 
@@ -58,23 +61,29 @@ public class TP2Test {
         this.unaPreguntaDeMCParcial = new MultipleChoiceParcial("Una manzana es...", respuestas);
     }
 
+    public void creoUnaPreguntaDeMCConPenalidad() {
+        setupRespuestasMC();
+        ArrayList<Respuesta> respuestas = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaIncorrectaMCUno));
+        this.unaPreguntaDeMCConPenalidad = new MultipleChoiceConPenalidad("Una manzana es...", respuestas);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Entrega0
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void unaPreguntaDeVFClasicoPuedeCrearseSiSeIndicaLaRtaCorreta(){ //Pto. 1
+    public void unaPreguntaDeVFClasicoPuedeCrearseSiSeIndicaLaRtaCorreta() { //Pto. 1
         creoUnaPreguntaDeVFClasico();
         assertEquals(1, this.unaPreguntaDeVFClasico.valuar(this.respuestaCorrectaVF));
     }
 
     @Test
-    public void unaPreguntaDeVFClasicoPuntua0SiSeRespondeMal(){
+    public void unaPreguntaDeVFClasicoPuntua0SiSeRespondeMal() {
         creoUnaPreguntaDeVFClasico();
         assertEquals(0, this.unaPreguntaDeVFClasico.valuar(this.respuestaIncorrectaVF));
     }
 
     @Test
-    public void unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntos(){ //Pto. 2
+    public void unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntos() { //Pto. 2
         creoUnaPreguntaDeVFClasico();
         ArrayList<Respuesta> respuestaJugadorUno = new ArrayList<>(Collections.singletonList(this.respuestaCorrectaVF));
         ArrayList<Respuesta> respuestaJugadorDos = new ArrayList<>(Collections.singletonList(this.respuestaIncorrectaVF));
@@ -88,49 +97,49 @@ public class TP2Test {
     // Entrega1
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void unaPreguntaDeVFConPenalidadPuedeCrearseSiSeIndicaLaRtaCorreta(){ //Pto. 1
+    public void unaPreguntaDeVFConPenalidadPuedeCrearseSiSeIndicaLaRtaCorreta() { //Pto. 1
         creoUnaPreguntaDeVFConPenalidad();
         assertEquals(1, this.unaPreguntaDeVFConPenalidad.valuar(this.respuestaCorrectaVF));
     }
 
     @Test
-    public void unaPreguntaDeVFConPenalidadRestaPuntosSiSeRespondeMal(){
+    public void unaPreguntaDeVFConPenalidadRestaPuntosSiSeRespondeMal() {
         creoUnaPreguntaDeVFConPenalidad();
         assertEquals(-1, unaPreguntaDeVFConPenalidad.valuar(this.respuestaIncorrectaVF));
     }
 
     @Test
-    public void unaPreguntaDeMCClasicoPuedeCrearseSiSeIndicaLasRtasCorretas(){ //Pto. 2
+    public void unaPreguntaDeMCClasicoPuedeCrearseSiSeIndicaLasRtasCorretas() { //Pto. 2
         creoUnaPreguntaDeMCClasico();
         assertEquals(1, this.unaPreguntaDeMCClasico.valuar(new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres))));
     }
 
     @Test
-    public void unaPreguntaDeMCClasicoPuntua0SiSeRespondeMal(){
+    public void unaPreguntaDeMCClasicoPuntua0SiSeRespondeMal() {
         creoUnaPreguntaDeMCClasico();
         assertEquals(0, this.unaPreguntaDeMCClasico.valuar(new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos, this.respuestaIncorrectaMCUno))));
     }
 
     @Test
-    public void unaPreguntaDeMCClasicoPuntua0SiLaRespuestaEstaIncompleta(){
+    public void unaPreguntaDeMCClasicoPuntua0SiLaRespuestaEstaIncompleta() {
         creoUnaPreguntaDeMCClasico();
         assertEquals(0, this.unaPreguntaDeMCClasico.valuar(new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos))));
     }
 
     @Test
-    public void unaPreguntaDeMCParcialPuedeCrearseSiSeIndicaLasRtasCorretas(){ //Pto. 3
+    public void unaPreguntaDeMCParcialPuedeCrearseSiSeIndicaLasRtasCorretas() { //Pto. 3
         creoUnaPreguntaDeMCParcial();
         assertEquals(2, this.unaPreguntaDeMCParcial.valuar(new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos))));
     }
 
     @Test
-    public void unaPreguntaDeMCParcialPuntua0SiSeRespondeMal(){
+    public void unaPreguntaDeMCParcialPuntua0SiSeRespondeMal() {
         creoUnaPreguntaDeMCParcial();
         assertEquals(0, this.unaPreguntaDeMCParcial.valuar(new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos, this.respuestaIncorrectaMCUno))));
     }
 
     @Test
-    public void unaPreguntaDeVFConPenalidadRecibeRespuestasYAsignaPuntos(){ //Pto. 4
+    public void unaPreguntaDeVFConPenalidadRecibeRespuestasYAsignaPuntos() { //Pto. 4
         creoUnaPreguntaDeVFConPenalidad();
         ArrayList<Respuesta> respuestaJugadorUno = new ArrayList<>(Collections.singletonList(this.respuestaCorrectaVF));
         ArrayList<Respuesta> respuestaJugadorDos = new ArrayList<>(Collections.singletonList(this.respuestaIncorrectaVF));
@@ -141,7 +150,7 @@ public class TP2Test {
     }
 
     @Test
-    public void unaPreguntaDeMCClasicoRecibeRespuestasYAsignaPuntos(){ //Pto. 5
+    public void unaPreguntaDeMCClasicoRecibeRespuestasYAsignaPuntos() { //Pto. 5
         creoUnaPreguntaDeMCClasico();
         ArrayList<Respuesta> respuestasJugadorUno = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaCorrectaMCUno));
         ArrayList<Respuesta> respuestasJugadorDos = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaIncorrectaMCUno, this.respuestaCorrectaMCUno));
@@ -152,7 +161,7 @@ public class TP2Test {
     }
 
     @Test
-    public void unaPreguntaDeMCParcialRecibeRespuestasYAsignaPuntos(){ //Pto. 6
+    public void unaPreguntaDeMCParcialRecibeRespuestasYAsignaPuntos() { //Pto. 6
         creoUnaPreguntaDeMCParcial();
         ArrayList<Respuesta> respuestasUsuarioUno = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaCorrectaMCUno));
         ArrayList<Respuesta> respuestasUsuarioDos = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaIncorrectaMCUno, this.respuestaCorrectaMCUno));
@@ -161,4 +170,62 @@ public class TP2Test {
         ArrayList<Integer> puntosEsperados = new ArrayList<>(Arrays.asList(3, 0));
         assertEquals(puntosEsperados, puntosObtenidos);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Entrega 2
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Test
+    public void unaPreguntaDeMCConPenalidadAsignaPuntajeParcialSiSeRespondeAlgunasBienyAlgunasMal() {
+        creoUnaPreguntaDeMCConPenalidad();
+        assertEquals(2, this.unaPreguntaDeMCConPenalidad.valuar(
+                new ArrayList<>(Arrays.asList(
+                        new RespuestaCorrecta("Una fruta"),
+                        new RespuestaCorrecta("De color rojo"),
+                        new RespuestaCorrecta("Muy rica"),
+                        new RespuestaIncorrecta("Carne")))));
+    }
+
+    @Test
+    public void unaPreguntaDeMCConPenalidadAsignaTotalDePuntosSiSeRespondeTodoBien() {
+        creoUnaPreguntaDeMCConPenalidad();
+        assertEquals(3, this.unaPreguntaDeMCConPenalidad.valuar(
+                new ArrayList<>(Arrays.asList(
+                        new RespuestaCorrecta("Una fruta"),
+                        new RespuestaCorrecta("De color rojo"),
+                        new RespuestaCorrecta("Muy rica")))));
+    }
+
+    @Test
+    public void unaPreguntaDeMCConPenalidadAsignaTotalDePuntosEnContraSiSeRespondeTodoMal() {
+        creoUnaPreguntaDeMCConPenalidad();
+        assertEquals(-1, this.unaPreguntaDeMCConPenalidad.valuar(
+                new ArrayList<>(Arrays.asList(new RespuestaIncorrecta("Carne")))));
+    }
+
+    @Test
+    public void unaPreguntaDeMCConPenalidadRecibeRespuestasYAsignaPuntos() {
+        creoUnaPreguntaDeMCConPenalidad();
+
+        ArrayList<Respuesta> respuestasJugadorUno = new ArrayList<>(Arrays.asList(
+                new RespuestaCorrecta("Una fruta"),
+                new RespuestaCorrecta("De color rojo"),
+                new RespuestaCorrecta("Muy rica"),
+                new RespuestaIncorrecta("Carne")));
+        ArrayList<Respuesta> respuestasJugadorDos = new ArrayList<>(Arrays.asList(
+                new RespuestaIncorrecta("Carne")));
+
+        ArrayList<ArrayList<Respuesta>> respuestasUsuarios = new ArrayList<>(
+                Arrays.asList(respuestasJugadorUno, respuestasJugadorDos));
+        ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeMCConPenalidad.responder(respuestasUsuarios);
+        ArrayList<Integer> puntosEsperados = new ArrayList<>(Arrays.asList(2, -1));
+        assertEquals(puntosEsperados, puntosObtenidos);
+    }
+
+    // ToDo: Ordered choice
+
+
+    // ToDo: Group Choice
+
+
 }
