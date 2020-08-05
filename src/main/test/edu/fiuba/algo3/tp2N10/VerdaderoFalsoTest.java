@@ -17,9 +17,14 @@ public class VerdaderoFalsoTest {
     }
 
     @Test
-    public void verdaderoFalsoConPenalidadDevuelvePuntajeCorrecto(){
+    public void verdaderoFalsoClasicoRecibeUnaListaDeRespuestasYAsignaPuntos(){
         VerdaderoFalso preguntaVF = new VerdaderoFalso("La manzana es azul",false);
-        preguntaVF.conPenalidad();
+        assertEquals(1, preguntaVF.responderLista(new ));
+    }
+
+    @Test
+    public void verdaderoFalsoConPenalidadDevuelvePuntajeCorrecto(){
+        VerdaderoFalso preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad("La manzana es azul", false);
         assertEquals(-1, preguntaVF.responder(true));
     }
 

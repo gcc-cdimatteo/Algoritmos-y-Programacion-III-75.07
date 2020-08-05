@@ -3,35 +3,32 @@ package edu.fiuba.algo3.tp2N10;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class VerdaderoFalso implements Pregunta {
+public class VerdaderoFalso {
 
     private String enunciado;
-    private boolean correcto;
+    private final RespuestaVerdaderoFalso respuestaCorrecta;
     private TipoPuntaje tipoPuntaje;
 
 
     public VerdaderoFalso(String enunciado, boolean correcto){
         this.tipoPuntaje = new TipoPuntajeClasico();
         this.enunciado = enunciado;
-        this.correcto = correcto;
+        this.respuestaCorrecta = new RespuestaVerdaderoFalso(correcto);
     }
 
-    public void conPenalidad(){
-        this.tipoPuntaje = new TipoPuntajePenalidad();
+    public static VerdaderoFalso VerdaderoFalsoPenalidad(String unEnunciado, boolean unValorCorrecto) {
+        VerdaderoFalso miPreguntaVF = new VerdaderoFalso(unEnunciado, unValorCorrecto);
+        miPreguntaVF.tipoPuntaje = new TipoPuntajePenalidad();
+        return miPreguntaVF;
     }
 
-    private ArrayList<Integer> evaluar(boolean respuesta){
-        Integer acierto = 0;
-        Integer error = 0;
-        if ((this.correcto == respuesta)) { acierto++; }
-        else { error++; }
-        return new ArrayList<>(Arrays.asList(acierto, error));
+    private ArrayList<Integer> evaluar(RespuestaVerdaderoFalso respuestaDelUsuario){
+        return respuestaDelUsuario.evaluar(this.respuestaCorrecta);
     }
 
-    @Override
-    public Integer responder(boolean valor){
-        return this.tipoPuntaje.puntuar(this.evaluar(valor));
+    public int responder(boolean respuestaRecibida) {
+        RespuestaVerdaderoFalso respuestaDelUsuario = new RespuestaVerdaderoFalso(respuestaRecibida);
+        return this.tipoPuntaje.puntuar(this.evaluar(respuestaDelUsuario));
     }
-
 
 }

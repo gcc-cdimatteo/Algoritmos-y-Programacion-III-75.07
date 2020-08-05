@@ -27,4 +27,5 @@ public class RespuestaMultipleChoice {
     private boolean contiene(String unaRespuesta) {
         return this.unaCadenaDeRespuestas.contains(unaRespuesta);
     }
+
 }

@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class TipoPuntajeClasico implements TipoPuntaje {
-    private final Integer puntosPorAcertar;
+
     private int aciertosEsperados;
 
     public TipoPuntajeClasico(){
-        this.puntosPorAcertar = 1;
         this.aciertosEsperados = 1;
     }
 

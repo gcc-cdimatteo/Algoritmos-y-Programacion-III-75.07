@@ -3,6 +3,7 @@ package edu.fiuba.algo3.tp2N10;
 import java.util.ArrayList;
 
 public class TipoPuntajePenalidad implements TipoPuntaje {
+
     private final Integer puntosPorAcertar;
     private final Integer puntosPorErrar;
 
@@ -14,4 +15,5 @@ public class TipoPuntajePenalidad implements TipoPuntaje {
     public Integer puntuar(ArrayList<Integer> evaluacion){
         return (evaluacion.get(0)*this.puntosPorAcertar)+(evaluacion.get(1)*this.puntosPorErrar);
     }
+
 }
