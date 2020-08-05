@@ -12,15 +12,19 @@ public class VerdaderoFalsoTest {
 
     @Test
     public void verdaderoFalsoClasicoPuedeCrearseSiSeIndicaLaRtaCorreta(){
-        VerdaderoFalso preguntaVF = new VerdaderoFalso("La manzana es azul",false);
-        assertEquals(1, preguntaVF.responder(false));
+        RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
+        VerdaderoFalso preguntaVF = new VerdaderoFalso("La manzana es azul",respuestaCorrecta);
+        ArrayList<Integer> expected = new ArrayList<>(Collections.singletonList(1));
+        assertEquals(expected, preguntaVF.responder(new ArrayList<>(Collections.singletonList(respuestaCorrecta))));
     }
 
     @Test
     public void verdaderoFalsoConPenalidadDevuelvePuntajeCorrecto(){
-        VerdaderoFalso preguntaVF = new VerdaderoFalso("La manzana es azul",false);
-        preguntaVF.conPenalidad();
-        assertEquals(-1, preguntaVF.responder(true));
+        RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
+        RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso(true);
+        VerdaderoFalso preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad("La manzana es azul",respuestaCorrecta);
+        ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, -1));
+        assertEquals(expected, preguntaVF.responder(new ArrayList<>(Arrays.asList(respuestaCorrecta, respuestaIncorrecta))));
     }
 
 }
