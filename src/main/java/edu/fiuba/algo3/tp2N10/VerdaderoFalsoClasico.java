@@ -1,13 +1,15 @@
 package edu.fiuba.algo3.tp2N10;
 
-import java.util.ArrayList;
+public class VerdaderoFalsoClasico {
 
-public class VerdaderoFalsoClasico extends VerdaderoFalso {
+    private VerdaderoFalso miPregunta;
 
-    public VerdaderoFalsoClasico(String unEnunciado, ArrayList<Respuesta> unaRespuestaCorrecta) {
-        super(unEnunciado, unaRespuestaCorrecta);
+    public VerdaderoFalsoClasico(String unEnunciado, RespuestaVerdaderoFalso unaRespuestaCorrecta) {
+        this.miPregunta = new VerdaderoFalso(unEnunciado, unaRespuestaCorrecta.conTipoPuntaje(new TipoPuntajeClasico()));
     }
 
-    @Override
-    public int valuar(Respuesta respuesta) { return respuesta.valorClasico(); }
+    public int valuar(RespuestaVerdaderoFalso unaRespuesta) {
+        return this.miPregunta.valuar(unaRespuesta);
+    }
+
 }

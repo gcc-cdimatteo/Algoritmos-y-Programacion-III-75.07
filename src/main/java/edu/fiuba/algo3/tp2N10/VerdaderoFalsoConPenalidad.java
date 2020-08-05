@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class VerdaderoFalsoConPenalidad extends VerdaderoFalso {
 
     public VerdaderoFalsoConPenalidad(String unEnunciado, ArrayList<Respuesta> unaRespuestaCorrecta) {
-        super(unEnunciado, unaRespuestaCorrecta);
+        super(unEnunciado, unaRespuestaCorrecta, new TipoPuntajeClasico());
     }
 
     @Override

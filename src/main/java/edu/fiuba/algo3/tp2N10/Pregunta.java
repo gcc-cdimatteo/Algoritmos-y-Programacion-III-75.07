@@ -5,4 +5,7 @@ import java.util.ArrayList;
 public interface Pregunta {
 
     ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas);
+
+    int valuar(Respuesta unaRespuesta);
+
 }
