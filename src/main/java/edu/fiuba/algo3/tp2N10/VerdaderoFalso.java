@@ -1,29 +1,38 @@
 package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class VerdaderoFalso implements Pregunta {
 
-    private String miEnunciado;
-    private TipoPuntaje miTipoPuntaje;
+    private String enunciado;
+    private boolean correcto;
+    private TipoPuntaje tipoPuntaje;
 
-    public VerdaderoFalso(String unEnunciado, TipoPuntaje unTipoPuntaje) {
-        this.miEnunciado = unEnunciado;
-        this.miTipoPuntaje = unTipoPuntaje;
+
+    public VerdaderoFalso(String enunciado, boolean correcto){
+        this.tipoPuntaje = new TipoPuntajeClasico();
+        this.enunciado = enunciado;
+        this.correcto = correcto;
+    }
+
+    public void conPenalidad(){
+        this.tipoPuntaje = new TipoPuntajePenalidad();
+    }
+
+    private ArrayList<Integer> evaluar(boolean respuesta){
+        Integer acierto = 0;
+        Integer error = 0;
+        if ((this.correcto == respuesta)) { acierto++; }
+        else { error++; }
+
+        return new ArrayList<>(Arrays.asList(acierto, error));
     }
 
     @Override
-    public int valuar(Respuesta unaRespuesta) {
-        return this.miTipoPuntaje.valuar(unaRespuesta);
+    public Integer responder(boolean valor){
+        return this.tipoPuntaje.puntuar(this.evaluar(valor));
     }
 
-    @Override
-    public ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas) {
-        ArrayList<Integer> puntos = new ArrayList();
-        for (ArrayList<Respuesta> respuesta : respuestas) {
-            puntos.add(valuar(respuesta.get(0)));
-        }
-        return puntos;
-    }
 
 }

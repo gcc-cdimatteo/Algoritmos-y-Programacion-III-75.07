@@ -3,9 +3,11 @@ package edu.fiuba.algo3.tp2N10;
 import java.util.ArrayList;
 
 public interface Pregunta {
+    //Devuelve el total de puntos correspondientes a la propuesta
 
-    ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas);
+    Integer responder(boolean valor); //Implementacion básica para VF
 
-    int valuar(Respuesta unaRespuesta);
+    //Integer responder(Respuesta propuesta);
 
+    //Integer responder(ArrayList<Respuesta> propuestas);
 }
