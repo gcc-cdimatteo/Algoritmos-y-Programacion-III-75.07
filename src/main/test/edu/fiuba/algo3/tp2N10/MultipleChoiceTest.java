@@ -1,16 +1,17 @@
 package edu.fiuba.algo3.tp2N10;
 
-import com.sun.javafx.runtime.async.AbstractRemoteResource;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MultipleChoiceTest {
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Clasico
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void MultipleChoiceClasicoPuedeCrearseSiSeIndicanLasRtasCorretas(){
         MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
@@ -47,6 +48,9 @@ public class MultipleChoiceTest {
         assertEquals(0, preguntaMC.responder(new ArrayList<>()));
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Parcial
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void MultipleChoiceParcialPuedeCrearseSiSeIndicanLasRtasCorretas(){
         MultipleChoice preguntaMC = MultipleChoice.MultipleChoiceParcial("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
@@ -83,6 +87,9 @@ public class MultipleChoiceTest {
         assertEquals(0, preguntaMC.responder(new ArrayList<>()));
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Penalidad
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void MultipleChoicePenalidadPuedeCrearseSiSeIndicanLasRtasCorretas(){
         MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
