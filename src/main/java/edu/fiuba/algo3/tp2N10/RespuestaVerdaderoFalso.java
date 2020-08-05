@@ -2,7 +2,6 @@ package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Set;
 
 public class RespuestaVerdaderoFalso {
 

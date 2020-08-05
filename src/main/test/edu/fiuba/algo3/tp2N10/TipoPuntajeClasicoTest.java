@@ -17,15 +17,13 @@ public class TipoPuntajeClasicoTest {
 
     @Test
     public void tipoPuntajeClasicoPuntuaCorrectamenteParaVariosAciertos(){
-        TipoPuntajeClasico tipoPuntaje = new TipoPuntajeClasico();
-        tipoPuntaje.establecerAciertosEsperados(3);
+        TipoPuntajeClasico tipoPuntaje = TipoPuntajeClasico.TipoPuntajeClasicoConAciertosEsperados(3);
         assertEquals(1, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(3,0))));
     }
 
     @Test
     public void tipoPuntajeClasicoPuntuaCorrectamenteParaVariosAciertosYUnError(){
-        TipoPuntajeClasico tipoPuntaje = new TipoPuntajeClasico();
-        tipoPuntaje.establecerAciertosEsperados(3);
+        TipoPuntajeClasico tipoPuntaje = TipoPuntajeClasico.TipoPuntajeClasicoConAciertosEsperados(3);
         assertEquals(0, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(3,1))));
     }
 

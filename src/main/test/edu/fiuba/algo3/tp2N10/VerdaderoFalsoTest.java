@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VerdaderoFalsoTest {
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Clasico
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void verdaderoFalsoClasicoPuedeCrearseSiSeIndicaLaRtaCorreta(){
         RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
@@ -25,6 +28,20 @@ public class VerdaderoFalsoTest {
         VerdaderoFalso preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad("La manzana es azul",respuestaCorrecta);
         ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, -1));
         assertEquals(expected, preguntaVF.responder(new ArrayList<>(Arrays.asList(respuestaCorrecta, respuestaIncorrecta))));
-    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Penalidad
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    @Test
+//    public void VerdaderoFalsoConPenalidadDevuelvePuntajeCorrecto(){
+//        VerdaderoFalso preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad("La manzana es azul", false);
+//        assertEquals(-1, preguntaVF.responder(true));
+//    }
+//
+//    @Test
+//    public void VerdaderoFalsoPenalidadRecibeUnaListaDeRespuestasYAsignaPuntos(){
+//        VerdaderoFalso preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad("La manzana es azul",false);
+//        assertEquals(new ArrayList<>(Arrays.asList(-1, 1)), preguntaVF.responderLista(new ArrayList<>(Arrays.asList(true, false))));
+//    }
 
 }

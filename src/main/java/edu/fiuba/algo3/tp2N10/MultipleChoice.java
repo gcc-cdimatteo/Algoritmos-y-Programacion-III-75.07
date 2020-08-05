@@ -1,10 +1,8 @@
-
 package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
 
 public class MultipleChoice {
-
 
     private final String enunciado;
     private final RespuestaMultipleChoice respuestaCorrecta;

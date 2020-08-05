@@ -7,4 +7,5 @@ public class TipoPuntajePenalidad implements TipoPuntaje {
     public Integer puntuar(ArrayList<Integer> obtained){
         return obtained.get(0) - obtained.get(1);
     }
+
 }
