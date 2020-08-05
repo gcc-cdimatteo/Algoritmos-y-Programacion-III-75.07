@@ -31,4 +31,12 @@ public class VerdaderoFalso {
         return this.tipoPuntaje.puntuar(this.evaluar(respuestaDelUsuario));
     }
 
+    public ArrayList<Integer> responderLista(ArrayList<Boolean> respuestasRecibidas) {
+        ArrayList<Integer> puntos = new ArrayList<>();
+        for (Boolean respuestaRecibida : respuestasRecibidas) {
+            puntos.add(responder(respuestaRecibida));
+        }
+        return puntos;
+    }
+
 }

@@ -18,6 +18,12 @@ public class MultipleChoiceTest {
     }
 
     @Test
+    public void MultipleChoiceClasicoRecibeUnaListaDeRespuestasYAsignaPuntos(){
+        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
+        assertEquals(new ArrayList<>(Arrays.asList(1, 0)), preguntaMC.responderLista(new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")), new ArrayList<>(Arrays.asList("Es Rica", "Es Carne", "Es Una Fruta"))))));
+    }
+
+    @Test
     public void MultipleChoiceClasicoDevuelve0SiSeRespondeIncorrectamente(){
         MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(0, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Carne", "Es Una Fruta"))));
@@ -43,78 +49,80 @@ public class MultipleChoiceTest {
 
     @Test
     public void MultipleChoiceParcialPuedeCrearseSiSeIndicanLasRtasCorretas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.parcial();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoiceParcial("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(3, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta"))));
     }
 
     @Test
+    public void MultipleChoiceParcialRecibeUnaListaDeRespuestasYAsignaPuntos(){
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoiceParcial("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
+        assertEquals(new ArrayList<>(Arrays.asList(3, 0)), preguntaMC.responderLista(new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")), new ArrayList<>(Arrays.asList("Es Rica", "Es Carne", "Es Una Fruta"))))));
+    }
+
+    @Test
     public void MultipleChoiceParcialDevuelve0ConUnaRespuestaIncorrectaYDosCorrectas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.parcial();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoiceParcial("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(0, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Carne", "Es Una Fruta"))));
     }
 
     @Test
     public void MultipleChoiceParcialDevuelve2ConDosRespuestasCorrectas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.parcial();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoiceParcial("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(2, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Una Fruta"))));
     }
 
     @Test
     public void MultipleChoiceParcialDevuelve0ConTresRespuestasCorrectasYUnaIncorrecta(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.parcial();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoiceParcial("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(0, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta", "Es Carne"))));
     }
 
     @Test
     public void MultipleChoiceParcialDevuelve0SiNoEnvioNada(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.parcial();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoiceParcial("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(0, preguntaMC.responder(new ArrayList<>()));
     }
 
     @Test
     public void MultipleChoicePenalidadPuedeCrearseSiSeIndicanLasRtasCorretas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.conPenalidad();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(3, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta"))));
     }
 
     @Test
+    public void MultipleChoicePenalidadRecibeUnaListaDeRespuestasYAsignaPuntos(){
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
+        assertEquals(new ArrayList<>(Arrays.asList(3, 1)), preguntaMC.responderLista(new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")), new ArrayList<>(Arrays.asList("Es Rica", "Es Carne", "Es Una Fruta"))))));
+    }
+
+
+    @Test
     public void MultipleChoicePenalidadDevuelve2ConUnaRespuestaIncorrectaYDosCorrectas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.conPenalidad();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(1, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Carne", "Es Una Fruta"))));
     }
 
     @Test
     public void MultipleChoicePenalidadDevuelve2ConDosRespuestasCorrectas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.conPenalidad();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(2, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Una Fruta"))));
     }
 
     @Test
     public void MultipleChoicePenalidadDevuelve2ConTresRespuestasCorrectasYUnaIncorrecta(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.conPenalidad();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(2, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta", "Es Carne"))));
     }
 
     @Test
     public void MultipleChoicePenalidadDevuelve0SiNoEnvioNada(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.conPenalidad();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(0, preguntaMC.responder(new ArrayList<>()));
     }
 
     @Test
     public void MultipleChoicePenalidadDevuelveMenos2SiEnvioDosIncorrectas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        preguntaMC.conPenalidad();
+        MultipleChoice preguntaMC = MultipleChoice.MultipleChoicePenalidad("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
         assertEquals(-2, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Un Citrico", "Es Carne"))));
     }
 
