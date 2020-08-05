@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrderedChoiceTest {
 
-    @Test
-    public void MultipleChoiceClasicoPuedeCrearseSiSeIndicanLasRtasCorretas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        assertEquals(1, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta"))));
-    }
+//    @Test
+//    public void OrderedChoicePuedeCrearseSiSeIndicanLasRtasCorretas(){
+//        OrderedChoice preguntaOC = new MultipleChoice("El orden de las letras del abecedario es...", new ArrayList<>(Arrays.asList("A", "B", "C")));
+//        assertEquals(1, preguntaOC.responder(new ArrayList<>(Arrays.asList("A", "B", "C"))));
+//    }
 
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,8 +15,8 @@ public class MultipleChoiceTest {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void MultipleChoiceClasicoPuedeCrearseSiSeIndicanLasRtasCorretas(){
-        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
-        assertEquals(1, preguntaMC.responder(new ArrayList<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta"))));
+        MultipleChoice preguntaMC = new MultipleChoice("La manzana es...", new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta"))));
+        assertEquals(new ArrayList<>(Arrays.asList(1)), preguntaMC.responder(new ArrayList<>(Arrays.asList(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")))))));
     }
 
     @Test
