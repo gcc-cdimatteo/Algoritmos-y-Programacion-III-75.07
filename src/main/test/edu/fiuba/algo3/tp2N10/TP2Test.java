@@ -25,6 +25,17 @@ public class TP2Test {
 //    private Respuesta respuestaCorrectaMCTres;
 //    private Respuesta respuestaIncorrectaMCUno;
 
+
+    //--<OrderedChoice>--
+//    private Respuesta respuestaCorrectaOCUno;
+//    private Respuesta respuestaCorrectaOCDos;
+//    private Respuesta respuestaCorrectaOCTres;
+//    private Respuesta respuestaCorrectaOCCuatro;
+//    private ArrayList<Respuesta> respuestaOrdenadaOC;
+//    private ArrayList<Respuesta> respuestaDesordenadaOC;
+    //--<>--
+
+
     public void setupRespuestasVF() {
 //        this.respuestaCorrectaVF = new RespuestaCorrecta("Verdadero|jaja|jasjdj|jjasdsj|jajsdjj|jajsdj");
 //        this.respuestaIncorrectaVF = new RespuestaIncorrecta("Falso");
@@ -67,6 +78,33 @@ public class TP2Test {
 //        ArrayList<Respuesta> respuestas = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaIncorrectaMCUno));
 //        this.unaPreguntaDeMCConPenalidad = new MultipleChoiceConPenalidad("Una manzana es...", respuestas);
 //    }
+
+
+
+    //--<OrderedChoice>--
+//    public void setupRespuestasOC(){
+//        this.respuestaCorrectaOCUno = new RespuestaCorrecta("Uno");
+//        this.respuestaCorrectaOCDos = new RespuestaCorrecta("Dos");
+//        this.respuestaCorrectaOCTres = new RespuestaCorrecta("Tres");
+//        this.respuestaCorrectaOCCuatro = new RespuestaCorrecta("Cuatro");
+//    }
+//
+//    public void setupRespuestaOrdenadaOC(){
+//        setupRespuestasOC();
+//        this.respuestaOrdenadaOC = new ArrayList<>(Arrays.asList(this.respuestaCorrectaOCUno, this.respuestaCorrectaOCDos, this.respuestaCorrectaOCTres, this.respuestaCorrectaOCCuatro));
+//    }
+//
+//    public void setupRespuestaDesordenadaOC(){
+//        setupRespuestasOC();
+//        this.respuestaDesordenadaOC = new ArrayList<>(Arrays.asList(this.respuestaCorrectaOCDos, this.respuestaCorrectaOCTres, this.respuestaCorrectaOCUno, this.respuestaCorrectaOCCuatro));
+//    }
+//
+//    public void creoUnaPreguntaDeOC(){
+//        setupRespuestaOrdenadaOC();
+//        setupRespuestaDesordenadaOC();
+//        this.unaPreguntaDeOC = new OrderedChoice("Ordene los numeros...", this.respuestaDesordenadaOC, this.respuestaOrdenadaOC);
+//    }
+    //--<>--
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Entrega0
@@ -225,7 +263,32 @@ public class TP2Test {
 //
 //    // ToDo: Ordered choice
 //
+//   @Test
+//    public void unaPreguntaDeOCPuedeCrearseSiSeIndicaLaRtaCorreta() {
+//        creoUnaPreguntaDeOC();
+//        assertEquals(1, this.unaPreguntaDeOC.valuar(this.respuestaOrdenadaOC));
+//    }
 //
+//    @Test
+//    public void unaPreguntaDeOCPuntua0SiSeRespondeMal() {
+//        creoUnaPreguntaDeOC();
+//        assertEquals(0, this.unaPreguntaDeOC.valuar(this.respuestaDesordenadaOC));
+//    }
+//
+//    @Test
+//    public void unaPreguntaDeOCAsignaPuntosCorrectamenteAVariosJugadores() {
+//        creoUnaPreguntaDeOC();
+//
+//        ArrayList<Respuesta> respuestaJugador1 = this.respuestaOrdenadaOC;
+//        ArrayList<Respuesta> respuestaJugador2 = this.respuestaDesordenadaOC;
+//        ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeOC.responder(new ArrayList<>(
+//                Arrays.asList(respuestaJugador1, respuestaJugador2)));
+//        ArrayList<Integer> puntosEsperados = new ArrayList<>(Arrays.asList(1, 0));
+//        assertEquals(puntosEsperados, puntosObtenidos);
+//    }
+//
+//    public void unaPreguntaDeOCLevantaUnaExcepcionSiLaRespuestaDeUsuarioNoContieneTodasLasOpciones();
+
 //    // ToDo: Group Choice
 //
 
