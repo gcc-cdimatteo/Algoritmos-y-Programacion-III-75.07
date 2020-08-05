@@ -25,7 +25,6 @@ public class VerdaderoFalso implements Pregunta {
         Integer error = 0;
         if ((this.correcto == respuesta)) { acierto++; }
         else { error++; }
-
         return new ArrayList<>(Arrays.asList(acierto, error));
     }
 
