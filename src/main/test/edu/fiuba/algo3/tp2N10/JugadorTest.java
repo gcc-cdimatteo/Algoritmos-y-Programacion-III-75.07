@@ -8,7 +8,7 @@ public class JugadorTest {
 
     @Test
     public void Test01JugadorRecienCreadoDevuelve0PuntosYCadenaVacia(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador("");
 
         assertEquals("",jugador.nombre());
         assertEquals(0,jugador.puntaje());
@@ -16,23 +16,21 @@ public class JugadorTest {
 
     @Test
     public void Test02JugadorEsNombradoYDevuelveSuNombre(){
-        Jugador jugador = new Jugador();
-
-        jugador.nombrar("Martin");
+        Jugador jugador = new Jugador("Martin");
 
         assertEquals("Martin", jugador.nombre());
     }
 
     @Test
     public void Test03JugadorEsPuntuadoPositivamenteYDevuelveSusPuntos(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador("");
         jugador.puntuar(10);
         assertEquals(10,jugador.puntaje());
     }
 
     @Test
     public void Test04JugadorEsPuntuadoNegativamenteYDevuelveSusPuntos(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador("");
 
         jugador.puntuar(-8);
 
@@ -41,7 +39,7 @@ public class JugadorTest {
 
     @Test
     public void Test05JugadorEsPuntuadoVariasVeces(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador("");
 
         jugador.puntuar(-1);
         jugador.puntuar(10);
