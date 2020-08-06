@@ -1,23 +1,15 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-
-import edu.fiuba.algo3.tp2N10.Enunciado;
-import edu.fiuba.algo3.tp2N10.RespuestaVerdaderoFalso;
-import edu.fiuba.algo3.tp2N10.VerdaderoFalso;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.Arrays;
-
 
 public class App extends Application {
 
     private Stage escenario;
-    private VerdaderoFalso pregunta;
 
     public void start(Stage stage) throws Exception {
         this.escenario = stage;
@@ -32,16 +24,11 @@ public class App extends Application {
 
     public void setup(){
         this.escenario.setTitle("AlgoKahoot");
-        this.pregunta = new VerdaderoFalso(new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso")), new RespuestaVerdaderoFalso("Verdadero"));
-    }
+   }
 
     //Escenas
-    public Scene escenaPregunta(){
-//        Label label = new Label(this.pregunta.getEnunciado());
-        Label label = new Label("Prueba");
-        Scene escenario = new Scene(new StackPane(label), 640, 480);
-        return escenario;
+    public Scene escenaPregunta() {
+        Label label = new Label("Hola mundo JavaFX!");
+        return new Scene(new StackPane(label), 640, 480);
     }
-
-
 }
