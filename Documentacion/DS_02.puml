@@ -4,12 +4,17 @@ skinparam classAttributeIconSize 0
 title unaPreguntaDeVFConPenalidadRecibeRespuestasYAsignaPuntos
 
 actor Test
+participant ": Enunciado" as enunciado
 participant ": RespuestaVerdaderoYFalso" as respuesta
 participant ": VerdaderoFalso" as preguntaVF
 participant ": TipoPuntajePenalidad" as puntaje
 
 activate Test
 
+    Test -> enunciado: new("La manzana es azul", {"Verdadero", "Falso"})
+    activate enunciado
+        enunciado --> Test
+    deactivate enunciado
     Test -> respuesta: new(True)
     activate respuesta
         respuesta --> Test

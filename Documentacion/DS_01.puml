@@ -4,12 +4,17 @@ skinparam classAttributeIconSize 0
 title verdaderoFalsoClasicoDevuelvePuntajeCorrecto
 
 actor Test
+participant ": Enunciado" as enunciado
 participant ": RespuestaVerdaderoFalso" as respuesta
 participant ": VerdaderoFalso" as preguntaVF
 participant ": TipoPuntajeClasico" as puntaje
 
 activate Test
 
+    Test -> enunciado: new("La manzana es azul", {"Verdadero", "Falso"})
+    activate enunciado
+        enunciado --> Test
+    deactivate enunciado
     Test -> respuesta: new(True)
     activate respuesta
         respuesta --> Test
