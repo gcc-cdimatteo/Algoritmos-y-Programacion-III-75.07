@@ -57,7 +57,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <mainClass>edu.fiuba.algo3.App</mainClass>
+                    <mainClass>edu.fiuba.algo3.tp2N10.App</mainClass>
                 </configuration>
             </plugin><plugin>
                 <groupId>org.apache.maven.plugins</groupId>
