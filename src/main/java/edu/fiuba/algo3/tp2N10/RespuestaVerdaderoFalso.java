@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class RespuestaVerdaderoFalso {
 
@@ -19,9 +19,9 @@ public class RespuestaVerdaderoFalso {
         return this.respuesta == otraRespuesta;
     }
 
-    public ArrayList<Integer> evaluar(RespuestaVerdaderoFalso respuestaUsuario) {
+    public List<Integer> evaluar(RespuestaVerdaderoFalso respuestaUsuario) {
         Integer aciertos = this.equals(respuestaUsuario) ? 1 : 0;
         Integer errores = 1 - aciertos;
-        return new ArrayList<>(Arrays.asList(aciertos, errores));
+        return Arrays.asList(aciertos, errores);
     }
 }

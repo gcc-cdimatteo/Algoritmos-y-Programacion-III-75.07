@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import com.google.common.collect.Sets;
 
@@ -25,9 +25,9 @@ public class RespuestaMultipleChoice {
         return this.opciones.size();
     }
 
-    public ArrayList<Integer> evaluar(RespuestaMultipleChoice respuestaUsuario) {
+    public List<Integer> evaluar(RespuestaMultipleChoice respuestaUsuario) {
         Integer aciertos = this.intersection(respuestaUsuario).size();
         Integer errores = respuestaUsuario.size() - aciertos;
-        return new ArrayList<>(Arrays.asList(aciertos, errores));
+        return Arrays.asList(aciertos, errores);
     }
 }

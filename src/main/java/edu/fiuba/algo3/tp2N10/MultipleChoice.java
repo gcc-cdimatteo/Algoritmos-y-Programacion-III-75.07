@@ -28,8 +28,8 @@ public class MultipleChoice {
         return miPreguntaMC;
     }
 
-    public ArrayList<Integer> responder(List<RespuestaMultipleChoice> respuestas) {
-        ArrayList<Integer> puntos = new ArrayList();
+    public List<Integer> responder(List<RespuestaMultipleChoice> respuestas) {
+        List<Integer> puntos = new ArrayList<>();
         for (RespuestaMultipleChoice respuestaUsuario : respuestas) {
             puntos.add(this.tipoPuntaje.puntuar(this.respuestaCorrecta.evaluar(respuestaUsuario)));
         }
