@@ -1,25 +1,47 @@
 package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public abstract class MultipleChoice implements Pregunta {
+public class MultipleChoice implements Mostrable{
 
+    private final Enunciado enunciado;
+    private final RespuestaMultipleChoice respuestaCorrecta;
+    private TipoPuntaje tipoPuntaje;
 
-    private final String enunciado;
-    protected ArrayList<Respuesta> opciones;
-
-    public MultipleChoice(String unEnunciado, ArrayList<Respuesta> opciones) {
+    public MultipleChoice(Enunciado unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
         this.enunciado = unEnunciado;
-        this.opciones = opciones;
+        this.respuestaCorrecta = respuestaCorrecta;
+        this.tipoPuntaje = TipoPuntajeClasico.TipoPuntajeClasicoParaMC(respuestaCorrecta);
     }
 
-    public abstract int valuar(ArrayList<Respuesta> respuestas);
+    public static MultipleChoice MultipleChoiceParcial(Enunciado unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
+        MultipleChoice miPreguntaMC = new MultipleChoice(unEnunciado, respuestaCorrecta);
+        miPreguntaMC.tipoPuntaje = new TipoPuntajeParcial();
+        return miPreguntaMC;
+    }
 
-    public ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas) {
-        ArrayList<Integer> puntos = new ArrayList();
-        for (ArrayList<Respuesta> respuestasUsuario : respuestas) {
-            puntos.add(valuar(respuestasUsuario));
+    public static MultipleChoice MultipleChoicePenalidad(Enunciado unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
+        MultipleChoice miPreguntaMC = new MultipleChoice(unEnunciado, respuestaCorrecta);
+        miPreguntaMC.tipoPuntaje = new TipoPuntajePenalidad();
+        return miPreguntaMC;
+    }
+
+    public List<Integer> responder(List<RespuestaMultipleChoice> respuestas) {
+        List<Integer> puntos = new ArrayList<>();
+        for (RespuestaMultipleChoice respuestaUsuario : respuestas) {
+            puntos.add(this.tipoPuntaje.puntuar(this.respuestaCorrecta.evaluar(respuestaUsuario)));
         }
         return puntos;
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.enunciado.getPregunta();
+    }
+
+    @Override
+    public List<String> getOpciones() {
+        return this.enunciado.getOpciones();
     }
 }

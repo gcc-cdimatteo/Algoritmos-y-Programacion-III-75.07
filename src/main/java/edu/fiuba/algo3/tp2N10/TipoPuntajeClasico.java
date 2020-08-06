@@ -1,16 +1,22 @@
 package edu.fiuba.algo3.tp2N10;
 
+import java.util.List;
+
 public class TipoPuntajeClasico implements TipoPuntaje {
 
-    private final Respuesta respuestaCorrecta;
+    private int aciertosEsperados;
 
-    public TipoPuntajeClasico(Respuesta unaRespuestaCorrecta) {
-        this.respuestaCorrecta = unaRespuestaCorrecta;
+    public TipoPuntajeClasico(){
+        this.aciertosEsperados = 1;
     }
 
-    @Override
-    public int valuar(RespuestaVerdaderoFalso unaRespuesta) {
-        return unaRespuesta.esCorrecta();
+    public static TipoPuntajeClasico TipoPuntajeClasicoParaMC(RespuestaMultipleChoice respuestaCorrecta) {
+        TipoPuntajeClasico miTipoPuntaje = new TipoPuntajeClasico();
+        miTipoPuntaje.aciertosEsperados = respuestaCorrecta.size();
+        return miTipoPuntaje;
     }
 
+    public Integer puntuar(List<Integer> evaluacion) {
+        return this.aciertosEsperados == evaluacion.get(0) && evaluacion.get(1) == 0 ? 1 : 0;
+    }
 }

@@ -1,29 +1,41 @@
 package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class VerdaderoFalso implements Pregunta {
+public class VerdaderoFalso implements Mostrable{
 
-    private String miEnunciado;
-    private TipoPuntaje miTipoPuntaje;
+    private final Enunciado enunciado;
+    private final RespuestaVerdaderoFalso respuestaCorrecta;
+    private TipoPuntaje tipoPuntaje;
 
-    public VerdaderoFalso(String unEnunciado, TipoPuntaje unTipoPuntaje) {
-        this.miEnunciado = unEnunciado;
-        this.miTipoPuntaje = unTipoPuntaje;
+    public VerdaderoFalso(Enunciado enunciado, RespuestaVerdaderoFalso respuestaCorrecta){
+        this.tipoPuntaje = new TipoPuntajeClasico();
+        this.enunciado = enunciado;
+        this.respuestaCorrecta = respuestaCorrecta;
     }
 
-    @Override
-    public int valuar(Respuesta unaRespuesta) {
-        return this.miTipoPuntaje.valuar(unaRespuesta);
+    public static VerdaderoFalso VerdaderoFalsoPenalidad(Enunciado unEnunciado, RespuestaVerdaderoFalso respuestaCorrecta) {
+        VerdaderoFalso miPreguntaVF = new VerdaderoFalso(unEnunciado, respuestaCorrecta);
+        miPreguntaVF.tipoPuntaje = new TipoPuntajePenalidad();
+        return miPreguntaVF;
     }
 
-    @Override
-    public ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas) {
-        ArrayList<Integer> puntos = new ArrayList();
-        for (ArrayList<Respuesta> respuesta : respuestas) {
-            puntos.add(valuar(respuesta.get(0)));
+    public List<Integer> responder(List<RespuestaVerdaderoFalso> respuestas) {
+        List<Integer> puntos = new ArrayList<>();
+        for (RespuestaVerdaderoFalso respuestaUsuario : respuestas) {
+            puntos.add(this.tipoPuntaje.puntuar(this.respuestaCorrecta.evaluar(respuestaUsuario)));
         }
         return puntos;
     }
 
+    @Override
+    public String getPregunta() {
+        return this.enunciado.getPregunta();
+    }
+
+    @Override
+    public List<String> getOpciones() {
+        return this.enunciado.getOpciones();
+    }
 }
