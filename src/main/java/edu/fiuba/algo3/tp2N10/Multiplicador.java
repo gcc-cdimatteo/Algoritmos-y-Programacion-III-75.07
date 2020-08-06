@@ -9,7 +9,7 @@ public class Multiplicador {
         this.valor = valor;
     }
 
-    public Integer multiplicar(Integer unPuntaje) throws MultiplicadorUsadoException {
+    public Integer multiplicar(Integer unPuntaje) {
         if (usos == 0) throw new MultiplicadorUsadoException();
         usos -= 1;
         return unPuntaje * this.valor;

@@ -19,9 +19,8 @@ public class Jugador {
     }
 
     public void puntuar(int puntos) {
-
         try {
-            puntos += multiplicadorActual.multiplicar(puntos);
+            puntos = multiplicadorActual.multiplicar(puntos);
         } catch (MultiplicadorUsadoException e) {}
         this.puntaje += puntos;
     }
