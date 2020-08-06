@@ -3,7 +3,7 @@ package edu.fiuba.algo3.tp2N10;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderedChoice {
+public class OrderedChoice implements Mostrable{
 
     private final Enunciado enunciado;
     private RespuestaOrderedChoice respuestaCorrecta;
@@ -19,5 +19,15 @@ public class OrderedChoice {
             puntos.add(this.respuestaCorrecta.evaluar(respuestaUsuario));
         }
         return puntos;
+    }
+    
+    @Override
+    public String getPregunta() {
+        return this.enunciado.getPregunta();
+    }
+
+    @Override
+    public List<String> getOpciones() {
+        return this.enunciado.getOpciones();
     }
 }

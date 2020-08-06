@@ -3,7 +3,7 @@ package edu.fiuba.algo3.tp2N10;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultipleChoice {
+public class MultipleChoice implements Mostrable{
 
     private final Enunciado enunciado;
     private final RespuestaMultipleChoice respuestaCorrecta;
@@ -33,5 +33,15 @@ public class MultipleChoice {
             puntos.add(this.tipoPuntaje.puntuar(this.respuestaCorrecta.evaluar(respuestaUsuario)));
         }
         return puntos;
+    }
+
+    @Override
+    public String getPregunta() {
+        return this.enunciado.getPregunta();
+    }
+
+    @Override
+    public List<String> getOpciones() {
+        return this.enunciado.getOpciones();
     }
 }

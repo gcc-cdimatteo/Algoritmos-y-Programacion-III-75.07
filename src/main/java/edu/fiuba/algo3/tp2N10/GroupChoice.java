@@ -3,7 +3,7 @@ package edu.fiuba.algo3.tp2N10;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupChoice {
+public class GroupChoice implements Mostrable{
 
     private final Enunciado enunciado;
     private final RespuestaGroupChoice respuestaCorrecta;
@@ -20,4 +20,15 @@ public class GroupChoice {
         }
         return puntos;
     }
+
+    @Override
+    public String getPregunta() {
+        return this.enunciado.getPregunta();
+    }
+
+    @Override
+    public List<String> getOpciones() {
+        return this.enunciado.getOpciones();
+    }
+
 }
