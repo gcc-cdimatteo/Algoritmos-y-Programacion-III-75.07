@@ -5,24 +5,23 @@ import java.util.List;
 
 public class MultipleChoice {
 
-    private final String enunciado;
+    private final Enunciado enunciado;
     private final RespuestaMultipleChoice respuestaCorrecta;
     private TipoPuntaje tipoPuntaje;
 
-    public MultipleChoice(String unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
+    public MultipleChoice(Enunciado unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
         this.enunciado = unEnunciado;
         this.respuestaCorrecta = respuestaCorrecta;
         this.tipoPuntaje = TipoPuntajeClasico.TipoPuntajeClasicoParaMC(respuestaCorrecta);
-
     }
 
-    public static MultipleChoice MultipleChoiceParcial(String unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
+    public static MultipleChoice MultipleChoiceParcial(Enunciado unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
         MultipleChoice miPreguntaMC = new MultipleChoice(unEnunciado, respuestaCorrecta);
         miPreguntaMC.tipoPuntaje = new TipoPuntajeParcial();
         return miPreguntaMC;
     }
 
-    public static MultipleChoice MultipleChoicePenalidad(String unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
+    public static MultipleChoice MultipleChoicePenalidad(Enunciado unEnunciado, RespuestaMultipleChoice respuestaCorrecta) {
         MultipleChoice miPreguntaMC = new MultipleChoice(unEnunciado, respuestaCorrecta);
         miPreguntaMC.tipoPuntaje = new TipoPuntajePenalidad();
         return miPreguntaMC;
