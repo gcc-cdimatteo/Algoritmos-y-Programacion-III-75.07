@@ -10,17 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VerdaderoFalsoTest {
 
     private VerdaderoFalso preguntaVF;
-    private RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
-    private RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso(true);
+    private RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso("Falso");
+    private RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso("Verdadero");
 
 
     private void crearVerdaderoFalsoClasico() {
-        Enunciado miEnunciado = Enunciado.EnunciadoVerdaderoFalso("La manzana es azul", );
+        Enunciado miEnunciado = new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso"));
         this.preguntaVF = new VerdaderoFalso(miEnunciado, this.respuestaCorrecta);
     }
 
     private void crearVerdaderoFalsoPenalidad() {
-        Enunciado miEnunciado = Enunciado.EnunciadoVerdaderoFalso("La manzana es azul");
+        Enunciado miEnunciado = new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso"));
         this.preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad(miEnunciado, this.respuestaCorrecta);
     }
 

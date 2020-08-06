@@ -10,25 +10,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GroupChoiceTest {
 
+    private final HashSet<String> grupoLetras = new HashSet<>(Arrays.asList("A", "B"));
+    private final HashSet<String> grupoNumeros = new HashSet<>(Arrays.asList("1", "2"));
+    private final RespuestaGroupChoice respuestaCorrecta = new RespuestaGroupChoice(this.grupoLetras, this.grupoNumeros);
+    private final RespuestaGroupChoice respuestaIncorrecta = new RespuestaGroupChoice(this.grupoNumeros, this.grupoLetras);
+    private final Enunciado miEnunciado = new Enunciado("Ordene las opciones en los grupos correctos...", Arrays.asList("A", "B", "1", "2"));
+    private final GroupChoice preguntaGC = new GroupChoice(miEnunciado, this.respuestaCorrecta);
+
     @Test
     public void GroupChoicePuedeCrearseSiSeIndicanLasRtasCorretas() {
-        HashSet<String> grupoLetras = new HashSet<>(Arrays.asList("A", "B"));
-        HashSet<String> grupoNumeros = new HashSet<>(Arrays.asList("1", "2"));
-        RespuestaGroupChoice respuestaCorrecta = new RespuestaGroupChoice(grupoLetras, grupoNumeros);
-        GroupChoice preguntaGC = new GroupChoice("Ordene las opciones en los grupos correctos...", respuestaCorrecta);
-        assertEquals(Collections.singletonList(1), preguntaGC.responder(new ArrayList<>(Collections.singletonList(respuestaCorrecta))));
+        assertEquals(Collections.singletonList(1), this.preguntaGC.responder(new ArrayList<>(Collections.singletonList(this.respuestaCorrecta))));
     }
 
     @Test
     public void GroupChoiceRecibeUnaListaDeRespuestasYAsignaPuntos() {
-        HashSet<String> grupoNumeros = new HashSet<>(Arrays.asList("A", "B"));
-        HashSet<String> grupoLetras = new HashSet<>(Arrays.asList("1", "2"));
-
-        RespuestaGroupChoice respuestaCorrecta = new RespuestaGroupChoice(grupoNumeros, grupoLetras);
-        RespuestaGroupChoice respuestaIncorrecta = new RespuestaGroupChoice(grupoLetras, grupoNumeros);
-
-        GroupChoice preguntaGC = new GroupChoice("Ordene las opciones en los grupos correctos...", respuestaCorrecta);
-        ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, 0));
-        assertEquals(expected, preguntaGC.responder(Arrays.asList(respuestaCorrecta, respuestaIncorrecta)));
+        assertEquals(Arrays.asList(1, 0), this.preguntaGC.responder(Arrays.asList(this.respuestaCorrecta, this.respuestaIncorrecta)));
     }
 }

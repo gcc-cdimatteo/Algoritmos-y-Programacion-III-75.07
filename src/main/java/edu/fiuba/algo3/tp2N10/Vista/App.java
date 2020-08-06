@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 
+import edu.fiuba.algo3.tp2N10.Enunciado;
 import edu.fiuba.algo3.tp2N10.RespuestaVerdaderoFalso;
 import edu.fiuba.algo3.tp2N10.VerdaderoFalso;
 
@@ -9,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.Arrays;
 
 
 public class App extends Application {
@@ -29,7 +32,7 @@ public class App extends Application {
 
     public void setup(){
         this.escenario.setTitle("AlgoKahoot");
-        this.pregunta = new VerdaderoFalso("Verde es un color",new RespuestaVerdaderoFalso(true));
+        this.pregunta = new VerdaderoFalso(new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso")), new RespuestaVerdaderoFalso("Verdadero"));
     }
 
     //Escenas

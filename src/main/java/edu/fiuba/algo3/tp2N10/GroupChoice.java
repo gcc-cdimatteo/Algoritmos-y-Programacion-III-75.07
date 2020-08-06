@@ -5,10 +5,10 @@ import java.util.List;
 
 public class GroupChoice {
 
-    private final String enunciado;
+    private final Enunciado enunciado;
     private final RespuestaGroupChoice respuestaCorrecta;
 
-    public GroupChoice(String enunciado, RespuestaGroupChoice respuestaCorrecta){
+    public GroupChoice(Enunciado enunciado, RespuestaGroupChoice respuestaCorrecta){
         this.enunciado = enunciado;
         this.respuestaCorrecta = respuestaCorrecta;
     }

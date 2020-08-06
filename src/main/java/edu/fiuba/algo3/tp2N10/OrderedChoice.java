@@ -5,10 +5,10 @@ import java.util.List;
 
 public class OrderedChoice {
 
-    private final String enunciado;
+    private final Enunciado enunciado;
     private RespuestaOrderedChoice respuestaCorrecta;
 
-    public OrderedChoice(String enunciado, RespuestaOrderedChoice respuestaCorrecta) {
+    public OrderedChoice(Enunciado enunciado, RespuestaOrderedChoice respuestaCorrecta) {
         this.enunciado = enunciado;
         this.respuestaCorrecta = respuestaCorrecta;
     }
