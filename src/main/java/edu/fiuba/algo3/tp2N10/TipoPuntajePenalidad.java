@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TipoPuntajePenalidad implements TipoPuntaje {
 
-    public Integer puntuar(List<Integer> obtained){
-        return obtained.get(0) - obtained.get(1);
+    public Integer puntuar(List<Integer> evaluacion){
+        return evaluacion.get(0) - evaluacion.get(1);
     }
 }

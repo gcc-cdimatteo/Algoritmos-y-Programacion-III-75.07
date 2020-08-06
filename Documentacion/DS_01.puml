@@ -1,39 +1,52 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-title unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntos
+title verdaderoFalsoClasicoDevuelvePuntajeCorrecto
 
 actor Test
-participant "Respuesta" as respuesta
-participant ": VerdaderoFalsoClasico" as preguntaVF
+participant ": RespuestaVerdaderoFalso" as respuesta
+participant ": VerdaderoFalso" as preguntaVF
+participant ": TipoPuntajeClasico" as puntaje
 
 activate Test
 
-    Test --> respuesta: new("Verdadero")
+    Test -> respuesta: new(True)
     activate respuesta
         respuesta --> Test
     deactivate respuesta
 
-    Test --> respuesta: new("Falso")
+    Test -> respuesta: new(False)
     activate respuesta
         respuesta --> Test
     deactivate respuesta
 
     create preguntaVF
-    Test --> preguntaVF: new(unEnunciado, {unaRespuestaCorrecta, unaRespuestaIncorrecta})
+    Test -> preguntaVF: VerdaderoFalso(unEnunciado, respuestaCorrecta)
     activate preguntaVF
+        create puntaje
+        preguntaVF -> puntaje: TipoPuntajeClasico()
+        activate puntaje
+            puntaje --> preguntaVF
+        deactivate puntaje
         preguntaVF --> Test
     deactivate preguntaVF
 
-    Test -> preguntaVF: responder({{unaRespuestaCorrecta}, {unaRespuestaIncorrecta}})
+    Test -> preguntaVF: responder({unaRespuestaCorrecta, unaRespuestaIncorrecta})
     activate preguntaVF
         loop porCadaRespuesta
-            preguntaVF -> preguntaVF: valuar()
             activate preguntaVF #DarkSalmon
-                preguntaVF -> respuesta: valorClasico()
+                preguntaVF -> respuesta: evaluar(respuesta)
                 activate respuesta
-                    respuesta --> preguntaVF: 
+                    respuesta --> preguntaVF: {aciertos, errores}
                 deactivate respuesta
+                preguntaVF -> puntaje: puntuar({aciertos, errores})
+                activate puntaje 
+                    alt (aciertosEsperados == aciertos && errores == 0)
+                        puntaje --> preguntaVF: 1
+                    else !(aciertosEsperados == aciertos && errores == 0)
+                         puntaje --> preguntaVF: 0
+                    end 
+                deactivate puntaje
             deactivate preguntaVF
         end
         preguntaVF --> Test: {1, 0}

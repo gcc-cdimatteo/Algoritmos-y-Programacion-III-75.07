@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface TipoPuntaje {
 
-    Integer puntuar(List<Integer> obtained);
+    Integer puntuar(List<Integer> evaluacion);
 }

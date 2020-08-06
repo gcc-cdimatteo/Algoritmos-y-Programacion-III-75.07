@@ -4,36 +4,45 @@ skinparam classAttributeIconSize 0
 title unaPreguntaDeVFConPenalidadRecibeRespuestasYAsignaPuntos
 
 actor Test
-participant "Respuesta" as respuesta
-participant ": VerdaderoFalsoConPenalidad" as preguntaVF
+participant ": RespuestaVerdaderoYFalso" as respuesta
+participant ": VerdaderoFalso" as preguntaVF
+participant ": TipoPuntajePenalidad" as puntaje
 
 activate Test
 
-    Test --> respuesta: new("Verdadero")
+    Test -> respuesta: new(True)
     activate respuesta
         respuesta --> Test
     deactivate respuesta
 
-    Test --> respuesta: new("Falso")
+    Test -> respuesta: new(False)
     activate respuesta
         respuesta --> Test
     deactivate respuesta
 
     create preguntaVF
-    Test --> preguntaVF: new(unEnunciado, {unaRespuestaCorrecta, unaRespuestaIncorrecta})
+    Test -> preguntaVF: VerdaderoFalsoConPenalidad(unEnunciado, respuestaCorrecta)
     activate preguntaVF
+        create puntaje
+        preguntaVF -> puntaje: new() 
+            activate puntaje
+                puntaje --> preguntaVF
+            deactivate puntaje
         preguntaVF --> Test
     deactivate preguntaVF
 
-    Test -> preguntaVF: responder({{unaRespuestaCorrecta}, {unaRespuestaIncorrecta}})
+    Test -> preguntaVF: responder({unaRespuestaCorrecta, unaRespuestaIncorrecta})
     activate preguntaVF
         loop porCadaRespuesta
-            preguntaVF -> preguntaVF: valuar()
             activate preguntaVF #DarkSalmon
-                preguntaVF -> respuesta: valorConPenalidad()
+                preguntaVF -> respuesta: evaluar(respuesta)
                 activate respuesta
-                    respuesta --> preguntaVF: 
+                    respuesta --> preguntaVF: {aciertos, errores}
                 deactivate respuesta
+                preguntaVF -> puntaje: puntuar({aciertos, errores})
+                    activate puntaje
+                        puntaje --> preguntaVF: (aciertos - errores)
+                    deactivate puntaje
             deactivate preguntaVF
         end
         preguntaVF --> Test: {1, -1}
