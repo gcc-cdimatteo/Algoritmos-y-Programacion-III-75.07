@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MultipleChoice {
 
@@ -27,8 +28,8 @@ public class MultipleChoice {
         return miPreguntaMC;
     }
 
-    public ArrayList<Integer> responder(ArrayList<RespuestaMultipleChoice> respuestas) {
-        ArrayList<Integer> puntos = new ArrayList();
+    public List<Integer> responder(List<RespuestaMultipleChoice> respuestas) {
+        List<Integer> puntos = new ArrayList<>();
         for (RespuestaMultipleChoice respuestaUsuario : respuestas) {
             puntos.add(this.tipoPuntaje.puntuar(this.respuestaCorrecta.evaluar(respuestaUsuario)));
         }

@@ -1,14 +1,13 @@
 package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class VerdaderoFalso {
 
     private final RespuestaVerdaderoFalso respuestaCorrecta;
     private String enunciado;
     private TipoPuntaje tipoPuntaje;
-
 
     public VerdaderoFalso(String enunciado, RespuestaVerdaderoFalso respuestaCorrecta){
         this.tipoPuntaje = new TipoPuntajeClasico();
@@ -21,8 +20,9 @@ public class VerdaderoFalso {
         miPreguntaVF.tipoPuntaje = new TipoPuntajePenalidad();
         return miPreguntaVF;
     }
-    public ArrayList<Integer> responder(ArrayList<RespuestaVerdaderoFalso> respuestas) {
-        ArrayList<Integer> puntos = new ArrayList();
+
+    public List<Integer> responder(List<RespuestaVerdaderoFalso> respuestas) {
+        List<Integer> puntos = new ArrayList<>();
         for (RespuestaVerdaderoFalso respuestaUsuario : respuestas) {
             puntos.add(this.tipoPuntaje.puntuar(this.respuestaCorrecta.evaluar(respuestaUsuario)));
         }
