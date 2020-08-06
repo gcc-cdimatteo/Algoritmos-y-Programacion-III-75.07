@@ -15,8 +15,10 @@ public class Ronda {
 
     public void asignarPuntajes(List<Integer> puntajes) {
         for (int i=0; i<puntajes.size(); i++) {
-            this.jugadores.get(i).puntuar(puntajes.get(i));
+            Jugador jugador = this.jugadores.get(i);
+            //aca interviene vista
+            jugador.usarMultiplicador(3);
+            jugador.puntuar(puntajes.get(i));
         }
     }
-
 }
