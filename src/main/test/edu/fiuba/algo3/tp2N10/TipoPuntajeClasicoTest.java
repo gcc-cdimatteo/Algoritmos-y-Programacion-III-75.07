@@ -9,12 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TipoPuntajeClasicoTest {
 
     @Test
-    public void tipoPuntajeClasicoPuntuaCorrectamente(){
-        TipoPuntajeClasico tipoPuntaje = new TipoPuntajeClasico();
-        assertEquals(1, tipoPuntaje.puntuar(Arrays.asList(1,0)));
-    }
-
-    @Test
     public void tipoPuntajeClasicoPuntuaCorrectamenteParaVariosAciertos(){
         RespuestaMultipleChoice respuestaCorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Multiple", "Choice", "Clasico")));
         TipoPuntajeClasico tipoPuntaje = TipoPuntajeClasico.TipoPuntajeClasicoParaMC(respuestaCorrecta);
