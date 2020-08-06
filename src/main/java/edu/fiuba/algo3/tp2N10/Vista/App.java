@@ -34,7 +34,8 @@ public class App extends Application {
 
     //Escenas
     public Scene escenaPregunta(){
-        Label label = new Label(this.pregunta.getEnunciado());
+//        Label label = new Label(this.pregunta.getEnunciado());
+        Label label = new Label("Prueba");
         Scene escenario = new Scene(new StackPane(label), 640, 480);
         return escenario;
     }

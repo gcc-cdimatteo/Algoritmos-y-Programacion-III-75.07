@@ -15,11 +15,13 @@ public class VerdaderoFalsoTest {
 
 
     private void crearVerdaderoFalsoClasico() {
-        this.preguntaVF = new VerdaderoFalso("La manzana es azul", this.respuestaCorrecta);
+        Enunciado miEnunciado = Enunciado.EnunciadoVerdaderoFalso("La manzana es azul", );
+        this.preguntaVF = new VerdaderoFalso(miEnunciado, this.respuestaCorrecta);
     }
 
     private void crearVerdaderoFalsoPenalidad() {
-        this.preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad("La manzana es azul", this.respuestaCorrecta);
+        Enunciado miEnunciado = Enunciado.EnunciadoVerdaderoFalso("La manzana es azul");
+        this.preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad(miEnunciado, this.respuestaCorrecta);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

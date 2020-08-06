@@ -10,4 +10,5 @@ public class Enunciado {
         this.pregunta = pregunta;
         this.opciones = opciones;
     }
+
 }

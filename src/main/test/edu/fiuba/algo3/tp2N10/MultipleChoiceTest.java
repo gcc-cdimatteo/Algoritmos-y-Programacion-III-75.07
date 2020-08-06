@@ -19,15 +19,18 @@ public class MultipleChoiceTest {
     private RespuestaMultipleChoice respuestasIncorrectasDos = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Es Un Citrico", "Es Carne")));
 
     private void crearMultipleChoiceClasico() {
-        this.preguntaMCClasico = new MultipleChoice("La manzana es...", this.respuestasCorrectasTres);
+        Enunciado miEnunciado = new Enunciado("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"));
+        this.preguntaMCClasico = new MultipleChoice(miEnunciado, this.respuestasCorrectasTres);
     }
 
     private void crearMultipleChoiceParcial() {
-        this.preguntaMCParcial = MultipleChoice.MultipleChoiceParcial("La manzana es...", this.respuestasCorrectasTres);
+        Enunciado miEnunciado = new Enunciado("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"));
+        this.preguntaMCParcial = MultipleChoice.MultipleChoiceParcial(miEnunciado, this.respuestasCorrectasTres);
     }
 
     private void crearMultipleChoicePenalidad() {
-        this.preguntaMCPenalidad = MultipleChoice.MultipleChoicePenalidad("La manzana es...", this.respuestasCorrectasTres);
+        Enunciado miEnunciado = new Enunciado("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"));
+        this.preguntaMCPenalidad = MultipleChoice.MultipleChoicePenalidad(miEnunciado, this.respuestasCorrectasTres);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
