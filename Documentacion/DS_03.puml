@@ -1,59 +1,54 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-title unaPreguntaDeMCClasicoRecibeRespuestasYAsignaPuntos
+title MultipleChoiceClasicoRecibeUnaListaDeRespuestasYAsignaPuntos
 
 actor Test
-participant "Respuesta" as respuesta
-participant ": MultipleChoiceClasico" as preguntaMC
+participant ": RespuestaMultipleChoice" as respuesta
+participant ": MultipleChoice" as preguntaMC
+participant ": TipoPuntajeClasico" as puntaje
 
 activate Test
 
-    Test --> respuesta: new("Una fruta")
+    Test -> respuesta: RespuestaMultipleChoice({"Es Rica", "Es Roja", "Es Una Fruta"})
     activate respuesta
-        respuesta --> Test
+        respuesta --> Test: 
     deactivate respuesta
-
-    Test --> respuesta: new("De color rojo")
+    Test -> respuesta: RespuestaMultipleChoice({"Es Rica", "Es Carne", "Es Una Fruta"})
     activate respuesta
-        respuesta --> Test
-    deactivate respuesta
-
-    Test --> respuesta: new("Muy rica")
-    activate respuesta
-        respuesta --> Test
-    deactivate respuesta
-
-    Test --> respuesta: new("Carne")
-    activate respuesta
-        respuesta --> Test
+        respuesta --> Test: 
     deactivate respuesta
 
     create preguntaMC
-    Test --> preguntaMC: new("Una manzana es...", {unaFruta, deColorRojo, muyRica})
+    Test -> preguntaMC: MultipleChoice("enunciado", respuestasCorrectasTres)
     activate preguntaMC
+        create puntaje
+        preguntaMC -> puntaje: TipoPuntajeClasicoParaMC(respuestasCorrectasTres)
+        activate puntaje 
+            puntaje --> preguntaMC
+        deactivate puntaje
         preguntaMC --> Test
     deactivate preguntaMC
 
-    Test -> preguntaMC: responder({{deColorRojo, unaFruta, muyRica}, {deColorRojo, carne, muyRica}})
+    Test -> preguntaMC: responder({respuestasCorrectasTres, respuestasCorrectasDosRespuestasIncorrectasUno})
     activate preguntaMC
-        loop porCadaUsuario
-            preguntaMC -> preguntaMC: valuar({respuestaDelUsuario})
-            activate preguntaMC #DarkSalmon
-                loop porCadaRespuesta
-                    preguntaMC -> respuesta: valorConPenalidad()
-                    activate respuesta
-                        respuesta --> preguntaMC: unValor
-                    deactivate respuesta
-                end
-                alt totalDeRespuestasEvaluadas == totalRespuestasCorrectas
-                    preguntaMC --> preguntaMC: 1
-                else totalDeRespuestasEvaluadas != totalRespuestasCorrectas
-                    preguntaMC --> preguntaMC: 0
-                end group
-            deactivate preguntaMC
-        end
-        preguntaMC --> Test: {1, 0}
+        activate preguntaMC #DarkSalmon
+            loop porCadaRespuesta
+                preguntaMC -> respuesta: evaluar(respuestaUsuario)
+                activate respuesta
+                    respuesta --> preguntaMC: {aciertos, errores}
+                deactivate respuesta
+                preguntaMC -> puntaje: puntuar({aciertos, errores})
+                activate puntaje 
+                    alt (aciertosEsperados == aciertos && errores == 0)
+                        puntaje --> preguntaMC: 1
+                    else !(aciertosEsperados == aciertos && errores == 0)
+                         puntaje --> preguntaMC: 0
+                    end 
+                deactivate puntaje
+            end         
+    deactivate preguntaMC
+    preguntaMC --> Test: {1, 0}
     deactivate preguntaMC
 
 deactivate Test
