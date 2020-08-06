@@ -1,0 +1,90 @@
+{
+  "preguntas": [
+    {
+      "tipo": "verdaderoFalso",
+      "enunciado": "Enunciado de pregunta Verdadero/Falso Clásico",
+      "respuesta": true,
+      "conPenalidad": false
+    },
+    {
+      "tipo": "verdaderoFalso",
+      "enunciado": "Enunciado de pregunta Verdadero/Falso con penalidad",
+      "respuesta": true,
+      "conPenalidad": true
+    },
+    {
+      "tipo": "multipleChoice",
+      "enunciado": "Enunciado de pregunta multiple choice clásico",
+      "respuesta": [
+        "Opción 1",
+        "Opción 2",
+        "Opción 3",
+        "Opción 4"
+      ],
+      "tipoPuntaje": "clasico"
+    },
+    {
+      "tipo": "multipleChoice",
+      "enunciado": "Enunciado de pregunta multiple choice parcial",
+      "respuesta": [
+        "Opción 1",
+        "Opción 2",
+        "Opción 3",
+        "Opción 4"
+      ],
+      "tipoPuntaje": "parcial"
+    },
+    {
+      "tipo": "multipleChoice",
+      "enunciado": "Enunciado de pregunta multiple choice con penalidad",
+      "respuesta": [
+        "Opción 1",
+        "Opción 2",
+        "Opción 3",
+        "Opción 4"
+      ],
+      "tipoPuntaje": "conPenalidad"
+    },
+    {
+      "tipo": "orderedChoice",
+      "enunciado": "Enunciado de pregunta ordered choice",
+      "respuesta": [
+        "Opción 1",
+        "Opción 2",
+        "Opción 3"
+      ]
+    },
+    {
+      "tipo": "groupChoice",
+      "enunciado": "Enunciado de pregunta ordered choice",
+      "opciones": [
+        {
+          "id_respuesta": 1,
+          "respuesta": "Opción primera Grupo 1"
+        },
+        {
+          "id_respuesta": 2,
+          "respuesta": "Opción primera Grupo 2"
+        },
+        {
+          "id_respuesta": 3,
+          "respuesta": "Opción segunda Grupo 1"
+        },
+        {
+          "id_respuesta": 4,
+          "respuesta": "Opción tercera Grupo 1"
+        }
+      ],
+      "respuesta": {
+        "grupoUno": [
+          1,
+          3,
+          4
+        ],
+        "grupoDos": [
+          2
+        ]
+      }
+    }
+  ]
+}
