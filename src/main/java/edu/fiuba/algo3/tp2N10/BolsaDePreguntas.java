@@ -45,14 +45,14 @@
 //    }
 //
 //    private Mostrable generarPreguntaGroupChoice(JSONObject pregunta) {
-//        System.out.println("Leyendo una pregunta GroupChoice...");
+//        System.out.println("Leyendo una pregunta PreguntaGroupChoice...");
 //
 //        // ToDo: Todavía no esta definida
 //        return null;
 //    }
 //
 //    private Mostrable generarPreguntaOrderedChoice(JSONObject pregunta) {
-//        System.out.println("Leyendo una pregunta OrderedChoice...");
+//        System.out.println("Leyendo una pregunta PreguntaOrderedChoice...");
 //
 //        String enunciado = pregunta.getString("enunciado");
 //        JSONArray respuestas = pregunta.getJSONArray("respuesta");
@@ -63,7 +63,7 @@
 //        }
 //
 //        RespuestaOrderedChoice respuestaCorrecta = new RespuestaOrderedChoice(arrayRespuestas);
-//        return new OrderedChoice(enunciado, respuestaCorrecta);
+//        return new PreguntaOrderedChoice(enunciado, respuestaCorrecta);
 //    }
 //
 //    private Mostrable generarPreguntaMultipleChoice(JSONObject pregunta) {
@@ -78,31 +78,31 @@
 //
 //        RespuestaMultipleChoice respuestaCorrecta = new RespuestaMultipleChoice(new HashSet<>(arrayRespuestas));
 //
-//        MultipleChoice preguntaMC = null;
+//        PreguntaMultipleChoice preguntaMC = null;
 //        switch (pregunta.getString("tipoPuntaje")) {
 //            case "clasico":
-//                preguntaMC = new MultipleChoice(enunciado, respuestaCorrecta);
+//                preguntaMC = new PreguntaMultipleChoice(enunciado, respuestaCorrecta);
 //                break;
 //            case "parcial":
-//                preguntaMC = MultipleChoice.MultipleChoiceParcial(enunciado, respuestaCorrecta);
+//                preguntaMC = PreguntaMultipleChoice.MultipleChoiceParcial(enunciado, respuestaCorrecta);
 //                break;
 //            case "conPenalidad":
-//                preguntaMC = MultipleChoice.MultipleChoicePenalidad(enunciado, respuestaCorrecta);
+//                preguntaMC = PreguntaMultipleChoice.MultipleChoicePenalidad(enunciado, respuestaCorrecta);
 //        }
 //        return preguntaMC;
 //    }
 //
 //    private Mostrable generarPreguntaVerdaderoFalso(JSONObject pregunta) {
-//        System.out.println("Leyendo una pregunta VerdaderoFalso...");
+//        System.out.println("Leyendo una pregunta PreguntaVerdaderoFalso...");
 //        String enunciado = pregunta.getString("enunciado");
 //        boolean respuesta = pregunta.getBoolean("respuesta");
 //
 //        RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(respuesta);
-//        VerdaderoFalso preguntaVF = null;
+//        PreguntaVerdaderoFalso preguntaVF = null;
 //        if (pregunta.getBoolean("conPenalidad")) {
-//            preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad(enunciado,respuestaCorrecta);
+//            preguntaVF = PreguntaVerdaderoFalso.VerdaderoFalsoPenalidad(enunciado,respuestaCorrecta);
 //        } else {
-//            preguntaVF = new VerdaderoFalso(enunciado, respuestaCorrecta);
+//            preguntaVF = new PreguntaVerdaderoFalso(enunciado, respuestaCorrecta);
 //        }
 //        return preguntaVF;
 //    }

@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 
 public class App extends Application {
@@ -31,9 +32,9 @@ public class App extends Application {
     public void setup(){
         this.escenario.setTitle("AlgoKahoot");
 
-        RespuestaMultipleChoice respuestasCorrectasTres = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Es Rica", "Es Roja", "Es Una Fruta")));
+        Set<Integer> respuestasCorrectasTres = new HashSet<>(Arrays.asList(0, 2, 3));
 
-        this.pregunta = new MultipleChoice(new Enunciado("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul")), respuestasCorrectasTres);
+        this.pregunta = PreguntaMultipleChoice.Clasico("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"), respuestasCorrectasTres);
     }
 
     //Escenas

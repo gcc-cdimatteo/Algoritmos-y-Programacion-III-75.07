@@ -3,14 +3,16 @@ package edu.fiuba.algo3.tp2N10;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderedChoice implements Mostrable{
+public class PreguntaOrderedChoice implements Mostrable {
 
-    private final Enunciado enunciado;
+    private final String enunciado;
+    private final List<String> opciones;
     private RespuestaOrderedChoice respuestaCorrecta;
 
-    public OrderedChoice(Enunciado enunciado, RespuestaOrderedChoice respuestaCorrecta) {
+    public PreguntaOrderedChoice(String enunciado, List<String> opciones, List<Integer> opcionesCorrectas) {
         this.enunciado = enunciado;
-        this.respuestaCorrecta = respuestaCorrecta;
+        this.opciones = opciones;
+        this.respuestaCorrecta = new RespuestaOrderedChoice(opcionesCorrectas);
     }
 
     public List<Integer> responder(List<RespuestaOrderedChoice> respuestas) {
@@ -23,11 +25,11 @@ public class OrderedChoice implements Mostrable{
     
     @Override
     public String getPregunta() {
-        return this.enunciado.getPregunta();
+        return this.enunciado;
     }
 
     @Override
     public List<String> getOpciones() {
-        return this.enunciado.getOpciones();
+        return this.opciones;
     }
 }

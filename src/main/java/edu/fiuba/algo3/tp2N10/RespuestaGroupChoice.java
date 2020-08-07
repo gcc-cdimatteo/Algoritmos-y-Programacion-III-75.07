@@ -1,25 +1,23 @@
 package edu.fiuba.algo3.tp2N10;
 
-import java.util.HashSet;
+import java.util.Set;
 
 public class RespuestaGroupChoice {
 
-    private final HashSet<String> grupoDeOpciones1;
-    private final HashSet<String> grupoDeOpciones2;
+    private final Set<Integer> grupoA;
+    private final Set<Integer> grupoB;
 
-    public RespuestaGroupChoice(HashSet<String> grupo1, HashSet<String> grupo2){
-        this.grupoDeOpciones1 = grupo1;
-        this.grupoDeOpciones2 = grupo2;
+    public RespuestaGroupChoice(Set<Integer> grupoA, Set<Integer> grupoB){
+        this.grupoA = grupoA;
+        this.grupoB = grupoB;
     }
 
     public boolean equals(RespuestaGroupChoice otraRespuesta) {
-
-        return otraRespuesta.equals(this.grupoDeOpciones1, this.grupoDeOpciones2);
+        return otraRespuesta.equals(this.grupoA, this.grupoB);
     }
 
-    private boolean equals(HashSet<String> grupoDeOpciones1, HashSet<String> grupoDeOpciones2) {
-
-        return (this.grupoDeOpciones1.equals(grupoDeOpciones1) && this.grupoDeOpciones2.equals(grupoDeOpciones2));
+    private boolean equals(Set<Integer> grupoA, Set<Integer> grupoB) {
+        return (this.grupoA.equals(grupoA) && this.grupoB.equals(grupoB));
     }
 
     public Integer evaluar(RespuestaGroupChoice respuestaUsuario){

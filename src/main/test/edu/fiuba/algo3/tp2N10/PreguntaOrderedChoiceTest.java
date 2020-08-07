@@ -6,12 +6,12 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class OrderedChoiceTest {
+public class PreguntaOrderedChoiceTest {
 
     private final Enunciado miEnunciado = new Enunciado("El orden de las letras del abecedario es...", Arrays.asList("A", "C", "B"));
     private final RespuestaOrderedChoice respuestaCorrecta = new RespuestaOrderedChoice(Arrays.asList("A", "B", "C"));
     private final RespuestaOrderedChoice respuestaIncorrecta = new RespuestaOrderedChoice(Arrays.asList("A", "C", "B"));
-    private final OrderedChoice preguntaOC = new OrderedChoice(this.miEnunciado, this.respuestaCorrecta);
+    private final PreguntaOrderedChoice preguntaOC = new PreguntaOrderedChoice(this.miEnunciado, this.respuestaCorrecta);
 
     @Test
     public void OrderedChoicePuedeCrearseSiSeIndicanLasRtasCorretas() {

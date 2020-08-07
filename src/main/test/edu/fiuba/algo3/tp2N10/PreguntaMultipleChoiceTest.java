@@ -6,9 +6,9 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MultipleChoiceTest {
+public class PreguntaMultipleChoiceTest {
 
-    private MultipleChoice preguntaMC;
+    private PreguntaMultipleChoice preguntaMC;
     private RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList()));
     private RespuestaMultipleChoice respuestasCorrectasTres = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Verde", "Roja", "Una Fruta")));
     private RespuestaMultipleChoice respuestasCorrectasDos = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Roja", "Una Fruta")));
@@ -17,18 +17,21 @@ public class MultipleChoiceTest {
     private RespuestaMultipleChoice respuestaIncorrecta = new RespuestaMultipleChoice(new HashSet<>(Collections.singletonList("Azul")));
 
     private void crearMultipleChoiceClasico() {
-        Enunciado miEnunciado = new Enunciado("La manzana es...", Arrays.asList("Una Fruta", "Verde", "Roja", "Azul"));
-        this.preguntaMC = new MultipleChoice(miEnunciado, this.respuestasCorrectasTres);
+        String enunciado = "La manzana es...";
+        List<String> opcionesCorrectas = Arrays.asList("Una Fruta", "Verde", "Roja");
+        List<String> opcionesIncorrectas = Arrays.asList("Azul");
+
+        this.preguntaMC = PreguntaMultipleChoice.Clasico(enunciado, opcionesCorrectas, opcionesIncorrectas);
     }
 
     private void crearMultipleChoiceParcial() {
         Enunciado miEnunciado = new Enunciado("La manzana es...", Arrays.asList("Una Fruta", "Verde", "Roja", "Azul"));
-        this.preguntaMC = MultipleChoice.MultipleChoiceParcial(miEnunciado, this.respuestasCorrectasTres);
+        this.preguntaMC = PreguntaMultipleChoice.Parcial(miEnunciado, this.respuestasCorrectasTres);
     }
 
     private void crearMultipleChoicePenalidad() {
         Enunciado miEnunciado = new Enunciado("La manzana es...", Arrays.asList("Una Fruta", "Verde", "Roja", "Azul"));
-        this.preguntaMC = MultipleChoice.MultipleChoicePenalidad(miEnunciado, this.respuestasCorrectasTres);
+        this.preguntaMC = PreguntaMultipleChoice.Penalidad(miEnunciado, this.respuestasCorrectasTres);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

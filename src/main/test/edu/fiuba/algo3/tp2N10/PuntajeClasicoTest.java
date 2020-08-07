@@ -6,31 +6,31 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TipoPuntajeClasicoTest {
+public class PuntajeClasicoTest {
 
     @Test
     public void tipoPuntajeClasicoPuntuaCorrectamenteParaVariosAciertos(){
         RespuestaMultipleChoice respuestaCorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Multiple", "Choice", "Clasico")));
-        TipoPuntajeClasico tipoPuntaje = TipoPuntajeClasico.TipoPuntajeClasicoParaMC(respuestaCorrecta);
+        PuntajeClasico tipoPuntaje = PuntajeClasico.TipoPuntajeClasicoParaMC(respuestaCorrecta);
         assertEquals(1, tipoPuntaje.puntuar(Arrays.asList(3,0)));
     }
 
     @Test
     public void tipoPuntajeClasicoPuntuaCorrectamenteParaVariosAciertosYUnError(){
         RespuestaMultipleChoice respuestaCorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList("Multiple", "Choice", "Clasico")));
-        TipoPuntajeClasico tipoPuntaje = TipoPuntajeClasico.TipoPuntajeClasicoParaMC(respuestaCorrecta);
+        PuntajeClasico tipoPuntaje = PuntajeClasico.TipoPuntajeClasicoParaMC(respuestaCorrecta);
         assertEquals(0, tipoPuntaje.puntuar(Arrays.asList(3,1)));
     }
 
     @Test
     public void tipoPuntajeClasicoPuntuaCorrectamenteParaVariosErrores(){
-        TipoPuntajeClasico tipoPuntaje = new TipoPuntajeClasico();
+        PuntajeClasico tipoPuntaje = new PuntajeClasico();
         assertEquals(0, tipoPuntaje.puntuar(Arrays.asList(0,2)));
     }
 
     @Test
     public void tipoPuntajeClasicoPuntuaCorrectamenteSinAciertosNiErrores(){
-        TipoPuntajeClasico tipoPuntaje = new TipoPuntajeClasico();
+        PuntajeClasico tipoPuntaje = new PuntajeClasico();
         assertEquals(0, tipoPuntaje.puntuar(Arrays.asList(0,0)));
     }
 }

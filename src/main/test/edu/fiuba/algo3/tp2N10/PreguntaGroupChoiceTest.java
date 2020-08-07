@@ -8,14 +8,14 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GroupChoiceTest {
+public class PreguntaGroupChoiceTest {
 
     private final HashSet<String> grupoLetras = new HashSet<>(Arrays.asList("A", "B"));
     private final HashSet<String> grupoNumeros = new HashSet<>(Arrays.asList("1", "2"));
     private final RespuestaGroupChoice respuestaCorrecta = new RespuestaGroupChoice(this.grupoLetras, this.grupoNumeros);
     private final RespuestaGroupChoice respuestaIncorrecta = new RespuestaGroupChoice(this.grupoNumeros, this.grupoLetras);
     private final Enunciado miEnunciado = new Enunciado("Ordene las opciones en los grupos correctos...", Arrays.asList("A", "B", "1", "2"));
-    private final GroupChoice preguntaGC = new GroupChoice(miEnunciado, this.respuestaCorrecta);
+    private final PreguntaGroupChoice preguntaGC = new PreguntaGroupChoice(miEnunciado, this.respuestaCorrecta);
 
     @Test
     public void GroupChoicePuedeCrearseSiSeIndicanLasRtasCorretas() {

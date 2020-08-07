@@ -4,17 +4,17 @@ import java.util.List;
 
 public class RespuestaOrderedChoice {
 
-    private List<String> respuesta;
+    private List<Integer> respuesta;
 
-    public RespuestaOrderedChoice(List<String> respuestaCorrecta) {
-        this.respuesta = respuestaCorrecta;
+    public RespuestaOrderedChoice(List<Integer> respuesta) {
+        this.respuesta = respuesta;
     }
 
     public boolean equals(RespuestaOrderedChoice otraRespuesta) {
         return otraRespuesta.equals(this.respuesta);
     }
 
-    private boolean equals(List<String> otraRespuesta) {
+    private boolean equals(List<Integer> otraRespuesta) {
         return this.respuesta == otraRespuesta;
     }
 

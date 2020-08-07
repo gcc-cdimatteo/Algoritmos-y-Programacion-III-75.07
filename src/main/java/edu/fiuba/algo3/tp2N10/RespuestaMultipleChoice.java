@@ -7,17 +7,17 @@ import com.google.common.collect.Sets;
 
 public class RespuestaMultipleChoice {
 
-    private final Set<String> opciones;
+    private final Set<Integer> opciones;
 
-    public RespuestaMultipleChoice(Set<String> opciones) {
+    public RespuestaMultipleChoice(Set<Integer> opciones) {
         this.opciones = opciones;
     }
 
-    public Set<String> intersection(RespuestaMultipleChoice respuesta) {
+    public Set<Integer> intersection(RespuestaMultipleChoice respuesta) {
         return respuesta.intersection(this.opciones);
     }
 
-    private Set<String> intersection(Set<String> opciones) {
+    private Set<Integer> intersection(Set<Integer> opciones) {
         return Sets.intersection(this.opciones, opciones);
     }
 

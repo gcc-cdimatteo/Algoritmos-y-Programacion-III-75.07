@@ -5,9 +5,9 @@ import java.util.List;
 
 public class RespuestaVerdaderoFalso {
 
-    private final String respuesta;
+    private final boolean respuesta;
 
-    public RespuestaVerdaderoFalso(String respuesta) {
+    public RespuestaVerdaderoFalso(boolean respuesta) {
         this.respuesta = respuesta;
     }
 
@@ -15,7 +15,7 @@ public class RespuestaVerdaderoFalso {
         return otraRespuesta.equals(this.respuesta);
     }
 
-    private boolean equals(String otraRespuesta) {
+    private boolean equals(boolean otraRespuesta) {
         return this.respuesta == otraRespuesta;
     }
 

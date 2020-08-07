@@ -7,41 +7,41 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TipoPuntajeParcialTest {
+public class PuntajeParcialTest {
 
     @Test
     public void tipoPuntajeConParcialPuntuaCorrectamente(){
-        TipoPuntajeParcial tipoPuntaje = new TipoPuntajeParcial();
+        PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(1, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(1,0))));
     }
 
     @Test
     public void tipoPuntajeConParcialPuntuaCorrectamenteConVariosAciertos(){
-        TipoPuntajeParcial tipoPuntaje = new TipoPuntajeParcial();
+        PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(3, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(3,0))));
     }
 
     @Test
     public void tipoPuntajeConParcialPuntuaCorrectamenteConUnError() {
-        TipoPuntajeParcial tipoPuntaje = new TipoPuntajeParcial();
+        PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(0, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(0, 1))));
     }
 
     @Test
     public void tipoPuntajeConParcialPuntuaCorrectamenteConVariosErrores(){
-        TipoPuntajeParcial tipoPuntaje = new TipoPuntajeParcial();
+        PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(0, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(0,3))));
     }
 
     @Test
     public void tipoPuntajeConParcialPuntuaCorrectamenteConVariosAciertosYErrores(){
-        TipoPuntajeParcial tipoPuntaje = new TipoPuntajeParcial();
+        PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(0, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(3,2))));
     }
 
     @Test
     public void tipoPuntajeConParcialPuntuaCorrectamenteSinAciertosNiErrores(){
-        TipoPuntajeParcial tipoPuntaje = new TipoPuntajeParcial();
+        PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(0, tipoPuntaje.puntuar(new ArrayList<>(Arrays.asList(0,0))));
     }
 }

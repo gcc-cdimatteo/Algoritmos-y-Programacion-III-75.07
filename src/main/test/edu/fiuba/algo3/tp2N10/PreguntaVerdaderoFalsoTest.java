@@ -7,21 +7,21 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VerdaderoFalsoTest {
+public class PreguntaVerdaderoFalsoTest {
 
-    private VerdaderoFalso preguntaVF;
+    private PreguntaVerdaderoFalso preguntaVF;
     private RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso("Falso");
     private RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso("Verdadero");
 
 
     private void crearVerdaderoFalsoClasico() {
         Enunciado miEnunciado = new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso"));
-        this.preguntaVF = new VerdaderoFalso(miEnunciado, this.respuestaCorrecta);
+        this.preguntaVF = new PreguntaVerdaderoFalso(miEnunciado, this.respuestaCorrecta);
     }
 
     private void crearVerdaderoFalsoPenalidad() {
         Enunciado miEnunciado = new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso"));
-        this.preguntaVF = VerdaderoFalso.VerdaderoFalsoPenalidad(miEnunciado, this.respuestaCorrecta);
+        this.preguntaVF = PreguntaVerdaderoFalso.Penalidad(miEnunciado, this.respuestaCorrecta);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

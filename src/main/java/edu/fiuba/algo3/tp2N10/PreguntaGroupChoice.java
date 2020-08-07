@@ -2,15 +2,18 @@ package edu.fiuba.algo3.tp2N10;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-public class GroupChoice implements Mostrable{
+public class PreguntaGroupChoice implements Mostrable{
 
-    private final Enunciado enunciado;
+    private final String enunciado;
+    private final List<String> opciones;
     private final RespuestaGroupChoice respuestaCorrecta;
 
-    public GroupChoice(Enunciado enunciado, RespuestaGroupChoice respuestaCorrecta){
+    public PreguntaGroupChoice(String enunciado, List<String> opciones, Set<Integer> opcionesGrupoA, Set<Integer> opcionesGrupoB){
         this.enunciado = enunciado;
-        this.respuestaCorrecta = respuestaCorrecta;
+        this.opciones = opciones;
+        this.respuestaCorrecta = new RespuestaGroupChoice(opcionesGrupoA, opcionesGrupoB);
     }
 
     public List<Integer> responder(List<RespuestaGroupChoice> respuestas){
@@ -23,12 +26,12 @@ public class GroupChoice implements Mostrable{
 
     @Override
     public String getPregunta() {
-        return this.enunciado.getPregunta();
+        return this.enunciado;
     }
 
     @Override
     public List<String> getOpciones() {
-        return this.enunciado.getOpciones();
+        return this.opciones;
     }
 
 }
