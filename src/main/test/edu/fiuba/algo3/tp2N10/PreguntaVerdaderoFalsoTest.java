@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
+import edu.fiuba.algo3.tp2N10.Pregunta.PreguntaVerdaderoFalso;
+import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaVerdaderoFalso;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,19 +11,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaVerdaderoFalsoTest {
 
+    private String enunciado;
+    private boolean respuestaCorrecta;
     private PreguntaVerdaderoFalso preguntaVF;
-    private RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso("Falso");
-    private RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso("Verdadero");
 
+    public PreguntaVerdaderoFalsoTest() {
+        this.enunciado = "La manzana es azul";
+        this.respuestaCorrecta = false;
+    }
 
     private void crearVerdaderoFalsoClasico() {
-        Enunciado miEnunciado = new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso"));
-        this.preguntaVF = new PreguntaVerdaderoFalso(miEnunciado, this.respuestaCorrecta);
+        this.preguntaVF = PreguntaVerdaderoFalso.Clasico(this.enunciado, this.respuestaCorrecta);
     }
 
     private void crearVerdaderoFalsoPenalidad() {
-        Enunciado miEnunciado = new Enunciado("La manzana es azul", Arrays.asList("Verdadero", "Falso"));
-        this.preguntaVF = PreguntaVerdaderoFalso.Penalidad(miEnunciado, this.respuestaCorrecta);
+        this.preguntaVF = PreguntaVerdaderoFalso.Penalidad(this.enunciado, this.respuestaCorrecta);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,13 +34,16 @@ public class PreguntaVerdaderoFalsoTest {
     @Test
     public void verdaderoFalsoClasicoPuedeCrearseSiSeIndicaLaRtaCorreta(){
         crearVerdaderoFalsoClasico();
-        assertEquals(Collections.singletonList(1), this.preguntaVF.responder(Collections.singletonList(this.respuestaCorrecta)));
+        RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(false);
+        assertEquals(Collections.singletonList(1), this.preguntaVF.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
     public void verdaderoFalsoClasicoDevuelvePuntajeCorrecto() {
         crearVerdaderoFalsoClasico();
-        assertEquals(Arrays.asList(1, 0), this.preguntaVF.responder(Arrays.asList(this.respuestaCorrecta, this.respuestaIncorrecta)));
+        RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
+        RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso(true);
+        assertEquals(Arrays.asList(1, 0), this.preguntaVF.responder(Arrays.asList(respuestaCorrecta, respuestaIncorrecta)));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,13 +52,16 @@ public class PreguntaVerdaderoFalsoTest {
     @Test
     public void VerdaderoFalsoConPenalidadDevuelvePuntajeCorrecto(){
         crearVerdaderoFalsoPenalidad();
-        assertEquals(Collections.singletonList(1), this.preguntaVF.responder(Collections.singletonList(this.respuestaCorrecta)));
+        RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(false);
+        assertEquals(Collections.singletonList(1), this.preguntaVF.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
     public void VerdaderoFalsoPenalidadRecibeUnaListaDeRespuestasYAsignaPuntos(){
         crearVerdaderoFalsoPenalidad();
-        assertEquals(Arrays.asList(-1, 1), this.preguntaVF.responder(Arrays.asList(this.respuestaIncorrecta, this.respuestaCorrecta)));
+        RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
+        RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso(true);
+        assertEquals(Arrays.asList(-1, 1), this.preguntaVF.responder(Arrays.asList(respuestaIncorrecta, respuestaCorrecta)));
     }
 
 }

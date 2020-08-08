@@ -1,10 +1,16 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Pregunta;
+
+import edu.fiuba.algo3.tp2N10.AlgoKahoot.Mostrable;
+import edu.fiuba.algo3.tp2N10.Puntaje.Puntaje;
+import edu.fiuba.algo3.tp2N10.Puntaje.PuntajeClasico;
+import edu.fiuba.algo3.tp2N10.Puntaje.PuntajePenalidad;
+import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaVerdaderoFalso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PreguntaVerdaderoFalso implements Mostrable{
+public class PreguntaVerdaderoFalso implements Mostrable {
 
     private final String enunciado;
     private final List<String> opciones = Arrays.asList("Verdadero", "Falso");
@@ -24,7 +30,7 @@ public class PreguntaVerdaderoFalso implements Mostrable{
 
     public static PreguntaVerdaderoFalso Clasico(String enunciado, boolean respuestaCorrecta) {
         PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado, respuestaCorrecta);
-        miPreguntaVF.puntaje = new PuntajeClasico();
+        miPreguntaVF.puntaje = PuntajeClasico.PuntajeParaVerdaderoFalso();
         return miPreguntaVF;
     }
 

@@ -1,8 +1,5 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.AlgoKahoot;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Ronda {

@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.tp2N10;
 
+import edu.fiuba.algo3.tp2N10.AlgoKahoot.Jugador;
+import edu.fiuba.algo3.tp2N10.AlgoKahoot.Ronda;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

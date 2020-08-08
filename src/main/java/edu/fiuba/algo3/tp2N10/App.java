@@ -2,6 +2,8 @@ package edu.fiuba.algo3.tp2N10;
 
 
 
+import edu.fiuba.algo3.tp2N10.AlgoKahoot.Mostrable;
+import edu.fiuba.algo3.tp2N10.Pregunta.PreguntaMultipleChoice;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;

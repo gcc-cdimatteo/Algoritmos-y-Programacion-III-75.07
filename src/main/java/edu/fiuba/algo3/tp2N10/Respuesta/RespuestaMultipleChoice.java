@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Respuesta;
 
 import java.util.Arrays;
 import java.util.List;

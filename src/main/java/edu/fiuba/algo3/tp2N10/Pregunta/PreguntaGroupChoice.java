@@ -1,10 +1,13 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Pregunta;
+
+import edu.fiuba.algo3.tp2N10.AlgoKahoot.Mostrable;
+import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaGroupChoice;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class PreguntaGroupChoice implements Mostrable{
+public class PreguntaGroupChoice implements Mostrable {
 
     private final String enunciado;
     private final List<String> opciones;

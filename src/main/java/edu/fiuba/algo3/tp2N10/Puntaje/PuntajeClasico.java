@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Puntaje;
+
+import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaMultipleChoice;
 
 import java.util.List;
 
@@ -6,11 +8,15 @@ public class PuntajeClasico implements Puntaje {
 
     private int aciertosEsperados;
 
-    public PuntajeClasico(){
+    private PuntajeClasico(){
         this.aciertosEsperados = 1;
     }
 
-    public static PuntajeClasico TipoPuntajeClasicoParaMC(RespuestaMultipleChoice respuestaCorrecta) {
+    public static PuntajeClasico PuntajeParaVerdaderoFalso() {
+        return new PuntajeClasico();
+    }
+
+    public static PuntajeClasico PuntajeParaMultipleChoice(RespuestaMultipleChoice respuestaCorrecta) {
         PuntajeClasico miTipoPuntaje = new PuntajeClasico();
         miTipoPuntaje.aciertosEsperados = respuestaCorrecta.size();
         return miTipoPuntaje;

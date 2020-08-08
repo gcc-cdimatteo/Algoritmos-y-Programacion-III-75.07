@@ -1,4 +1,11 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Pregunta;
+
+import edu.fiuba.algo3.tp2N10.AlgoKahoot.Mostrable;
+import edu.fiuba.algo3.tp2N10.Puntaje.Puntaje;
+import edu.fiuba.algo3.tp2N10.Puntaje.PuntajeClasico;
+import edu.fiuba.algo3.tp2N10.Puntaje.PuntajeParcial;
+import edu.fiuba.algo3.tp2N10.Puntaje.PuntajePenalidad;
+import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaMultipleChoice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +38,7 @@ public class PreguntaMultipleChoice implements Mostrable {
 
     public static PreguntaMultipleChoice Clasico(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
         PreguntaMultipleChoice miPreguntaMC = new PreguntaMultipleChoice(enunciado, opciones, opcionesCorrectas);
-        miPreguntaMC.puntaje = new PuntajeClasico();
+        miPreguntaMC.puntaje = PuntajeClasico.PuntajeParaMultipleChoice(new RespuestaMultipleChoice(opcionesCorrectas));
         return miPreguntaMC;
     }
 

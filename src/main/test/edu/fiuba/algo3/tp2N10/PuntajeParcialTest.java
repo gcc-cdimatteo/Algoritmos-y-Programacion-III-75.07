@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.tp2N10;
 
+import edu.fiuba.algo3.tp2N10.Puntaje.PuntajeParcial;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
