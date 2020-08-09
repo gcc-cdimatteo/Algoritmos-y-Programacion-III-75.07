@@ -30,7 +30,7 @@ public class PreguntaVerdaderoFalso implements Mostrable {
 
     public static PreguntaVerdaderoFalso Clasico(String enunciado, boolean respuestaCorrecta) {
         PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado, respuestaCorrecta);
-        miPreguntaVF.puntaje = PuntajeClasico.PuntajeParaVerdaderoFalso();
+        miPreguntaVF.puntaje = PuntajeClasico.ParaVerdaderoFalso();
         return miPreguntaVF;
     }
 
