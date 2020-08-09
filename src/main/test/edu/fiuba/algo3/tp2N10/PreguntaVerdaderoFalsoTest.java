@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.Pregunta.PreguntaVerdaderoFalso;
-import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaVerdaderoFalso;
+import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaVerdaderoFalso;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

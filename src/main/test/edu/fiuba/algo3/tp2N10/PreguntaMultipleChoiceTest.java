@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.Pregunta.PreguntaMultipleChoice;
-import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaMultipleChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaMultipleChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

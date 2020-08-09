@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.AlgoKahoot.Jugador;
-import edu.fiuba.algo3.tp2N10.AlgoKahoot.Ronda;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

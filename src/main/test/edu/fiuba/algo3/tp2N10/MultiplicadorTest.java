@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.Excepciones.MultiplicadorUsadoException;
-import edu.fiuba.algo3.tp2N10.PowerUps.Multiplicador;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.MultiplicadorUsadoException;
+import edu.fiuba.algo3.tp2N10.Modelo.PowerUps.Multiplicador;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

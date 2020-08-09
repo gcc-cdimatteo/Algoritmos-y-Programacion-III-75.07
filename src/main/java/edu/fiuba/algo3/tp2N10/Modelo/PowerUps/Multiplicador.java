@@ -1,10 +1,10 @@
-package edu.fiuba.algo3.tp2N10.PowerUps;
+package edu.fiuba.algo3.tp2N10.Modelo.PowerUps;
 
-import edu.fiuba.algo3.tp2N10.Excepciones.MultiplicadorUsadoException;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.MultiplicadorUsadoException;
 
 public class Multiplicador {
 
-    private int valor;
+    final private int valor;
     private int usos = 1;
 
     public Multiplicador(int valor) {

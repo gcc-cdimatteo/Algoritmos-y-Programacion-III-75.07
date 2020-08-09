@@ -1,11 +1,11 @@
-package edu.fiuba.algo3.tp2N10.Pregunta;
+package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 
-import edu.fiuba.algo3.tp2N10.AlgoKahoot.Mostrable;
-import edu.fiuba.algo3.tp2N10.Puntaje.Puntaje;
-import edu.fiuba.algo3.tp2N10.Puntaje.PuntajeClasico;
-import edu.fiuba.algo3.tp2N10.Puntaje.PuntajeParcial;
-import edu.fiuba.algo3.tp2N10.Puntaje.PuntajePenalidad;
-import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaMultipleChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Mostrable;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeParcial;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 
 import java.util.ArrayList;
 import java.util.List;

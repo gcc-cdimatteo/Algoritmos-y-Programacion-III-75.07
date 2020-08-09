@@ -1,7 +1,7 @@
-package edu.fiuba.algo3.tp2N10.AlgoKahoot;
+package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
-import edu.fiuba.algo3.tp2N10.Excepciones.MultiplicadorUsadoException;
-import edu.fiuba.algo3.tp2N10.PowerUps.Multiplicador;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.MultiplicadorUsadoException;
+import edu.fiuba.algo3.tp2N10.Modelo.PowerUps.Multiplicador;
 
 import java.util.Arrays;
 import java.util.List;

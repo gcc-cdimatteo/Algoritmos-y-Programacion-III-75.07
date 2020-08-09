@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.Pregunta.PreguntaGroupChoice;
-import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaGroupChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaGroupChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

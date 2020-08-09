@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.Pregunta.PreguntaOrderedChoice;
-import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaOrderedChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaOrderedChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;

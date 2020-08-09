@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.Puntaje.PuntajeClasico;
-import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaMultipleChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.HashSet;

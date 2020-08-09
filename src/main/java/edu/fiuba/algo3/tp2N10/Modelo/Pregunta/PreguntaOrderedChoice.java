@@ -1,7 +1,7 @@
-package edu.fiuba.algo3.tp2N10.Pregunta;
+package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 
-import edu.fiuba.algo3.tp2N10.AlgoKahoot.Mostrable;
-import edu.fiuba.algo3.tp2N10.Respuesta.RespuestaOrderedChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Mostrable;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
 
 import java.util.ArrayList;
 import java.util.List;
