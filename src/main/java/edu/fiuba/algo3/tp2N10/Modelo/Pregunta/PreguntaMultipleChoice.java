@@ -38,7 +38,7 @@ public class PreguntaMultipleChoice implements Mostrable {
 
     public static PreguntaMultipleChoice Clasico(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
         PreguntaMultipleChoice miPreguntaMC = new PreguntaMultipleChoice(enunciado, opciones, opcionesCorrectas);
-        miPreguntaMC.puntaje = PuntajeClasico.PuntajeParaMultipleChoice(new RespuestaMultipleChoice(opcionesCorrectas));
+        miPreguntaMC.puntaje = PuntajeClasico.ParaMultipleChoice(new RespuestaMultipleChoice(opcionesCorrectas));
         return miPreguntaMC;
     }
 

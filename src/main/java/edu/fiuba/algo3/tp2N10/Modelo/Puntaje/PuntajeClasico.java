@@ -8,15 +8,16 @@ public class PuntajeClasico implements Puntaje {
 
     private int aciertosEsperados;
 
-    private PuntajeClasico(){
-        this.aciertosEsperados = 1;
+    private PuntajeClasico() {
     }
 
-    public static PuntajeClasico PuntajeParaVerdaderoFalso() {
-        return new PuntajeClasico();
+    public static PuntajeClasico ParaVerdaderoFalso() {
+        PuntajeClasico miTipoPuntaje = new PuntajeClasico();
+        miTipoPuntaje.aciertosEsperados = 1;
+        return miTipoPuntaje;
     }
 
-    public static PuntajeClasico PuntajeParaMultipleChoice(RespuestaMultipleChoice respuestaCorrecta) {
+    public static PuntajeClasico ParaMultipleChoice(RespuestaMultipleChoice respuestaCorrecta) {
         PuntajeClasico miTipoPuntaje = new PuntajeClasico();
         miTipoPuntaje.aciertosEsperados = respuestaCorrecta.size();
         return miTipoPuntaje;
