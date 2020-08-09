@@ -1,15 +1,20 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 
-
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Mostrable;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaMultipleChoice;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +36,7 @@ public class App extends Application {
         launch(args);
     }
 
-    public void setup(){
+    public void setup() {
         this.escenario.setTitle("AlgoKahoot");
 
         Set<Integer> respuestasCorrectas = new HashSet<>(Arrays.asList(0, 2, 3));
@@ -40,56 +45,48 @@ public class App extends Application {
     }
 
     //Escenas
-    public Scene escenaPregunta(){
+    public Scene escenaPregunta() {
+        Label lblJugador = new Label("Jugador 1");
+        lblJugador.setStyle("-fx-font-size: 200%");
+        Label lblEnunciado = new Label(this.pregunta.getPregunta());
 
-        StringBuilder opcionesConcatenadas = new StringBuilder(); // ToDo: solo para ver que sale.
+        Button btnPowerUpX2 = new Button("x2");
+        Button btnPowerUpX3 = new Button("x3");
+        Button btnPowerUpEx1 = new Button("Exclusividad");
+        Button btnPowerUpEx2 = new Button("Exclusividad");
+        Button btnListo = new Button("Listo");
 
-        for (String op: this.pregunta.getOpciones()) {
-            opcionesConcatenadas.append(' ').append(op);
+        ArrayList<CheckBox> arrayChkOpciones = new ArrayList<>();
+        for (String op : this.pregunta.getOpciones()) {
+            arrayChkOpciones.add(new CheckBox(op));
         }
 
-        Label label = new Label(this.pregunta.getPregunta() + "\n" + opcionesConcatenadas);
-        return new Scene(new StackPane(label), 640, 480);
+        BorderPane bpPreguntaPowerUps = new BorderPane();
+
+        VBox vboxEnunciadoOpciones = new VBox(100);
+        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
+        VBox vboxOpciones = new VBox(25);
+        for (CheckBox chkOp : arrayChkOpciones) {
+            vboxOpciones.getChildren().addAll(chkOp);
+        }
+        vboxEnunciadoOpciones.getChildren().add(vboxOpciones);
+        VBox vboxPowerUps = new VBox(5);
+        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
+        bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
+        bpPreguntaPowerUps.setRight(vboxPowerUps);
+
+        BorderPane bpJugadorPreguntaLista = new BorderPane();
+        bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
+        BorderPane bpJugador = new BorderPane();
+        bpJugador.setCenter(lblJugador);
+        bpJugador.setStyle("-fx-background-color: cornflowerblue");
+        bpJugadorPreguntaLista.setTop(bpJugador);
+        bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
+        BorderPane bpBotoneraListo = new BorderPane();
+        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
+        bpBotoneraListo.setRight(btnListo);
+        bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
+
+        return new Scene(bpJugadorPreguntaLista, 640, 480);
     }
-
-
 }
-
-//    private Stage escenario;
-//    private Mostrable pregunta;
-//
-//    public void start(Stage stage) throws Exception {
-//        this.escenario = stage;
-//        this.setup();
-//        this.escenario.setScene(this.escenaPregunta());
-//        this.escenario.show();
-//    }
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//
-//    public void setup(){
-//        this.escenario.setTitle("AlgoKahoot");
-//        BolsaDePreguntas bolsa = null;
-//        try {
-//            bolsa = new BolsaDePreguntas("preguntas.json");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        ArrayList<Mostrable> preguntas = bolsa.getLista();
-//        this.pregunta = preguntas.get(0);
-//    }
-//
-//    //Escenas
-//    public Scene escenaPregunta(){
-//
-//        String opcionesConcatenadas = new String(); // ToDo: solo para ver que sale.
-//        for (String op: this.pregunta.getOpcionesPregunta()) {
-//            opcionesConcatenadas  += '|' + op;
-//        }
-//
-//        Label label = new Label(this.pregunta.getEnunciadoPregunta() + "\n" + opcionesConcatenadas);
-//        Scene escenario = new Scene(new StackPane(label), 640, 480);
-//        return escenario;
-//    }
