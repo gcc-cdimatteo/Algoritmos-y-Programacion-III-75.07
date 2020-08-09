@@ -34,9 +34,9 @@ public class App extends Application {
     public void setup(){
         this.escenario.setTitle("AlgoKahoot");
 
-        Set<Integer> respuestasCorrectasTres = new HashSet<>(Arrays.asList(0, 2, 3));
+        Set<Integer> respuestasCorrectas = new HashSet<>(Arrays.asList(0, 2, 3));
 
-        this.pregunta = PreguntaMultipleChoice.Clasico("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"), respuestasCorrectasTres);
+        this.pregunta = PreguntaMultipleChoice.Clasico("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"), respuestasCorrectas);
     }
 
     //Escenas
