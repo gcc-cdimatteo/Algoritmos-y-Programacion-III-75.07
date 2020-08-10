@@ -8,9 +8,7 @@ import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaVerdaderoFalso;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -68,27 +66,30 @@ public class App extends Application {
         lblJugador.setStyle("-fx-font-size: 200%");
         Label lblEnunciado = new Label(this.preguntaVF.getPregunta());
 
+        ToggleGroup grupoOpciones = new ToggleGroup();
+        ToggleButton btnVerdadero = new ToggleButton("Verdadero");
+        ToggleButton btnFalso = new ToggleButton("Falso");
+
         Button btnPowerUpX2 = new Button("x2");
         Button btnPowerUpX3 = new Button("x3");
         Button btnPowerUpEx1 = new Button("Exclusividad");
         Button btnPowerUpEx2 = new Button("Exclusividad");
         Button btnListo = new Button("Listo");
-        ////////////////////////////////////////////
+
+
         btnListo.setOnAction(new BotonListoProvisorio(this));
 
-        ArrayList<CheckBox> arrayChkOpciones = new ArrayList<>();
-        for (String op : this.preguntaVF.getOpciones()) {
-            arrayChkOpciones.add(new CheckBox(op));
-        }
+        btnVerdadero.setToggleGroup(grupoOpciones);
+        //btnVerdadero.setStyle("-fx-base: lightgreen;");
+        btnFalso.setToggleGroup(grupoOpciones);
+        //btnFalso.setStyle("-fx-base: red;");
 
         BorderPane bpPreguntaPowerUps = new BorderPane();
 
         VBox vboxEnunciadoOpciones = new VBox(100);
         vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
         HBox hboxOpciones = new HBox(25);
-        for (CheckBox chkOp : arrayChkOpciones) {
-            hboxOpciones.getChildren().addAll(chkOp);
-        }
+        hboxOpciones.getChildren().addAll(btnVerdadero, btnFalso);
         vboxEnunciadoOpciones.getChildren().add(hboxOpciones);
         VBox vboxPowerUps = new VBox(5);
         vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
