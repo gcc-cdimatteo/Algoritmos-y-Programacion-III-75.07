@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,7 +28,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         this.escenario = stage;
         this.setup();
-        this.escenario.setScene(this.escenaPregunta1());
+        this.escenario.setScene(this.escenaPreguntaMC());
         this.escenario.show();
     }
 
@@ -50,7 +49,21 @@ public class App extends Application {
     }
 
     //Escenas
-    public Scene escenaPregunta1() {
+
+
+    public Scene escenaBienvenida() {
+        return null;
+    }
+
+    public Scene escenaRegistroJugadores() {
+        return null;
+    }
+
+    public Scene escenaPreguntaVF() {
+        return null;
+    }
+
+    public Scene escenaPreguntaMC() {
         Label lblJugador = new Label("Jugador 1");
         lblJugador.setStyle("-fx-font-size: 200%");
         Label lblEnunciado = new Label(this.pregunta.getPregunta());
@@ -96,6 +109,19 @@ public class App extends Application {
 
         return new Scene(bpJugadorPreguntaLista, 640, 480);
     }
+
+    public Scene escenaPreguntaOC() {
+        return null;
+    }
+
+    public Scene escenaPreguntaGC() {
+        return null;
+    }
+
+    public Scene escenaFinal() {
+        return null;
+    }
+
 
     ///////////////// CODIGO DE EJEMPLO
     public Scene escenaEjemplo() {
