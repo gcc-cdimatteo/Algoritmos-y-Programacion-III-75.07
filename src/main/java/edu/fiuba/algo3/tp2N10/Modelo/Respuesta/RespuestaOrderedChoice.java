@@ -11,11 +11,11 @@ public class RespuestaOrderedChoice {
     }
 
     public boolean equals(RespuestaOrderedChoice otraRespuesta) {
-        return otraRespuesta.equals(this.respuesta);
+        return otraRespuesta.equals(respuesta);
     }
 
     private boolean equals(List<Integer> otraRespuesta) {
-        return this.respuesta == otraRespuesta;
+        return respuesta == otraRespuesta;
     }
 
     public Integer evaluar(RespuestaOrderedChoice respuestaUsuario) {

@@ -45,18 +45,18 @@ public class PreguntaMultipleChoice implements Mostrable {
     public List<Integer> responder(List<RespuestaMultipleChoice> respuestas) {
         List<Integer> puntos = new ArrayList<>();
         for (RespuestaMultipleChoice respuestaUsuario : respuestas) {
-            puntos.add(this.puntaje.puntuar(this.respuestaCorrecta.evaluar(respuestaUsuario)));
+            puntos.add(puntaje.puntuar(respuestaCorrecta.evaluar(respuestaUsuario)));
         }
         return puntos;
     }
 
     @Override
     public String getPregunta() {
-        return this.enunciado;
+        return enunciado;
     }
 
     @Override
     public List<String> getOpciones() {
-        return this.opciones;
+        return opciones;
     }
 }

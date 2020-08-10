@@ -22,19 +22,19 @@ public class PreguntaGroupChoice implements Mostrable {
     public List<Integer> responder(List<RespuestaGroupChoice> respuestas){
         List<Integer> puntos = new ArrayList<>();
         for (RespuestaGroupChoice respuestaUsuario : respuestas) {
-            puntos.add(this.respuestaCorrecta.evaluar(respuestaUsuario));
+            puntos.add(respuestaCorrecta.evaluar(respuestaUsuario));
         }
         return puntos;
     }
 
     @Override
     public String getPregunta() {
-        return this.enunciado;
+        return enunciado;
     }
 
     @Override
     public List<String> getOpciones() {
-        return this.opciones;
+        return opciones;
     }
 
 }

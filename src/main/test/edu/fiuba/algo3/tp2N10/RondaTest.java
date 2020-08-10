@@ -13,8 +13,8 @@ public class RondaTest {
 
     @Test
     public void Test01RondaAsignaCorrectamentePuntajesALosJugadores() {
-        Jugador jugadorUno = new Jugador("");
-        Jugador jugadorDos = new Jugador("");
+        Jugador jugadorUno = new Jugador("Carmelo");
+        Jugador jugadorDos = new Jugador("Gertrudis");
 
         List<Jugador> jugadores = Arrays.asList(jugadorUno, jugadorDos);
 

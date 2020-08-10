@@ -12,11 +12,11 @@ public class RespuestaVerdaderoFalso {
     }
 
     public boolean equals(RespuestaVerdaderoFalso otraRespuesta) {
-        return otraRespuesta.equals(this.respuesta);
+        return otraRespuesta.equals(respuesta);
     }
 
     private boolean equals(boolean otraRespuesta) {
-        return this.respuesta == otraRespuesta;
+        return respuesta == otraRespuesta;
     }
 
     public List<Integer> evaluar(RespuestaVerdaderoFalso respuestaUsuario) {

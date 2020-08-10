@@ -13,7 +13,7 @@ public class RespuestaGroupChoice {
     }
 
     public boolean equals(RespuestaGroupChoice otraRespuesta) {
-        return otraRespuesta.equals(this.grupoA, this.grupoB);
+        return otraRespuesta.equals(grupoA, grupoB);
     }
 
     private boolean equals(Set<Integer> grupoA, Set<Integer> grupoB) {
