@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Mostrable;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeParcial;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class PreguntaMultipleChoice implements Mostrable {
+public class PreguntaMultipleChoice {
 
     private final String enunciado;
     private final List<String> opciones;
@@ -50,13 +49,4 @@ public class PreguntaMultipleChoice implements Mostrable {
         return puntos;
     }
 
-    @Override
-    public String getPregunta() {
-        return enunciado;
-    }
-
-    @Override
-    public List<String> getOpciones() {
-        return opciones;
-    }
 }

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Mostrable;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PreguntaVerdaderoFalso implements Mostrable {
+public class PreguntaVerdaderoFalso {
 
     private final String enunciado;
     private final List<String> opciones = Arrays.asList("Verdadero", "Falso");
@@ -42,13 +41,4 @@ public class PreguntaVerdaderoFalso implements Mostrable {
         return puntos;
     }
 
-    @Override
-    public String getPregunta() {
-        return enunciado;
-    }
-
-    @Override
-    public List<String> getOpciones() {
-        return opciones;
-    }
 }

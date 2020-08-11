@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Mostrable;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class PreguntaGroupChoice implements Mostrable {
+public class PreguntaGroupChoice {
 
     private final String enunciado;
     private final List<String> opciones;
@@ -25,16 +24,6 @@ public class PreguntaGroupChoice implements Mostrable {
             puntos.add(respuestaCorrecta.evaluar(respuestaUsuario));
         }
         return puntos;
-    }
-
-    @Override
-    public String getPregunta() {
-        return enunciado;
-    }
-
-    @Override
-    public List<String> getOpciones() {
-        return opciones;
     }
 
 }
