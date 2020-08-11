@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -29,7 +30,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         this.escenario = stage;
         this.setup();
-        this.escenario.setScene(this.escenaPreguntaGC());
+        this.escenario.setScene(this.escenaRegistroJugadores());
         this.escenario.show();
     }
 
@@ -58,7 +59,40 @@ public class App extends Application {
     }
 
     public Scene escenaRegistroJugadores() {
-        return null;
+        Label lblRegistroJugadores = new Label("Registro de Jugadores");
+        lblRegistroJugadores.setStyle("-fx-font-size: 200%");
+        BorderPane bpHeader = new BorderPane();
+        bpHeader.setCenter(lblRegistroJugadores);
+        bpHeader.setStyle("-fx-background-color: cornflowerblue");
+
+        BorderPane bpHeaderIngresoDatosBoton = new BorderPane();
+        bpHeaderIngresoDatosBoton.setTop(bpHeader);
+
+        BorderPane bpRegistro = new BorderPane();
+        bpRegistro.setPadding(new Insets(100, 100, 100, 100));
+        VBox vboxJugadores = new VBox(10);
+        HBox hboxNombre1 = new HBox(10);
+        hboxNombre1.getChildren().addAll(
+                new Label("Nombre Jugador 1: "),
+                new TextField());
+        HBox hboxNombre2 = new HBox(10);
+        hboxNombre2.getChildren().addAll(
+                new Label("Nombre Jugador 2: "),
+                new TextField());
+        vboxJugadores.getChildren().addAll(hboxNombre1, hboxNombre2);
+        bpRegistro.setCenter(vboxJugadores);
+
+        bpHeaderIngresoDatosBoton.setCenter(bpRegistro);
+
+        // botonera Empezar a Jugar
+        Button btnJugar = new Button("Empezar a Jugar");
+        btnJugar.setOnAction(new BotonListoProvisorio(this));
+        BorderPane bpBotoneraJugar = new BorderPane();
+        bpBotoneraJugar.setStyle("-fx-background-color: cornflowerblue");
+        bpBotoneraJugar.setRight(btnJugar);
+        bpHeaderIngresoDatosBoton.setBottom(bpBotoneraJugar);
+
+        return new Scene(bpHeaderIngresoDatosBoton, 640, 480);
     }
 
     public Scene escenaPreguntaVF() {
