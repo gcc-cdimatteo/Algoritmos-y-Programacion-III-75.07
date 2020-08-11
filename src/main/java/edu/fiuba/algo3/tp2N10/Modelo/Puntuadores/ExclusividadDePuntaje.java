@@ -9,6 +9,10 @@ public class ExclusividadDePuntaje extends Puntuador {
 
     private int valor = 1;
 
+    public ExclusividadDePuntaje(List<Jugador> jugadores) {
+        super(jugadores);
+    }
+
     @Override
     public List<Integer> calcularPuntos(List<Integer> puntos) {
         List<Integer> puntosNuevos = new ArrayList<>();

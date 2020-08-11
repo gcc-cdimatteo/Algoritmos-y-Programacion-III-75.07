@@ -4,13 +4,14 @@ import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Puntuador;
 
 import java.util.List;
 
-public class Ronda {
+public class AlgoKahoot {
 
     private final List<Jugador> jugadores;
-    private Puntuador puntuador = new Puntuador();
+    private Puntuador puntuador;
 
-    public Ronda(List<Jugador> jugadores){
+    public AlgoKahoot(List<Jugador> jugadores){
         this.jugadores = jugadores;
+        this.puntuador = new Puntuador(jugadores);
     }
 
     public void usarExclusividad(Jugador jugador) {
@@ -18,6 +19,6 @@ public class Ronda {
     }
 
     public void asignarPuntajes(List<Integer> puntajes) {
-        puntuador.asignarPuntos(puntajes, jugadores);
+        puntuador.asignarPuntos(puntajes);
     }
 }
