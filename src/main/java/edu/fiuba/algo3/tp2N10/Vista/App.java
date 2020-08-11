@@ -13,10 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -213,6 +210,11 @@ public class App extends Application {
         ObservableList<String> items = FXCollections.observableArrayList ();
         listaOrdenada.setItems(items);
         listaOrdenada.setPrefWidth(100);
+        VBox opcionesRespuesta = new VBox(200);
+        opcionesRespuesta.getChildren().add(listaOrdenada);
+        BorderPane bpOpcionesOrdenadas = new BorderPane();
+        bpOpcionesOrdenadas.setMaxHeight(100);
+        bpOpcionesOrdenadas.setCenter(opcionesRespuesta);
         ////////////////////////////////////////////
         btnListo.setOnAction(new BotonListoProvisorio(this));
 
@@ -241,13 +243,10 @@ public class App extends Application {
         bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
         BorderPane bpJugador = new BorderPane();
         bpJugador.setCenter(lblJugador);
-        BorderPane bpLista = new BorderPane();
-        bpLista.setCenter(listaOrdenada);
-        bpLista.setMaxHeight(100);
         bpJugador.setStyle("-fx-background-color: cornflowerblue");
         bpJugadorPreguntaLista.setTop(bpJugador);
         bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
-        bpJugadorPreguntaLista.setLeft(bpLista);
+        bpJugadorPreguntaLista.setLeft(bpOpcionesOrdenadas);
         BorderPane bpBotoneraListo = new BorderPane();
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
         bpBotoneraListo.setRight(btnListo);
