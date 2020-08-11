@@ -14,7 +14,7 @@ public class RespuestaMultipleChoice {
     }
 
     public Set<Integer> intersection(RespuestaMultipleChoice respuesta) {
-        return respuesta.intersection(this.opciones);
+        return respuesta.intersection(opciones);
     }
 
     private Set<Integer> intersection(Set<Integer> opciones) {
@@ -22,7 +22,7 @@ public class RespuestaMultipleChoice {
     }
 
     public Integer size() {
-        return this.opciones.size();
+        return opciones.size();
     }
 
     public List<Integer> evaluar(RespuestaMultipleChoice respuestaUsuario) {

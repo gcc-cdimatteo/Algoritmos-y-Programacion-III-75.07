@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.MultiplicadorUsadoException;
-import edu.fiuba.algo3.tp2N10.Modelo.PowerUps.Multiplicador;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Multiplicador;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,12 +16,9 @@ public class MultiplicadorTest {
     }
 
     @Test
-    public void testMultiplicadorPorDosNoSePuedeUsarDosVeces() {
+    public void testMultiplicadorNoSePuedeUsarDosVeces() {
         Multiplicador miMultiplicador = new Multiplicador(3);
-        miMultiplicador.multiplicar(2);
-        assertThrows(MultiplicadorUsadoException.class, () -> {
-            miMultiplicador.multiplicar(5);
-        });
+        miMultiplicador.usar();
+        assertThrows(PowerUpNoDisponibleException.class, miMultiplicador::usar);
     }
-
 }

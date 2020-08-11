@@ -21,18 +21,18 @@ public class PreguntaOrderedChoice implements Mostrable {
     public List<Integer> responder(List<RespuestaOrderedChoice> respuestas) {
         List<Integer> puntos = new ArrayList<>();
         for (RespuestaOrderedChoice respuestaUsuario : respuestas) {
-            puntos.add(this.respuestaCorrecta.evaluar(respuestaUsuario));
+            puntos.add(respuestaCorrecta.evaluar(respuestaUsuario));
         }
         return puntos;
     }
     
     @Override
     public String getPregunta() {
-        return this.enunciado;
+        return enunciado;
     }
 
     @Override
     public List<String> getOpciones() {
-        return this.opciones;
+        return opciones;
     }
 }

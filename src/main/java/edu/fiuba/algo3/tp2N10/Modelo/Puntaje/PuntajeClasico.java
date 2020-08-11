@@ -24,6 +24,6 @@ public class PuntajeClasico implements Puntaje {
     }
 
     public Integer puntuar(List<Integer> evaluacion) {
-        return this.aciertosEsperados == evaluacion.get(0) && evaluacion.get(1) == 0 ? 1 : 0;
+        return aciertosEsperados == evaluacion.get(0) && evaluacion.get(1) == 0 ? 1 : 0;
     }
 }

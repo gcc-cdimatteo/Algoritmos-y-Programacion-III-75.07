@@ -1,37 +1,31 @@
 package edu.fiuba.algo3.tp2N10;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JugadorTest {
 
     @Test
-    public void Test01JugadorRecienCreadoDevuelve0PuntosYCadenaVacia(){
-        Jugador jugador = new Jugador("");
+    public void test01JugadorRecienCreadoDevuelve0PuntosYSuNombre(){
+        Jugador jugador = new Jugador("Wenceslao");
 
-        assertEquals("",jugador.nombre());
+        assertEquals("Wenceslao", jugador.nombre());
         assertEquals(0,jugador.puntaje());
     }
 
     @Test
-    public void Test02JugadorEsNombradoYDevuelveSuNombre(){
-        Jugador jugador = new Jugador("Martin");
-
-        assertEquals("Martin", jugador.nombre());
-    }
-
-    @Test
-    public void Test03JugadorEsPuntuadoPositivamenteYDevuelveSusPuntos(){
-        Jugador jugador = new Jugador("");
+    public void test02JugadorEsPuntuadoPositivamenteYDevuelveSusPuntos(){
+        Jugador jugador = new Jugador("Ofelia");
         jugador.puntuar(10);
-        assertEquals(10,jugador.puntaje());
+        assertEquals(10, jugador.puntaje());
     }
 
     @Test
-    public void Test04JugadorEsPuntuadoNegativamenteYDevuelveSusPuntos(){
-        Jugador jugador = new Jugador("");
+    public void test03JugadorEsPuntuadoNegativamenteYDevuelveSusPuntos(){
+        Jugador jugador = new Jugador("Yolanda");
 
         jugador.puntuar(-8);
 
@@ -39,8 +33,8 @@ public class JugadorTest {
     }
 
     @Test
-    public void Test05JugadorEsPuntuadoVariasVeces(){
-        Jugador jugador = new Jugador("");
+    public void test04JugadorEsPuntuadoVariasVeces(){
+        Jugador jugador = new Jugador("Velasco");
 
         jugador.puntuar(-1);
         jugador.puntuar(10);
@@ -48,6 +42,17 @@ public class JugadorTest {
         jugador.puntuar(-2);
         jugador.puntuar(1);
 
-        assertEquals(5,jugador.puntaje());
+        assertEquals(5, jugador.puntaje());
     }
+
+    @Test
+    public void test05JugadorSoloPuedeUsarExclusividadDePuntaje2Veces(){
+        Jugador jugador = new Jugador("Casimiro");
+
+        jugador.usarExclusividad();
+        jugador.usarExclusividad();
+
+        assertThrows(PowerUpNoDisponibleException.class, jugador::usarExclusividad);
+    }
+
 }
