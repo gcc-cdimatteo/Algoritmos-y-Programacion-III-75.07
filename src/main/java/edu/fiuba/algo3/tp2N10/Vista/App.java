@@ -2,10 +2,14 @@ package edu.fiuba.algo3.tp2N10.Vista;
 
 
 import edu.fiuba.algo3.tp2N10.Controlador.BotonListoProvisorio;
+import edu.fiuba.algo3.tp2N10.Controlador.BotonSeleccionarOpcion;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Mostrable;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaMultipleChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaOrderedChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaVerdaderoFalso;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -25,11 +29,12 @@ public class App extends Application {
     private Stage escenario;
     private Mostrable preguntaMC;
     private Mostrable preguntaVF;
+    private Mostrable preguntaOC;
 
     public void start(Stage stage) throws Exception {
         this.escenario = stage;
         this.setup();
-        this.escenario.setScene(this.escenaPreguntaGC());
+        this.escenario.setScene(this.escenaPreguntaOC());
         this.escenario.show();
     }
 
@@ -44,6 +49,7 @@ public class App extends Application {
 
         this.preguntaVF = PreguntaVerdaderoFalso.Clasico("La manzana es roja", true);
         this.preguntaMC = PreguntaMultipleChoice.Clasico("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"), respuestasCorrectasMC);
+        this.preguntaOC = new PreguntaOrderedChoice("El orden de las letras del abecedario es...", Arrays.asList("B", "C", "A"), Arrays.asList(1, 2, 3));
     }
 
     public void cambiarEscenaA(Scene nuevaEscena) {
@@ -104,7 +110,7 @@ public class App extends Application {
         bpJugadorPreguntaLista.setTop(bpJugador);
         bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
         BorderPane bpBotoneraListo = new BorderPane();
-        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
+        bpBotoneraListo.setStyle("-fx-background-color: #6495ed");
         bpBotoneraListo.setRight(btnListo);
         bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
 
@@ -159,7 +165,61 @@ public class App extends Application {
     }
 
     public Scene escenaPreguntaOC() {
-        return null;
+        Label lblJugador = new Label("Jugador 1");
+        lblJugador.setStyle("-fx-font-size: 200%");
+        Label lblEnunciado = new Label(this.preguntaOC.getPregunta());
+
+        Button btnPowerUpX2 = new Button("x2");
+        Button btnPowerUpX3 = new Button("x3");
+        Button btnPowerUpEx1 = new Button("Exclusividad");
+        Button btnPowerUpEx2 = new Button("Exclusividad");
+        Button btnListo = new Button("Listo");
+
+        ListView<String> listaOrdenada = new ListView<String>();
+        ObservableList<String> items = FXCollections.observableArrayList ();
+        listaOrdenada.setItems(items);
+        listaOrdenada.setPrefWidth(100);
+        ////////////////////////////////////////////
+        btnListo.setOnAction(new BotonListoProvisorio(this));
+
+        ArrayList<Button> arrayChkOpciones = new ArrayList<>();
+        for (String op : this.preguntaOC.getOpciones()) {
+            Button boton = new Button(op);
+            boton.setOnAction(new BotonSeleccionarOpcion(listaOrdenada, boton));
+            arrayChkOpciones.add(boton);
+        }
+
+        BorderPane bpPreguntaPowerUps = new BorderPane();
+
+        VBox vboxEnunciadoOpciones = new VBox(100);
+        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
+        HBox hboxOpciones = new HBox(25);
+        for (Button chkOp : arrayChkOpciones) {
+            hboxOpciones.getChildren().addAll(chkOp);
+        }
+        vboxEnunciadoOpciones.getChildren().add(hboxOpciones);
+        VBox vboxPowerUps = new VBox(5);
+        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
+        bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
+        bpPreguntaPowerUps.setRight(vboxPowerUps);
+
+        BorderPane bpJugadorPreguntaLista = new BorderPane();
+        bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
+        BorderPane bpJugador = new BorderPane();
+        bpJugador.setCenter(lblJugador);
+        BorderPane bpLista = new BorderPane();
+        bpLista.setCenter(listaOrdenada);
+        bpLista.setMaxHeight(100);
+        bpJugador.setStyle("-fx-background-color: cornflowerblue");
+        bpJugadorPreguntaLista.setTop(bpJugador);
+        bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
+        bpJugadorPreguntaLista.setLeft(bpLista);
+        BorderPane bpBotoneraListo = new BorderPane();
+        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
+        bpBotoneraListo.setRight(btnListo);
+        bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
+
+        return new Scene(bpJugadorPreguntaLista, 640, 480);
     }
 
     public Scene escenaPreguntaGC() {
