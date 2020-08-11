@@ -4,21 +4,24 @@ import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
+import edu.fiuba.algo3.tp2N10.Vista.Observer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PreguntaVerdaderoFalso {
+public class PreguntaVerdaderoFalso implements Observable {
 
     private final String enunciado;
     private final List<String> opciones = Arrays.asList("Verdadero", "Falso");
     private final RespuestaVerdaderoFalso respuestaCorrecta;
     private Puntaje puntaje;
+    private List<Observer> observers;
 
     private PreguntaVerdaderoFalso(String enunciado, boolean respuestaCorrecta){
         this.enunciado = enunciado;
         this.respuestaCorrecta = new RespuestaVerdaderoFalso(respuestaCorrecta);
+        this.observers = new ArrayList<>();
     }
 
     public static PreguntaVerdaderoFalso Penalidad(String enunciado, boolean respuestaCorrecta) {
@@ -41,4 +44,13 @@ public class PreguntaVerdaderoFalso {
         return puntos;
     }
 
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        observers.forEach(Observer::change);
+    }
 }

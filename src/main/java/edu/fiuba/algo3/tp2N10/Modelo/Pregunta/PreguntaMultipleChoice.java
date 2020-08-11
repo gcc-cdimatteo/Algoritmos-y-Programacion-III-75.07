@@ -5,22 +5,25 @@ import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeParcial;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
+import edu.fiuba.algo3.tp2N10.Vista.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class PreguntaMultipleChoice {
+public class PreguntaMultipleChoice implements Observable {
 
     private final String enunciado;
     private final List<String> opciones;
     private final RespuestaMultipleChoice respuestaCorrecta;
     private Puntaje puntaje;
+    private List<Observer> observers;
 
     private PreguntaMultipleChoice(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
         this.enunciado = enunciado;
         this.opciones = opciones;
         this.respuestaCorrecta = new RespuestaMultipleChoice(opcionesCorrectas);
+        this.observers = new ArrayList<>();
     }
 
     public static PreguntaMultipleChoice Parcial(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
@@ -49,4 +52,13 @@ public class PreguntaMultipleChoice {
         return puntos;
     }
 
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        observers.forEach(Observer::change);
+    }
 }
