@@ -44,6 +44,10 @@ public class PreguntaVerdaderoFalso implements Observable {
         return puntos;
     }
 
+    public String getEnunciado(){
+        return this.enunciado;
+    }
+
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);

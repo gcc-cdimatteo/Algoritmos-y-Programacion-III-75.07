@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Jugador {
 
-    private final String nombre;
+    private String nombre;
     private int puntaje = 0;
     private List<Multiplicador> multiplicadores = Arrays.asList(new Multiplicador(1), new Multiplicador(2), new Multiplicador(3));
     private Multiplicador multiplicadorActual = multiplicadores.get(0);
@@ -20,6 +20,11 @@ public class Jugador {
 
     public String nombre() {
         return nombre;
+    }
+
+    //Me sirve mas asi que pasandolo por constructor, para hacer un setup de main y despues solo asignarle nombres con un controlador
+    public void nombrar(String nombre) {
+        this.nombre = nombre;
     }
 
     public void puntuar(int puntos) {
