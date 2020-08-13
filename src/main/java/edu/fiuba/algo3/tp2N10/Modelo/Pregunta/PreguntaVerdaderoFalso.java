@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PreguntaVerdaderoFalso implements Observable {
+public class PreguntaVerdaderoFalso implements Observable, Mostrable {
 
     private final String enunciado;
-    private final List<String> opciones = Arrays.asList("Verdadero", "Falso");
     private final RespuestaVerdaderoFalso respuestaCorrecta;
     private Puntaje puntaje;
     private List<Observer> observers;
@@ -44,8 +43,13 @@ public class PreguntaVerdaderoFalso implements Observable {
         return puntos;
     }
 
+    @Override
     public String getEnunciado(){
         return this.enunciado;
+    }
+    @Override
+    public List<String> getOpciones(){
+        return Arrays.asList("Verdadero", "Falso");
     }
 
     @Override

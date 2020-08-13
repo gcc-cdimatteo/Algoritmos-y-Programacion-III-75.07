@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class PreguntaMultipleChoice implements Observable {
+public class PreguntaMultipleChoice implements Observable, Mostrable{
 
     private final String enunciado;
     private final List<String> opciones;
@@ -52,8 +52,14 @@ public class PreguntaMultipleChoice implements Observable {
         return puntos;
     }
 
+    @Override
     public String getEnunciado(){
         return this.enunciado;
+    }
+
+    @Override
+    public List<String> getOpciones(){
+        return this.opciones;
     }
 
     @Override

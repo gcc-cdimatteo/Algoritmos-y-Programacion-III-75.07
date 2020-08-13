@@ -6,7 +6,7 @@ import edu.fiuba.algo3.tp2N10.Vista.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreguntaOrderedChoice implements Observable {
+public class PreguntaOrderedChoice implements Observable, Mostrable {
 
     private final String enunciado;
     private final List<String> opciones;
@@ -27,9 +27,14 @@ public class PreguntaOrderedChoice implements Observable {
         }
         return puntos;
     }
-
+    @Override
     public String getEnunciado(){
         return this.enunciado;
+    }
+
+    @Override
+    public List<String> getOpciones(){
+        return this.opciones;
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class PreguntaGroupChoice implements Observable {
+public class PreguntaGroupChoice implements Observable, Mostrable {
 
     private final String enunciado;
     private final List<String> opciones;
@@ -29,8 +29,14 @@ public class PreguntaGroupChoice implements Observable {
         return puntos;
     }
 
+    @Override
     public String getEnunciado(){
         return this.enunciado;
+    }
+
+    @Override
+    public List<String> getOpciones(){
+        return this.opciones;
     }
 
     @Override
