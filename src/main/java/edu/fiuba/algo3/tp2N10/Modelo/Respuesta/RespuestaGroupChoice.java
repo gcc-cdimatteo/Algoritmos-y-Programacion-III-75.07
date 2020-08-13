@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
-public class RespuestaGroupChoice {
+public class RespuestaGroupChoice implements Respuesta {
 
     private final Set<Integer> grupoA;
     private final Set<Integer> grupoB;
@@ -20,7 +22,9 @@ public class RespuestaGroupChoice {
         return (this.grupoA.equals(grupoA) && this.grupoB.equals(grupoB));
     }
 
-    public Integer evaluar(RespuestaGroupChoice respuestaUsuario){
-        return this.equals(respuestaUsuario) ? 1 : 0;
+    @Override
+    public List<Integer> evaluar(Respuesta respuestaUsuario){
+        return Arrays.asList(this.equals((RespuestaGroupChoice) respuestaUsuario) ? 1 : 0);
     }
+
 }

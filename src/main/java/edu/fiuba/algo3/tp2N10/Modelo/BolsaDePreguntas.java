@@ -15,7 +15,7 @@ import java.util.*;
 
 public class BolsaDePreguntas {
 
-    private ArrayList<Mostrable> lista = new ArrayList<>();
+    private ArrayList<Pregunta> lista = new ArrayList<>();
 
     public BolsaDePreguntas(String archivo) throws IOException {
 
@@ -126,7 +126,7 @@ public class BolsaDePreguntas {
         return preguntaVF;
     }
 
-    public ArrayList<Mostrable> getLista() {
+    public ArrayList<Pregunta> getLista() {
         return this.lista;
     }
 }

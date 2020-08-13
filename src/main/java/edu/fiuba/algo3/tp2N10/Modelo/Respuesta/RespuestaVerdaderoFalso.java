@@ -3,7 +3,7 @@ package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 import java.util.Arrays;
 import java.util.List;
 
-public class RespuestaVerdaderoFalso {
+public class RespuestaVerdaderoFalso implements Respuesta {
 
     private final boolean respuesta;
 
@@ -19,8 +19,10 @@ public class RespuestaVerdaderoFalso {
         return respuesta == otraRespuesta;
     }
 
-    public List<Integer> evaluar(RespuestaVerdaderoFalso respuestaUsuario) {
-        Integer aciertos = this.equals(respuestaUsuario) ? 1 : 0;
+    @Override
+    public List<Integer> evaluar(Respuesta respuestaUsuario) {
+        RespuestaVerdaderoFalso respuestaUsuarioCasteada = (RespuestaVerdaderoFalso) respuestaUsuario;
+        Integer aciertos = this.equals(respuestaUsuarioCasteada) ? 1 : 0;
         Integer errores = 1 - aciertos;
         return Arrays.asList(aciertos, errores);
     }
