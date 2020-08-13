@@ -63,10 +63,15 @@
     {
       "tipo": "orderedChoice",
       "enunciado": "Enunciado de pregunta ordered choice",
-      "respuesta": [
+      "opciones": [
         "Opción 1",
         "Opción 2",
         "Opción 3"
+      ],
+      "respuestas": [
+        0,
+        1,
+        2
       ]
     },
     {

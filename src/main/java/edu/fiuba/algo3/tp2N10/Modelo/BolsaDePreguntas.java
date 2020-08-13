@@ -51,18 +51,21 @@ public class BolsaDePreguntas {
     }
 
     private PreguntaOrderedChoice generarPreguntaOrderedChoice(JSONObject pregunta) {
-//
-//        String enunciado = pregunta.getString("enunciado");
-//        JSONArray respuestas = pregunta.getJSONArray("respuesta");
-//
-//        ArrayList<String> arrayRespuestas = new ArrayList<>();
-//        for (int i = 0; i < respuestas.length(); i++) {
-//            arrayRespuestas.add(respuestas.getString(i));
-//        }
-//
-//        RespuestaOrderedChoice respuestaCorrecta = new RespuestaOrderedChoice(arrayRespuestas);
-//        return new PreguntaOrderedChoice(enunciado, respuestaCorrecta);
-        return null;
+        String enunciado = pregunta.getString("enunciado");
+        JSONArray opciones = pregunta.getJSONArray("opciones");
+        JSONArray respuestas = pregunta.getJSONArray("respuestas");
+
+        ArrayList<String> arrayOpciones = new ArrayList<>();
+        for (int i = 0; i < opciones.length(); i++) {
+            arrayOpciones.add(opciones.getString(i));
+        }
+
+        ArrayList<Integer> arrayRespuestas = new ArrayList<>();
+        for (int i = 0; i < respuestas.length(); i++) {
+            arrayRespuestas.add(respuestas.getInt(i));
+        }
+
+        return new PreguntaOrderedChoice(enunciado, arrayOpciones, arrayRespuestas);
     }
 
     private PreguntaMultipleChoice generarPreguntaMultipleChoice(JSONObject pregunta) {
