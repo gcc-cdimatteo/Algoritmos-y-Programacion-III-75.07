@@ -1,0 +1,107 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Pregunta {
+    # enunciado: String
+    # opciones: List<String>
+    # observers: ArrayList<Observer>
+    + responder(List<Respuesta> respuestas): List<Integer>
+    + addObserver(Observer observer)
+    + notifyObservers()
+    + getEnunciado(): String
+    + getOpciones(): List<String>
+}
+class PreguntaMultipleChoice {
+    + {static} Parcial(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas): PreguntaMultipleChoice
+    + {static} Penalidad(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas): PreguntaMultipleChoice
+    + {static} Clasico(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas): PreguntaMultipleChoice
+}
+class PreguntaVerdaderoFalso {
+    + {static} Penalidad(String enunciado, boolean respuestaCorrecta): PreguntaVerdaderoFalso
+    + {static} Clasico(String enunciado, boolean respuestaCorrecta): PreguntaVerdaderoFalso
+}
+class PreguntaGroupChoice
+class PreguntaOrderedChoice
+
+
+interface Puntaje {
+    + puntuar(Integer aciertos, Integer errores): Integer
+}
+class PuntajeClasico {
+    - aciertosEsperados: int
+    + {static} ParaVerdaderoFalso(): PuntajeClasico
+    + {static} ParaMultipleChoice(Set opcionesCorrectas): PuntajeClasico
+    + puntuar(Integer aciertos, Integer errores): Integer
+}
+class PuntajeParcial {
+    + puntuar(Integer aciertos, Integer errores): Integer
+}
+class PuntajePenalidad {
+    + puntuar(Integer aciertos, Integer errores): Integer
+}
+
+
+interface Respuesta {
+    + evaluar(Respuesta respuestaUsuario): List<Integer>
+}
+class RespuestaGroupChoice {
+    - grupoA: Set<Integer>
+    - grupoB: Set<Integer>
+    - equals(Set<Integer> grupoA, Set<Integer> grupoB): boolean
+    + equals(RespuestaGroupChoice otraRespuesta): boolean
+    + evaluar(Respuesta respuestaUsuario): List<Integer>
+}
+class RespuestaMultipleChoice {
+    - opciones: Set<Integer>
+    - puntaje: Puntaje
+    - intersection(Set<Integer> opciones): Set<Integer>
+    + {static} ConPuntaje(Set<Integer> opciones, Puntaje puntaje): RespuestaMultipleChoice
+    + intersection(RespuestaMultipleChoice respuesta): Set<Integer>
+    + size(): Integer
+    + evaluar(Respuesta respuestaUsuario): List<Integer>
+}
+class RespuestaVerdaderoFalso {
+    - respuesta: boolean
+    - puntaje: Puntaje
+    - equals(boolean otraRespuesta): boolean
+    + {static} ConPuntaje(boolean respuesta, Puntaje puntaje): RespuestaVerdaderoFalso
+    + equals(RespuestaVerdaderoFalso otraRespuesta): boolean
+    + evaluar(Respuesta respuestaUsuario): List<Integer>
+}
+class RespuestaOrderedChoice {
+    - respuesta: List<Integer>
+    - equals(List<Integer> otraRespuesta): boolean
+    + equals(RespuestaOrderedChoice otraRespuesta): boolean
+    + evaluar(Respuesta respuestaUsuario): List<Integer>
+}
+
+'Ordenamiento De Cuadrados
+
+'Herencia --|> cumple la relación 'es un'
+Pregunta <|-up- PreguntaGroupChoice
+Pregunta <|-up- PreguntaMultipleChoice
+Pregunta <|-up- PreguntaOrderedChoice
+Pregunta <|-up- PreguntaVerdaderoFalso
+
+'Asociacion --> un objeto guarda a otro
+Pregunta --> Respuesta
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+
+'Composicion --* un objeto es dueño de otro
+RespuestaVerdaderoFalso --* Puntaje
+RespuestaMultipleChoice --* Puntaje
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+RespuestaGroupChoice .up.|> Respuesta
+RespuestaMultipleChoice .up.|> Respuesta
+RespuestaOrderedChoice .up.|> Respuesta
+RespuestaVerdaderoFalso .up.|> Respuesta
+PuntajeClasico .up.|> Puntaje
+PuntajePenalidad .up.|> Puntaje
+PuntajeParcial .up.|> Puntaje
+
+
+@enduml
