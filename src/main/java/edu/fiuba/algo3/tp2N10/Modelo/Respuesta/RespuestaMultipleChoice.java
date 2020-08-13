@@ -4,13 +4,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import com.google.common.collect.Sets;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 
 public class RespuestaMultipleChoice implements Respuesta {
 
     private final Set<Integer> opciones;
+    private Puntaje puntaje;
 
     public RespuestaMultipleChoice(Set<Integer> opciones) {
         this.opciones = opciones;
+    }
+
+    public static RespuestaMultipleChoice ConPuntaje(Set<Integer> opciones, Puntaje puntaje) {
+        RespuestaMultipleChoice miRespuestaMC = new RespuestaMultipleChoice(opciones);
+        miRespuestaMC.puntaje = puntaje;
+        return miRespuestaMC;
     }
 
     public Set<Integer> intersection(RespuestaMultipleChoice respuesta) {
@@ -26,10 +34,10 @@ public class RespuestaMultipleChoice implements Respuesta {
     }
 
     @Override
-    public List<Integer> evaluar(Respuesta respuestaUsuario) {
+    public Integer evaluar(Respuesta respuestaUsuario) {
         RespuestaMultipleChoice respuestaUsuarioCasteada = (RespuestaMultipleChoice) respuestaUsuario;
-        Integer aciertos = this.intersection(respuestaUsuarioCasteada).size();
-        Integer errores = respuestaUsuarioCasteada.size() - aciertos;
-        return Arrays.asList(aciertos, errores);
+        int aciertos = this.intersection(respuestaUsuarioCasteada).size();
+        int errores = respuestaUsuarioCasteada.size() - aciertos;
+        return puntaje.puntuar(aciertos, errores);
     }
 }

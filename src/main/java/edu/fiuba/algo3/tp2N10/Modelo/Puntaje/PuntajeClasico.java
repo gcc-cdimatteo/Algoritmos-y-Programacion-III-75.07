@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Puntaje;
 
-import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
-
-import java.util.List;
+import java.util.Set;
 
 public class PuntajeClasico implements Puntaje {
 
@@ -12,18 +10,19 @@ public class PuntajeClasico implements Puntaje {
     }
 
     public static PuntajeClasico ParaVerdaderoFalso() {
-        PuntajeClasico miTipoPuntaje = new PuntajeClasico();
-        miTipoPuntaje.aciertosEsperados = 1;
-        return miTipoPuntaje;
+        PuntajeClasico miPuntaje = new PuntajeClasico();
+        miPuntaje.aciertosEsperados = 1;
+        return miPuntaje;
     }
 
-    public static PuntajeClasico ParaMultipleChoice(RespuestaMultipleChoice respuestaCorrecta) {
-        PuntajeClasico miTipoPuntaje = new PuntajeClasico();
-        miTipoPuntaje.aciertosEsperados = respuestaCorrecta.size();
-        return miTipoPuntaje;
+    public static PuntajeClasico ParaMultipleChoice(Set opcionesCorrectas) {
+        PuntajeClasico miPuntaje = new PuntajeClasico();
+        miPuntaje.aciertosEsperados = opcionesCorrectas.size();
+        return miPuntaje;
     }
 
-    public Integer puntuar(List<Integer> evaluacion) {
-        return aciertosEsperados == evaluacion.get(0) && evaluacion.get(1) == 0 ? 1 : 0;
+    @Override
+    public Integer puntuar(Integer aciertos, Integer errores) {
+        return aciertosEsperados == aciertos && errores == 0 ? 1 : 0;
     }
 }

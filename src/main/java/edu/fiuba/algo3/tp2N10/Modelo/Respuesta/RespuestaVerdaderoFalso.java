@@ -1,14 +1,23 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class RespuestaVerdaderoFalso implements Respuesta {
 
     private final boolean respuesta;
+    private Puntaje puntaje;
 
     public RespuestaVerdaderoFalso(boolean respuesta) {
         this.respuesta = respuesta;
+    }
+
+    public static RespuestaVerdaderoFalso ConPuntaje(boolean respuesta, Puntaje puntaje) {
+        RespuestaVerdaderoFalso miRespuestaVF = new RespuestaVerdaderoFalso(respuesta);
+        miRespuestaVF.puntaje = puntaje;
+        return miRespuestaVF;
     }
 
     public boolean equals(RespuestaVerdaderoFalso otraRespuesta) {
@@ -20,10 +29,10 @@ public class RespuestaVerdaderoFalso implements Respuesta {
     }
 
     @Override
-    public List<Integer> evaluar(Respuesta respuestaUsuario) {
+    public Integer evaluar(Respuesta respuestaUsuario) {
         RespuestaVerdaderoFalso respuestaUsuarioCasteada = (RespuestaVerdaderoFalso) respuestaUsuario;
-        Integer aciertos = this.equals(respuestaUsuarioCasteada) ? 1 : 0;
-        Integer errores = 1 - aciertos;
-        return Arrays.asList(aciertos, errores);
+        int aciertos = this.equals(respuestaUsuarioCasteada) ? 1 : 0;
+        int errores = 1 - aciertos;
+        return puntaje.puntuar(aciertos, errores);
     }
 }

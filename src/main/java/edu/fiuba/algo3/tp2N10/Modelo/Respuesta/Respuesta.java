@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Respuesta {
 
-    List<Integer> evaluar(Respuesta respuestaUsuario);
+    Integer evaluar(Respuesta respuestaUsuario);
 
 }

@@ -13,7 +13,23 @@ public abstract class Pregunta implements Observable {
     protected Respuesta respuestaCorrecta;
     protected ArrayList<Observer> observers;
 
-    public abstract List<Integer> responder(List<Respuesta> respuestas);
+    public List<Integer> responder(List<Respuesta> respuestasUsuario) {
+        List<Integer> puntos = new ArrayList<>();
+        for (Respuesta respuesta : respuestasUsuario) {
+            puntos.add(respuestaCorrecta.evaluar(respuesta));
+        }
+        return puntos;
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        observers.forEach(Observer::change);
+    }
 
     public String getEnunciado() {
         return this.enunciado;

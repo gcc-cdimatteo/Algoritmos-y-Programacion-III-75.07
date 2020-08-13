@@ -1,56 +1,28 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 
-import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
-import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
-import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
-import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.*;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
-import edu.fiuba.algo3.tp2N10.Vista.Observer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class PreguntaVerdaderoFalso extends Pregunta {
 
-    private Puntaje puntaje;
-
-    private PreguntaVerdaderoFalso(String enunciado, boolean respuestaCorrecta){
+    private PreguntaVerdaderoFalso(String enunciado) {
         this.enunciado = enunciado;
         this.opciones = Arrays.asList("Verdadero", "Falso");
-        this.respuestaCorrecta = new RespuestaVerdaderoFalso(respuestaCorrecta);
         this.observers = new ArrayList<>();
     }
 
     public static PreguntaVerdaderoFalso Penalidad(String enunciado, boolean respuestaCorrecta) {
-        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado, respuestaCorrecta);
-        miPreguntaVF.puntaje = new PuntajePenalidad();
+        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado);
+        miPreguntaVF.respuestaCorrecta = RespuestaVerdaderoFalso.ConPuntaje(respuestaCorrecta, new PuntajePenalidad());
         return miPreguntaVF;
     }
 
     public static PreguntaVerdaderoFalso Clasico(String enunciado, boolean respuestaCorrecta) {
-        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado, respuestaCorrecta);
-        miPreguntaVF.puntaje = PuntajeClasico.ParaVerdaderoFalso();
+        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado);
+        miPreguntaVF.respuestaCorrecta = RespuestaVerdaderoFalso.ConPuntaje(respuestaCorrecta, PuntajeClasico.ParaVerdaderoFalso());
         return miPreguntaVF;
     }
-
-    @Override
-    public List<Integer> responder(List<Respuesta> respuestasUsuario) {
-        List<Integer> puntos = new ArrayList<>();
-        for (Respuesta respuestaUsuario : respuestasUsuario) {
-            puntos.add(puntaje.puntuar(respuestaCorrecta.evaluar(respuestaUsuario)));
-        }
-        return puntos;
-    }
-
-    @Override
-    public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        observers.forEach(Observer::change);
-    }
-
 }

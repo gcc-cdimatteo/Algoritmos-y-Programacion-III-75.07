@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 public class RespuestaGroupChoice implements Respuesta {
@@ -23,8 +21,7 @@ public class RespuestaGroupChoice implements Respuesta {
     }
 
     @Override
-    public List<Integer> evaluar(Respuesta respuestaUsuario){
-        return Arrays.asList(this.equals((RespuestaGroupChoice) respuestaUsuario) ? 1 : 0);
+    public Integer evaluar(Respuesta respuestaUsuario){
+        return this.equals((RespuestaGroupChoice) respuestaUsuario) ? 1 : 0;
     }
-
 }
