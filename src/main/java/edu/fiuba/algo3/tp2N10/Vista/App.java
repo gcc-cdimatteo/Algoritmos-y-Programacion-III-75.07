@@ -4,6 +4,7 @@ package edu.fiuba.algo3.tp2N10.Vista;
 //import edu.fiuba.algo3.tp2N10.Controlador.BotonSeleccionarOpcion;
 
 import edu.fiuba.algo3.tp2N10.Controlador.BotonComenzarJuego;
+import edu.fiuba.algo3.tp2N10.Controlador.BotonResponderVF;
 import edu.fiuba.algo3.tp2N10.Controlador.BotonSalir;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaMultipleChoice;
@@ -116,6 +117,7 @@ public class App extends Application {
 
 
     public Scene escenaPreguntaVF() {
+
         Label lblJugador = new Label("Jugador 1");
         lblJugador.setStyle("-fx-font-size: 200%");
         Label lblEnunciado = new Label(this.preguntaVF.getEnunciado());
@@ -131,7 +133,7 @@ public class App extends Application {
         Button btnListo = new Button("Listo");
 
 
-        btnListo.setOnAction(new BotonSalir());
+        btnListo.setOnAction(new BotonResponderVF(btnVerdadero, btnFalso));
 
         btnVerdadero.setToggleGroup(grupoOpciones);
         //btnVerdadero.setStyle("-fx-base: lightgreen;");
