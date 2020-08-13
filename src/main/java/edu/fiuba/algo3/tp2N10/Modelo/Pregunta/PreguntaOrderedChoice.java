@@ -11,6 +11,5 @@ public class PreguntaOrderedChoice extends Pregunta {
         this.enunciado = enunciado;
         this.opciones = opciones;
         this.respuestaCorrecta = new RespuestaOrderedChoice(opcionesCorrectas);
-        this.observers = new ArrayList<>();
     }
 }

@@ -12,7 +12,6 @@ public class PreguntaMultipleChoice extends Pregunta {
     private PreguntaMultipleChoice(String enunciado, List<String> opciones) {
         this.enunciado = enunciado;
         this.opciones = opciones;
-        this.observers = new ArrayList<>();
     }
 
     public static PreguntaMultipleChoice Parcial(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {

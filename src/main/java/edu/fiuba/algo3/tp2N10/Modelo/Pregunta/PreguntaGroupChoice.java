@@ -12,6 +12,5 @@ public class PreguntaGroupChoice extends Pregunta {
         this.enunciado = enunciado;
         this.opciones = opciones;
         this.respuestaCorrecta = new RespuestaGroupChoice(opcionesGrupoA, opcionesGrupoB);
-        this.observers = new ArrayList<>();
     }
 }

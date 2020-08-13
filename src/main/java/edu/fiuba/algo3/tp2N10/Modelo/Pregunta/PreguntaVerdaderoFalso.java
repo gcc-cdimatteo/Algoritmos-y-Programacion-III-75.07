@@ -11,7 +11,6 @@ public class PreguntaVerdaderoFalso extends Pregunta {
     private PreguntaVerdaderoFalso(String enunciado) {
         this.enunciado = enunciado;
         this.opciones = Arrays.asList("Verdadero", "Falso");
-        this.observers = new ArrayList<>();
     }
 
     public static PreguntaVerdaderoFalso Penalidad(String enunciado, boolean respuestaCorrecta) {
