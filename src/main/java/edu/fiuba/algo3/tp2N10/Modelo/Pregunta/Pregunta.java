@@ -13,7 +13,7 @@ public abstract class Pregunta implements Observable {
     protected Respuesta respuestaCorrecta;
     protected ArrayList<Observer> observers;
 
-    protected abstract List<Integer> responder(List<Respuesta> respuestas);
+    public abstract List<Integer> responder(List<Respuesta> respuestas);
 
     public String getEnunciado() {
         return this.enunciado;

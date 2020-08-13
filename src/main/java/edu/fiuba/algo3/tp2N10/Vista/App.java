@@ -7,6 +7,7 @@ import edu.fiuba.algo3.tp2N10.Controlador.BotonComenzarJuego;
 import edu.fiuba.algo3.tp2N10.Controlador.BotonResponderMC;
 import edu.fiuba.algo3.tp2N10.Controlador.BotonResponderVF;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaVerdaderoFalso;
 import javafx.application.Application;
@@ -56,14 +57,10 @@ public class App extends Application {
     }
 
     public void jugar() {
-
         //llamo a bolsa de preguntas
         this.pregunta = PreguntaVerdaderoFalso.Clasico("La manzana es una fruta",true);
-   //     ronda = new Ronda(this.jugadores);
-
-        this.cambiarEscenaA(this.escenaPreguntaVF());
-
-
+        Ronda ronda = new Ronda(this.pregunta,this.jugadores);
+        this.cambiarEscenaA(this.escenaPreguntaVF(ronda));
     }
 
     public void cambiarEscenaA(Scene nuevaEscena) {
@@ -117,7 +114,7 @@ public class App extends Application {
         return new Scene(bpHeaderIngresoDatosBoton, 640, 480);
     }
 
-    public Scene escenaPreguntaVF() {
+    public Scene escenaPreguntaVF(Ronda ronda) {
 
         Label lblJugador = new Label("Jugador 1");
         lblJugador.setStyle("-fx-font-size: 200%");
@@ -133,7 +130,7 @@ public class App extends Application {
         Button btnPowerUpEx2 = new Button("Exclusividad");
         Button btnListo = new Button("Listo");
 
-        btnListo.setOnAction(new BotonResponderVF(btnVerdadero, btnFalso));
+        btnListo.setOnAction(new BotonResponderVF(btnVerdadero, btnFalso, ronda));
 
         btnVerdadero.setToggleGroup(grupoOpciones);
         //btnVerdadero.setStyle("-fx-base: lightgreen;");
