@@ -14,6 +14,13 @@ public abstract class Pregunta implements Observable {
     protected ArrayList<Observer> observers;
 
     protected abstract List<Integer> responder(List<Respuesta> respuestas);
-    protected abstract String getEnunciado();
+
+    public String getEnunciado() {
+        return this.enunciado;
+    }
+
+    public List<String> getOpciones() {
+        return this.opciones;
+    }
 
 }

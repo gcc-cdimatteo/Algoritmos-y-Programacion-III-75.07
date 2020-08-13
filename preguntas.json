@@ -15,43 +15,63 @@
     {
       "tipo": "multipleChoice",
       "enunciado": "Enunciado de pregunta multiple choice clásico",
-      "respuesta": [
+      "opciones": [
+        "Opción 0",
         "Opción 1",
         "Opción 2",
-        "Opción 3",
-        "Opción 4"
+        "Opción 3"
+      ],
+      "respuestas": [
+        0,
+        1,
+        2
       ],
       "tipoPuntaje": "clasico"
     },
     {
       "tipo": "multipleChoice",
       "enunciado": "Enunciado de pregunta multiple choice parcial",
-      "respuesta": [
+      "opciones": [
         "Opción 1",
         "Opción 2",
         "Opción 3",
         "Opción 4"
+      ],
+      "respuestas": [
+        0,
+        1,
+        2
       ],
       "tipoPuntaje": "parcial"
     },
     {
       "tipo": "multipleChoice",
       "enunciado": "Enunciado de pregunta multiple choice con penalidad",
-      "respuesta": [
+      "opciones": [
         "Opción 1",
         "Opción 2",
         "Opción 3",
         "Opción 4"
+      ],
+      "respuestas": [
+        0,
+        1,
+        2
       ],
       "tipoPuntaje": "conPenalidad"
     },
     {
       "tipo": "orderedChoice",
       "enunciado": "Enunciado de pregunta ordered choice",
-      "respuesta": [
+      "opciones": [
         "Opción 1",
         "Opción 2",
         "Opción 3"
+      ],
+      "respuestas": [
+        0,
+        1,
+        2
       ]
     },
     {

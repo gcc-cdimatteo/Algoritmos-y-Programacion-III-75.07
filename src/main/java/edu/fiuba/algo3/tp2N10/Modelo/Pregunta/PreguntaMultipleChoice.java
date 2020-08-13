@@ -51,11 +51,6 @@ public class PreguntaMultipleChoice extends Pregunta {
     }
 
     @Override
-    public String getEnunciado(){
-        return this.enunciado;
-    }
-
-    @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
     }

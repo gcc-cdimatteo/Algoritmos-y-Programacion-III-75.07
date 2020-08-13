@@ -4,14 +4,11 @@ package edu.fiuba.algo3.tp2N10.Vista;
 //import edu.fiuba.algo3.tp2N10.Controlador.BotonSeleccionarOpcion;
 
 import edu.fiuba.algo3.tp2N10.Controlador.BotonComenzarJuego;
-import edu.fiuba.algo3.tp2N10.Controlador.BotonSalir;
+import edu.fiuba.algo3.tp2N10.Controlador.BotonResponderVF;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
-import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaMultipleChoice;
-import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaOrderedChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaVerdaderoFalso;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -25,9 +22,9 @@ public class App extends Application {
     private List<Jugador> jugadores;
     private Stage escenario;
 
-//    private Mostrable preguntaMC;
-    private PreguntaVerdaderoFalso preguntaVF;
-//    private Mostrable preguntaOC;
+    private Pregunta pregunta;
+
+
 
     public void start(Stage stage) throws Exception {
         this.escenario = stage;
@@ -48,8 +45,6 @@ public class App extends Application {
         this.jugadores = Arrays.asList(jugadorUno, jugadorDos);
 
 //        Set<Integer> respuestasCorrectasMC = new HashSet<>(Arrays.asList(0, 2, 3));
-//
-        this.preguntaVF = PreguntaVerdaderoFalso.Clasico("La manzana es roja", true);
 //        this.preguntaMC = PreguntaMultipleChoice.Clasico("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"), respuestasCorrectasMC);
 //        this.preguntaOC = new PreguntaOrderedChoice("El orden de las letras del abecedario es...", Arrays.asList("B", "C", "A"), Arrays.asList(1, 2, 3));
     }
@@ -60,7 +55,14 @@ public class App extends Application {
     }
 
     public void jugar() {
+
+        //llamo a bolsa de preguntas
+        this.pregunta = PreguntaVerdaderoFalso.Clasico("La manzana es una fruta",true);
+   //     ronda = new Ronda(this.jugadores);
+
         this.cambiarEscenaA(this.escenaPreguntaVF());
+
+
     }
 
     public void cambiarEscenaA(Scene nuevaEscena) {
@@ -114,11 +116,11 @@ public class App extends Application {
         return new Scene(bpHeaderIngresoDatosBoton, 640, 480);
     }
 
-
     public Scene escenaPreguntaVF() {
+
         Label lblJugador = new Label("Jugador 1");
         lblJugador.setStyle("-fx-font-size: 200%");
-        Label lblEnunciado = new Label(this.preguntaVF.getEnunciado());
+        Label lblEnunciado = new Label(this.pregunta.getEnunciado());
 
         ToggleGroup grupoOpciones = new ToggleGroup();
         ToggleButton btnVerdadero = new ToggleButton("Verdadero");
@@ -130,8 +132,7 @@ public class App extends Application {
         Button btnPowerUpEx2 = new Button("Exclusividad");
         Button btnListo = new Button("Listo");
 
-
-        btnListo.setOnAction(new BotonSalir());
+        btnListo.setOnAction(new BotonResponderVF(btnVerdadero, btnFalso));
 
         btnVerdadero.setToggleGroup(grupoOpciones);
         //btnVerdadero.setStyle("-fx-base: lightgreen;");
@@ -164,6 +165,7 @@ public class App extends Application {
 
         return new Scene(bpJugadorPreguntaLista, 640, 480);
     }
+
 //
 //    public Scene escenaPreguntaMC() {
 //        Label lblJugador = new Label("Jugador 1");
@@ -212,63 +214,65 @@ public class App extends Application {
 //        return new Scene(bpJugadorPreguntaLista, 640, 480);
 //    }
 //
-//public Scene escenaPreguntaOC() {
-//    Label lblJugador = new Label("Jugador 1");
-//    lblJugador.setStyle("-fx-font-size: 200%");
-//    Label lblEnunciado = new Label(this.preguntaOC.getPregunta());
+//    public Scene escenaPreguntaOC() {
+//        Label lblJugador = new Label("Jugador 1");
+//        lblJugador.setStyle("-fx-font-size: 200%");
+//        Label lblEnunciado = new Label(this.preguntaOC.getPregunta());
 //
-//    Button btnPowerUpX2 = new Button("x2");
-//    Button btnPowerUpX3 = new Button("x3");
-//    Button btnPowerUpEx1 = new Button("Exclusividad");
-//    Button btnPowerUpEx2 = new Button("Exclusividad");
-//    Button btnListo = new Button("Listo");
+//        Button btnPowerUpX2 = new Button("x2");
+//        Button btnPowerUpX3 = new Button("x3");
+//        Button btnPowerUpEx1 = new Button("Exclusividad");
+//        Button btnPowerUpEx2 = new Button("Exclusividad");
+//        Button btnListo = new Button("Listo");
 //
-//    Label respuestaOrdenada = new Label("");
-//    respuestaOrdenada.setStyle("-fx-font-size: 300%");
-//    VBox opcionesRespuesta = new VBox(5);
-//    opcionesRespuesta.getChildren().add(respuestaOrdenada);
-//    opcionesRespuesta.setMaxHeight(300);
-//    opcionesRespuesta.setMaxWidth(400);
+//        ListView<String> listaOrdenada = new ListView<String>();
+//        ObservableList<String> items = FXCollections.observableArrayList ();
+//        listaOrdenada.setItems(items);
+//        listaOrdenada.setPrefWidth(100);
+//        VBox opcionesRespuesta = new VBox(200);
+//        opcionesRespuesta.getChildren().add(listaOrdenada);
+//        BorderPane bpOpcionesOrdenadas = new BorderPane();
+//        bpOpcionesOrdenadas.setMaxHeight(100);
+//        bpOpcionesOrdenadas.setCenter(opcionesRespuesta);
+//        ////////////////////////////////////////////
+//        btnListo.setOnAction(new BotonListoProvisorio(this));
 //
-//    ////////////////////////////////////////////
-//    btnListo.setOnAction(new BotonListoProvisorio(this));
+//        ArrayList<Button> arrayChkOpciones = new ArrayList<>();
+//        for (String op : this.preguntaOC.getOpciones()) {
+//            Button boton = new Button(op);
+//            boton.setOnAction(new BotonSeleccionarOpcion(listaOrdenada, boton));
+//            arrayChkOpciones.add(boton);
+//        }
 //
-//    ArrayList<Button> arrayChkOpciones = new ArrayList<>();
-//    for (String op : this.preguntaOC.getOpciones()) {
-//        Button boton = new Button(op);
-//        boton.setOnAction(new BotonSeleccionarOpcionOC(respuestaOrdenada, boton));
-//        arrayChkOpciones.add(boton);
+//        BorderPane bpPreguntaPowerUps = new BorderPane();
+//
+//        VBox vboxEnunciadoOpciones = new VBox(100);
+//        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
+//        HBox hboxOpciones = new HBox(25);
+//        for (Button chkOp : arrayChkOpciones) {
+//            hboxOpciones.getChildren().addAll(chkOp);
+//        }
+//        vboxEnunciadoOpciones.getChildren().add(hboxOpciones);
+//        VBox vboxPowerUps = new VBox(5);
+//        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
+//        bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
+//        bpPreguntaPowerUps.setRight(vboxPowerUps);
+//
+//        BorderPane bpJugadorPreguntaLista = new BorderPane();
+//        bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
+//        BorderPane bpJugador = new BorderPane();
+//        bpJugador.setCenter(lblJugador);
+//        bpJugador.setStyle("-fx-background-color: cornflowerblue");
+//        bpJugadorPreguntaLista.setTop(bpJugador);
+//        bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
+//        bpJugadorPreguntaLista.setLeft(bpOpcionesOrdenadas);
+//        BorderPane bpBotoneraListo = new BorderPane();
+//        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
+//        bpBotoneraListo.setRight(btnListo);
+//        bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
+//
+//        return new Scene(bpJugadorPreguntaLista, 640, 480);
 //    }
-//
-//    BorderPane bpPreguntaPowerUps = new BorderPane();
-//
-//    VBox vboxEnunciadoOpciones = new VBox(100);
-//    vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
-//    HBox hboxOpciones = new HBox(25);
-//    for (Button chkOp : arrayChkOpciones) {
-//        hboxOpciones.getChildren().addAll(chkOp);
-//    }
-//    vboxEnunciadoOpciones.getChildren().add(hboxOpciones);
-//    VBox vboxPowerUps = new VBox(5);
-//    vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
-//    bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
-//    bpPreguntaPowerUps.setRight(vboxPowerUps);
-//    bpPreguntaPowerUps.setCenter(opcionesRespuesta);
-//
-//    BorderPane bpJugadorPreguntaLista = new BorderPane();
-//    bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
-//    BorderPane bpJugador = new BorderPane();
-//    bpJugador.setCenter(lblJugador);
-//    bpJugador.setStyle("-fx-background-color: cornflowerblue");
-//    bpJugadorPreguntaLista.setTop(bpJugador);
-//    bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
-//    BorderPane bpBotoneraListo = new BorderPane();
-//    bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
-//    bpBotoneraListo.setRight(btnListo);
-//    bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
-//
-//    return new Scene(bpJugadorPreguntaLista, 640, 480);
-//}
 //
 //    public Scene escenaPreguntaGC() {
 //        Label lblJugador = new Label("Jugador 1");
