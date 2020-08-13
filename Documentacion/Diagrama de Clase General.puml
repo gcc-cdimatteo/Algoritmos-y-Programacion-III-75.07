@@ -1,0 +1,98 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class AlgoKahoot {
+    - preguntaActual: Integer
+    + getRonda(): Ronda
+    + siguienteRonda()
+}
+
+abstract class Pregunta {
+    # enunciado: String
+    # opciones: List<String>
+    # observers: ArrayList<Observer>
+    + responder(List<Respuesta> respuestas): List<Integer>
+    + addObserver(Observer observer)
+    + notifyObservers()
+    + getEnunciado(): String
+    + getOpciones(): List<String>
+}
+
+interface Puntaje {
+    + {static} ParaVerdaderoFalso(): PuntajeClasico
+    + {static} ParaMultipleChoice(): PuntajeClasico
+    + puntuar(List<Integer> evaluacion): Integer
+}
+
+class Jugador {
+    - nombre: String
+    - puntaje: int
+    - usosDisponiblesExclusividad: int
+    + nombre(): String
+    + nombrar(nombre: String)
+    + puntuar(puntos: int)
+    + puntaje(): int
+    + usarMultiplicador(valor: int)
+    + usarExclusividad()
+}
+
+class Ronda {
+    + cargarRespuesta(Respuesta respuesta)
+    + jugadorActual(): Jugador
+    + exclusividadDePuntaje(Jugador jugador)
+    + asignarPuntos()
+}
+
+class ExclusividadDePuntaje {
+    - valor: int
+    + calcularPuntos(List<Integer> puntos): List<Integer>
+    + usarExclusividad(Jugador jugador): ExclusividadDePuntaje
+}
+class Multiplicador {
+    - valor: int
+    - usosDisponibles: int
+    + usar()
+    + multiplicar(unPuntaje: Integer): Integer
+}
+interface Puntuador {
+    + calcularPuntos(List<Integer> puntos): List<Integer>
+    + usarExclusividad(Jugador jugador): ExclusividadDePuntaje
+}
+class PuntuadorNulo {
+    + calcularPuntos(List<Integer> puntos): List<Integer>
+    + usarExclusividad(Jugador jugador): ExclusividadDePuntaje
+}
+
+interface Respuesta {
+    + evaluar(Respuesta respuestaUsuario): List<Integer>
+}
+
+
+'Ordenamiento De Cuadrados
+
+'Herencia --|> cumple la relación 'es un'
+
+'Asociacion --> un objeto guarda a otro
+Pregunta --> Respuesta
+Ronda -left-> "*" Pregunta
+Ronda -down-> Puntuador
+Ronda --> "*" Respuesta
+Ronda -right-> "2" Jugador
+AlgoKahoot --> Pregunta
+AlgoKahoot -down-> Ronda
+AlgoKahoot -down-> Jugador
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+Jugador "1" o-- "3" Multiplicador
+Respuesta o-- Puntaje
+
+'Composicion --* un objeto es dueño de otro
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+ExclusividadDePuntaje .up.|> Puntuador
+PuntuadorNulo .up.|> Puntuador
+
+
+@enduml
