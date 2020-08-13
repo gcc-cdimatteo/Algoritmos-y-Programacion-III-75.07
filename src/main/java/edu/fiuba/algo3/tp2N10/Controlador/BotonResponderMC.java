@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Controlador;
 
 import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaSeleccionarUnaOpcion;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,10 +14,12 @@ import java.util.Set;
 public class BotonResponderMC implements EventHandler<ActionEvent> {
 
     ArrayList<CheckBox> opcionesUsuario;
-    RespuestaMultipleChoice respuestaUsuario;
+    RespuestaMultipleChoice respuesta;
+    Ronda ronda;
 
-    public BotonResponderMC(ArrayList<CheckBox> opcionesUsuario){
+    public BotonResponderMC(ArrayList<CheckBox> opcionesUsuario, Ronda ronda){
         this.opcionesUsuario = opcionesUsuario;
+        this.ronda = ronda;
     }
 
     @Override
@@ -31,6 +34,10 @@ public class BotonResponderMC implements EventHandler<ActionEvent> {
             AlertaSeleccionarUnaOpcion alertaSeleccionarUnaOpcion = new AlertaSeleccionarUnaOpcion();
             alertaSeleccionarUnaOpcion.mostrar();
         }
-        else{this.respuestaUsuario = new RespuestaMultipleChoice(respuestas);}
+        else {
+            this.respuesta = new RespuestaMultipleChoice(respuestas);
+            this.ronda.cargarRespuesta(this.respuesta);
+            this.ronda.asignarPuntos();
+        }
     }
 }
