@@ -45,21 +45,42 @@ public class BolsaDePreguntas {
         }
     }
 
-    private PreguntaGroupChoice generarPreguntaGroupChoice(JSONObject pregunta) {
-        // ToDo: Todavía no esta definida
-        return null;
-    }
-
-    private PreguntaOrderedChoice generarPreguntaOrderedChoice(JSONObject pregunta) {
-        String enunciado = pregunta.getString("enunciado");
+    private ArrayList<String> getOpcionesFromJson(JSONObject pregunta) {
         JSONArray opciones = pregunta.getJSONArray("opciones");
-        JSONArray respuestas = pregunta.getJSONArray("respuestas");
 
         ArrayList<String> arrayOpciones = new ArrayList<>();
         for (int i = 0; i < opciones.length(); i++) {
             arrayOpciones.add(opciones.getString(i));
         }
+        return arrayOpciones;
+    }
 
+    private PreguntaGroupChoice generarPreguntaGroupChoice(JSONObject pregunta) {
+        String enunciado = pregunta.getString("enunciado");
+        ArrayList<String> arrayOpciones = getOpcionesFromJson(pregunta);
+
+        JSONObject respuestas = pregunta.getJSONObject("respuestas");
+        JSONArray grupoUno = respuestas.getJSONArray("grupoUno");
+        HashSet<Integer> setUno = new HashSet<>();
+        for (int i = 0; i < grupoUno.length(); i++) {
+            setUno.add(grupoUno.getInt(i));
+        }
+
+        JSONArray grupoDos = respuestas.getJSONArray("grupoDos");
+        HashSet<Integer> setDos = new HashSet<>();
+        for (int i = 0; i < grupoDos.length(); i++) {
+            setDos.add(grupoDos.getInt(i));
+        }
+        return new PreguntaGroupChoice(enunciado, arrayOpciones, setUno, setDos);
+    }
+
+
+
+    private PreguntaOrderedChoice generarPreguntaOrderedChoice(JSONObject pregunta) {
+        String enunciado = pregunta.getString("enunciado");
+        ArrayList<String> arrayOpciones = getOpcionesFromJson(pregunta);
+
+        JSONArray respuestas = pregunta.getJSONArray("respuestas");
         ArrayList<Integer> arrayRespuestas = new ArrayList<>();
         for (int i = 0; i < respuestas.length(); i++) {
             arrayRespuestas.add(respuestas.getInt(i));
@@ -70,14 +91,9 @@ public class BolsaDePreguntas {
 
     private PreguntaMultipleChoice generarPreguntaMultipleChoice(JSONObject pregunta) {
         String enunciado = pregunta.getString("enunciado");
-        JSONArray opciones = pregunta.getJSONArray("opciones");
+        ArrayList<String> arrayOpciones = getOpcionesFromJson(pregunta);
+
         JSONArray respuestas = pregunta.getJSONArray("respuestas");
-
-        ArrayList<String> arrayOpciones = new ArrayList<>();
-        for (int i = 0; i < opciones.length(); i++) {
-            arrayOpciones.add(opciones.getString(i));
-        }
-
         HashSet<Integer> setRespuestas = new HashSet<>();
         for (int i = 0; i < respuestas.length(); i++) {
             setRespuestas.add(respuestas.getInt(i));

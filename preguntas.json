@@ -78,24 +78,12 @@
       "tipo": "groupChoice",
       "enunciado": "Enunciado de pregunta ordered choice",
       "opciones": [
-        {
-          "id_respuesta": 1,
-          "respuesta": "Opción primera Grupo 1"
-        },
-        {
-          "id_respuesta": 2,
-          "respuesta": "Opción primera Grupo 2"
-        },
-        {
-          "id_respuesta": 3,
-          "respuesta": "Opción segunda Grupo 1"
-        },
-        {
-          "id_respuesta": 4,
-          "respuesta": "Opción tercera Grupo 1"
-        }
+        "Opción primera Grupo 1",
+        "Opción primera Grupo 2",
+        "Opción segunda Grupo 1",
+        "Opción tercera Grupo 1"
       ],
-      "respuesta": {
+      "respuestas": {
         "grupoUno": [
           1,
           3,
