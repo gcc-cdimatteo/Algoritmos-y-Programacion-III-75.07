@@ -2,7 +2,6 @@ package edu.fiuba.algo3.tp2N10;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.ExclusividadDePuntaje;
-import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Puntuador;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,51 +12,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ExclusividadDePuntajeTest {
 
     @Test
-    public void test01ExclusividadAsignaCorrectamentePuntosALosJugadores() {
-        Jugador jugadorUno = new Jugador("Geronimo");
-        Jugador jugadorDos = new Jugador("Dania");
+    public void test01ExclusividadAsignaLosPuntosCorrectamente() {
 
-        List<Jugador> jugadores = Arrays.asList(jugadorUno, jugadorDos);
         List<Integer> puntos = Arrays.asList(1, 0);
+        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje();
 
-        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje(jugadores);
-
-        puntuador.asignarPuntos(puntos);
-
-        assertEquals(1, jugadorUno.puntaje());
-        assertEquals(0, jugadorDos.puntaje());
+        assertEquals(puntos, puntuador.calcularPuntos(puntos));
     }
 
     @Test
-    public void test02ExclusividadNoIncrementaPuntajeSiAmbosRespondenCorrectamente() {
-        Jugador jugadorUno = new Jugador("Adalberta");
-        Jugador jugadorDos = new Jugador("Bonifacio");
+    public void test02ExclusividadNoAsignaPuntosSiAmbosRespondenCorrectamente() {
 
-        List<Jugador> jugadores = Arrays.asList(jugadorUno, jugadorDos);
         List<Integer> puntos = Arrays.asList(1, 1);
+        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje();
 
-        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje(jugadores);
-
-        puntuador.asignarPuntos(puntos);
-
-        assertEquals(0, jugadorUno.puntaje());
-        assertEquals(0, jugadorDos.puntaje());
+        assertEquals(Arrays.asList(0, 0), puntuador.calcularPuntos(puntos));
     }
 
     @Test
     public void test03ExclusividadNoIncrementaPuntajeSiSeRespondeIncorrectamente() {
-        Jugador jugadorUno = new Jugador("Horacio");
-        Jugador jugadorDos = new Jugador("Aurora");
 
-        List<Jugador> jugadores = Arrays.asList(jugadorUno, jugadorDos);
         List<Integer> puntos = Arrays.asList(0, 0);
+        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje();
 
-        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje(jugadores);
-
-        puntuador.asignarPuntos(puntos);
-
-        assertEquals(0, jugadorUno.puntaje());
-        assertEquals(0, jugadorDos.puntaje());
+        assertEquals(puntos, puntuador.calcularPuntos(puntos));
     }
 
     @Test
@@ -65,34 +43,24 @@ public class ExclusividadDePuntajeTest {
         Jugador jugadorUno = new Jugador("Caro");
         Jugador jugadorDos = new Jugador("Nacho");
 
-        List<Jugador> jugadores = Arrays.asList(jugadorUno, jugadorDos);
         List<Integer> puntos = Arrays.asList(0, 1);
 
-        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje(jugadores);
+        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje();
         puntuador.usarExclusividad(jugadorUno);
         puntuador.usarExclusividad(jugadorDos);
 
-        puntuador.asignarPuntos(puntos);
-
-        assertEquals(0, jugadorUno.puntaje());
-        assertEquals(4, jugadorDos.puntaje());
+        assertEquals(Arrays.asList(0, 4), puntuador.calcularPuntos(puntos));
     }
 
     @Test
     public void test05ExclusividadIncrementaElDobleSiUnJugadorLoUtiliza() {
         Jugador jugadorUno = new Jugador("X Æ A-12");
-        Jugador jugadorDos = new Jugador("Xavier");
-
-        List<Jugador> jugadores = Arrays.asList(jugadorUno, jugadorDos);
         List<Integer> puntos = Arrays.asList(0, 1);
 
-        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje(jugadores);
+        ExclusividadDePuntaje puntuador = new ExclusividadDePuntaje();
         puntuador.usarExclusividad(jugadorUno);
 
-        puntuador.asignarPuntos(puntos);
-
-        assertEquals(0, jugadorUno.puntaje());
-        assertEquals(2, jugadorDos.puntaje());
+        assertEquals(Arrays.asList(0, 2), puntuador.calcularPuntos(puntos));
     }
 
 
