@@ -215,122 +215,122 @@ public class App extends Application {
 //        return new Scene(bpJugadorPreguntaLista, 640, 480);
 //    }
 
-    public Scene escenaPreguntaOC() {
-        Label lblJugador = new Label("Jugador 1");
-        lblJugador.setStyle("-fx-font-size: 200%");
-        Label lblEnunciado = new Label(this.preguntaOC.getPregunta());
-
-        Button btnPowerUpX2 = new Button("x2");
-        Button btnPowerUpX3 = new Button("x3");
-        Button btnPowerUpEx1 = new Button("Exclusividad");
-        Button btnPowerUpEx2 = new Button("Exclusividad");
-        Button btnListo = new Button("Listo");
-
-        ListView<String> listaOrdenada = new ListView<String>();
-        ObservableList<String> items = FXCollections.observableArrayList ();
-        listaOrdenada.setItems(items);
-        listaOrdenada.setPrefWidth(100);
-        VBox opcionesRespuesta = new VBox(200);
-        opcionesRespuesta.getChildren().add(listaOrdenada);
-        BorderPane bpOpcionesOrdenadas = new BorderPane();
-        bpOpcionesOrdenadas.setMaxHeight(100);
-        bpOpcionesOrdenadas.setCenter(opcionesRespuesta);
-        ////////////////////////////////////////////
-        btnListo.setOnAction(new BotonListoProvisorio(this));
-
-        ArrayList<Button> arrayChkOpciones = new ArrayList<>();
-        for (String op : this.preguntaOC.getOpciones()) {
-            Button boton = new Button(op);
-            boton.setOnAction(new BotonSeleccionarOpcion(listaOrdenada, boton));
-            arrayChkOpciones.add(boton);
-        }
-
-        BorderPane bpPreguntaPowerUps = new BorderPane();
-
-        VBox vboxEnunciadoOpciones = new VBox(100);
-        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
-        HBox hboxOpciones = new HBox(25);
-        for (Button chkOp : arrayChkOpciones) {
-            hboxOpciones.getChildren().addAll(chkOp);
-        }
-        vboxEnunciadoOpciones.getChildren().add(hboxOpciones);
-        VBox vboxPowerUps = new VBox(5);
-        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
-        bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
-        bpPreguntaPowerUps.setRight(vboxPowerUps);
-
-        BorderPane bpJugadorPreguntaLista = new BorderPane();
-        bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
-        BorderPane bpJugador = new BorderPane();
-        bpJugador.setCenter(lblJugador);
-        bpJugador.setStyle("-fx-background-color: cornflowerblue");
-        bpJugadorPreguntaLista.setTop(bpJugador);
-        bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
-        bpJugadorPreguntaLista.setLeft(bpOpcionesOrdenadas);
-        BorderPane bpBotoneraListo = new BorderPane();
-        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
-        bpBotoneraListo.setRight(btnListo);
-        bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
-
-        return new Scene(bpJugadorPreguntaLista, 640, 480);
-    }
-
-    public Scene escenaPreguntaGC() {
-        Label lblJugador = new Label("Jugador 1");
-        lblJugador.setStyle("-fx-font-size: 200%");
-        Label lblEnunciado = new Label("Enunciado de pregunta Group Choice, uso opciones de MC por el momento");
-        String grupoA = "Grupo A";
-        String grupoB = "Grupo B";
-
-        Button btnPowerUpX2 = new Button("x2");
-        Button btnPowerUpX3 = new Button("x3");
-        Button btnPowerUpEx1 = new Button("Exclusividad");
-        Button btnPowerUpEx2 = new Button("Exclusividad");
-        Button btnListo = new Button("Listo");
-        ////////////////////////////////////////////
-        btnListo.setOnAction(new BotonListoProvisorio(this));
-
-        BorderPane bpPreguntaPowerUps = new BorderPane();
-
-        VBox vboxEnunciadoOpciones = new VBox(100);
-        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
-        VBox vboxOpciones = new VBox(25);
-
-        for (String op : this.preguntaMC.getOpciones()) {
-            // Generar los radio buttons sengun las opciones.
-            RadioButton rdoGrupoA = new RadioButton(grupoA);
-            RadioButton rdoGrupoB = new RadioButton(grupoB);
-            rdoGrupoA.setSelected(true);
-            ToggleGroup agrupamiento = new ToggleGroup();
-            agrupamiento.getToggles().addAll(rdoGrupoA, rdoGrupoB);
-            HBox hboxRadioButtons = new HBox(20);
-            hboxRadioButtons.getChildren().addAll(rdoGrupoA, rdoGrupoB);
-            BorderPane bpOpcionMasRadio = new BorderPane();
-            bpOpcionMasRadio.setLeft(new Label(op));
-            bpOpcionMasRadio.setRight(hboxRadioButtons);
-            vboxOpciones.getChildren().add(bpOpcionMasRadio);
-        }
-
-        vboxEnunciadoOpciones.getChildren().add(vboxOpciones);
-        VBox vboxPowerUps = new VBox(5);
-        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
-        bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
-        bpPreguntaPowerUps.setRight(vboxPowerUps);
-
-        BorderPane bpJugadorPreguntaLista = new BorderPane();
-        bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
-        BorderPane bpJugador = new BorderPane();
-        bpJugador.setCenter(lblJugador);
-        bpJugador.setStyle("-fx-background-color: cornflowerblue");
-        bpJugadorPreguntaLista.setTop(bpJugador);
-        bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
-        BorderPane bpBotoneraListo = new BorderPane();
-        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
-        bpBotoneraListo.setRight(btnListo);
-        bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
-
-        return new Scene(bpJugadorPreguntaLista, 640, 480);
-    }
+//    public Scene escenaPreguntaOC() {
+//        Label lblJugador = new Label("Jugador 1");
+//        lblJugador.setStyle("-fx-font-size: 200%");
+//        Label lblEnunciado = new Label(this.preguntaOC.getPregunta());
+//
+//        Button btnPowerUpX2 = new Button("x2");
+//        Button btnPowerUpX3 = new Button("x3");
+//        Button btnPowerUpEx1 = new Button("Exclusividad");
+//        Button btnPowerUpEx2 = new Button("Exclusividad");
+//        Button btnListo = new Button("Listo");
+//
+//        ListView<String> listaOrdenada = new ListView<String>();
+//        ObservableList<String> items = FXCollections.observableArrayList ();
+//        listaOrdenada.setItems(items);
+//        listaOrdenada.setPrefWidth(100);
+//        VBox opcionesRespuesta = new VBox(200);
+//        opcionesRespuesta.getChildren().add(listaOrdenada);
+//        BorderPane bpOpcionesOrdenadas = new BorderPane();
+//        bpOpcionesOrdenadas.setMaxHeight(100);
+//        bpOpcionesOrdenadas.setCenter(opcionesRespuesta);
+//        ////////////////////////////////////////////
+//        btnListo.setOnAction(new BotonListoProvisorio(this));
+//
+//        ArrayList<Button> arrayChkOpciones = new ArrayList<>();
+//        for (String op : this.preguntaOC.getOpciones()) {
+//            Button boton = new Button(op);
+//            boton.setOnAction(new BotonSeleccionarOpcion(listaOrdenada, boton));
+//            arrayChkOpciones.add(boton);
+//        }
+//
+//        BorderPane bpPreguntaPowerUps = new BorderPane();
+//
+//        VBox vboxEnunciadoOpciones = new VBox(100);
+//        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
+//        HBox hboxOpciones = new HBox(25);
+//        for (Button chkOp : arrayChkOpciones) {
+//            hboxOpciones.getChildren().addAll(chkOp);
+//        }
+//        vboxEnunciadoOpciones.getChildren().add(hboxOpciones);
+//        VBox vboxPowerUps = new VBox(5);
+//        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
+//        bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
+//        bpPreguntaPowerUps.setRight(vboxPowerUps);
+//
+//        BorderPane bpJugadorPreguntaLista = new BorderPane();
+//        bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
+//        BorderPane bpJugador = new BorderPane();
+//        bpJugador.setCenter(lblJugador);
+//        bpJugador.setStyle("-fx-background-color: cornflowerblue");
+//        bpJugadorPreguntaLista.setTop(bpJugador);
+//        bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
+//        bpJugadorPreguntaLista.setLeft(bpOpcionesOrdenadas);
+//        BorderPane bpBotoneraListo = new BorderPane();
+//        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
+//        bpBotoneraListo.setRight(btnListo);
+//        bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
+//
+//        return new Scene(bpJugadorPreguntaLista, 640, 480);
+//    }
+//
+//    public Scene escenaPreguntaGC() {
+//        Label lblJugador = new Label("Jugador 1");
+//        lblJugador.setStyle("-fx-font-size: 200%");
+//        Label lblEnunciado = new Label("Enunciado de pregunta Group Choice, uso opciones de MC por el momento");
+//        String grupoA = "Grupo A";
+//        String grupoB = "Grupo B";
+//
+//        Button btnPowerUpX2 = new Button("x2");
+//        Button btnPowerUpX3 = new Button("x3");
+//        Button btnPowerUpEx1 = new Button("Exclusividad");
+//        Button btnPowerUpEx2 = new Button("Exclusividad");
+//        Button btnListo = new Button("Listo");
+//        ////////////////////////////////////////////
+//        btnListo.setOnAction(new BotonListoProvisorio(this));
+//
+//        BorderPane bpPreguntaPowerUps = new BorderPane();
+//
+//        VBox vboxEnunciadoOpciones = new VBox(100);
+//        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
+//        VBox vboxOpciones = new VBox(25);
+//
+//        for (String op : this.preguntaMC.getOpciones()) {
+//            // Generar los radio buttons sengun las opciones.
+//            RadioButton rdoGrupoA = new RadioButton(grupoA);
+//            RadioButton rdoGrupoB = new RadioButton(grupoB);
+//            rdoGrupoA.setSelected(true);
+//            ToggleGroup agrupamiento = new ToggleGroup();
+//            agrupamiento.getToggles().addAll(rdoGrupoA, rdoGrupoB);
+//            HBox hboxRadioButtons = new HBox(20);
+//            hboxRadioButtons.getChildren().addAll(rdoGrupoA, rdoGrupoB);
+//            BorderPane bpOpcionMasRadio = new BorderPane();
+//            bpOpcionMasRadio.setLeft(new Label(op));
+//            bpOpcionMasRadio.setRight(hboxRadioButtons);
+//            vboxOpciones.getChildren().add(bpOpcionMasRadio);
+//        }
+//
+//        vboxEnunciadoOpciones.getChildren().add(vboxOpciones);
+//        VBox vboxPowerUps = new VBox(5);
+//        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
+//        bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
+//        bpPreguntaPowerUps.setRight(vboxPowerUps);
+//
+//        BorderPane bpJugadorPreguntaLista = new BorderPane();
+//        bpJugadorPreguntaLista.setPadding(new Insets(10, 10, 10, 10));
+//        BorderPane bpJugador = new BorderPane();
+//        bpJugador.setCenter(lblJugador);
+//        bpJugador.setStyle("-fx-background-color: cornflowerblue");
+//        bpJugadorPreguntaLista.setTop(bpJugador);
+//        bpJugadorPreguntaLista.setCenter(bpPreguntaPowerUps);
+//        BorderPane bpBotoneraListo = new BorderPane();
+//        bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
+//        bpBotoneraListo.setRight(btnListo);
+//        bpJugadorPreguntaLista.setBottom(bpBotoneraListo);
+//
+//        return new Scene(bpJugadorPreguntaLista, 640, 480);
+//    }
 
 //    public Scene escenaFinal() {
 //        return null;
