@@ -5,6 +5,7 @@ import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Puntuador;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Ronda {
@@ -16,7 +17,7 @@ public class Ronda {
     public Ronda(Pregunta pregunta, List<Jugador> jugadores) {
         this.pregunta = pregunta;
         this.puntuador = new Puntuador(jugadores);
-        this.respuestas = Arrays.asList();
+        this.respuestas = new LinkedList<Respuesta>(Arrays.asList());
     }
 
     public void cargarRespuesta(Respuesta respuesta){
