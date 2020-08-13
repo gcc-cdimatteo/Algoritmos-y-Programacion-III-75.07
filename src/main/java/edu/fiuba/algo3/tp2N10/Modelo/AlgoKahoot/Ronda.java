@@ -2,6 +2,7 @@ package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Puntuador;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.PuntuadorNulo;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Ronda {
 
     public Ronda(Pregunta pregunta, List<Jugador> jugadores) {
         this.pregunta = pregunta;
-        this.puntuador = new Puntuador(jugadores);
+        this.puntuador = new PuntuadorNulo();
         this.respuestas = new ArrayList<>();
         this.jugadores = jugadores;
     }
@@ -34,8 +35,9 @@ public class Ronda {
     }
 
     public void asignarPuntos() {
-        //Validar que se hayan ingresado todas las respuestas
-        puntuador.asignarPuntos(pregunta.responder(respuestas));
+        List<Integer> puntos = puntuador.calcularPuntos(pregunta.responder(respuestas));
+        for (int i = 0; i < puntos.size(); i++) {
+            jugadores.get(i).puntuar(puntos.get(i));
+        }
     }
-
 }
