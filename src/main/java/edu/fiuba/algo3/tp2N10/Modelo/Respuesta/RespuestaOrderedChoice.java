@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class RespuestaOrderedChoice {
+public class RespuestaOrderedChoice implements Respuesta {
 
     private List<Integer> respuesta;
 
@@ -18,7 +19,8 @@ public class RespuestaOrderedChoice {
         return respuesta == otraRespuesta;
     }
 
-    public Integer evaluar(RespuestaOrderedChoice respuestaUsuario) {
-        return this.equals(respuestaUsuario) ? 1 : 0;
+    @Override
+    public List<Integer> evaluar(Respuesta respuestaUsuario) {
+        return Arrays.asList(this.equals((RespuestaOrderedChoice) respuestaUsuario) ? 1 : 0);
     }
 }

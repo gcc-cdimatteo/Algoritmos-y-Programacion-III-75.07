@@ -3,6 +3,7 @@ package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
 import edu.fiuba.algo3.tp2N10.Vista.Observer;
 
@@ -10,16 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PreguntaVerdaderoFalso implements Observable {
+public class PreguntaVerdaderoFalso extends Pregunta {
 
-    private final String enunciado;
-    private final List<String> opciones = Arrays.asList("Verdadero", "Falso");
-    private final RespuestaVerdaderoFalso respuestaCorrecta;
     private Puntaje puntaje;
-    private List<Observer> observers;
 
     private PreguntaVerdaderoFalso(String enunciado, boolean respuestaCorrecta){
         this.enunciado = enunciado;
+        this.opciones = Arrays.asList("Verdadero", "Falso");
         this.respuestaCorrecta = new RespuestaVerdaderoFalso(respuestaCorrecta);
         this.observers = new ArrayList<>();
     }
@@ -36,14 +34,16 @@ public class PreguntaVerdaderoFalso implements Observable {
         return miPreguntaVF;
     }
 
-    public List<Integer> responder(List<RespuestaVerdaderoFalso> respuestas) {
+    @Override
+    public List<Integer> responder(List<Respuesta> respuestasUsuario) {
         List<Integer> puntos = new ArrayList<>();
-        for (RespuestaVerdaderoFalso respuestaUsuario : respuestas) {
+        for (Respuesta respuestaUsuario : respuestasUsuario) {
             puntos.add(puntaje.puntuar(respuestaCorrecta.evaluar(respuestaUsuario)));
         }
         return puntos;
     }
 
+    @Override
     public String getEnunciado(){
         return this.enunciado;
     }
@@ -57,4 +57,5 @@ public class PreguntaVerdaderoFalso implements Observable {
     public void notifyObservers() {
         observers.forEach(Observer::change);
     }
+
 }

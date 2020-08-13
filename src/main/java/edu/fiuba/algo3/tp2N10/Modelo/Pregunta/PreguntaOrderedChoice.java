@@ -1,17 +1,13 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
 import edu.fiuba.algo3.tp2N10.Vista.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreguntaOrderedChoice implements Observable {
-
-    private final String enunciado;
-    private final List<String> opciones;
-    private RespuestaOrderedChoice respuestaCorrecta;
-    private List<Observer> observers;
+public class PreguntaOrderedChoice extends Pregunta {
 
     public PreguntaOrderedChoice(String enunciado, List<String> opciones, List<Integer> opcionesCorrectas) {
         this.enunciado = enunciado;
@@ -20,14 +16,16 @@ public class PreguntaOrderedChoice implements Observable {
         this.observers = new ArrayList<>();
     }
 
-    public List<Integer> responder(List<RespuestaOrderedChoice> respuestas) {
+    @Override
+    public List<Integer> responder(List<Respuesta> respuestas) {
         List<Integer> puntos = new ArrayList<>();
-        for (RespuestaOrderedChoice respuestaUsuario : respuestas) {
-            puntos.add(respuestaCorrecta.evaluar(respuestaUsuario));
+        for (Respuesta respuestaUsuario : respuestas) {
+            puntos.add(respuestaCorrecta.evaluar(respuestaUsuario).get(0));
         }
         return puntos;
     }
 
+    @Override
     public String getEnunciado(){
         return this.enunciado;
     }
@@ -41,4 +39,5 @@ public class PreguntaOrderedChoice implements Observable {
     public void notifyObservers() {
         observers.forEach(Observer::change);
     }
+
 }

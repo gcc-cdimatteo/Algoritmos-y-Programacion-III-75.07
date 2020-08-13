@@ -4,6 +4,7 @@ import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeParcial;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import edu.fiuba.algo3.tp2N10.Vista.Observer;
 
@@ -11,13 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class PreguntaMultipleChoice implements Observable {
+public class PreguntaMultipleChoice extends Pregunta {
 
-    private final String enunciado;
-    private final List<String> opciones;
-    private final RespuestaMultipleChoice respuestaCorrecta;
     private Puntaje puntaje;
-    private List<Observer> observers;
 
     private PreguntaMultipleChoice(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
         this.enunciado = enunciado;
@@ -44,14 +41,16 @@ public class PreguntaMultipleChoice implements Observable {
         return miPreguntaMC;
     }
 
-    public List<Integer> responder(List<RespuestaMultipleChoice> respuestas) {
+    @Override
+    public List<Integer> responder(List<Respuesta> respuestasUsuario) {
         List<Integer> puntos = new ArrayList<>();
-        for (RespuestaMultipleChoice respuestaUsuario : respuestas) {
+        for (Respuesta respuestaUsuario : respuestasUsuario) {
             puntos.add(puntaje.puntuar(respuestaCorrecta.evaluar(respuestaUsuario)));
         }
         return puntos;
     }
 
+    @Override
     public String getEnunciado(){
         return this.enunciado;
     }
@@ -65,4 +64,5 @@ public class PreguntaMultipleChoice implements Observable {
     public void notifyObservers() {
         observers.forEach(Observer::change);
     }
+
 }

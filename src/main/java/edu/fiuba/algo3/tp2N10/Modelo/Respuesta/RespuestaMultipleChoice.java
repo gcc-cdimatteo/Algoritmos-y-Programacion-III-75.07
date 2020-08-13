@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import com.google.common.collect.Sets;
 
-public class RespuestaMultipleChoice {
+public class RespuestaMultipleChoice implements Respuesta {
 
     private final Set<Integer> opciones;
 
@@ -25,9 +25,11 @@ public class RespuestaMultipleChoice {
         return opciones.size();
     }
 
-    public List<Integer> evaluar(RespuestaMultipleChoice respuestaUsuario) {
-        Integer aciertos = this.intersection(respuestaUsuario).size();
-        Integer errores = respuestaUsuario.size() - aciertos;
+    @Override
+    public List<Integer> evaluar(Respuesta respuestaUsuario) {
+        RespuestaMultipleChoice respuestaUsuarioCasteada = (RespuestaMultipleChoice) respuestaUsuario;
+        Integer aciertos = this.intersection(respuestaUsuarioCasteada).size();
+        Integer errores = respuestaUsuarioCasteada.size() - aciertos;
         return Arrays.asList(aciertos, errores);
     }
 }
