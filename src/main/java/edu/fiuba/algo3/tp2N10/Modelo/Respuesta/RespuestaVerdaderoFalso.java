@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.TipoRespuestaIncorrectoException;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class RespuestaVerdaderoFalso implements Respuesta {
 
@@ -30,9 +28,13 @@ public class RespuestaVerdaderoFalso implements Respuesta {
 
     @Override
     public Integer evaluar(Respuesta respuestaUsuario) {
-        RespuestaVerdaderoFalso respuestaUsuarioCasteada = (RespuestaVerdaderoFalso) respuestaUsuario;
-        int aciertos = this.equals(respuestaUsuarioCasteada) ? 1 : 0;
-        int errores = 1 - aciertos;
-        return puntaje.puntuar(aciertos, errores);
+        try {
+            RespuestaVerdaderoFalso respuestaUsuarioCasteada = (RespuestaVerdaderoFalso) respuestaUsuario;
+            int aciertos = this.equals(respuestaUsuarioCasteada) ? 1 : 0;
+            int errores = 1 - aciertos;
+            return puntaje.puntuar(aciertos, errores);
+        } catch (RuntimeException e) {
+            throw new TipoRespuestaIncorrectoException();
+        }
     }
 }

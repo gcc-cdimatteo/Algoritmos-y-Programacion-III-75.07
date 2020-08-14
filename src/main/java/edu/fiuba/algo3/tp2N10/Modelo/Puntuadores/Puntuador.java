@@ -8,5 +8,5 @@ public interface Puntuador {
 
     List<Integer> calcularPuntos(List<Integer> puntos);
 
-    ExclusividadDePuntaje usarExclusividad(Jugador jugador);
+    PuntuadorExclusividad usarExclusividad(Jugador jugador);
 }

@@ -3,6 +3,9 @@ package edu.fiuba.algo3.tp2N10;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -53,6 +56,31 @@ public class JugadorTest {
         jugador.usarExclusividad();
 
         assertThrows(PowerUpNoDisponibleException.class, jugador::usarExclusividad);
+    }
+
+    @Test
+    public void test06UnJugadorPuedeGuardarseUnaReferenciaDeSiMismo(){
+        Jugador primerJugador = new Jugador("Jugador Uno");
+        Jugador segundoJugador = new Jugador("Jugador Dos");
+        Jugador misJugadores = Jugador.ingresarJugadores(Arrays.asList(primerJugador, segundoJugador));
+        assertEquals(primerJugador, misJugadores.jugadorActual());
+    }
+
+    @Test
+    public void test07UnJugadorPuedeGuardarseUnaReferenciaDelQueLeSigue(){
+        Jugador primerJugador = new Jugador("Jugador Uno");
+        Jugador segundoJugador = new Jugador("Jugador Dos");
+        Jugador misJugadores = Jugador.ingresarJugadores(Arrays.asList(primerJugador, segundoJugador));
+        assertEquals(segundoJugador, misJugadores.proximoJugador());
+    }
+
+    @Test
+    public void test08UnJugadorPuedeVolverASiMismoLuegoDePasarPorSuContiguo(){
+        Jugador primerJugador = new Jugador("Jugador Uno");
+        Jugador segundoJugador = new Jugador("Jugador Dos");
+        Jugador misJugadores = Jugador.ingresarJugadores(Arrays.asList(primerJugador, segundoJugador));
+        misJugadores.proximoJugador();
+        assertEquals(primerJugador, misJugadores.proximoJugador());
     }
 
 }

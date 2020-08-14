@@ -5,9 +5,13 @@ import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExclusividadDePuntaje implements Puntuador {
+public class PuntuadorExclusividad implements Puntuador {
 
     private int valor = 1;
+
+    public PuntuadorExclusividad(List<Jugador> jugadores) {
+        jugadores.forEach(this::usarExclusividad);
+    }
 
     @Override
     public List<Integer> calcularPuntos(List<Integer> puntos) {
@@ -25,7 +29,7 @@ public class ExclusividadDePuntaje implements Puntuador {
     }
 
     @Override
-    public ExclusividadDePuntaje usarExclusividad(Jugador jugador) {
+    public PuntuadorExclusividad usarExclusividad(Jugador jugador) {
         jugador.usarExclusividad();
         valor *= 2;
         return this;

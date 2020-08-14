@@ -4,6 +4,7 @@ import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.*;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Jugador {
@@ -13,9 +14,27 @@ public class Jugador {
     private List<Multiplicador> multiplicadores = Arrays.asList(new Multiplicador(1), new Multiplicador(2), new Multiplicador(3));
     private Multiplicador multiplicadorActual = multiplicadores.get(0);
     private int usosDisponiblesExclusividad = 2;
+    private Jugador proximoJugador;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
+    }
+
+    public static Jugador ingresarJugadores(List<Jugador> jugadores) {
+        Jugador miPrimerJugador = jugadores.get(0);
+        Jugador miSegundoJugador = jugadores.get(1);
+        miPrimerJugador.proximoJugador = miSegundoJugador;
+        return miPrimerJugador;
+    }
+
+    public Jugador jugadorActual() {
+        return this;
+    }
+
+    public Jugador proximoJugador() {
+        Jugador proximo = this.proximoJugador;
+        this.proximoJugador = this;
+        return proximo;
     }
 
     public String nombre() {

@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import com.google.common.collect.Sets;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.TipoRespuestaIncorrectoException;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 
 public class RespuestaMultipleChoice implements Respuesta {
@@ -35,9 +34,13 @@ public class RespuestaMultipleChoice implements Respuesta {
 
     @Override
     public Integer evaluar(Respuesta respuestaUsuario) {
-        RespuestaMultipleChoice respuestaUsuarioCasteada = (RespuestaMultipleChoice) respuestaUsuario;
-        int aciertos = this.intersection(respuestaUsuarioCasteada).size();
-        int errores = respuestaUsuarioCasteada.size() - aciertos;
-        return puntaje.puntuar(aciertos, errores);
+        try {
+            RespuestaMultipleChoice respuestaUsuarioCasteada = (RespuestaMultipleChoice) respuestaUsuario;
+            int aciertos = this.intersection(respuestaUsuarioCasteada).size();
+            int errores = respuestaUsuarioCasteada.size() - aciertos;
+            return puntaje.puntuar(aciertos, errores);
+        } catch (RuntimeException e) {
+            throw new TipoRespuestaIncorrectoException();
+        }
     }
 }

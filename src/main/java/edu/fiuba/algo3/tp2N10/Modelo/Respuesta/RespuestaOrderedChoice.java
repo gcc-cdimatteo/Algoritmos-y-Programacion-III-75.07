@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.TipoRespuestaIncorrectoException;
+
 import java.util.List;
 
 public class RespuestaOrderedChoice implements Respuesta {
@@ -20,6 +22,10 @@ public class RespuestaOrderedChoice implements Respuesta {
 
     @Override
     public Integer evaluar(Respuesta respuestaUsuario) {
-        return this.equals((RespuestaOrderedChoice) respuestaUsuario) ? 1 : 0;
+        try {
+            return this.equals((RespuestaOrderedChoice) respuestaUsuario) ? 1 : 0;
+        } catch (RuntimeException e) {
+            throw new TipoRespuestaIncorrectoException();
+        }
     }
 }

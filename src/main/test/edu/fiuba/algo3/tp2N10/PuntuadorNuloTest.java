@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
-import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.ExclusividadDePuntaje;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.PuntuadorExclusividad;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.PuntuadorNulo;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +26,6 @@ public class PuntuadorNuloTest {
         Jugador jugadorUno = new Jugador("Magnolia");
         PuntuadorNulo puntuador = new PuntuadorNulo();
 
-        assertEquals(ExclusividadDePuntaje.class, puntuador.usarExclusividad(jugadorUno).getClass());
+        assertEquals(PuntuadorExclusividad.class, puntuador.usarExclusividad(jugadorUno).getClass());
     }
 }
