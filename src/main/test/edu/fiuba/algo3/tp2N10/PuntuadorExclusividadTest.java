@@ -16,7 +16,7 @@ public class PuntuadorExclusividadTest {
     public void test01ExclusividadAsignaLosPuntosCorrectamente() {
         List<Integer> puntos = Arrays.asList(1, 0);
         List<Integer> puntosEsperados = Arrays.asList(2, 0);
-        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(Collections.singletonList(new Jugador("Jugador de Prueba")));
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("Jugador de Prueba"));
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
 
@@ -24,7 +24,7 @@ public class PuntuadorExclusividadTest {
     public void test02ExclusividadNoAsignaPuntosSiAmbosRespondenCorrectamente() {
         List<Integer> puntos = Arrays.asList(1, 1);
         List<Integer> puntosEsperados = Arrays.asList(0, 0);
-        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(Collections.singletonList(new Jugador("Jugador de Prueba")));
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("Jugador de Prueba"));
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
 
@@ -32,27 +32,27 @@ public class PuntuadorExclusividadTest {
     public void test03ExclusividadNoIncrementaPuntajeSiSeRespondeIncorrectamente() {
         List<Integer> puntos = Arrays.asList(0, 0);
         List<Integer> puntosEsperados = Arrays.asList(0, 0);
-        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(Collections.singletonList(new Jugador("Jugador de Prueba")));
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("Jugador de Prueba"));
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
 
     @Test
-    public void test04ExclusividadIncrementaElCuadrupleSiAmbosJugadoresLoUtilizan() {
+    public void test04ExclusividadIncrementaElDobleSiUnJugadorLoUtiliza() {
+        Jugador jugadorUno = new Jugador("X Æ A-12");
+        List<Integer> puntos = Arrays.asList(0, 1);
+        List<Integer> puntosEsperados = Arrays.asList(0, 2);
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(jugadorUno);
+        assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
+    }
+
+    @Test
+    public void test05ExclusividadIncrementaElCuadrupleSiAmbosJugadoresLoUtilizan() {
         Jugador jugadorUno = new Jugador("Caro");
         Jugador jugadorDos = new Jugador("Nacho");
         List<Integer> puntos = Arrays.asList(0, 1);
         List<Integer> puntosEsperados = Arrays.asList(0, 4);
-        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(Arrays.asList(jugadorUno, jugadorDos));
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(jugadorUno);
+        puntuador.usarExclusividad(jugadorDos);
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
-
-    @Test
-    public void test05ExclusividadIncrementaElDobleSiUnJugadorLoUtiliza() {
-        Jugador jugadorUno = new Jugador("X Æ A-12");
-        List<Integer> puntos = Arrays.asList(0, 1);
-        List<Integer> puntosEsperados = Arrays.asList(0, 2);
-        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(Collections.singletonList(jugadorUno));
-        assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
-    }
-
 }

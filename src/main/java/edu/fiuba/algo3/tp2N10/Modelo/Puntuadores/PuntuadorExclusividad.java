@@ -9,8 +9,8 @@ public class PuntuadorExclusividad implements Puntuador {
 
     private int valor = 1;
 
-    public PuntuadorExclusividad(List<Jugador> jugadores) {
-        jugadores.forEach(this::usarExclusividad);
+    public PuntuadorExclusividad(Jugador jugador) {
+        usarExclusividad(jugador);
     }
 
     @Override
