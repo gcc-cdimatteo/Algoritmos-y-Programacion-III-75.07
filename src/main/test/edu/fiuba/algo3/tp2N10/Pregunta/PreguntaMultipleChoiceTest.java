@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Pregunta;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaMultipleChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
@@ -37,14 +37,14 @@ public class PreguntaMultipleChoiceTest {
     // Clasico
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void MultipleChoiceClasicoPuedeCrearseSiSeIndicanLasRtasCorretas(){
+    public void test01UnaPreguntaMCCPuedeCrearseSiSeIndicanLasRtasCorretas(){
         crearMultipleChoiceClasico();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(this.opcionesCorrectas);
         assertEquals(Collections.singletonList(1), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoiceClasicoRecibeUnaListaDeRespuestasYAsignaPuntos(){
+    public void test02UnaPreguntaMCCRecibeUnaListaDeRespuestasYAsignaPuntos(){
         crearMultipleChoiceClasico();
         RespuestaMultipleChoice respuestaCorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0, 1)));
         RespuestaMultipleChoice respuestaIncorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 3)));
@@ -52,23 +52,23 @@ public class PreguntaMultipleChoiceTest {
     }
 
     @Test
-    public void MultipleChoiceClasicoDevuelve0SiSeRespondeIncorrectamente(){
+    public void test03UnaPreguntaMCCDevuelve0SiSeRespondeIncorrectamente(){
         crearMultipleChoiceClasico();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 3)));
         assertEquals(Collections.singletonList(0), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoiceClasicoDevuelve0SiNoSeEnviaLaTotalidadDeRespuestasCorrectas(){
+    public void test04UnaPreguntaMCCDevuelve0SiNoSeEnviaLaTotalidadDeRespuestasCorrectas(){
         crearMultipleChoiceClasico();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 0)));
         assertEquals(Collections.singletonList(0), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoiceClasicoDevuelve0SiNoEnvioNada(){
+    public void test05UnaPreguntaMCCDevuelve0SiNoEnvioNada(){
         crearMultipleChoiceClasico();
-        RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList()));
+        RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Collections.emptyList()));
         assertEquals(Collections.singletonList(0), this.preguntaMC.responder(Collections.singletonList(respuestaVacia)));
     }
 
@@ -76,14 +76,14 @@ public class PreguntaMultipleChoiceTest {
     // Parcial
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void MultipleChoiceParcialPuedeCrearseSiSeIndicanLasRtasCorretas(){
+    public void test06UnaPreguntaMCPAPuedeCrearseSiSeIndicanLasRtasCorretas(){
         crearMultipleChoiceParcial();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 1, 0)));
         assertEquals(Collections.singletonList(3), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoiceParcialRecibeUnaListaDeRespuestasYAsignaPuntos(){
+    public void test07UnaPreguntaMCPARecibeUnaListaDeRespuestasYAsignaPuntos(){
         crearMultipleChoiceParcial();
         RespuestaMultipleChoice respuestaCorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 1, 0)));
         RespuestaMultipleChoice respuestaIncorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 1, 3)));
@@ -91,21 +91,21 @@ public class PreguntaMultipleChoiceTest {
     }
 
     @Test
-    public void MultipleChoiceParcialDevuelve2ConDosRespuestasCorrectas(){
+    public void test08UnaPreguntaMCPADevuelve2ConDosRespuestasCorrectas(){
         crearMultipleChoiceParcial();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0)));
         assertEquals(Collections.singletonList(2), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoiceParcialDevuelve0ConTresRespuestasCorrectasYUnaIncorrecta(){
+    public void test09UnaPreguntaMCPADevuelve0ConTresRespuestasCorrectasYUnaIncorrecta(){
         crearMultipleChoiceParcial();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0, 1, 3)));
         assertEquals(Collections.singletonList(0), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoiceParcialDevuelve0SiNoEnvioNada(){
+    public void test10UnaPreguntaMCPADevuelve0SiNoEnvioNada(){
         crearMultipleChoiceParcial();
         RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList()));
         assertEquals(Collections.singletonList(0), this.preguntaMC.responder(Collections.singletonList(respuestaVacia)));
@@ -115,14 +115,14 @@ public class PreguntaMultipleChoiceTest {
     // Penalidad
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void MultipleChoicePenalidadPuedeCrearseSiSeIndicanLasRtasCorretas(){
+    public void test11UnaPreguntaMCPEPuedeCrearseSiSeIndicanLasRtasCorretas(){
         crearMultipleChoicePenalidad();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0, 1)));
         assertEquals(Collections.singletonList(3), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoicePenalidadRecibeUnaListaDeRespuestasYAsignaPuntos(){
+    public void test12UnaPreguntaMCPERecibeUnaListaDeRespuestasYAsignaPuntos(){
         crearMultipleChoicePenalidad();
         RespuestaMultipleChoice respuestaCorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0, 1)));
         RespuestaMultipleChoice respuestaIncorrecta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 4, 1)));
@@ -131,30 +131,30 @@ public class PreguntaMultipleChoiceTest {
 
 
     @Test
-    public void MultipleChoicePenalidadDevuelve2ConDosRespuestasCorrectas(){
+    public void test13UnaPreguntaMCPEDevuelve2ConDosRespuestasCorrectas(){
         crearMultipleChoicePenalidad();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0)));
         assertEquals(Collections.singletonList(2), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoicePenalidadDevuelve2ConTresRespuestasCorrectasYUnaIncorrecta(){
+    public void test14UnaPreguntaMCPEDevuelve2ConTresRespuestasCorrectasYUnaIncorrecta(){
         crearMultipleChoicePenalidad();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0, 1, 4)));
         assertEquals(Collections.singletonList(2), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void MultipleChoicePenalidadDevuelve0SiNoEnvioNada(){
+    public void test15UnaPreguntaMCPEDevuelve0SiNoEnvioNada(){
         crearMultipleChoicePenalidad();
-        RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList()));
+        RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Collections.emptyList()));
         assertEquals(Collections.singletonList(0), this.preguntaMC.responder(Collections.singletonList(respuestaVacia)));
     }
 
     @Test
-    public void MultipleChoicePenalidadDevuelveMenos1SiEnvioRespuestaIncorrecta(){
+    public void test16UnaPreguntaMCPEDevuelveMenos1SiEnvioRespuestaIncorrecta(){
         crearMultipleChoicePenalidad();
-        RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4)));
+        RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Collections.singletonList(4)));
         assertEquals(Collections.singletonList(-1), this.preguntaMC.responder(Collections.singletonList(respuesta)));
     }
 

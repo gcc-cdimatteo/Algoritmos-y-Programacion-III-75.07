@@ -1,29 +1,45 @@
 package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
-import edu.fiuba.algo3.tp2N10.Modelo.BolsaDePreguntas;
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.JuegoTerminadoException;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Puntuador;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.PuntuadorNulo;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AlgoKahoot {
 
-//    private final List<Jugador> jugadores;
-//    private Puntuador puntuador;
-    private Jugador jugadorActual;
-    private List<Pregunta> preguntas;
-    private List<Respuesta> respuestas;
-    private Integer preguntaActual = 0;
+    private final LinkedList<Pregunta> preguntas;
+    private final PuntuadorNulo puntuador;
+    private final Jugador jugadorActual;
 
-    public AlgoKahoot(List<Pregunta> preguntas, List<Jugador> jugadores) {
-        this.preguntas = preguntas;
-//        this.jugadores = jugadores;
-        this.jugadorActual = Jugador.ingresarJugadores(jugadores);
-//        this.puntuador = new PuntuadorNulo();
+    public AlgoKahoot(List<Pregunta> preguntas, List<String> jugadores) {
+        this.preguntas = (LinkedList<Pregunta>) preguntas;
+        Jugador primerJugador = new Jugador(jugadores.get(0));
+        Jugador segundoJugador = new Jugador(jugadores.get(1));
+        primerJugador.conJugadorSiguiente(segundoJugador);
+        this.jugadorActual = primerJugador;
+        this.puntuador = new PuntuadorNulo();
+    }
+
+    public int jugadorActualPuntaje() {
+        return jugadorActual.puntaje();
+    }
+
+    public void cargarRespuesta(Respuesta unaRespuesta) {
+    }
+
+    public void cambiarTurno() {
+        jugadorActual.cambiarJugador();
+    }
+
+    public void jugadorUsaMultiplicador(int unMultiplicador) {
+        jugadorActual.usarMultiplicador(unMultiplicador);
+    }
+
+    public void jugadorUsaExclusividad() {
+        jugadorActual.usarExclusividad();
     }
 
 //    public void cargarRespuesta(Respuesta respuesta) {

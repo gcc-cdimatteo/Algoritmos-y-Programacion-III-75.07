@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Puntaje;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeParcial;
 import org.junit.jupiter.api.Test;
@@ -8,38 +8,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PuntajeParcialTest {
 
     @Test
-    public void tipoPuntajeConParcialPuntuaCorrectamente(){
+    public void test01PuntajeParcialPuntua1ParaUnAciertoYNingunError(){
         PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(1, tipoPuntaje.puntuar(1,0));
     }
 
     @Test
-    public void tipoPuntajeConParcialPuntuaCorrectamenteConVariosAciertos(){
+    public void test02PuntajeParcialPuntua3ConTresAciertosYNingunError(){
         PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(3, tipoPuntaje.puntuar(3,0));
     }
 
     @Test
-    public void tipoPuntajeConParcialPuntuaCorrectamenteConUnError() {
+    public void test03PuntajeParcialPuntua0ConNingunAciertoYUnError() {
         PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(0, tipoPuntaje.puntuar(0, 1));
     }
 
     @Test
-    public void tipoPuntajeConParcialPuntuaCorrectamenteConVariosErrores(){
+    public void test04PuntajeParcialPuntua0ConUnAciertoYTresErrores(){
         PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(0, tipoPuntaje.puntuar(1,3));
     }
 
     @Test
-    public void tipoPuntajeConParcialPuntuaCorrectamenteConVariosAciertosYErrores(){
-        PuntajeParcial tipoPuntaje = new PuntajeParcial();
-        assertEquals(0, tipoPuntaje.puntuar(3,2));
-    }
-
-    @Test
-    public void tipoPuntajeConParcialPuntuaCorrectamenteSinAciertosNiErrores(){
+    public void test05PuntajeParcialPuntua0ConNingunAciertoYNingunError(){
         PuntajeParcial tipoPuntaje = new PuntajeParcial();
         assertEquals(0, tipoPuntaje.puntuar(0,0));
     }
+
 }

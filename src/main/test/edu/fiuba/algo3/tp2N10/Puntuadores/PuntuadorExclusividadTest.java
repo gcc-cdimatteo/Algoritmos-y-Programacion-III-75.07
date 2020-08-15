@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Puntuadores;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.PuntuadorExclusividad;
@@ -13,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PuntuadorExclusividadTest {
 
     @Test
-    public void test01ExclusividadAsignaLosPuntosCorrectamente() {
+    public void test01ExclusividadDuplicaElPuntajeAlQueHayaContestadoBien() {
         List<Integer> puntos = Arrays.asList(1, 0);
         List<Integer> puntosEsperados = Arrays.asList(2, 0);
-        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("Jugador de Prueba"));
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("X Æ A-12"));
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
 
     @Test
-    public void test02ExclusividadNoAsignaPuntosSiAmbosRespondenCorrectamente() {
+    public void test02ExclusividadNoIncrementaElPuntajeSiAmbosRespondenCorrectamente() {
         List<Integer> puntos = Arrays.asList(1, 1);
         List<Integer> puntosEsperados = Arrays.asList(0, 0);
         PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("Jugador de Prueba"));
@@ -37,16 +37,7 @@ public class PuntuadorExclusividadTest {
     }
 
     @Test
-    public void test04ExclusividadIncrementaElDobleSiUnJugadorLoUtiliza() {
-        Jugador jugadorUno = new Jugador("X Æ A-12");
-        List<Integer> puntos = Arrays.asList(0, 1);
-        List<Integer> puntosEsperados = Arrays.asList(0, 2);
-        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(jugadorUno);
-        assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
-    }
-
-    @Test
-    public void test05ExclusividadIncrementaElCuadrupleSiAmbosJugadoresLoUtilizan() {
+    public void test04ExclusividadCuadruplicaElPuntajeSiAmbosJugadoresLoUtilizan() {
         Jugador jugadorUno = new Jugador("Caro");
         Jugador jugadorDos = new Jugador("Nacho");
         List<Integer> puntos = Arrays.asList(0, 1);

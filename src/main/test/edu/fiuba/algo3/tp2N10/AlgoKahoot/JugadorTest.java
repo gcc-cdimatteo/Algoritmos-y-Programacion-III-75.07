@@ -1,0 +1,97 @@
+package edu.fiuba.algo3.tp2N10.AlgoKahoot;
+
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class JugadorTest {
+
+    @Test
+    public void test01JugadorRecienCreadoTienePuntaje0() {
+        Jugador jugador = new Jugador("Wenceslao");
+        assertEquals(0, jugador.puntaje());
+    }
+
+    @Test
+    public void test02JugadorConoceSuNombre() {
+        Jugador jugador = new Jugador("Wenceslao2");
+        assertEquals("Wenceslao2", jugador.nombre());
+    }
+
+    @Test
+    public void test03JugadorEsPuntuadoPositivamenteYDevuelveSusPuntos() {
+        Jugador jugador = new Jugador("Ofelia");
+        jugador.puntuar(10);
+        assertEquals(10, jugador.puntaje());
+    }
+
+    @Test
+    public void test04JugadorEsPuntuadoNegativamenteYDevuelveSusPuntos() {
+        Jugador jugador = new Jugador("Yolanda");
+        jugador.puntuar(-8);
+        assertEquals(-8, jugador.puntaje());
+    }
+
+    @Test
+    public void test05JugadorEsPuntuadoVariasVecesYSuPuntajeEsLaSumaTotal() {
+        Jugador jugador = new Jugador("Velasco");
+
+        jugador.puntuar(-1);
+        jugador.puntuar(10);
+        jugador.puntuar(-3);
+        jugador.puntuar(-2);
+        jugador.puntuar(1);
+
+        assertEquals(5, jugador.puntaje());
+    }
+
+    @Test
+    public void test06JugadorSoloPuedeUsarExclusividadDePuntaje2Veces() {
+        Jugador jugador = new Jugador("Casimiro");
+        jugador.usarExclusividad();
+        jugador.usarExclusividad();
+        assertThrows(PowerUpNoDisponibleException.class, jugador::usarExclusividad);
+    }
+
+    @Test
+    public void test07UnJugadorPuedeGuardarseUnaReferenciaDelQueLeSigue() {
+        Jugador primerJugador = new Jugador("Jugador Uno");
+        Jugador segundoJugador = new Jugador("Jugador Dos");
+        primerJugador.conJugadorSiguiente(segundoJugador);
+        Jugador jugadorActual = primerJugador.jugadorActual();
+        jugadorActual.cambiarJugador();
+        assertEquals(segundoJugador, jugadorActual.jugadorActual());
+    }
+
+    @Test
+    public void test08UnJugadorPuedeVolverASiMismoLuegoDePasarPorSuContiguo() {
+        Jugador primerJugador = new Jugador("Jugador Uno");
+        Jugador segundoJugador = new Jugador("Jugador Dos");
+        primerJugador.conJugadorSiguiente(segundoJugador);
+        Jugador jugadorActual = primerJugador.jugadorActual();
+        jugadorActual.cambiarJugador();
+        jugadorActual.cambiarJugador();
+        assertEquals(primerJugador, jugadorActual.jugadorActual());
+    }
+
+    @Test
+    public void test09JugadorUsaMultiplicadorPor3yTriplicaElPuntaje() {
+        Jugador miJugador = new Jugador("Carolina");
+        miJugador.usarMultiplicador(3);
+        miJugador.puntuar(2);
+        assertEquals(6, miJugador.puntaje());
+    }
+
+    @Test
+    public void test10JugadorUsaMultiplicadorPor2yDuplicaElPuntaje() {
+        Jugador miJugador = new Jugador("Carolina");
+        miJugador.usarMultiplicador(2);
+        miJugador.puntuar(2);
+        assertEquals(4, miJugador.puntaje());
+    }
+
+
+}

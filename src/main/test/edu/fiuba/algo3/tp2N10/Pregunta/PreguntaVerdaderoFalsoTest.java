@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Pregunta;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaVerdaderoFalso;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
@@ -32,14 +32,14 @@ public class PreguntaVerdaderoFalsoTest {
     // Clasico
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void verdaderoFalsoClasicoPuedeCrearseSiSeIndicaLaRtaCorreta(){
+    public void test01UnaPreguntaVFCPuedeCrearseSiSeIndicaLaRtaCorreta(){
         crearVerdaderoFalsoClasico();
         RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(false);
         assertEquals(Collections.singletonList(1), this.preguntaVF.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void verdaderoFalsoClasicoDevuelvePuntajeCorrecto() {
+    public void test02UnaPreguntaVFCRecibeUnaListaDeRespuestasYAsignaPuntos() {
         crearVerdaderoFalsoClasico();
         RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
         RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso(true);
@@ -50,14 +50,14 @@ public class PreguntaVerdaderoFalsoTest {
     // Penalidad
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void VerdaderoFalsoConPenalidadDevuelvePuntajeCorrecto(){
+    public void test03UnaPreguntaVFPPuedeCrearseSiSeIndicaLaRtaCorrecta(){
         crearVerdaderoFalsoPenalidad();
         RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(false);
         assertEquals(Collections.singletonList(1), this.preguntaVF.responder(Collections.singletonList(respuesta)));
     }
 
     @Test
-    public void VerdaderoFalsoPenalidadRecibeUnaListaDeRespuestasYAsignaPuntos(){
+    public void test04UnaPreguntaVFPRecibeUnaListaDeRespuestasYAsignaPuntos(){
         crearVerdaderoFalsoPenalidad();
         RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(false);
         RespuestaVerdaderoFalso respuestaIncorrecta = new RespuestaVerdaderoFalso(true);

@@ -18,6 +18,7 @@ import java.util.*;
 
 
 public class App extends Application {
+
     private List<Jugador> jugadores;
     private Stage escenario;
 
@@ -39,18 +40,13 @@ public class App extends Application {
     public void setup() {
         this.escenario.setTitle("AlgoKahoot");
 
-        Jugador jugadorUno = new Jugador("Jugador Uno");
-        Jugador jugadorDos = new Jugador("Jugador Dos");
-        this.jugadores = Arrays.asList(jugadorUno, jugadorDos);
-
         Set<Integer> respuestasCorrectasMC = new HashSet<>(Arrays.asList(0, 2, 3));
 //        this.preguntaMC = PreguntaMultipleChoice.Clasico("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"), respuestasCorrectasMC);
 //        this.preguntaOC = new PreguntaOrderedChoice("El orden de las letras del abecedario es...", Arrays.asList("B", "C", "A"), Arrays.asList(2, 0, 1));
     }
 
     public void nombrarJugadores(String nombreUno, String nombreDos) {
-        this.jugadores.get(0).nombrar(nombreUno);
-        this.jugadores.get(1).nombrar(nombreDos);
+        this.jugadores = Arrays.asList(new Jugador(nombreUno), new Jugador(nombreDos));
     }
 
     public void jugar() {
