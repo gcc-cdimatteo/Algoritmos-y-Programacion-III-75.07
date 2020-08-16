@@ -25,8 +25,7 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
             alertaNombreFaltante.mostrar();
         }
         else {
-            this.app.nombrarJugadores(this.nombreUno.getText(),this.nombreDos.getText());
-            this.app.jugar();
+            this.app.jugar(this.nombreUno.getText(),this.nombreDos.getText());
         }
     }
 }
