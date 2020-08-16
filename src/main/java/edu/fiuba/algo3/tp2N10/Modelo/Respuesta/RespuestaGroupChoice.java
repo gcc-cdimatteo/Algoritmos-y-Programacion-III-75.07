@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.TipoRespuestaIncorrectoException;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
 
 import java.util.Set;
 
@@ -27,7 +27,7 @@ public class RespuestaGroupChoice implements Respuesta {
         try {
             return this.equals((RespuestaGroupChoice) respuestaUsuario) ? 1 : 0;
         } catch (RuntimeException e) {
-            throw new TipoRespuestaIncorrectoException();
+            throw new RespuestaIncompatibleException();
         }
     }
 }

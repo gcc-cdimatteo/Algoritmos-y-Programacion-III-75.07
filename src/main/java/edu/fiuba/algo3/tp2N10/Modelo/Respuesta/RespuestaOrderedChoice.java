@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.TipoRespuestaIncorrectoException;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
 
 import java.util.List;
 
 public class RespuestaOrderedChoice implements Respuesta {
 
-    private List<Integer> respuesta;
+    private final List<Integer> respuesta;
 
     public RespuestaOrderedChoice(List<Integer> respuesta) {
         this.respuesta = respuesta;
@@ -17,7 +17,7 @@ public class RespuestaOrderedChoice implements Respuesta {
     }
 
     private boolean equals(List<Integer> otraRespuesta) {
-        return respuesta == otraRespuesta;
+        return respuesta.equals(otraRespuesta);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RespuestaOrderedChoice implements Respuesta {
         try {
             return this.equals((RespuestaOrderedChoice) respuestaUsuario) ? 1 : 0;
         } catch (RuntimeException e) {
-            throw new TipoRespuestaIncorrectoException();
+            throw new RespuestaIncompatibleException();
         }
     }
 }

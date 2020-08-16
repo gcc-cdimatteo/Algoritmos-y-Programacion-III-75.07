@@ -27,16 +27,16 @@ public class RondaTest {
     public void crearJugadores(){
         this.jugador1 = new Jugador("Agustin");
         this.jugador2 = new Jugador("Bill Gates");
+        jugador1.ordenarCon(jugador2);
     }
 
     public void crearPreguntaVerdaderoYFalsoClasico(){
-        this.respuestaCorrecta = true;
-        this.pregunta = PreguntaVerdaderoFalso.Clasico("La Manzana es una fruta", this.respuestaCorrecta );
+        this.pregunta = PreguntaVerdaderoFalso.Clasico("La Manzana es una fruta", true);
 
     }
 
-    public void crearRonda(){
-        this.ronda = new Ronda(this.pregunta, Arrays.asList(this.jugador1, this.jugador2));
+    public void crearRonda() {
+        this.ronda = new Ronda(this.pregunta, this.jugador1);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class RondaTest {
         crearJugadores();
         crearPreguntaVerdaderoYFalsoClasico();
         crearRonda();
-        this.respuestaJugador1 = new RespuestaVerdaderoFalso(this.respuestaCorrecta);
+        this.respuestaJugador1 = new RespuestaVerdaderoFalso(true);
         this.respuestaJugador2 = new RespuestaVerdaderoFalso(false);
         this.ronda.cargarRespuesta(this.respuestaJugador1);
         this.ronda.cargarRespuesta(this.respuestaJugador2);

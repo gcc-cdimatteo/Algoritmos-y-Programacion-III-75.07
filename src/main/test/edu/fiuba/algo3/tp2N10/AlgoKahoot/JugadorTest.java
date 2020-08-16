@@ -60,21 +60,21 @@ public class JugadorTest {
     public void test07UnJugadorPuedeGuardarseUnaReferenciaDelQueLeSigue() {
         Jugador primerJugador = new Jugador("Jugador Uno");
         Jugador segundoJugador = new Jugador("Jugador Dos");
-        primerJugador.conJugadorSiguiente(segundoJugador);
-        Jugador jugadorActual = primerJugador.jugadorActual();
-        jugadorActual.cambiarJugador();
-        assertEquals(segundoJugador, jugadorActual.jugadorActual());
+        primerJugador.ordenarCon(segundoJugador);
+        Jugador jugadorActual = primerJugador;
+        jugadorActual = jugadorActual.siguienteJugador();
+        assertEquals(segundoJugador, jugadorActual);
     }
 
     @Test
     public void test08UnJugadorPuedeVolverASiMismoLuegoDePasarPorSuContiguo() {
         Jugador primerJugador = new Jugador("Jugador Uno");
         Jugador segundoJugador = new Jugador("Jugador Dos");
-        primerJugador.conJugadorSiguiente(segundoJugador);
-        Jugador jugadorActual = primerJugador.jugadorActual();
-        jugadorActual.cambiarJugador();
-        jugadorActual.cambiarJugador();
-        assertEquals(primerJugador, jugadorActual.jugadorActual());
+        primerJugador.ordenarCon(segundoJugador);
+        Jugador jugadorActual = primerJugador;
+        jugadorActual = jugadorActual.siguienteJugador();
+        jugadorActual = jugadorActual.siguienteJugador();
+        assertEquals(primerJugador, jugadorActual);
     }
 
     @Test
@@ -92,6 +92,4 @@ public class JugadorTest {
         miJugador.puntuar(2);
         assertEquals(4, miJugador.puntaje());
     }
-
-
 }

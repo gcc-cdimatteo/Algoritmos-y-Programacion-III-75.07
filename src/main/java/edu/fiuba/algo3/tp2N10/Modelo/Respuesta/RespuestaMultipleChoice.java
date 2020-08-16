@@ -2,7 +2,7 @@ package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
 import java.util.Set;
 import com.google.common.collect.Sets;
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.TipoRespuestaIncorrectoException;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 
 public class RespuestaMultipleChoice implements Respuesta {
@@ -40,7 +40,7 @@ public class RespuestaMultipleChoice implements Respuesta {
             int errores = respuestaUsuarioCasteada.size() - aciertos;
             return puntaje.puntuar(aciertos, errores);
         } catch (RuntimeException e) {
-            throw new TipoRespuestaIncorrectoException();
+            throw new RespuestaIncompatibleException();
         }
     }
 }

@@ -19,7 +19,7 @@ import java.util.*;
 
 public class App extends Application {
 
-    private List<Jugador> jugadores;
+    private Jugador jugador;
     private Stage escenario;
 
     private Pregunta pregunta;
@@ -46,7 +46,8 @@ public class App extends Application {
     }
 
     public void nombrarJugadores(String nombreUno, String nombreDos) {
-        this.jugadores = Arrays.asList(new Jugador(nombreUno), new Jugador(nombreDos));
+        jugador = new Jugador(nombreUno);
+        jugador.ordenarCon(new Jugador(nombreDos));
     }
 
     public void jugar() {
@@ -55,7 +56,7 @@ public class App extends Application {
         //this.pregunta = new PreguntaOrderedChoice("El orden de las letras del abecedario es...", Arrays.asList("B", "C", "A"), Arrays.asList(1, 2, 3));
         //this.pregunta = PreguntaMultipleChoice.Clasico("La manzana es...", Arrays.asList("Una Fruta", "Un Citrico", "Roja", "Azul"), new HashSet<>(Arrays.asList(0, 2, 3)));
         //this.pregunta = new PreguntaGroupChoice("Ordene las opciones en los grupos correctos...", Arrays.asList("A", "1", "B", "2"), new HashSet<>(Arrays.asList(0, 2)), new HashSet<>(Arrays.asList(1, 3)));
-        Ronda ronda = new Ronda(this.pregunta,this.jugadores);
+        Ronda ronda = new Ronda(this.pregunta, this.jugador);
         this.cambiarEscenaA(this.escenaPreguntaVF(ronda));
     }
 
