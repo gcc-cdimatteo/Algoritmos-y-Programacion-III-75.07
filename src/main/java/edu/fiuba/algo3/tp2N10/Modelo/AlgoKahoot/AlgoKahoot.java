@@ -28,6 +28,20 @@ public class AlgoKahoot {
         return jugadorActual.puntaje();
     }
 
+    public String jugadorActualNombre() {
+        return jugadorActual.nombre();
+    }
+
+    public String preguntaActualEnunciado() {
+        return ronda.enunciado();
+    }
+
+    public List<String> preguntaActualOpciones() {
+        return ronda.opciones();
+    }
+
+    public Class<? extends Pregunta> preguntaActualClass() { return ronda.preguntaClass();}
+
     public void nuevaRonda() {
         ronda = new Ronda(preguntas.poll(), jugadorActual);
     }
@@ -39,6 +53,7 @@ public class AlgoKahoot {
             ronda.asignarPuntos();
             nuevaRonda();
         }
+        notifyObservers();
     }
 
     public void cambiarJugador() {

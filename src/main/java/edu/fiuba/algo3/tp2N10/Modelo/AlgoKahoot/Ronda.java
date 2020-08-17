@@ -37,4 +37,16 @@ public class Ronda {
             jugador = jugador.siguienteJugador();
         }
     }
+
+    public String enunciado() {
+        return this.pregunta.getEnunciado();
+    }
+
+    public List<String> opciones() {
+        return this.pregunta.getOpciones();
+    }
+
+    public Class<? extends Pregunta> preguntaClass() {
+        return this.pregunta.getClass();
+    }
 }

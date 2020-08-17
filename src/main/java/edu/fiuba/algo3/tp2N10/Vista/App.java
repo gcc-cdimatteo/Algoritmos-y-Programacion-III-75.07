@@ -1,20 +1,10 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-
-//import edu.fiuba.algo3.tp2N10.Controlador.BotonSeleccionarOpcion;
-
-import edu.fiuba.algo3.tp2N10.Controlador.*;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import edu.fiuba.algo3.tp2N10.Modelo.BolsaDePreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,61 +34,28 @@ public class App extends Application {
         this.escenario.show();
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public List<Pregunta> setupPreguntasProvisorio() {
-
-        PreguntaVerdaderoFalso preguntaVFUno = PreguntaVerdaderoFalso.Clasico("La manzana es azul", false);
-        PreguntaVerdaderoFalso preguntaVFDos = PreguntaVerdaderoFalso.Clasico("La manzana es azul", false);
-        PreguntaVerdaderoFalso preguntaVFTres = PreguntaVerdaderoFalso.Clasico("La manzana es azul", false);
-
-        List<Pregunta> preguntas = new ArrayList<>();
-
-        preguntas.add(preguntaVFUno);
-        preguntas.add(preguntaVFDos);
-        preguntas.add(preguntaVFTres);
-
-        return preguntas;
-    }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public void jugar(String nombreUno, String nombreDos) {
 
-        //La creacion de la lista de preguntas deberia estar dentro del modelo. Por ahora uso una funcion provisoria para debuggear la UI
-        //AlgoKahoot algoKahoot = new AlgoKahoot(setupPreguntasProvisorio(), nombreUno, nombreDos);
-        //DEBUGGING
-
-        // Nota:
-        // Para prueba de los contenedores paseo por los tipos de pregunta. Algo similar a Bienvenida seguido
-        // del nombre de los jugadores. Esto posiblemente lo maneje Ronda a pedido de AlgoKahoot.
-        // Se pasa la pregunta y el jugador.
         try {
+            //La bolsa de preguntas deberia ir dentro de algokahoot, y este recibir el nombre del archivo en su constructor.
+            //Lo dejo aca para no tocar el modelo hasta que quede un poco mas firme la interfaz.
             BolsaDePreguntas bolsaDePreguntas = new BolsaDePreguntas("preguntas.json");
             ArrayList<Pregunta> preguntas = bolsaDePreguntas.getLista();
-            Pregunta pregunta = preguntas.get(0); // 0,1: VF, 2,3,4: MC, 5:OC, 6:GC
+            // preguntas 0,1: VF, 2,3,4: MC, 5:OC, 6:GC
 
-            // Se crean jugador y ronda porque son necesarias segun el contexto luego.
-            Jugador jugador = new Jugador(nombreUno);
-            Ronda ronda = new Ronda(pregunta, jugador);
-
-            ContenedorPregunta contenedorPregunta = new ContenedorPregunta(this, pregunta, jugador, ronda);
-            Scene escenaPregunta = new Scene(contenedorPregunta, 640, 480);
-
-            this.escenario.setScene(escenaPregunta);
-            this.escenario.show();
+            AlgoKahoot algoKahoot = new AlgoKahoot(preguntas, nombreUno, nombreDos);
+            AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot,this.escenario);
+            algoKahootView.mostrar();
 
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1); // Boom!
         }
 
-
-//      AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot);
-
-
-
     }
 }
 
+////////////////////////////////////////////// Escenas viejas ///////////////////////////////////////////////////////////////////
 
 //    public Scene escenaPreguntaVF(Ronda ronda) {
 //

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.BotonResponderVF;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import javafx.scene.control.Button;
@@ -10,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class ContenedorPreguntaVF extends VBox {
 
-    public ContenedorPreguntaVF(Button btnListo, Ronda ronda) {
+    public ContenedorPreguntaVF(Button btnListo, AlgoKahoot algoKahoot) {
         super();
 
         ToggleGroup grupoOpciones = new ToggleGroup();
@@ -18,7 +19,7 @@ public class ContenedorPreguntaVF extends VBox {
         ToggleButton btnFalso = new ToggleButton("Falso");
         btnVerdadero.setToggleGroup(grupoOpciones);
         btnFalso.setToggleGroup(grupoOpciones);
-        btnListo.setOnAction(new BotonResponderVF(btnVerdadero, btnFalso, ronda));
+        btnListo.setOnAction(new BotonResponderVF(btnVerdadero, btnFalso, algoKahoot));
         this.setSpacing(25);
         this.getChildren().addAll(btnVerdadero, btnFalso);
     }
