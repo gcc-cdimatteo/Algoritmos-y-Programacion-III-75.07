@@ -1,0 +1,63 @@
+package edu.fiuba.algo3.tp2N10.Respuesta;
+
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
+import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class RespuestaGroupChoiceTest {
+
+    private RespuestaGroupChoice respuestaCorrecta;
+
+    public void setupRespuestaCorrecta() {
+        Set<Integer> grupoA = new HashSet<>(Arrays.asList(4, 1, 3));
+        Set<Integer> grupoB = new HashSet<>(Arrays.asList(6, 2, 5));
+
+        this.respuestaCorrecta = new RespuestaGroupChoice(grupoA, grupoB);
+    }
+
+    @Test
+    public void test01DosRespuestasGroupChoiceSonIgualesSiAmbastienenLosMismosGrupos() {
+        setupRespuestaCorrecta();
+        Set<Integer> grupoA = new HashSet<>(Arrays.asList(4, 1, 3));
+        Set<Integer> grupoB = new HashSet<>(Arrays.asList(6, 2, 5));
+
+        RespuestaGroupChoice respuesta = new RespuestaGroupChoice(grupoA, grupoB);
+        assertTrue(respuestaCorrecta.equals(respuesta));
+    }
+
+    @Test
+    public void test02UnaRespuestaGroupChoiceCorrectaValeUnPunto() {
+        setupRespuestaCorrecta();
+        Set<Integer> grupoA = new HashSet<>(Arrays.asList(4, 1, 3));
+        Set<Integer> grupoB = new HashSet<>(Arrays.asList(6, 2, 5));
+
+        Respuesta respuesta = new RespuestaGroupChoice(grupoA, grupoB);
+        assertEquals(1, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test03UnaRespuestaGroupChoiceIncorrectaValeCeroPuntos() {
+        setupRespuestaCorrecta();
+        Set<Integer> grupoA = new HashSet<>(Arrays.asList(4, 3));
+        Set<Integer> grupoB = new HashSet<>(Arrays.asList(6, 1, 2, 5));
+
+        Respuesta respuesta = new RespuestaGroupChoice(grupoA, grupoB);
+        assertEquals(0, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test04SiSeIngresaUnaRespuestaIncompatibleSeLanzaUnaExcepcion() {
+        setupRespuestaCorrecta();
+        Respuesta respuesta = new RespuestaVerdaderoFalso(true);
+        assertThrows(RespuestaIncompatibleException.class, () -> respuestaCorrecta.evaluar(respuesta));
+    }
+}

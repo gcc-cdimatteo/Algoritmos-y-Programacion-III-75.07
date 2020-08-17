@@ -19,7 +19,7 @@ public class RespuestaGroupChoice implements Respuesta {
     }
 
     private boolean equals(Set<Integer> grupoA, Set<Integer> grupoB) {
-        return (this.grupoA.equals(grupoA) && this.grupoB.equals(grupoB));
+        return this.grupoA.equals(grupoA) && this.grupoB.equals(grupoB);
     }
 
     @Override
