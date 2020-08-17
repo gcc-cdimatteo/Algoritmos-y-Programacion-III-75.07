@@ -74,7 +74,7 @@ public class App extends Application {
         try {
             BolsaDePreguntas bolsaDePreguntas = new BolsaDePreguntas("preguntas.json");
             ArrayList<Pregunta> preguntas = bolsaDePreguntas.getLista();
-            Pregunta pregunta = preguntas.get(2);
+            Pregunta pregunta = preguntas.get(0); // 0,1: VF, 2,3,4: MC, 5:OC, 6:GC
 
             // Se crean jugador y ronda porque son necesarias segun el contexto luego.
             Jugador jugador = new Jugador(nombreUno);

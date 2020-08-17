@@ -41,6 +41,8 @@ public class ContenedorPregunta extends BorderPane {
 
         if (pregunta.getClass() == PreguntaMultipleChoice.class) {
             vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(pregunta, btnListo, ronda));
+        } else if (pregunta.getClass() == PreguntaVerdaderoFalso.class) {
+            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, ronda));
         }
 
         VBox vboxPowerUps = new VBox(5);
