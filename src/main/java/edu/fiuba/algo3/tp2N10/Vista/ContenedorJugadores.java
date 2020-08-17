@@ -29,12 +29,14 @@ public class ContenedorJugadores extends BorderPane {
 
 
         TextField nombreUno = new TextField();
+        nombreUno.setText("Jugador 1"); // ToDo: remover para evitar ingresar esto a mano al probar.
         HBox hboxNombre1 = new HBox(10);
-        hboxNombre1.getChildren().addAll(new Label("Nombre Jugador 1: "), nombreUno);
+        hboxNombre1.getChildren().addAll(new Label("Jugador 1: "), nombreUno);
 
         TextField nombreDos = new TextField();
+        nombreDos.setText("Jugador 1"); // ToDo: remover para evitar ingresar esto a mano al probar.
         HBox hboxNombre2 = new HBox(10);
-        hboxNombre1.getChildren().addAll(new Label("Nombre Jugador 2: "), nombreDos);
+        hboxNombre1.getChildren().addAll(new Label("Jugador 2: "), nombreDos);
 
 
         vboxJugadores.getChildren().addAll(hboxNombre1, hboxNombre2);

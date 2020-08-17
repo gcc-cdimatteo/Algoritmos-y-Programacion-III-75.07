@@ -7,6 +7,7 @@ import edu.fiuba.algo3.tp2N10.Controlador.*;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
+import edu.fiuba.algo3.tp2N10.Modelo.BolsaDePreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -16,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.*;
 
 
@@ -62,9 +64,34 @@ public class App extends Application {
     public void jugar(String nombreUno, String nombreDos) {
 
         //La creacion de la lista de preguntas deberia estar dentro del modelo. Por ahora uso una funcion provisoria para debuggear la UI
-        AlgoKahoot algoKahoot = new AlgoKahoot(setupPreguntasProvisorio(), nombreUno, nombreDos);
+        //AlgoKahoot algoKahoot = new AlgoKahoot(setupPreguntasProvisorio(), nombreUno, nombreDos);
         //DEBUGGING
-        Platform.exit();
+
+        // Nota:
+        // Para prueba de los contenedores paseo por los tipos de pregunta. Algo similar a Bienvenida seguido
+        // del nombre de los jugadores. Esto posiblemente lo maneje Ronda a pedido de AlgoKahoot.
+        // Se pasa la pregunta y el jugador.
+        try {
+            BolsaDePreguntas bolsaDePreguntas = new BolsaDePreguntas("preguntas.json");
+            ArrayList<Pregunta> preguntas = bolsaDePreguntas.getLista();
+            Pregunta pregunta = preguntas.get(2);
+
+            // Se crean jugador y ronda porque son necesarias segun el contexto luego.
+            Jugador jugador = new Jugador(nombreUno);
+            Ronda ronda = new Ronda(pregunta, jugador);
+
+            ContenedorPregunta contenedorPregunta = new ContenedorPregunta(this, pregunta, jugador, ronda);
+            Scene escenaPregunta = new Scene(contenedorPregunta, 640, 480);
+
+            this.escenario.setScene(escenaPregunta);
+            this.escenario.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1); // Boom!
+        }
+
+
 //      AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot);
 
 

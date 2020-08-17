@@ -23,9 +23,8 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
         if (this.nombreUno.getText().isEmpty() || this.nombreDos.getText().isEmpty()) {
             AlertaNombreFaltante alertaNombreFaltante = new AlertaNombreFaltante();
             alertaNombreFaltante.mostrar();
-        }
-        else {
-            this.app.jugar(this.nombreUno.getText(),this.nombreDos.getText());
+        } else {
+            this.app.jugar(this.nombreUno.getText(), this.nombreDos.getText());
         }
     }
 }

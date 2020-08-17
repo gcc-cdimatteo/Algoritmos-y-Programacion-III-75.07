@@ -24,7 +24,7 @@ public class BotonResponderMC implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent){
-        Set<Integer> respuestas = new HashSet<Integer>();
+        Set<Integer> respuestas = new HashSet<>();
         for (int i = 0; i < this.opcionesUsuario.size(); i++){
             if(this.opcionesUsuario.get(i).isSelected()){
                 respuestas.add(i);
