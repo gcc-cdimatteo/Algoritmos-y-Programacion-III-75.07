@@ -29,7 +29,7 @@ public class App extends Application {
     }
 
     public void jugar(String nombreUno, String nombreDos) {
-        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_variadas.json", nombreUno, nombreDos);
+        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_test.json", nombreUno, nombreDos);
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, this.escenario);
         algoKahootView.mostrar();
     }

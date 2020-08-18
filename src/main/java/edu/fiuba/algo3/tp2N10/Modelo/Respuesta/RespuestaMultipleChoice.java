@@ -2,7 +2,6 @@ package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
 import java.util.Set;
 import com.google.common.collect.Sets;
-import edu.fiuba.algo3.tp2N10.Modelo.BolsaDePreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.Puntaje;
 

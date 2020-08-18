@@ -23,10 +23,8 @@ public abstract class Pregunta {
         return this.enunciado;
     }
 
-    public List<String> getOpciones() {
-        return this.opciones;
-    }
+    public List<String> getOpciones() { return this.opciones; }
 
-    public Boolean tienePenalidad() {return this.respuestaCorrecta.penalidad();}
+    public boolean tienePenalidad() { return this.respuestaCorrecta.penalidad(); }
 
 }

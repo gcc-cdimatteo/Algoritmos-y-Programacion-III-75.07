@@ -46,9 +46,9 @@ public class Ronda {
         return this.pregunta.getOpciones();
     }
 
-    public Class<? extends Pregunta> preguntaClass() {
-        return this.pregunta.getClass();
-    }
+    public Boolean preguntaTienePenalidad() { return this.pregunta.tienePenalidad(); }
 
-    public Boolean preguntaTienePenalidad(){return this.pregunta.tienePenalidad();}
+    public Pregunta preguntaActual() {
+        return pregunta;
+    }
 }

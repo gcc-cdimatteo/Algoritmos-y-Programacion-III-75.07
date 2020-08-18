@@ -32,8 +32,7 @@ public class ContenedorPrincipal extends BorderPane {
         vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
 
         VBox vboxPowerUps = new VBox(5);
-        //vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
-        if(algoKahoot.preguntaActualTienePenalidad()){
+        if (algoKahoot.preguntaActualPermiteMultiplicadores()) {
             ToggleButton btnPowerUpX2 = new ToggleButton("x2");
             btnPowerUpX2.setOnAction(new BotonUsarMultiplicador(algoKahoot, 2));
             ToggleButton btnPowerUpX3 = new ToggleButton("x3");
@@ -41,7 +40,7 @@ public class ContenedorPrincipal extends BorderPane {
             ToggleGroup grupoMultiplicadores = new ToggleGroup();
             grupoMultiplicadores.getToggles().addAll(btnPowerUpX2, btnPowerUpX3);
             vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3);
-        }else {
+        } else if (algoKahoot.preguntaActualPermiteExclusividad()) {
             Button btnPowerUpEx1 = new Button("Exclusividad");
             btnPowerUpEx1.setOnAction(new BotonUsarExclusividad(algoKahoot));
             vboxPowerUps.getChildren().addAll(btnPowerUpEx1);
@@ -53,13 +52,14 @@ public class ContenedorPrincipal extends BorderPane {
         bpHeader.setRight(lblPuntaje);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
 
-        if (algoKahoot.preguntaActualClass() == PreguntaMultipleChoice.class) {
-            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot));
-        } else if (algoKahoot.preguntaActualClass() == PreguntaVerdaderoFalso.class) {
+        Object miPregunta = algoKahoot.preguntaActual().getClass();
+        if (PreguntaVerdaderoFalso.class.equals(miPregunta)) {
             vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot));
-        } else if (algoKahoot.preguntaActualClass() == PreguntaOrderedChoice.class){
+        } else if (PreguntaMultipleChoice.class.equals(miPregunta)) {
+            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot));
+        } else if (PreguntaOrderedChoice.class.equals(miPregunta)) {
             vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot));
-        } else if (algoKahoot.preguntaActualClass() == PreguntaGroupChoice.class) {
+        } else if (PreguntaGroupChoice.class.equals(miPregunta)) {
             vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot));
         }
 

@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
-import edu.fiuba.algo3.tp2N10.Modelo.BolsaDePreguntas;
+import edu.fiuba.algo3.tp2N10.Modelo.PreguntasFactory;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.ArchivoJsonFalloException;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.JuegoFinalizadoException;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Observer;
@@ -9,23 +10,24 @@ import edu.fiuba.algo3.tp2N10.Modelo.Observer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class AlgoKahoot {
 
-    private final BolsaDePreguntas factoryPreguntas;
+    private Queue<Pregunta> preguntas;
     private Ronda ronda;
     private Jugador jugadorActual;
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private List<Observer> observers = new ArrayList<>();
 
     public AlgoKahoot(String nombreArchivoJSON, String jugadorUno, String jugadorDos) {
         try {
-            factoryPreguntas = new BolsaDePreguntas(nombreArchivoJSON);
+            preguntas = new PreguntasFactory(nombreArchivoJSON).getLista();
             Jugador primerJugador = new Jugador(jugadorUno);
             Jugador segundoJugador = new Jugador(jugadorDos);
             primerJugador.ordenarCon(segundoJugador);
             jugadorActual = primerJugador;
             nuevaRonda();
-        } catch (IOException e) {throw new ArchivoJsonFalloException(); }
+        } catch (IOException e) { throw new ArchivoJsonFalloException(); }
     }
 
     public int jugadorActualPuntaje() {
@@ -40,15 +42,18 @@ public class AlgoKahoot {
         return ronda.enunciado();
     }
 
-    public Boolean preguntaActualTienePenalidad(){ return ronda.preguntaTienePenalidad();}
+    public boolean preguntaActualPermiteMultiplicadores() { return ronda.preguntaTienePenalidad(); }
+
+    public boolean preguntaActualPermiteExclusividad() { return !ronda.preguntaTienePenalidad(); }
 
     public List<String> preguntaActualOpciones() {
         return ronda.opciones();
     }
 
-    public Class<? extends Pregunta> preguntaActualClass() { return ronda.preguntaClass();}
-
-    public void nuevaRonda() { ronda = new Ronda(this.factoryPreguntas.getPregunta(), jugadorActual); }
+    public void nuevaRonda() {
+        if (preguntas.isEmpty()) throw new JuegoFinalizadoException();
+        ronda = new Ronda(this.preguntas.poll(), jugadorActual);
+    }
 
     public void cargarRespuesta(Respuesta respuesta) {
         ronda.cargarRespuesta(respuesta);
@@ -77,6 +82,8 @@ public class AlgoKahoot {
     }
 
     public void notifyObservers() {
-        observers.stream().forEach(observer -> observer.change());
+        observers.forEach(Observer::change);
     }
+
+    public Pregunta preguntaActual() { return ronda.preguntaActual(); }
 }
