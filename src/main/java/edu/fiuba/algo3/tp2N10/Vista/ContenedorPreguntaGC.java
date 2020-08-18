@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.BotonResponderGC;
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
-import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -12,11 +11,11 @@ import java.util.ArrayList;
 
 public class ContenedorPreguntaGC extends VBox {
 
-    public ContenedorPreguntaGC(Pregunta pregunta, Button btnListo, Ronda ronda){
+    public ContenedorPreguntaGC(Button btnListo, AlgoKahoot algoKahoot){
         String grupoA = "Grupo A";
         String grupoB = "Grupo B";
         ArrayList<ToggleGroup> gruposDeOpciones = new ArrayList<>();
-        for (String op : pregunta.getOpciones()) {
+        for (String op : algoKahoot.preguntaActualOpciones()) {
             RadioButton rdoGrupoA = new RadioButton(grupoA);
             RadioButton rdoGrupoB = new RadioButton(grupoB);
             rdoGrupoA.setSelected(true);
@@ -31,7 +30,7 @@ public class ContenedorPreguntaGC extends VBox {
 
             this.getChildren().add(bpOpcionMasRadio);
         }
-        btnListo.setOnAction(new BotonResponderGC(ronda, gruposDeOpciones));
+        btnListo.setOnAction(new BotonResponderGC(algoKahoot, gruposDeOpciones));
         this.setSpacing(25);
     }
 }
