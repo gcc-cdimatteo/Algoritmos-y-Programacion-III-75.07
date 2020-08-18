@@ -6,4 +6,9 @@ public class PuntajePenalidad implements Puntaje {
     public Integer puntuar(Integer aciertos, Integer errores) {
         return aciertos - errores;
     }
+
+    @Override
+    public Boolean penalidad(){
+        return true;
+    }
 }

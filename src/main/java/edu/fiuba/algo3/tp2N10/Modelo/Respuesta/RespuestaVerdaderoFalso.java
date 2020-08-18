@@ -37,4 +37,9 @@ public class RespuestaVerdaderoFalso implements Respuesta {
             throw new RespuestaIncompatibleException();
         }
     }
+
+    @Override
+    public Boolean penalidad(){
+        return this.puntaje.penalidad();
+    }
 }

@@ -27,4 +27,6 @@ public abstract class Pregunta {
         return this.opciones;
     }
 
+    public Boolean tienePenalidad() {return this.respuestaCorrecta.penalidad();}
+
 }

@@ -49,4 +49,6 @@ public class Ronda {
     public Class<? extends Pregunta> preguntaClass() {
         return this.pregunta.getClass();
     }
+
+    public Boolean preguntaTienePenalidad(){return this.pregunta.tienePenalidad();}
 }

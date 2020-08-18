@@ -4,4 +4,5 @@ public interface Respuesta {
 
     Integer evaluar(Respuesta respuestaUsuario);
 
+    Boolean penalidad();
 }

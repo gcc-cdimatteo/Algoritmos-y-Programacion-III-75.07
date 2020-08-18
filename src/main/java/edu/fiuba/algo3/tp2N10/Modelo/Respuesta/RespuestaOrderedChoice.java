@@ -28,4 +28,9 @@ public class RespuestaOrderedChoice implements Respuesta {
             throw new RespuestaIncompatibleException();
         }
     }
+
+    @Override
+    public Boolean penalidad(){
+        return false;
+    }
 }

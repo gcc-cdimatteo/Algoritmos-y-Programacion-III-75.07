@@ -25,4 +25,9 @@ public class PuntajeClasico implements Puntaje {
     public Integer puntuar(Integer aciertos, Integer errores) {
         return aciertosEsperados == aciertos && errores == 0 ? 1 : 0;
     }
+
+    @Override
+    public Boolean penalidad(){
+        return false;
+    }
 }

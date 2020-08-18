@@ -6,4 +6,9 @@ public class PuntajeParcial implements Puntaje {
     public Integer puntuar(Integer aciertos, Integer errores) {
         return errores == 0 ? aciertos : 0;
     }
+
+    @Override
+    public Boolean penalidad(){
+        return false;
+    }
 }

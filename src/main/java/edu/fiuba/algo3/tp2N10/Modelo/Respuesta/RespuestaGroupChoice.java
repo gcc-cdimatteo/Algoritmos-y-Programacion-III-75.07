@@ -30,4 +30,9 @@ public class RespuestaGroupChoice implements Respuesta {
             throw new RespuestaIncompatibleException();
         }
     }
+
+    @Override
+    public Boolean penalidad(){
+        return false;
+    }
 }
