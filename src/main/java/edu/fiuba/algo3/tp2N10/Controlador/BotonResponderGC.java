@@ -31,9 +31,9 @@ public class BotonResponderGC implements EventHandler<ActionEvent> {
         for(int i = 0; i < opcionesUsuario.size(); i++){
             ObservableList<Toggle> botones = opcionesUsuario.get(i).getToggles();
             if ((botones.get(0).isSelected())) {
-                grupoA.add(i);
+                grupoA.add(i + 1);
             } else {
-                grupoB.add(i);
+                grupoB.add(i + 1);
             }
         }
         this.respuesta = new RespuestaGroupChoice(grupoA, grupoB);

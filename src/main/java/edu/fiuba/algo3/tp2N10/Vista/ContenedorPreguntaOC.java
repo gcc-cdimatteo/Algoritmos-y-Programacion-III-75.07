@@ -21,7 +21,7 @@ public class ContenedorPreguntaOC extends HBox {
         ArrayList<Button> arrayBtnOpciones = new ArrayList<>();
         for (int i = 0; i < algoKahoot.preguntaActualOpciones().size(); i++) {
             Button boton = new Button(algoKahoot.preguntaActualOpciones().get(i));
-            boton.setOnAction(new BotonSeleccionarOpcionOC(boton, i, respuestaUsuario));
+            boton.setOnAction(new BotonSeleccionarOpcionOC(boton, i + 1, respuestaUsuario));
             arrayBtnOpciones.add(boton);
         }
 
