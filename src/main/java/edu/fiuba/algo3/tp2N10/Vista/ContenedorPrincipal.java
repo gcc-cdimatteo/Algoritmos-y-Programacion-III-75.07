@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.BotonComenzarJuego;
+import edu.fiuba.algo3.tp2N10.Controlador.BotonUsarExclusividad;
+import edu.fiuba.algo3.tp2N10.Controlador.BotonUsarMultiplicador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
@@ -8,6 +10,8 @@ import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -27,12 +31,23 @@ public class ContenedorPrincipal extends BorderPane {
         VBox vboxEnunciadoOpciones = new VBox(100);
         vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
 
-        Button btnPowerUpX2 = new Button("x2");
-        Button btnPowerUpX3 = new Button("x3");
-        Button btnPowerUpEx1 = new Button("Exclusividad");
-        Button btnPowerUpEx2 = new Button("Exclusividad");
-        Button btnListo = new Button("Listo");
+        VBox vboxPowerUps = new VBox(5);
+        //vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
+        if(algoKahoot.preguntaActualTienePenalidad()){
+            ToggleButton btnPowerUpX2 = new ToggleButton("x2");
+            btnPowerUpX2.setOnAction(new BotonUsarMultiplicador(algoKahoot, 2));
+            ToggleButton btnPowerUpX3 = new ToggleButton("x3");
+            btnPowerUpX3.setOnAction(new BotonUsarMultiplicador(algoKahoot, 3));
+            ToggleGroup grupoMultiplicadores = new ToggleGroup();
+            grupoMultiplicadores.getToggles().addAll(btnPowerUpX2, btnPowerUpX3);
+            vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3);
+        }else {
+            Button btnPowerUpEx1 = new Button("Exclusividad");
+            btnPowerUpEx1.setOnAction(new BotonUsarExclusividad(algoKahoot));
+            vboxPowerUps.getChildren().addAll(btnPowerUpEx1);
+        }
 
+        Button btnListo = new Button("Listo");
         BorderPane bpHeader = new BorderPane();
         bpHeader.setLeft(lblJugador);
         bpHeader.setRight(lblPuntaje);
@@ -48,8 +63,6 @@ public class ContenedorPrincipal extends BorderPane {
             vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot));
         }
 
-        VBox vboxPowerUps = new VBox(5);
-        vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
         bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
         bpPreguntaPowerUps.setRight(vboxPowerUps);
 

@@ -40,6 +40,8 @@ public class AlgoKahoot {
         return ronda.enunciado();
     }
 
+    public Boolean preguntaActualTienePenalidad(){ return ronda.preguntaTienePenalidad();}
+
     public List<String> preguntaActualOpciones() {
         return ronda.opciones();
     }
