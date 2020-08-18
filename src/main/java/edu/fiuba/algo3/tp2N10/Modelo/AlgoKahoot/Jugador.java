@@ -3,6 +3,7 @@ package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,5 +62,13 @@ public class Jugador {
     public void usarExclusividad() {
         if (usosDisponiblesExclusividad == 0) throw new PowerUpNoDisponibleException();
         usosDisponiblesExclusividad -= 1;
+    }
+
+    public ArrayList<Integer> multiplicadoresDisponibles(){
+        ArrayList<Integer> multiplicadoresDisponibles = new ArrayList<>();
+        for(int i = 1; i < this.multiplicadores.size(); i ++){
+            if(this.multiplicadores.get(i).tieneUsos()){ multiplicadoresDisponibles.add(i + 1);}
+        }
+        return multiplicadoresDisponibles;
     }
 }

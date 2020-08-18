@@ -19,4 +19,6 @@ public class Multiplicador {
     public Integer multiplicar(Integer unPuntaje) {
         return unPuntaje * valor;
     }
+
+    public Boolean tieneUsos(){return this.usosDisponibles != 0;}
 }

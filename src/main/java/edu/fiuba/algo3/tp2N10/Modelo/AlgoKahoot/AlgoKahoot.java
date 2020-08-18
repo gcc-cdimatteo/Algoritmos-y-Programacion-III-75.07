@@ -72,6 +72,8 @@ public class AlgoKahoot {
         ronda.usarExclusividad(jugadorActual);
     }
 
+    public ArrayList<Integer> jugadorMultiplicadoresDisponibles(){return jugadorActual.multiplicadoresDisponibles();}
+
     public void addObserver(Observer observer) {
         observers.add(observer);
     }

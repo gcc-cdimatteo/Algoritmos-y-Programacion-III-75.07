@@ -34,13 +34,13 @@ public class ContenedorPrincipal extends BorderPane {
         VBox vboxPowerUps = new VBox(5);
         //vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3, btnPowerUpEx1, btnPowerUpEx2);
         if(algoKahoot.preguntaActualTienePenalidad()){
-            ToggleButton btnPowerUpX2 = new ToggleButton("x2");
-            btnPowerUpX2.setOnAction(new BotonUsarMultiplicador(algoKahoot, 2));
-            ToggleButton btnPowerUpX3 = new ToggleButton("x3");
-            btnPowerUpX3.setOnAction(new BotonUsarMultiplicador(algoKahoot, 3));
-            ToggleGroup grupoMultiplicadores = new ToggleGroup();
-            grupoMultiplicadores.getToggles().addAll(btnPowerUpX2, btnPowerUpX3);
-            vboxPowerUps.getChildren().addAll(btnPowerUpX2, btnPowerUpX3);
+            for (Integer multiplicador: algoKahoot.jugadorMultiplicadoresDisponibles()){
+                ToggleButton btnPowerUp = new ToggleButton("x" + multiplicador.toString());
+                btnPowerUp.setOnAction(new BotonUsarMultiplicador(algoKahoot, multiplicador));
+                vboxPowerUps.getChildren().add(btnPowerUp);
+            }
+            //ToggleGroup grupoMultiplicadores = new ToggleGroup();
+            //grupoMultiplicadores.getToggles().addAll(btnPowerUpX2, btnPowerUpX3);
         }else {
             Button btnPowerUpEx1 = new Button("Exclusividad");
             btnPowerUpEx1.setOnAction(new BotonUsarExclusividad(algoKahoot));
