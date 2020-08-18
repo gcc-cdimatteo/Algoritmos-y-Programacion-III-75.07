@@ -4,9 +4,7 @@ import edu.fiuba.algo3.tp2N10.Controlador.BotonComenzarJuego;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
-import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaMultipleChoice;
-import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaVerdaderoFalso;
+import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,6 +42,10 @@ public class ContenedorPrincipal extends BorderPane {
             vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot));
         } else if (algoKahoot.preguntaActualClass() == PreguntaVerdaderoFalso.class) {
             vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot));
+        } else if (algoKahoot.preguntaActualClass() == PreguntaOrderedChoice.class){
+            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot));
+        } else if (algoKahoot.preguntaActualClass() == PreguntaGroupChoice.class) {
+            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot));
         }
 
         VBox vboxPowerUps = new VBox(5);

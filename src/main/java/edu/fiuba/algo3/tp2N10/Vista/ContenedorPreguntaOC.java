@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ContenedorPreguntaOC extends HBox {
 
-    public ContenedorPreguntaOC(Label respuestaOrdenada, Button btnListo, AlgoKahoot algoKahoot){
+    public ContenedorPreguntaOC(Button btnListo, AlgoKahoot algoKahoot){
         super();
 
         List<Integer> respuestaUsuario = new ArrayList<>();
@@ -21,7 +21,7 @@ public class ContenedorPreguntaOC extends HBox {
         ArrayList<Button> arrayBtnOpciones = new ArrayList<>();
         for (int i = 0; i < algoKahoot.preguntaActualOpciones().size(); i++) {
             Button boton = new Button(algoKahoot.preguntaActualOpciones().get(i));
-            boton.setOnAction(new BotonSeleccionarOpcionOC(respuestaOrdenada, boton, i, respuestaUsuario));
+            boton.setOnAction(new BotonSeleccionarOpcionOC(boton, i, respuestaUsuario));
             arrayBtnOpciones.add(boton);
         }
 
