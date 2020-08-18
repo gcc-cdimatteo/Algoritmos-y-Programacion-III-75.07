@@ -76,7 +76,7 @@
     },
     {
       "tipo": "groupChoice",
-      "enunciado": "Enunciado de pregunta ordered choice",
+      "enunciado": "Enunciado de pregunta group choice",
       "opciones": [
         "Opción primera Grupo 1",
         "Opción primera Grupo 2",

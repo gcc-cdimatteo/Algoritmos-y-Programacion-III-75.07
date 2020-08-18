@@ -39,7 +39,7 @@ public class App extends Application {
         try {
             //La bolsa de preguntas deberia ir dentro de algokahoot, y este recibir el nombre del archivo en su constructor.
             //Lo dejo aca para no tocar el modelo hasta que quede un poco mas firme la interfaz.
-            BolsaDePreguntas bolsaDePreguntas = new BolsaDePreguntas("preguntas.json");
+            BolsaDePreguntas bolsaDePreguntas = new BolsaDePreguntas("preguntas_variadas.json");
             ArrayList<Pregunta> preguntas = bolsaDePreguntas.getLista();
             // preguntas 0,1: VF, 2,3,4: MC, 5:OC, 6:GC
 
