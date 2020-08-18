@@ -67,7 +67,7 @@
     },
     {
       "tipo": "groupChoice",
-      "enunciado": "Agrupe según fue usado en el primer tp o el segundo tp",
+      "enunciado": "Agrupe según fue usado en el primer tp [A] o el segundo tp [B]",
       "opciones": [
         "Java",
         "Smalltalk",

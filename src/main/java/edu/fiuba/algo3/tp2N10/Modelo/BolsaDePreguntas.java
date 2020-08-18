@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Modelo;
 
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.NoHayMasPreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
@@ -128,5 +129,12 @@ public class BolsaDePreguntas {
 
     public ArrayList<Pregunta> getLista() {
         return this.lista;
+    }
+
+    public Pregunta getPregunta() {
+        if (this.lista.size() < 1) throw new NoHayMasPreguntas();
+        Pregunta pregunta = this.lista.get(0);
+        this.lista.remove(0);
+        return pregunta;
     }
 }
