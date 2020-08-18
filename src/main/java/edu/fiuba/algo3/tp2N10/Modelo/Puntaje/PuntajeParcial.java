@@ -8,7 +8,13 @@ public class PuntajeParcial implements Puntaje {
     }
 
     @Override
-    public Boolean penalidad(){
+    public boolean permiteMultiplicadores() {
         return false;
     }
+
+    @Override
+    public boolean permiteExclusividad() {
+        return false;
+    }
+
 }

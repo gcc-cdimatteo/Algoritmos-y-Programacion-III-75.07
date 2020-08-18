@@ -39,7 +39,13 @@ public class RespuestaVerdaderoFalso implements Respuesta {
     }
 
     @Override
-    public Boolean penalidad(){
-        return this.puntaje.penalidad();
+    public boolean permiteMultiplicadores() {
+        return puntaje.permiteMultiplicadores();
     }
+
+    @Override
+    public boolean permiteExclusividad() {
+        return puntaje.permiteExclusividad();
+    }
+
 }

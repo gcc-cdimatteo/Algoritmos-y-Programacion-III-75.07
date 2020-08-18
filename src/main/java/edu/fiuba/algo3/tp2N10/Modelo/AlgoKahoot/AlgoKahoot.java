@@ -42,9 +42,9 @@ public class AlgoKahoot {
         return ronda.enunciado();
     }
 
-    public boolean preguntaActualPermiteMultiplicadores() { return ronda.preguntaTienePenalidad(); }
+    public boolean preguntaActualPermiteMultiplicadores() { return ronda.preguntaActualPermiteMultiplicadores(); }
 
-    public boolean preguntaActualPermiteExclusividad() { return !ronda.preguntaTienePenalidad(); }
+    public boolean preguntaActualPermiteExclusividad() { return ronda.preguntaActualPermiteExclusividad(); }
 
     public List<String> preguntaActualOpciones() {
         return ronda.opciones();
@@ -76,6 +76,8 @@ public class AlgoKahoot {
     public void jugadorUsaExclusividad() {
         ronda.usarExclusividad(jugadorActual);
     }
+
+    public ArrayList<Integer> jugadorMultiplicadoresDisponibles(){return jugadorActual.multiplicadoresDisponibles();}
 
     public void addObserver(Observer observer) {
         observers.add(observer);

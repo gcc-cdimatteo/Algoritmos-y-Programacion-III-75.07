@@ -4,5 +4,7 @@ public interface Respuesta {
 
     Integer evaluar(Respuesta respuestaUsuario);
 
-    Boolean penalidad();
+    boolean permiteMultiplicadores();
+
+    boolean permiteExclusividad();
 }

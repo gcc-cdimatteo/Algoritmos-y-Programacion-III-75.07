@@ -30,7 +30,13 @@ public class RespuestaOrderedChoice implements Respuesta {
     }
 
     @Override
-    public Boolean penalidad(){
+    public boolean permiteMultiplicadores() {
         return false;
     }
+
+    @Override
+    public boolean permiteExclusividad() {
+        return true;
+    }
+
 }

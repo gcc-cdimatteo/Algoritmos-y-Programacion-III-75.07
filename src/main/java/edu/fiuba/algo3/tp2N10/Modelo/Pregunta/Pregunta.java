@@ -25,6 +25,11 @@ public abstract class Pregunta {
 
     public List<String> getOpciones() { return this.opciones; }
 
-    public boolean tienePenalidad() { return this.respuestaCorrecta.penalidad(); }
+    public boolean permiteMultiplicadores() {
+        return respuestaCorrecta.permiteMultiplicadores();
+    }
 
+    public boolean permiteExclusividad() {
+        return respuestaCorrecta.permiteExclusividad();
+    }
 }

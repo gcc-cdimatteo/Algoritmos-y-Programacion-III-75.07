@@ -4,5 +4,7 @@ public interface Puntaje {
 
     Integer puntuar(Integer aciertos, Integer errores);
 
-    Boolean penalidad();
+    boolean permiteMultiplicadores();
+
+    boolean permiteExclusividad();
 }
