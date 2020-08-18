@@ -5,12 +5,12 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
+public class BotonEntrar implements EventHandler<ActionEvent> {
 
     private Stage stage;
     private final Scene proximaEscena;
 
-    public BotonEntrarEventHandler(Stage stage, Scene proximaEscena) {
+    public BotonEntrar(Stage stage, Scene proximaEscena) {
         this.stage = stage;
         this.proximaEscena = proximaEscena;
     }

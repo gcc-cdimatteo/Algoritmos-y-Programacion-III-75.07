@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.BotonEntrarEventHandler;
-import edu.fiuba.algo3.tp2N10.Controlador.BotonSalirEventHandler;
+import edu.fiuba.algo3.tp2N10.Controlador.BotonEntrar;
+import edu.fiuba.algo3.tp2N10.Controlador.BotonSalir;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -36,16 +36,13 @@ public class ContenedorBienvenidos extends VBox {
 
         Button botonEntrar = new Button();
         botonEntrar.setText("Entrar");
-        botonEntrar.setOnAction( new BotonEntrarEventHandler(stage, proximaEscena));
+        botonEntrar.setOnAction( new BotonEntrar(stage, proximaEscena));
 
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
-        botonSalir.setOnAction( new BotonSalirEventHandler());
+        botonSalir.setOnAction( new BotonSalir());
 
         this.getChildren().addAll(etiqueta, botonEntrar, botonSalir);
     }
-
-
-
 }

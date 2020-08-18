@@ -46,4 +46,13 @@ public class PuntuadorExclusividadTest {
         puntuador.usarExclusividad(jugadorDos);
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
+
+    @Test
+    public void test01ExclusividadDuplicaElPuntajeAlQueHayaContestadoBienEnPreguntaParcial() {
+        List<Integer> puntos = Arrays.asList(3, 0);
+        List<Integer> puntosEsperados = Arrays.asList(6, 0);
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("X Æ A-12"));
+        assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
+    }
+
 }

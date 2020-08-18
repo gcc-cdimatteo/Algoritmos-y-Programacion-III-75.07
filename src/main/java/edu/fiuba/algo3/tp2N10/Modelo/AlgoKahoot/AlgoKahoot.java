@@ -1,27 +1,31 @@
 package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
+import edu.fiuba.algo3.tp2N10.Modelo.BolsaDePreguntas;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.ArchivoJsonFalloException;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Observer;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class AlgoKahoot {
 
-    private final LinkedList<Pregunta> preguntas;
+    private final BolsaDePreguntas factoryPreguntas;
     private Ronda ronda;
     private Jugador jugadorActual;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
 
-    public AlgoKahoot(List<Pregunta> preguntas, String jugadorUno, String jugadorDos) {
-        this.preguntas = new LinkedList<>(preguntas);
-        Jugador primerJugador = new Jugador(jugadorUno);
-        Jugador segundoJugador = new Jugador(jugadorDos);
-        primerJugador.ordenarCon(segundoJugador);
-        this.jugadorActual = primerJugador;
-        nuevaRonda();
+    public AlgoKahoot(String nombreArchivoJSON, String jugadorUno, String jugadorDos) {
+        try {
+            factoryPreguntas = new BolsaDePreguntas(nombreArchivoJSON);
+            Jugador primerJugador = new Jugador(jugadorUno);
+            Jugador segundoJugador = new Jugador(jugadorDos);
+            primerJugador.ordenarCon(segundoJugador);
+            jugadorActual = primerJugador;
+            nuevaRonda();
+        } catch (IOException e) {throw new ArchivoJsonFalloException(); }
     }
 
     public int jugadorActualPuntaje() {
@@ -42,9 +46,7 @@ public class AlgoKahoot {
 
     public Class<? extends Pregunta> preguntaActualClass() { return ronda.preguntaClass();}
 
-    public void nuevaRonda() {
-        ronda = new Ronda(preguntas.poll(), jugadorActual);
-    }
+    public void nuevaRonda() { ronda = new Ronda(this.factoryPreguntas.getPregunta(), jugadorActual); }
 
     public void cargarRespuesta(Respuesta respuesta) {
         ronda.cargarRespuesta(respuesta);
