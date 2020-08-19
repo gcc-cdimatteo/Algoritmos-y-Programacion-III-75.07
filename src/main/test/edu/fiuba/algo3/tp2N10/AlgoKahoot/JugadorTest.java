@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.tp2N10.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -27,82 +27,91 @@ public class AlgoKahootTest {
         }
     }
 
-//    @Test
-//    public void test01AlgoKahootPuedeCrearseSiSeIndicaElNombreDelArchivoJSONDePreguntasYElNombreDeLosJugadores() {
-//        assertEquals(AlgoKahoot.class, creoUnAlgoKahoot("preguntas_test.json").getClass());
-//    }
-//
-//    @Test
-//    public void test02AlgoKahootRecibeYProcesaLaRespuestaDeTodosLosJugadoresCambiandoDeTurno() {
-//        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
-//
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-//
-//        Integer puntosJugadorUno = algoKahoot.jugadorActualPuntaje();
-//        algoKahoot.cambiarJugador();
-//        Integer puntosJugadorDos = algoKahoot.jugadorActualPuntaje();
-//
-//        assertEquals(Arrays.asList(1, 0), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
-//    }
-//
-//    @Test
-//    public void test03LosJugadoresPuedenUsarMultiplicadoresAntesDeResponder() {
-//        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
-//
-//        algoKahoot.jugadorUsaMultiplicador(3);
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
-//        algoKahoot.jugadorUsaMultiplicador(2);
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-//        Integer puntosJugadorUno = algoKahoot.jugadorActualPuntaje();
-//        algoKahoot.cambiarJugador();
-//        Integer puntosJugadorDos = algoKahoot.jugadorActualPuntaje();
-//
-//        assertEquals(Arrays.asList(3, 0), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
-//    }
-//
-//    @Test
-//    public void test04UnJugadorNoPuedeUsarUnMultiplicadorMasDeUnaVez() {
-//        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
-//
-//        algoKahoot.jugadorUsaMultiplicador(2);
-//
-//        assertThrows(PowerUpNoDisponibleException.class, () -> algoKahoot.jugadorUsaMultiplicador(2));
-//    }
-//
-//    @Test
-//    public void test05SiUnJugadorUsaExclusividadAlgoKahootAsignaCorrectamenteElPuntaje() {
-//        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
-//
-//        //Estas lineas son para debuggear, despues refactorizo mejor
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-//        ///////////////////////////////////////////////////////////////////
-//
-//        algoKahoot.jugadorUsaExclusividad();
-//        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1, 2))));
-//        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1))));
-//        assertEquals(6, algoKahoot.jugadorActualPuntaje());
-//    }
-//
-//    @Test
-//    public void test06SiAmbosJugadoresUsanExclusividadAlgoKahootCuadruplicaElPuntajeDelQueContestaCorrectamente() {
-//        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
-//
-//        //Estas lineas son para debuggear, despues refactorizo mejor
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-//        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-//        ///////////////////////////////////////////////////////////////////
-//
-//        algoKahoot.jugadorUsaExclusividad();
-//        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 3))));
-//        algoKahoot.jugadorUsaExclusividad();
-//        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1, 2))));
-//        Integer puntosJugadorUno = algoKahoot.jugadorActualPuntaje();
-//        algoKahoot.cambiarJugador();
-//        Integer puntosJugadorDos = algoKahoot.jugadorActualPuntaje();
-//        assertEquals(Arrays.asList(0, 12), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
-//    }
+    @Test
+    public void test01AlgoKahootPuedeCrearseSiSeIndicaElNombreDelArchivoJSONDePreguntasYElNombreDeLosJugadores() {
+        assertEquals(AlgoKahoot.class, creoUnAlgoKahoot("preguntas_test.json").getClass());
+    }
+
+    @Test
+    public void test02AlgoKahootRecibeYProcesaLaRespuestaDeTodosLosJugadoresCambiandoDeTurno() {
+        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
+
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+
+        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
+        algoKahoot.cambiarJugador();
+        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
+
+        assertEquals(Arrays.asList(1, -1), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
+    }
+
+    @Test
+    public void test03LosJugadoresPuedenUsarMultiplicadoresAntesDeResponder() {
+        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
+
+        algoKahoot.jugadorUsaMultiplicador(3);
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
+        algoKahoot.jugadorUsaMultiplicador(2);
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
+        algoKahoot.cambiarJugador();
+        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
+
+        assertEquals(Arrays.asList(3, -2), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
+    }
+
+    @Test
+    public void test04SiUnJugadorUsaExclusividadAlgoKahootAsignaCorrectamenteElPuntaje() {
+        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
+
+        //Estas lineas son para debuggear, despues refactorizo mejor
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+        ///////////////////////////////////////////////////////////////////
+
+        algoKahoot.jugadorUsaExclusividad();
+        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
+        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1))));
+        assertEquals(1, algoKahoot.jugadorPuntaje());
+    }
+
+    @Test
+    public void test05SiAmbosJugadoresUsanExclusividadAlgoKahootCuadruplicaElPuntajeDelQueContestaCorrectamente() {
+        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
+
+        //Estas lineas son para debuggear, despues refactorizo mejor
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+        ///////////////////////////////////////////////////////////////////
+
+        algoKahoot.jugadorUsaExclusividad();
+        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
+        algoKahoot.jugadorUsaExclusividad();
+        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1, 2))));
+        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
+        algoKahoot.cambiarJugador();
+        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
+        assertEquals(Arrays.asList(3, -1), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
+    }
+
+    @Test
+    public void test06AlFinalDelJuegoSeLanzaUnaExcepcion() {
+        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
+
+        //// Ronda 1
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+        //// Ronda 2
+        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 3))));
+        algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
+        //// Ronda 3
+        algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(Arrays.asList(3, 0, 1, 2)));
+        algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(Arrays.asList(3, 1, 2, 0)));
+        //// Ronda 4
+        algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 2, 4)), new HashSet<>(Arrays.asList(0, 3))));
+        assertThrows(JuegoFinalizadoException.class, () -> algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4)))));
+    }
 
     private List<Integer> jugadoresPuntos(AlgoKahoot algoKahoot) {
         Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
@@ -113,7 +122,7 @@ public class AlgoKahootTest {
     }
 
     @Test
-    public void test08PruebasIntegrales() {
+    public void test06PruebasIntegrales() {
         AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
 
         //// Ronda 1

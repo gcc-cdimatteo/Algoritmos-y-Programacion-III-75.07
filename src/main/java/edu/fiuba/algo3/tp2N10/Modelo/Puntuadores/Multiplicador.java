@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Puntuadores;
 
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
-
 public class Multiplicador {
 
     private int valor;
