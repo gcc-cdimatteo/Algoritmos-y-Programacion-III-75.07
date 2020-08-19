@@ -15,7 +15,7 @@ public class ContenedorPreguntaGC extends VBox {
         String grupoA = "Grupo A";
         String grupoB = "Grupo B";
         ArrayList<ToggleGroup> gruposDeOpciones = new ArrayList<>();
-        for (String op : algoKahoot.preguntaActualOpciones()) {
+        for (String op : algoKahoot.preguntaOpciones()) {
             RadioButton rdoGrupoA = new RadioButton(grupoA);
             RadioButton rdoGrupoB = new RadioButton(grupoB);
             rdoGrupoA.setSelected(true);

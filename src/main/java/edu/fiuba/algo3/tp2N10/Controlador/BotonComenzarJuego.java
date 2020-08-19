@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class BotonComenzarJuego implements EventHandler<ActionEvent> {
     private TextField nombreUno;
     private TextField nombreDos;
@@ -24,7 +26,11 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
             AlertaNombreFaltante alertaNombreFaltante = new AlertaNombreFaltante();
             alertaNombreFaltante.mostrar();
         } else {
-            this.app.jugar(this.nombreUno.getText(), this.nombreDos.getText());
+            try {
+                this.app.jugar(this.nombreUno.getText(), this.nombreDos.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -2,12 +2,14 @@ package edu.fiuba.algo3.tp2N10.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.JuegoFinalizadoException;
+import edu.fiuba.algo3.tp2N10.Modelo.FactoryPreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AlgoKahootTest {
     public AlgoKahoot creoUnAlgoKahoot(String archivoNombre) {
-        return new AlgoKahoot(archivoNombre, "Delfina", "Camila");
+        try {
+            FactoryPreguntas factory = new FactoryPreguntas(archivoNombre);
+            return new AlgoKahoot(factory.preguntas(), "Delfina", "Camila");
+        } catch (IOException e) {
+            return null;
+        }
     }
 
 //    @Test
@@ -98,9 +105,9 @@ public class AlgoKahootTest {
 //    }
 
     private List<Integer> jugadoresPuntos(AlgoKahoot algoKahoot) {
-        Integer puntosJugadorUno = algoKahoot.jugadorActualPuntaje();
+        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
         algoKahoot.cambiarJugador();
-        Integer puntosJugadorDos = algoKahoot.jugadorActualPuntaje();
+        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
         algoKahoot.cambiarJugador();
         return Arrays.asList(puntosJugadorUno, puntosJugadorDos);
     }

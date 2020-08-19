@@ -46,9 +46,9 @@ public class Ronda {
         return this.pregunta.getOpciones();
     }
 
-    public boolean preguntaActualPermiteMultiplicadores() { return this.pregunta.permiteMultiplicadores(); }
+    public boolean permiteMultiplicadores() { return this.pregunta.permiteMultiplicadores(); }
 
-    public boolean preguntaActualPermiteExclusividad() { return this.pregunta.permiteExclusividad(); }
+    public boolean permiteExclusividad() { return this.pregunta.permiteExclusividad(); }
 
     public Pregunta preguntaActual() {
         return pregunta;

@@ -13,19 +13,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BotonResponderGC implements EventHandler<ActionEvent> {
+public class BotonResponderGC extends BotonResponder {
 
-    private AlgoKahoot algoKahoot;
-    private ArrayList<ToggleGroup> opcionesUsuario;
-    private RespuestaGroupChoice respuesta;
+    private final ArrayList<ToggleGroup> opcionesUsuario;
 
-    public BotonResponderGC(AlgoKahoot algoKahoot, ArrayList<ToggleGroup> opcionesUsuario){
+    public BotonResponderGC(AlgoKahoot algoKahoot, ArrayList<ToggleGroup> opcionesUsuario) {
+        super(algoKahoot);
         this.opcionesUsuario = opcionesUsuario;
-        this.algoKahoot = algoKahoot;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        usarPowerUp();
         Set<Integer> grupoA = new HashSet<>();
         Set<Integer> grupoB = new HashSet<>();
         for(int i = 0; i < opcionesUsuario.size(); i++){
@@ -36,7 +35,6 @@ public class BotonResponderGC implements EventHandler<ActionEvent> {
                 grupoB.add(i + 1);
             }
         }
-        this.respuesta = new RespuestaGroupChoice(grupoA, grupoB);
-        this.algoKahoot.cargarRespuesta(this.respuesta);
+        this.algoKahoot.cargarRespuesta(new RespuestaGroupChoice(grupoA, grupoB));
     }
 }

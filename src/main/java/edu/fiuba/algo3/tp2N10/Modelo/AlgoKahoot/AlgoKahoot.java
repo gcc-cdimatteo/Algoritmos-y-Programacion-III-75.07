@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
-import edu.fiuba.algo3.tp2N10.Modelo.PreguntasFactory;
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.ArchivoJsonFalloException;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.JuegoFinalizadoException;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
@@ -14,39 +12,33 @@ import java.util.Queue;
 
 public class AlgoKahoot {
 
-    private Queue<Pregunta> preguntas;
+    private final Queue<Pregunta> preguntas;
     private Ronda ronda;
     private Jugador jugadorActual;
-    private List<Observer> observers = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
 
-    public AlgoKahoot(String nombreArchivoJSON, String jugadorUno, String jugadorDos) {
-        try {
-            preguntas = new PreguntasFactory(nombreArchivoJSON).getLista();
-            Jugador primerJugador = new Jugador(jugadorUno);
-            Jugador segundoJugador = new Jugador(jugadorDos);
-            primerJugador.ordenarCon(segundoJugador);
-            jugadorActual = primerJugador;
-            nuevaRonda();
-        } catch (IOException e) { throw new ArchivoJsonFalloException(); }
+    public AlgoKahoot(Queue<Pregunta> preguntas, String jugadorUno, String jugadorDos) throws IOException {
+        this.preguntas = preguntas;
+        Jugador primerJugador = new Jugador(jugadorUno);
+        Jugador segundoJugador = new Jugador(jugadorDos);
+        primerJugador.ordenarCon(segundoJugador);
+        jugadorActual = primerJugador;
+        nuevaRonda();
     }
 
-    public int jugadorActualPuntaje() {
+    public int jugadorPuntaje() {
         return jugadorActual.puntaje();
     }
 
-    public String jugadorActualNombre() {
+    public String jugadorNombre() {
         return jugadorActual.nombre();
     }
 
-    public String preguntaActualEnunciado() {
+    public String preguntaEnunciado() {
         return ronda.enunciado();
     }
 
-    public boolean preguntaActualPermiteMultiplicadores() { return ronda.preguntaActualPermiteMultiplicadores(); }
-
-    public boolean preguntaActualPermiteExclusividad() { return ronda.preguntaActualPermiteExclusividad(); }
-
-    public List<String> preguntaActualOpciones() {
+    public List<String> preguntaOpciones() {
         return ronda.opciones();
     }
 
@@ -77,7 +69,17 @@ public class AlgoKahoot {
         ronda.usarExclusividad(jugadorActual);
     }
 
-    public ArrayList<Integer> jugadorMultiplicadoresDisponibles(){return jugadorActual.multiplicadoresDisponibles();}
+    public boolean permiteMultiplicadores() {
+        return ronda.permiteMultiplicadores();
+    }
+
+    public boolean multiplicadorDisponible(int valor) {
+        return jugadorActual.multiplicadorDisponible(valor);
+    }
+
+    public boolean permiteExclusividad() {
+        return ronda.permiteExclusividad() && jugadorActual.exclusividadDisponible();
+    }
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -87,5 +89,7 @@ public class AlgoKahoot {
         observers.forEach(Observer::change);
     }
 
-    public Pregunta preguntaActual() { return ronda.preguntaActual(); }
+    public Pregunta preguntaActual() {
+        return ronda.preguntaActual();
+    }
 }

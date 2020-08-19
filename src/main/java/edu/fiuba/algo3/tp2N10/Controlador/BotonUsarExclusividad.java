@@ -18,7 +18,7 @@ public class BotonUsarExclusividad implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         try {
             this.algoKahoot.jugadorUsaExclusividad();
-        }catch (PowerUpNoDisponibleException e) {
+        } catch (PowerUpNoDisponibleException e) {
             AlertaPowerUpNoDisponible alerta = new AlertaPowerUpNoDisponible("Exclusividad");
             alerta.mostrar();
         }

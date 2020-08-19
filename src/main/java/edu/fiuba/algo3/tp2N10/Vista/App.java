@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
+import edu.fiuba.algo3.tp2N10.Modelo.FactoryPreguntas;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class App extends Application {
 
@@ -28,8 +31,8 @@ public class App extends Application {
         this.escenario.show();
     }
 
-    public void jugar(String nombreUno, String nombreDos) {
-        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_test.json", nombreUno, nombreDos);
+    public void jugar(String nombreUno, String nombreDos) throws IOException {
+        AlgoKahoot algoKahoot = new AlgoKahoot(new FactoryPreguntas("preguntas_test.json").preguntas(), nombreUno, nombreDos);
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, this.escenario);
         algoKahootView.mostrar();
     }

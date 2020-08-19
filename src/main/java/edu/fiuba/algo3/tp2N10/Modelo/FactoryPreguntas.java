@@ -11,18 +11,18 @@ import java.nio.file.Paths;
 import java.util.*;
 
 
-public class PreguntasFactory {
+public class FactoryPreguntas {
 
-    private Queue<Pregunta> lista = new LinkedList<>();
+    private Queue<Pregunta> preguntas = new LinkedList<>();
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // PUBLIC
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public Queue<Pregunta> getLista() {
-        return this.lista;
+    public Queue<Pregunta> preguntas() {
+        return this.preguntas;
     }
 
-    public PreguntasFactory(String archivo) throws IOException {
+    public FactoryPreguntas(String archivo) throws IOException {
 
         String contenido = new String(Files.readAllBytes(Paths.get(archivo)));
 
@@ -33,25 +33,25 @@ public class PreguntasFactory {
             JSONObject pregunta = preguntas.getJSONObject(i);
             switch (pregunta.getString("tipo")) {
                 case "verdaderoFalsoClasico":
-                    lista.add(generarPreguntaVerdaderoFalsoClasico(pregunta));
+                    this.preguntas.add(generarPreguntaVerdaderoFalsoClasico(pregunta));
                     break;
                 case "verdaderoFalsoPenalidad":
-                    lista.add(generarPreguntaVerdaderoFalsoPenalidad(pregunta));
+                    this.preguntas.add(generarPreguntaVerdaderoFalsoPenalidad(pregunta));
                     break;
                 case "multipleChoiceClasico":
-                    lista.add(generarPreguntaMultipleChoiceClasico(pregunta));
+                    this.preguntas.add(generarPreguntaMultipleChoiceClasico(pregunta));
                     break;
                 case "multipleChoiceParcial":
-                    lista.add(generarPreguntaMultipleChoiceParcial(pregunta));
+                    this.preguntas.add(generarPreguntaMultipleChoiceParcial(pregunta));
                     break;
                 case "multipleChoicePenalidad":
-                    lista.add(generarPreguntaMultipleChoicePenalidad(pregunta));
+                    this.preguntas.add(generarPreguntaMultipleChoicePenalidad(pregunta));
                     break;
                 case "orderedChoice":
-                    lista.add(generarPreguntaOrderedChoice(pregunta));
+                    this.preguntas.add(generarPreguntaOrderedChoice(pregunta));
                     break;
                 case "groupChoice":
-                    lista.add(generarPreguntaGroupChoice(pregunta));
+                    this.preguntas.add(generarPreguntaGroupChoice(pregunta));
                     break;
                 default:
                     throw new PreguntaDesconocidaException();

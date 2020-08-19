@@ -11,7 +11,7 @@ public class BotonUsarMultiplicador implements EventHandler<ActionEvent> {
     private AlgoKahoot algoKahoot;
     private Integer valorMultiplicador;
 
-    public BotonUsarMultiplicador(AlgoKahoot algoKahoot, Integer valorMultiplicador){
+    public BotonUsarMultiplicador(AlgoKahoot algoKahoot, Integer valorMultiplicador) {
         this.algoKahoot = algoKahoot;
         this.valorMultiplicador = valorMultiplicador;
     }

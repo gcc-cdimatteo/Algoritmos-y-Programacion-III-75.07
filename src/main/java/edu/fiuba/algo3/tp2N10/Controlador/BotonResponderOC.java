@@ -10,27 +10,25 @@ import javafx.event.EventHandler;
 
 import java.util.List;
 
-public class BotonResponderOC implements EventHandler<ActionEvent> {
-    private AlgoKahoot algoKahoot;
-    private List<Integer> respuestaUsuario;
-    private RespuestaOrderedChoice respuesta;
-    private Integer tamRespuesta;
+public class BotonResponderOC extends BotonResponder {
+    private final List<Integer> respuestaUsuario;
+    private final Integer tamRespuesta;
 
     public BotonResponderOC(AlgoKahoot algoKahoot, List<Integer> respuestaUsuario, Integer tamRespuesta){
-        this.algoKahoot = algoKahoot;
+        super(algoKahoot);
         this.respuestaUsuario = respuestaUsuario;
         this.tamRespuesta = tamRespuesta; // Refactorizar para evitar este atributo
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if(this.tamRespuesta != this.respuestaUsuario.size()){
+        usarPowerUp();
+        if(this.tamRespuesta != this.respuestaUsuario.size()) {
             AlertaOrdenarTodasLasOpcionesOC alertaOrdenarTodasLasOpcionesOC = new AlertaOrdenarTodasLasOpcionesOC();
             alertaOrdenarTodasLasOpcionesOC.mostrar();
         }
         else{
-            this.respuesta = new RespuestaOrderedChoice(this.respuestaUsuario);
-            this.algoKahoot.cargarRespuesta(this.respuesta);
+            this.algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(this.respuestaUsuario));
         }
     }
 }
