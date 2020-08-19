@@ -19,6 +19,7 @@ public class App extends Application {
     }
 
     public void start(Stage stage) throws Exception {
+
         this.escenario = stage;
 
         this.escenario.setTitle("AlgoKahoot");
@@ -34,14 +35,8 @@ public class App extends Application {
     }
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
-        try {
-            algoKahoot = new AlgoKahoot(new FactoryPreguntas("preguntas_test.json").preguntas(), nombreUno, nombreDos);
-            AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
-            algoKahootView.mostrar();
-        } catch (JuegoFinalizadoException e) {
-            ContenedorPodio contenedorPodio = new ContenedorPodio(algoKahoot);
-            Scene escenaPodio = new Scene(contenedorPodio, 640, 480);
-            escenario.setScene(escenaPodio);
-        }
+        algoKahoot = new AlgoKahoot(new FactoryPreguntas("preguntas_test.json").preguntas(), nombreUno, nombreDos);
+        AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
+        algoKahootView.mostrar();
     }
 }

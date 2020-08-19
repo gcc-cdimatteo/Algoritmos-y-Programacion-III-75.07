@@ -16,9 +16,16 @@ public class AlgoKahootView implements Observer {
     }
 
     public void mostrar() {
-        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(this.algoKahoot);
-        Scene escenaPrincipal = new Scene(contenedorPrincipal, 640, 480);
-        this.escenario.setScene(escenaPrincipal);
+        if(this.algoKahoot.finalizado()) {
+            ContenedorPodio contenedorPodio = new ContenedorPodio(this.algoKahoot);
+            Scene escenaPodio = new Scene(contenedorPodio, 640, 480);
+            this.escenario.setScene(escenaPodio);
+        }
+        else {
+            ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(this.algoKahoot);
+            Scene escenaPrincipal = new Scene(contenedorPrincipal, 640, 480);
+            this.escenario.setScene(escenaPrincipal);
+        }
     }
 
     @Override

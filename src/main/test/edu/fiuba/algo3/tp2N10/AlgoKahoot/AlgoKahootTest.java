@@ -14,8 +14,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AlgoKahootTest {
     public AlgoKahoot creoUnAlgoKahoot(String archivoNombre) {
@@ -110,7 +109,9 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(Arrays.asList(3, 1, 2, 0)));
         //// Ronda 4
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 2, 4)), new HashSet<>(Arrays.asList(0, 3))));
-        assertThrows(JuegoFinalizadoException.class, () -> algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4)))));
+        algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4))));
+        
+        assertTrue(algoKahoot.finalizado());
     }
 
     private List<Integer> jugadoresPuntos(AlgoKahoot algoKahoot) {

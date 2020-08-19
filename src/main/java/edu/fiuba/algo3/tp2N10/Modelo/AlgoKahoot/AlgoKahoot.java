@@ -16,6 +16,7 @@ public class AlgoKahoot {
     private Ronda ronda;
     private Jugador jugadorActual;
     private final List<Observer> observers = new ArrayList<>();
+    private boolean finalizado = false;
 
     public AlgoKahoot(Queue<Pregunta> preguntas, String jugadorUno, String jugadorDos) throws IOException {
         this.preguntas = preguntas;
@@ -24,6 +25,10 @@ public class AlgoKahoot {
         primerJugador.ordenarCon(segundoJugador);
         jugadorActual = primerJugador;
         nuevaRonda();
+    }
+
+    public boolean finalizado() {
+        return finalizado;
     }
 
     public int jugadorPuntaje() {
@@ -43,7 +48,10 @@ public class AlgoKahoot {
     }
 
     public void nuevaRonda() {
-        if (preguntas.isEmpty()) throw new JuegoFinalizadoException();
+        if (preguntas.isEmpty()) {
+            this.finalizado = true;
+            notifyObservers();
+        }
         ronda = new Ronda(this.preguntas.poll(), jugadorActual);
     }
 
