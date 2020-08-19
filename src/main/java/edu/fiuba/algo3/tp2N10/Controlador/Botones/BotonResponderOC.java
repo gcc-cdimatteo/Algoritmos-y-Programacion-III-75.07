@@ -1,9 +1,7 @@
-package edu.fiuba.algo3.tp2N10.Controlador;
+package edu.fiuba.algo3.tp2N10.Controlador.Botones;
 
 import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaOrdenarTodasLasOpcionesOC;
-import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaSeleccionarUnaOpcion;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

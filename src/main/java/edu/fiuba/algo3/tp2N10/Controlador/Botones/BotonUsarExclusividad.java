@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10.Controlador;
+package edu.fiuba.algo3.tp2N10.Controlador.Botones;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.event.ActionEvent;
@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 public class BotonUsarExclusividad implements EventHandler<ActionEvent> {
 
     private final Button boton;
-    private AlgoKahoot algoKahoot;
+    private final AlgoKahoot algoKahoot;
 
     public BotonUsarExclusividad(AlgoKahoot algoKahoot, Button boton){
         this.algoKahoot = algoKahoot;

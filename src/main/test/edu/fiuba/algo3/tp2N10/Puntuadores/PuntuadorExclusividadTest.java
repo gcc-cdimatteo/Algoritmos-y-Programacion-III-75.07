@@ -5,7 +5,6 @@ import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.PuntuadorExclusividad;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

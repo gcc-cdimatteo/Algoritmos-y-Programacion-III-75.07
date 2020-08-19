@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10.Controlador;
+package edu.fiuba.algo3.tp2N10.Controlador.Botones;
 
 import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaNombreFaltante;
 import edu.fiuba.algo3.tp2N10.Vista.App;
@@ -9,9 +9,9 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class BotonComenzarJuego implements EventHandler<ActionEvent> {
-    private TextField nombreUno;
-    private TextField nombreDos;
-    private App app;
+    private final TextField nombreUno;
+    private final TextField nombreDos;
+    private final App app;
 
 
     public BotonComenzarJuego(TextField nombreUno, TextField nombreDos, App app) {

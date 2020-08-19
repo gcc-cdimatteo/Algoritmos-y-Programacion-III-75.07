@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10.Controlador;
+package edu.fiuba.algo3.tp2N10.Controlador.Botones;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.event.ActionEvent;

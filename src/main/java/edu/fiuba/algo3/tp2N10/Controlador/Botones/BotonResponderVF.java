@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10.Controlador;
+package edu.fiuba.algo3.tp2N10.Controlador.Botones;
 
 
 import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaSeleccionarUnaOpcion;

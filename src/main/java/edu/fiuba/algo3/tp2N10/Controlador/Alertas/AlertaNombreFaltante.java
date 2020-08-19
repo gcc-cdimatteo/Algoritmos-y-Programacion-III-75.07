@@ -2,8 +2,6 @@ package edu.fiuba.algo3.tp2N10.Controlador.Alertas;
 
 import javafx.scene.control.Alert;
 
-import java.io.File;
-
 public class AlertaNombreFaltante extends Alert {
 
     public AlertaNombreFaltante() {

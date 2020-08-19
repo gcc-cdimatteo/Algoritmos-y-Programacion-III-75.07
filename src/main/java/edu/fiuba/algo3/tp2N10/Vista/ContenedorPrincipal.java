@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.BotonUsarExclusividad;
-import edu.fiuba.algo3.tp2N10.Controlador.BotonUsarMultiplicador;
+import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonUsarExclusividad;
+import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonUsarMultiplicador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import javafx.geometry.Insets;

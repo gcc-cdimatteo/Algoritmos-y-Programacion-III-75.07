@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10.Controlador;
+package edu.fiuba.algo3.tp2N10.Controlador.Botones;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

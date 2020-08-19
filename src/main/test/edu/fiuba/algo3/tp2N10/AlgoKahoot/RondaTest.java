@@ -8,19 +8,12 @@ import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaVerdaderoFalso;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RondaTest {
 
-    private boolean respuestaCorrecta;
     private Pregunta pregunta;
     private Jugador jugador1;
-    private Respuesta respuestaJugador1;
-    private Respuesta respuestaJugador2;
     private Jugador jugador2;
     private Ronda ronda;
 
@@ -44,10 +37,10 @@ public class RondaTest {
         crearJugadores();
         crearPreguntaVerdaderoYFalsoClasico();
         crearRonda();
-        this.respuestaJugador1 = new RespuestaVerdaderoFalso(true);
-        this.respuestaJugador2 = new RespuestaVerdaderoFalso(false);
-        this.ronda.cargarRespuesta(this.respuestaJugador1);
-        this.ronda.cargarRespuesta(this.respuestaJugador2);
+        Respuesta respuestaJugador1 = new RespuestaVerdaderoFalso(true);
+        Respuesta respuestaJugador2 = new RespuestaVerdaderoFalso(false);
+        this.ronda.cargarRespuesta(respuestaJugador1);
+        this.ronda.cargarRespuesta(respuestaJugador2);
         this.ronda.asignarPuntos();
 
         assertEquals(1, this.jugador1.puntaje());

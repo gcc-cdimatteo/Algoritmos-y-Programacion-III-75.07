@@ -3,7 +3,6 @@ package edu.fiuba.algo3.tp2N10.Modelo.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.*;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 

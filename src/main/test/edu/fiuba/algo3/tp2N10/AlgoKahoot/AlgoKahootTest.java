@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.tp2N10.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.JuegoFinalizadoException;
 import edu.fiuba.algo3.tp2N10.Modelo.FactoryPreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
@@ -160,11 +159,7 @@ public class AlgoKahootTest {
         // Camila
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 2, 4)), new HashSet<>(Arrays.asList(0, 3))));
         // Delfina
-        try {
-            algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4))));
-        } catch (JuegoFinalizadoException e) {
-
-        }
+        algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4))));
         // Puntos
         assertEquals(Arrays.asList(3, 5), jugadoresPuntos(algoKahoot));
     }

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.BotonResponderOC;
-import edu.fiuba.algo3.tp2N10.Controlador.BotonSeleccionarOpcionOC;
+import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonResponderOC;
+import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonSeleccionarOpcionOC;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;

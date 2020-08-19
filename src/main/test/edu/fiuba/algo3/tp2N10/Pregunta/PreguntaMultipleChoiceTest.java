@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaMultipleChoiceTest {
 
-    private String enunciado;
-    private List<String> opciones;
-    private Set<Integer> opcionesCorrectas;
+    private final String enunciado;
+    private final List<String> opciones;
+    private final Set<Integer> opcionesCorrectas;
     private PreguntaMultipleChoice preguntaMC;
 
     public PreguntaMultipleChoiceTest() {
@@ -107,7 +107,7 @@ public class PreguntaMultipleChoiceTest {
     @Test
     public void test10UnaPreguntaMCPADevuelve0SiNoEnvioNada(){
         crearMultipleChoiceParcial();
-        RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList()));
+        RespuestaMultipleChoice respuestaVacia = new RespuestaMultipleChoice(new HashSet<>(Collections.emptyList()));
         assertEquals(Collections.singletonList(0), this.preguntaMC.responder(Collections.singletonList(respuestaVacia)));
     }
 

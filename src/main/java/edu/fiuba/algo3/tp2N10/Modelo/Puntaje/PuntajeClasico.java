@@ -15,7 +15,7 @@ public class PuntajeClasico implements Puntaje {
         return miPuntaje;
     }
 
-    public static PuntajeClasico ParaMultipleChoice(Set opcionesCorrectas) {
+    public static PuntajeClasico ParaMultipleChoice(Set<Integer> opcionesCorrectas) {
         PuntajeClasico miPuntaje = new PuntajeClasico();
         miPuntaje.aciertosEsperados = opcionesCorrectas.size();
         return miPuntaje;

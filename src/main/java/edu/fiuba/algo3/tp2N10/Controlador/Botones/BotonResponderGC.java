@@ -1,7 +1,6 @@
-package edu.fiuba.algo3.tp2N10.Controlador;
+package edu.fiuba.algo3.tp2N10.Controlador.Botones;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,9 +28,9 @@ public class BotonResponderGC implements EventHandler<ActionEvent> {
         for(int i = 0; i < opcionesUsuario.size(); i++){
             ObservableList<Toggle> botones = opcionesUsuario.get(i).getToggles();
             if ((botones.get(0).isSelected())) {
-                grupoA.add(i + 1);
+                grupoA.add(i);
             } else {
-                grupoB.add(i + 1);
+                grupoB.add(i);
             }
         }
         this.algoKahoot.cargarRespuesta(new RespuestaGroupChoice(grupoA, grupoB));

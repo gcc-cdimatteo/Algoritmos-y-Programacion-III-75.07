@@ -30,7 +30,7 @@ public class RespuestaMultipleChoiceTest {
     }
 
     @Test
-    public void test02ElTamañoDeUnaRespuestaMultipleChoiceEsElDeSusOpciones() {
+    public void test02ElTamanioDeUnaRespuestaMultipleChoiceEsElDeSusOpciones() {
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 1, 4)));
         assertEquals(3, respuesta.size());
     }

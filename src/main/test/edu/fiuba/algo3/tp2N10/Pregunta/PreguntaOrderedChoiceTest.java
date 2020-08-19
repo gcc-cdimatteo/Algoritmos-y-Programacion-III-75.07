@@ -1,34 +1,30 @@
 package edu.fiuba.algo3.tp2N10.Pregunta;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.PreguntaOrderedChoice;
-import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaOrderedChoiceTest {
 
-    private String enunciado;
-    private List<String> opciones;
-    private List<Integer> opcionesCorrectas;
-    private PreguntaOrderedChoice preguntaOC;
+    private final List<Integer> opcionesCorrectas;
+    private final PreguntaOrderedChoice preguntaOC;
 
     public PreguntaOrderedChoiceTest() {
-        this.enunciado = "El orden de las letras del abecedario es...";
-        this.opciones = Arrays.asList("A", "B", "C");
+        String enunciado = "El orden de las letras del abecedario es...";
+        List<String> opciones = Arrays.asList("A", "B", "C");
         this.opcionesCorrectas = Arrays.asList(1, 2, 3);
-        this.preguntaOC = new PreguntaOrderedChoice(this.enunciado, this.opciones, this.opcionesCorrectas);
+        this.preguntaOC = new PreguntaOrderedChoice(enunciado, opciones, this.opcionesCorrectas);
     }
 
     @Test
     public void test01UnaPreguntaOCPuedeCrearseSiSeIndicanLasRtasCorretas() {
         RespuestaOrderedChoice respuestaCorrecta = new RespuestaOrderedChoice(this.opcionesCorrectas);
-        assertEquals(Collections.singletonList(1), this.preguntaOC.responder(Arrays.asList(respuestaCorrecta)));
+        assertEquals(Collections.singletonList(1), this.preguntaOC.responder(Collections.singletonList(respuestaCorrecta)));
     }
 
     @Test

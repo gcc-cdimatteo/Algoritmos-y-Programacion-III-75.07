@@ -1,16 +1,15 @@
 package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.JuegoFinalizadoException;
+import edu.fiuba.algo3.tp2N10.Modelo.Observable;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Observer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-public class AlgoKahoot {
+public class AlgoKahoot implements Observable {
 
     private final Queue<Pregunta> preguntas;
     private Ronda ronda;
@@ -18,7 +17,7 @@ public class AlgoKahoot {
     private final List<Observer> observers = new ArrayList<>();
     private boolean finalizado = false;
 
-    public AlgoKahoot(Queue<Pregunta> preguntas, String jugadorUno, String jugadorDos) throws IOException {
+    public AlgoKahoot(Queue<Pregunta> preguntas, String jugadorUno, String jugadorDos) {
         this.preguntas = preguntas;
         Jugador primerJugador = new Jugador(jugadorUno);
         Jugador segundoJugador = new Jugador(jugadorDos);
@@ -50,9 +49,9 @@ public class AlgoKahoot {
     public void nuevaRonda() {
         if (preguntas.isEmpty()) {
             this.finalizado = true;
-            notifyObservers();
+        } else {
+            ronda = new Ronda(this.preguntas.poll(), jugadorActual);
         }
-        ronda = new Ronda(this.preguntas.poll(), jugadorActual);
     }
 
     public void cargarRespuesta(Respuesta respuesta) {

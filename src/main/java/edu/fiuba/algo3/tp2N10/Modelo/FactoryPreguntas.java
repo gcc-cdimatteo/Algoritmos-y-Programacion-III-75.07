@@ -13,7 +13,7 @@ import java.util.*;
 
 public class FactoryPreguntas {
 
-    private Queue<Pregunta> preguntas = new LinkedList<>();
+    private final Queue<Pregunta> preguntas = new LinkedList<>();
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // PUBLIC

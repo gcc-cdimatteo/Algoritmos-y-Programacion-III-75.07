@@ -21,8 +21,8 @@ public class ContenedorEntreRondas extends BorderPane {
         this.setTop(bpHeader);
 
         Label lblJugador1 = new Label(algoKahoot.jugadorNombre());
-        Integer puntaje1 = algoKahoot.jugadorPuntaje();
-        Label lblPuntajeJugador1 = new Label(puntaje1.toString());
+        int puntaje1 = algoKahoot.jugadorPuntaje();
+        Label lblPuntajeJugador1 = new Label(Integer.toString(puntaje1));
         lblJugador1.setStyle("-fx-font-size: 100%");
         lblPuntajeJugador1.setStyle("-fx-font-size: 75%");
 
@@ -35,8 +35,8 @@ public class ContenedorEntreRondas extends BorderPane {
         algoKahoot.cambiarJugador();
 
         Label lblJugador2 = new Label(algoKahoot.jugadorNombre());
-        Integer puntaje2 = algoKahoot.jugadorPuntaje();
-        Label lblPuntajeJugador2 = new Label(puntaje2.toString());
+        int puntaje2 = algoKahoot.jugadorPuntaje();
+        Label lblPuntajeJugador2 = new Label(Integer.toString(puntaje2));
         lblJugador2.setStyle("-fx-font-size: 100%");
         lblPuntajeJugador2.setStyle("-fx-font-size: 75%");
 

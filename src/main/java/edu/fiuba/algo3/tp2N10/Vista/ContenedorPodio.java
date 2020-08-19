@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.BotonSalir;
+import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonSalir;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

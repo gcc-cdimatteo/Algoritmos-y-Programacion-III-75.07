@@ -10,15 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaGroupChoiceTest {
 
-    private String enunciado;
-    private List<String> opciones;
-    private Set<Integer> opcionesGrupoA;
-    private Set<Integer> opcionesGrupoB;
-    private PreguntaGroupChoice preguntaGC;
+    private final Set<Integer> opcionesGrupoA;
+    private final Set<Integer> opcionesGrupoB;
+    private final PreguntaGroupChoice preguntaGC;
 
     public PreguntaGroupChoiceTest(){
-        this.enunciado = "Ordene las opciones en los grupos correctos...";
-        this.opciones = Arrays.asList("A", "1", "B", "2");
+        String enunciado = "Ordene las opciones en los grupos correctos...";
+        List<String> opciones = Arrays.asList("A", "1", "B", "2");
         this.opcionesGrupoA = new HashSet<>(Arrays.asList(0, 2));
         this.opcionesGrupoB = new HashSet<>(Arrays.asList(1, 3));
         this.preguntaGC = new PreguntaGroupChoice(enunciado, opciones, opcionesGrupoA, opcionesGrupoB);

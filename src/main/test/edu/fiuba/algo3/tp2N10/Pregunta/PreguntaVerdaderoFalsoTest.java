@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaVerdaderoFalsoTest {
 
-    private String enunciado;
-    private boolean respuestaCorrecta;
+    private final String enunciado;
+    private final boolean respuestaCorrecta;
     private PreguntaVerdaderoFalso preguntaVF;
 
     public PreguntaVerdaderoFalsoTest() {

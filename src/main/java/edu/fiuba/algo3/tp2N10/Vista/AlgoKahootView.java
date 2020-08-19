@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AlgoKahootView implements Observer {
-    private Stage escenario;
-    private AlgoKahoot algoKahoot;
+    private final Stage escenario;
+    private final AlgoKahoot algoKahoot;
 
     public AlgoKahootView(AlgoKahoot algoKahoot, Stage stage) {
         this.algoKahoot = algoKahoot;
