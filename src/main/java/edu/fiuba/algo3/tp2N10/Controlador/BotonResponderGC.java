@@ -13,18 +13,17 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BotonResponderGC extends BotonResponder {
+public class BotonResponderGC implements EventHandler<ActionEvent> {
 
     private final ArrayList<ToggleGroup> opcionesUsuario;
+    private final AlgoKahoot algoKahoot;
 
     public BotonResponderGC(AlgoKahoot algoKahoot, ArrayList<ToggleGroup> opcionesUsuario) {
-        super(algoKahoot);
+        this.algoKahoot = algoKahoot;
         this.opcionesUsuario = opcionesUsuario;
     }
 
-    @Override
     public void handle(ActionEvent actionEvent) {
-        usarPowerUp();
         Set<Integer> grupoA = new HashSet<>();
         Set<Integer> grupoB = new HashSet<>();
         for(int i = 0; i < opcionesUsuario.size(); i++){

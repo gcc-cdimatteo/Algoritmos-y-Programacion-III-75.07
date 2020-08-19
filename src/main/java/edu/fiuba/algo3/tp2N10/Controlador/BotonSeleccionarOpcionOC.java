@@ -3,7 +3,6 @@ package edu.fiuba.algo3.tp2N10.Controlador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@
     {
       "tipo": "verdaderoFalsoPenalidad" ,
       "enunciado": "La manzana es una fruta" ,
-      "respuesta": true ,
+      "respuesta": true
     } ,
     {
       "tipo": "multipleChoiceClasico" ,
@@ -15,7 +15,7 @@
       "tipo": "orderedChoice" ,
       "enunciado": "Ordene según el abecedario las siguientes letras" ,
       "opciones": [ "D" , "B" , "C" , "A" ] ,
-      "respuestas": [ 3 , 1 , 2 , 0 ],
+      "respuestas": [ 3 , 1 , 2 , 0 ]
     },
     {
       "tipo": "groupChoice" ,

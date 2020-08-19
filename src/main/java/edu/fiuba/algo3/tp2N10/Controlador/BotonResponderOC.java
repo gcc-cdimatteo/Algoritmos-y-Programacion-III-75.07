@@ -7,28 +7,29 @@ import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Ronda;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 import java.util.List;
 
-public class BotonResponderOC extends BotonResponder {
+public class BotonResponderOC implements EventHandler<ActionEvent> {
     private final List<Integer> respuestaUsuario;
-    private final Integer tamRespuesta;
+    private final List<Button> botones;
+    private final AlgoKahoot algoKahoot;
 
-    public BotonResponderOC(AlgoKahoot algoKahoot, List<Integer> respuestaUsuario, Integer tamRespuesta){
-        super(algoKahoot);
+    public BotonResponderOC(AlgoKahoot algoKahoot, List<Integer> respuestaUsuario, List<Button> botones){
+        this.algoKahoot = algoKahoot;
         this.respuestaUsuario = respuestaUsuario;
-        this.tamRespuesta = tamRespuesta; // Refactorizar para evitar este atributo
+        this.botones = botones;
     }
 
-    @Override
     public void handle(ActionEvent actionEvent) {
-        usarPowerUp();
-        if(this.tamRespuesta != this.respuestaUsuario.size()) {
-            AlertaOrdenarTodasLasOpcionesOC alertaOrdenarTodasLasOpcionesOC = new AlertaOrdenarTodasLasOpcionesOC();
-            alertaOrdenarTodasLasOpcionesOC.mostrar();
+        for (Button boton : botones) {
+            if (boton.isVisible()) {
+                AlertaOrdenarTodasLasOpcionesOC alertaOrdenarTodasLasOpcionesOC = new AlertaOrdenarTodasLasOpcionesOC();
+                alertaOrdenarTodasLasOpcionesOC.mostrar();
+                return;
+            }
         }
-        else{
-            this.algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(this.respuestaUsuario));
-        }
+        this.algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(this.respuestaUsuario));
     }
 }

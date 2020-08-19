@@ -7,18 +7,13 @@ import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 public class ContenedorPrincipal extends BorderPane {
 
-    private final AlgoKahoot algoKahoot;
-
     public ContenedorPrincipal(AlgoKahoot algoKahoot) {
         super();
-        this.algoKahoot = algoKahoot;
 
         Label lblJugador = new Label("  Jugador: " + algoKahoot.jugadorNombre());
         lblJugador.setStyle("-fx-font-size: 200%");
@@ -33,17 +28,21 @@ public class ContenedorPrincipal extends BorderPane {
 
         VBox vboxPowerUps = new VBox(5);
         if (algoKahoot.permiteMultiplicadores()) {
-            ToggleGroup grupoMultiplicadores = new ToggleGroup();
+            Button botonMultiplicador = new Button("x1");
+            BotonUsarMultiplicador handler = new BotonUsarMultiplicador(algoKahoot, botonMultiplicador);
             if (algoKahoot.multiplicadorDisponible(2)) {
-                agregarBotonMultiplicador(vboxPowerUps, grupoMultiplicadores, 2);
+                handler.add(2);
             }
             if (algoKahoot.multiplicadorDisponible(3)) {
-                agregarBotonMultiplicador(vboxPowerUps, grupoMultiplicadores, 3);
+                handler.add(3);
             }
+            botonMultiplicador.setOnAction(handler);
+            vboxPowerUps.getChildren().add(botonMultiplicador);
+
         } else if (algoKahoot.permiteExclusividad()) {
-            Button btnPowerUpEx1 = new Button("Exclusividad");
-            btnPowerUpEx1.setOnAction(new BotonUsarExclusividad(algoKahoot));
-            vboxPowerUps.getChildren().addAll(btnPowerUpEx1);
+            Button botonExclusividad = new Button("Exclusividad");
+            botonExclusividad.setOnAction(new BotonUsarExclusividad(algoKahoot, botonExclusividad));
+            vboxPowerUps.getChildren().add(botonExclusividad);
         }
 
         Button btnListo = new Button("Listo");
@@ -73,13 +72,5 @@ public class ContenedorPrincipal extends BorderPane {
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
         bpBotoneraListo.setRight(btnListo);
         this.setBottom(bpBotoneraListo);
-    }
-
-    private void agregarBotonMultiplicador(VBox vBox, ToggleGroup toggles, Integer valor) {
-        ToggleButton btnMultiplicador = new ToggleButton("x" + valor.toString());
-        btnMultiplicador.setOnAction(new BotonUsarMultiplicador(algoKahoot, valor));
-        toggles.getToggles().add(btnMultiplicador);
-        vBox.getChildren().add(btnMultiplicador);
-
     }
 }

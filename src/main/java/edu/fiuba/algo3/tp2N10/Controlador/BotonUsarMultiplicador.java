@@ -1,28 +1,35 @@
 package edu.fiuba.algo3.tp2N10.Controlador;
 
-import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaPowerUpNoDisponible;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BotonUsarMultiplicador implements EventHandler<ActionEvent> {
 
-    private AlgoKahoot algoKahoot;
-    private Integer valorMultiplicador;
+    private final Button boton;
+    private final AlgoKahoot algoKahoot;
+    private final List<Integer> valores = new ArrayList<>(Collections.singletonList(1));
+    private Integer valorActual = 0;
 
-    public BotonUsarMultiplicador(AlgoKahoot algoKahoot, Integer valorMultiplicador) {
+    public BotonUsarMultiplicador(AlgoKahoot algoKahoot, Button boton) {
         this.algoKahoot = algoKahoot;
-        this.valorMultiplicador = valorMultiplicador;
+        this.boton = boton;
+    }
+
+    public void add(int valor) {
+        this.valores.add(valor);
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        try {
-            this.algoKahoot.jugadorUsaMultiplicador(this.valorMultiplicador);
-        }catch (PowerUpNoDisponibleException e) {
-            AlertaPowerUpNoDisponible alerta = new AlertaPowerUpNoDisponible("X"+this.valorMultiplicador.toString());
-            alerta.mostrar();
-        }
+        valorActual = (valorActual + 1) % valores.size();
+        Integer multiplicadorActual = valores.get(valorActual);
+        boton.setText("x" + multiplicadorActual.toString());
+        this.algoKahoot.jugadorUsaMultiplicador(multiplicadorActual);
     }
 }

@@ -5,20 +5,35 @@ import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 public class Multiplicador {
 
     private int valor;
-    private boolean disponible = true;
+    private int usosDisponibles;
 
-    public Multiplicador(int valor) {
-        this.valor = valor;
+    public static Multiplicador Nulo() {
+        Multiplicador miMultiplicador = new Multiplicador();
+        miMultiplicador.valor = 1;
+        miMultiplicador.usosDisponibles = -1;
+        return miMultiplicador;
     }
 
-    public void usar() {
-        if (!disponible) throw new PowerUpNoDisponibleException();
-        disponible = false;
+    public static Multiplicador PorDos() {
+        Multiplicador miMultiplicador = new Multiplicador();
+        miMultiplicador.valor = 2;
+        miMultiplicador.usosDisponibles = 1;
+        return miMultiplicador;
+    }
+
+    public static Multiplicador PorTres() {
+        Multiplicador miMultiplicador = new Multiplicador();
+        miMultiplicador.valor = 3;
+        miMultiplicador.usosDisponibles = 1;
+        return miMultiplicador;
     }
 
     public Integer multiplicar(Integer unPuntaje) {
+        usosDisponibles--;
         return unPuntaje * valor;
     }
 
-    public boolean estaDisponible() { return disponible; }
+    public boolean estaDisponible() {
+        return usosDisponibles != 0;
+    }
 }

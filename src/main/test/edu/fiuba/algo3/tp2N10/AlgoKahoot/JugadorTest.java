@@ -4,8 +4,7 @@ import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Jugador;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {
 
@@ -53,7 +52,7 @@ public class JugadorTest {
         Jugador jugador = new Jugador("Casimiro");
         jugador.usarExclusividad();
         jugador.usarExclusividad();
-        assertThrows(PowerUpNoDisponibleException.class, jugador::usarExclusividad);
+        assertFalse(jugador.exclusividadDisponible());
     }
 
     @Test
