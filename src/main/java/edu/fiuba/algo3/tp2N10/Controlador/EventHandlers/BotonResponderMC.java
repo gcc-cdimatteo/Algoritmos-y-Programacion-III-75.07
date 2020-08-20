@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10.Controlador.Botones;
+package edu.fiuba.algo3.tp2N10.Controlador.EventHandlers;
 
 import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaSeleccionarUnaOpcion;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;

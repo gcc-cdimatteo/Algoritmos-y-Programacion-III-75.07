@@ -6,6 +6,7 @@ import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Observer;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Queue;
 
@@ -14,8 +15,8 @@ public class AlgoKahoot implements Observable {
     private final Queue<Pregunta> preguntas;
     private Ronda ronda;
     private Jugador jugadorActual;
-    private final List<Observer> observers = new ArrayList<>();
     private boolean finalizado = false;
+    private final List<Observer> observers = new ArrayList<>();
 
     public AlgoKahoot(Queue<Pregunta> preguntas, String jugadorUno, String jugadorDos) {
         this.preguntas = preguntas;
@@ -26,8 +27,28 @@ public class AlgoKahoot implements Observable {
         nuevaRonda();
     }
 
-    public boolean finalizado() {
-        return finalizado;
+    public void cargarRespuesta(Respuesta respuesta) {
+        ronda.cargarRespuesta(respuesta);
+        cambiarJugador();
+        if (jugadorActual.vaPrimero()) {
+            ronda.asignarPuntos();
+            nuevaRonda();
+        }
+        notifyObservers();
+    }
+
+    public void nuevaRonda() {
+        if (preguntas.isEmpty()) { finalizado = true; }
+        else { ronda = new Ronda(this.preguntas.poll(), jugadorActual); }
+    }
+
+    public LinkedHashMap<String, Integer> getPuntos() {
+        LinkedHashMap<String, Integer> puntosJugadores = new LinkedHashMap<>();
+        for (int i = 0; i < 2; i++) {
+            puntosJugadores.put(jugadorActual.nombre(), jugadorActual.puntaje());
+            cambiarJugador();
+        }
+        return puntosJugadores;
     }
 
     public int jugadorPuntaje() {
@@ -46,25 +67,7 @@ public class AlgoKahoot implements Observable {
         return ronda.opciones();
     }
 
-    private void nuevaRonda() {
-        if (preguntas.isEmpty()) {
-            this.finalizado = true;
-        } else {
-            ronda = new Ronda(this.preguntas.poll(), jugadorActual);
-        }
-    }
-
-    public void cargarRespuesta(Respuesta respuesta) {
-        ronda.cargarRespuesta(respuesta);
-        cambiarJugador();
-        if (jugadorActual.vaPrimero()) {
-            ronda.asignarPuntos();
-            nuevaRonda();
-        }
-        notifyObservers();
-    }
-
-    public void cambiarJugador() {
+    private void cambiarJugador() {
         jugadorActual = jugadorActual.siguienteJugador();
     }
 
@@ -76,17 +79,17 @@ public class AlgoKahoot implements Observable {
         ronda.usarExclusividad(jugadorActual);
     }
 
-    public boolean permiteMultiplicadores() {
-        return ronda.permiteMultiplicadores();
+    public boolean finalizado() {
+        return finalizado;
     }
+
+    public boolean permiteMultiplicadores() { return ronda.permiteMultiplicadores(); }
 
     public boolean multiplicadorDisponible(int valor) {
         return jugadorActual.multiplicadorDisponible(valor);
     }
 
-    public boolean permiteExclusividad() {
-        return ronda.permiteExclusividad() && jugadorActual.exclusividadDisponible();
-    }
+    public boolean permiteExclusividad() { return ronda.permiteExclusividad() && jugadorActual.exclusividadDisponible(); }
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -96,7 +99,5 @@ public class AlgoKahoot implements Observable {
         observers.forEach(Observer::change);
     }
 
-    public Pregunta preguntaActual() {
-        return ronda.preguntaActual();
-    }
+    public Pregunta preguntaActual() { return ronda.preguntaActual();}
 }

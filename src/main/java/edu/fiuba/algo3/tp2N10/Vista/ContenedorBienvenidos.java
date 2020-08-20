@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonEntrar;
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonSalir;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonEntrar;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

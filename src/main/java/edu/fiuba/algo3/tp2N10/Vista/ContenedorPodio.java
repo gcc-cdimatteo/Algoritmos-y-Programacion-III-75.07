@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonSalir;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+
+import java.util.LinkedHashMap;
 
 public class ContenedorPodio extends BorderPane {
 
@@ -28,8 +31,10 @@ public class ContenedorPodio extends BorderPane {
         BorderPane bpJugadorDos = new BorderPane();
 
         String styLabel = "-fx-font-weight: bold; -fx-font-size: 130%";
+        LinkedHashMap<String, Integer> puntosJugadores = algoKahoot.getPuntos();
+
         int puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        Label lblJugadorUno = new Label(algoKahoot.jugadorNombre());
+        Label lblJugadorUno = new Label(puntosJugadores.);
         lblJugadorUno.setStyle(styLabel);
         Label lblPuntajeUno = new Label(String.valueOf(puntosJugadorUno));
         lblPuntajeUno.setStyle(styLabel);
@@ -43,12 +48,8 @@ public class ContenedorPodio extends BorderPane {
 
         // Según quien gane varía la altura del podio
         // Caso default: empate misma altura.
-        int alturaPrimerPodio = 200;
-        int alturaSegundoPodio = 200;
-        if (puntosJugadorDos > puntosJugadorUno)
-            alturaPrimerPodio = 100;
-        if (puntosJugadorDos < puntosJugadorUno)
-            alturaSegundoPodio = 100;
+        int alturaPrimerPodio = 10*puntosJugadorUno;
+        int alturaSegundoPodio = 10*puntosJugadorDos;
 
         Rectangle recJugadorUno = new Rectangle(0, 0, 100, alturaPrimerPodio);
         Rectangle recJugadorDos = new Rectangle(0, 0, 100, alturaSegundoPodio);
@@ -70,7 +71,7 @@ public class ContenedorPodio extends BorderPane {
         BorderPane bpBotoneraListo = new BorderPane();
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
         Button btnListo = new Button("Salir");
-        btnListo.setOnAction( new BotonSalir());
+        btnListo.setOnAction( new BotonSalir()); ///////////////////////////////////////////////////////////////////
         bpBotoneraListo.setRight(btnListo);
 
         this.setPadding(new Insets(10, 10, 10, 10));

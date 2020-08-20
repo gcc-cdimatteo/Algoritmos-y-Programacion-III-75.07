@@ -1,0 +1,23 @@
+@startuml
+
+package "Controlador" {
+    class BotonComenzarJuego
+    class BotonEntrar
+    class BotonResponderGC
+    class BotonResponderMC
+    class ResponderOC
+    class ResponderVF
+    class BotonSalir
+    class BotonSeleccionarOpcionOC
+    class BotonUsarExclusividad
+    class BotonUsarMultiplicador
+    package "Alertas" {
+        class AlertaNombreFaltante
+        class AlertaOrdenarTodasLasOpciones
+        class AlertaPowerUpNoDisponible
+        class AlertaSeleccionarUnaOpcion
+    }
+
+}
+
+@enduml
