@@ -23,10 +23,12 @@ public class AlgoKahootView implements Observer {
         this.numeroTurno++;
         if (algoKahoot.finalizado()) {
             contenedor = new ContenedorPodio(this.algoKahoot);
-        } else if (numeroTurno % 3 == 0) {
+        } else if (numeroTurno % 5 == 0) {
             contenedor = new ContenedorEntreRondas(this.algoKahoot);
-        } else {
+        } else if (numeroTurno % 2 == 0) {
             contenedor = new ContenedorPrincipal(this.algoKahoot);
+        } else{
+            contenedor = new ContenedorPregunta(this.algoKahoot);
         }
 
         this.escenario.setScene(new Scene(contenedor, 640, 480));
