@@ -2,18 +2,19 @@
 
 
 
-# TP2 Algoritmos 3: {nombre}
+# TP2 Algoritmos 3: AlgoKahoot
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 10
 
-* **Integrante 1** - [integrante1](https://github.com/integrante1)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Carolina Di Matteo** - [gcc-cdimatteo](https://github.com/gcc-cdimatteo)
+* **Juan Ignacio Díaz** - [Nacho-Dz](https://github.com/Nacho-Dz)
+* **Agustin Vallcorba** - [agustinvallcorba](https://github.com/agustinvallcorba)
+* **Leonardo De La Cruz** - [electromakumba](https://github.com/electromakumba)
+* **Mariano Abbate** - [mabbate](https://github.com/mabbate)
 
-Corrector: **{Corrector}**
+Corrector: **Tomás Bustamante**
 
 ### Pre-requisitos
 
@@ -39,7 +40,11 @@ Este comando crea el reporte de cobertura para CI y el reporte HTML que pueden a
 
 ## Ejecutando la aplicación
 
-Explicación de como ejecutar la aplicación
+Ejecutar el siguiente comando desde el directorio que contiene el archivo pom.xml 
+
+```bash
+    mvn clean javafx:run
+```
 
 ## Licencia
 
