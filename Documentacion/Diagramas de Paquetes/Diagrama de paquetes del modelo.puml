@@ -1,0 +1,53 @@
+@startuml
+
+title Paquetes del Modelo
+
+left to right direction
+
+package AlgoKahoot {
+    class AlgoKahoot
+    class Jugador
+    class Ronda
+}
+
+package Excepciones {
+    class PowerUpNoDisponibleException
+    class PreguntaDesconocidaException
+    class RespuestaIncompatibleException
+}
+
+package Pregunta {
+    abstract class Pregunta
+    class PreguntaGroupChoice
+    class PreguntaMultipleChoice
+    class PreguntaOrderedChoice
+    class PreguntaVerdaderoFalso
+}
+
+package Puntaje {
+    interface Puntaje
+    class PuntajeClasico
+    class PuntajeParcial
+    class PuntajePenalidad
+}
+
+package Puntuadores {
+    interface Puntuador
+    class PuntuadorNulo
+    class PuntuadorExclusividad
+    class Multiplicador
+}
+
+package Respuesta {
+    interface Respuesta
+    class RespuestaVerdaderoFalso
+    class RespuestaMultipleChoice
+    class RespuestaOrderedChoice
+    class RespuestaGroupChoice
+}
+
+class FactoryPreguntas
+interface Observable
+interface Observer
+
+@enduml
