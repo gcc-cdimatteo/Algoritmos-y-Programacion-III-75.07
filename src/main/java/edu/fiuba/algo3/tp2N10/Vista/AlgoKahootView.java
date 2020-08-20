@@ -21,11 +21,15 @@ public class AlgoKahootView implements Observer {
         BorderPane contenedor;
 
         this.numeroTurno++;
+
         if (algoKahoot.finalizado()) {
             contenedor = new ContenedorPodio(this.algoKahoot);
-        } else if (numeroTurno % 3 == 0) {
+        } else if (numeroTurno == 5) {
             contenedor = new ContenedorEntreRondas(this.algoKahoot);
-        } else {
+            this.numeroTurno = 0;
+        } else if (numeroTurno % 2 != 0) {
+            contenedor = new ContenedorPregunta(this.algoKahoot);
+        } else{
             contenedor = new ContenedorPrincipal(this.algoKahoot);
         }
 
