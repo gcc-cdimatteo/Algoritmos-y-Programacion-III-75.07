@@ -96,7 +96,6 @@ public class ContenedorPrincipal extends BorderPane {
             Platform.runLater(() -> {
                 int contador = Integer.parseInt(labelTemporizador.getText()) - 1;
                 labelTemporizador.setText(Integer.toString(contador));
-                System.out.print(contador + "\n");
                 if(contador <= 5 && contador > 0){
                     labelTemporizador.setTextFill(Color.web("#ff0000"));
                 }else if(contador == 0){
