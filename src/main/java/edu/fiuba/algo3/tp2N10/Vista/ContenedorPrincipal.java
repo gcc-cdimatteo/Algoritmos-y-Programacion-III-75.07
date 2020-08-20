@@ -3,7 +3,6 @@ package edu.fiuba.algo3.tp2N10.Vista;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonUsarExclusividad;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonUsarMultiplicador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -56,15 +55,22 @@ public class ContenedorPrincipal extends BorderPane {
         bpHeader.setRight(lblPuntaje);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
 
-        Object miPregunta = algoKahoot.preguntaActual().getClass();
-        if (PreguntaVerdaderoFalso.class.equals(miPregunta)) {
-            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot));
-        } else if (PreguntaMultipleChoice.class.equals(miPregunta)) {
-            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot));
-        } else if (PreguntaOrderedChoice.class.equals(miPregunta)) {
-            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot));
-        } else if (PreguntaGroupChoice.class.equals(miPregunta)) {
-            vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot));
+        switch (algoKahoot.preguntaActual()) {
+            case ("VerdaderoFalsoClasico") :
+            case ("VerdaderoFalsoPenalidad") :
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot));
+                break;
+            case ("MultipleChoiceClasico") :
+            case ("MultipleChoiceParcial") :
+            case ("MultipleChoicePenalidad") :
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot));
+                break;
+            case ("OrderedChoice") :
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot));
+                break;
+            case ("GroupChoice") :
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot));
+                break;
         }
 
         bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
@@ -86,21 +92,17 @@ public class ContenedorPrincipal extends BorderPane {
             @Override
 
             public void run() {
-            Platform.runLater(new Runnable() {
-
-                @Override
-                public void run(){
-                    Integer contador = Integer.parseInt(labelTemporizador.getText()) - 1;
-                    labelTemporizador.setText(contador.toString());
-                    if(contador <= 5 && contador > 0){
-                        labelTemporizador.setTextFill(Color.web("#ff0000"));
-                    }else if(contador == 0){
-                        algoKahoot.jugadorNoResponde();
-                    }
+            Platform.runLater(() -> {
+                int contador = Integer.parseInt(labelTemporizador.getText()) - 1;
+                labelTemporizador.setText(Integer.toString(contador));
+                if(contador <= 5 && contador > 0){
+                    labelTemporizador.setTextFill(Color.web("#ff0000"));
+                }else if(contador == 0){
+                    algoKahoot.jugadorNoResponde();
                 }
             });
          }
         };
-        temporizador.schedule(task, 0,1000l);
+        temporizador.schedule(task, 0, 1000L);
     }
 }

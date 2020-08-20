@@ -54,7 +54,18 @@ public class RespuestaGroupChoiceTest {
     }
 
     @Test
-    public void test04SiSeIngresaUnaRespuestaIncompatibleSeLanzaUnaExcepcion() {
+    public void test04UnaPreguntaGCValeCeroSiNoSeSeleccionanTodosLosElementos() {
+        setupRespuestaCorrecta();
+        Set<Integer> grupoA = new HashSet<>(Arrays.asList(4, 1, 3));
+        Set<Integer> grupoB = new HashSet<>(Arrays.asList(6, 5));
+
+        Respuesta respuesta = new RespuestaGroupChoice(grupoA, grupoB);
+        assertEquals(0, respuestaCorrecta.evaluar(respuesta));
+    }
+
+
+    @Test
+    public void test05SiSeIngresaUnaRespuestaIncompatibleSeLanzaUnaExcepcion() {
         setupRespuestaCorrecta();
         Respuesta respuesta = new RespuestaVerdaderoFalso(true);
         assertThrows(RespuestaIncompatibleException.class, () -> respuestaCorrecta.evaluar(respuesta));

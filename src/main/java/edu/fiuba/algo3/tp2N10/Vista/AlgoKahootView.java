@@ -20,10 +20,14 @@ public class AlgoKahootView implements Observer {
     public void mostrar() {
         BorderPane contenedor;
 
-        this.numeroTurno = (numeroTurno+1)%3;
-        if(algoKahoot.finalizado()){ contenedor = new ContenedorPodio(this.algoKahoot); }
-        else if(numeroTurno == 0){ contenedor = new ContenedorEntreRondas(this.algoKahoot); }
-        else{ contenedor = new ContenedorPrincipal(this.algoKahoot); }
+        this.numeroTurno++;
+        if (algoKahoot.finalizado()) {
+            contenedor = new ContenedorPodio(this.algoKahoot);
+        } else if (numeroTurno % 3 == 0) {
+            contenedor = new ContenedorEntreRondas(this.algoKahoot);
+        } else {
+            contenedor = new ContenedorPrincipal(this.algoKahoot);
+        }
 
         this.escenario.setScene(new Scene(contenedor, 640, 480));
     }

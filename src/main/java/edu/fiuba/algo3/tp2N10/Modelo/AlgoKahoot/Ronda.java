@@ -50,8 +50,8 @@ public class Ronda {
 
     public boolean permiteExclusividad() { return this.pregunta.permiteExclusividad(); }
 
-    public Pregunta preguntaActual() {
-        return pregunta;
+    public String preguntaActual() {
+        return pregunta.toString();
     }
 
     public void jugadorNoResponde() {

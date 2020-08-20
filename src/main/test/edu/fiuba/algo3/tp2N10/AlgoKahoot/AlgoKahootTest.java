@@ -55,10 +55,8 @@ public class AlgoKahootTest {
     public void test04SiUnJugadorUsaExclusividadAlgoKahootAsignaCorrectamenteElPuntaje() {
         AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
 
-        //Estas lineas son para debuggear, despues refactorizo mejor
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-        ///////////////////////////////////////////////////////////////////
 
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
@@ -67,13 +65,21 @@ public class AlgoKahootTest {
     }
 
     @Test
-    public void test05SiAmbosJugadoresUsanExclusividadAlgoKahootCuadruplicaElPuntajeDelQueContestaCorrectamente() {
+    public void test05SiUnJugadorNoRespondeSuRespuestaEsIncorrecta() {
         AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
 
-        //Estas lineas son para debuggear, despues refactorizo mejor
+        algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
+        algoKahoot.jugadorNoResponde();
+
+        assertEquals(Arrays.asList(1, -1), algoKahoot.puntajes());
+    }
+
+    @Test
+    public void test06SiAmbosJugadoresUsanExclusividadAlgoKahootCuadruplicaElPuntajeDelQueContestaCorrectamente() {
+        AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
+
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-        ///////////////////////////////////////////////////////////////////
 
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
@@ -83,7 +89,7 @@ public class AlgoKahootTest {
     }
 
     @Test
-    public void test06AlFinalDelJuegoSeLanzaUnaExcepcion() {
+    public void test07ElJuegoFinalizaCuandoNoHayMasPreguntas() {
         AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
 
         //// Ronda 1
@@ -103,7 +109,7 @@ public class AlgoKahootTest {
     }
 
     @Test
-    public void test07PruebasIntegrales() {
+    public void test08PruebasIntegrales() {
         AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
 
         //// Ronda 1
@@ -143,6 +149,7 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4))));
         // Puntos
         assertEquals(Arrays.asList(3, 5), algoKahoot.puntajes());
+        assertTrue(algoKahoot.finalizado());
     }
 
 }

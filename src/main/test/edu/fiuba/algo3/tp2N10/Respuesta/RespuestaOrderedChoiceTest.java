@@ -40,7 +40,14 @@ public class RespuestaOrderedChoiceTest {
     }
 
     @Test
-    public void test04SiSeIngresaUnaRespuestaIncompatibleSeLanzaUnaExcepcion() {
+    public void test04UnaPreguntaGCPuntua0SiNoSeEnviaLaTotalidadDeElementos() {
+        setupRespuestaCorrecta();
+        Respuesta respuesta = new RespuestaOrderedChoice(Arrays.asList(4, 2, 1));
+        assertEquals(0, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test05SiSeIngresaUnaRespuestaIncompatibleSeLanzaUnaExcepcion() {
         setupRespuestaCorrecta();
         Respuesta respuesta = new RespuestaVerdaderoFalso(true);
         assertThrows(RespuestaIncompatibleException.class, () -> respuestaCorrecta.evaluar(respuesta));

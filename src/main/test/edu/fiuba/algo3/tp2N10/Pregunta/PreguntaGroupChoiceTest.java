@@ -35,7 +35,7 @@ public class PreguntaGroupChoiceTest {
     }
 
     @Test
-    public void test03UnaPreguntaGCPuntua1SiSeAgrupaBienPeroDesordenado() {
+    public void test03UnaPreguntaGCPuntua1SiSeAgrupaBien() {
         RespuestaGroupChoice unaRespuesta = new RespuestaGroupChoice(new HashSet<>(Arrays.asList(2, 0)), new HashSet<>(Arrays.asList(1, 3)));
         assertEquals(Collections.singletonList(1), this.preguntaGC.responder(Collections.singletonList(unaRespuesta)));
     }
@@ -48,17 +48,4 @@ public class PreguntaGroupChoiceTest {
         RespuestaGroupChoice respuestaIncorrecta = new RespuestaGroupChoice(opcionesGrupoC, opcionesGrupoD);
         assertEquals(Arrays.asList(1, 0), this.preguntaGC.responder(Arrays.asList(respuestaCorrecta, respuestaIncorrecta)));
     }
-
-    @Test
-    public void test05UnaPreguntaGCPuntua0SiNoSeEnviaLaTotalidadDeIntegrantesEnUnGrupo() {
-        RespuestaGroupChoice unaRespuesta = new RespuestaGroupChoice(new HashSet<>(Arrays.asList(0, 2)), new HashSet<>(Collections.singletonList(1)));
-        assertEquals(Collections.singletonList(0), this.preguntaGC.responder(Collections.singletonList(unaRespuesta)));
-    }
-
-    @Test
-    public void test06UnaPreguntaGCPuntua0SiNoEnvioNada() {
-        RespuestaGroupChoice unaRespuesta = new RespuestaGroupChoice(new HashSet<>(), new HashSet<>());
-        assertEquals(Collections.singletonList(0), this.preguntaGC.responder(Collections.singletonList(unaRespuesta)));
-    }
-
 }

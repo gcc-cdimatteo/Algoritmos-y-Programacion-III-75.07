@@ -39,17 +39,4 @@ public class PreguntaOrderedChoiceTest {
         RespuestaOrderedChoice respuestaIncorrecta = new RespuestaOrderedChoice(Arrays.asList(3, 2, 1));
         assertEquals(Arrays.asList(1, 0), this.preguntaOC.responder(Arrays.asList(respuestaCorrecta, respuestaIncorrecta)));
     }
-
-    @Test
-    public void test05UnaPreguntaGCPuntua0SiNoSeEnviaLaTotalidadDeElementos() {
-        RespuestaOrderedChoice unaRespuesta = new RespuestaOrderedChoice(Arrays.asList(1, 2));
-        assertEquals(Collections.singletonList(0), this.preguntaOC.responder(Collections.singletonList(unaRespuesta)));
-    }
-
-    @Test
-    public void test06UnaPreguntaGCPuntua0SiNoEnvioNada() {
-        RespuestaOrderedChoice unaRespuesta = new RespuestaOrderedChoice(Collections.emptyList());
-        assertEquals(Collections.singletonList(0), this.preguntaOC.responder(Collections.singletonList(unaRespuesta)));
-    }
-
 }

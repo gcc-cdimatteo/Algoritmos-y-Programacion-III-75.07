@@ -27,8 +27,8 @@ public class BotonUsarMultiplicador implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        valorActual = (valorActual + 1) % valores.size();
-        Integer multiplicadorActual = valores.get(valorActual);
+        valorActual++;
+        Integer multiplicadorActual = valores.get(valorActual % valores.size());
         boton.setText("x" + multiplicadorActual.toString());
         this.algoKahoot.jugadorUsaMultiplicador(multiplicadorActual);
     }

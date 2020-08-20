@@ -7,6 +7,7 @@ import java.util.List;
 
 public abstract class Pregunta {
 
+    protected String asString;
     protected String enunciado;
     protected List<String> opciones;
     protected Respuesta respuestaCorrecta;
@@ -17,6 +18,10 @@ public abstract class Pregunta {
             puntos.add(respuestaCorrecta.evaluar(respuesta));
         }
         return puntos;
+    }
+
+    public String toString() {
+        return asString;
     }
 
     public String getEnunciado() {

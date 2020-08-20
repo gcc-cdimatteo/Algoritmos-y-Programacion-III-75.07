@@ -13,21 +13,24 @@ public class PreguntaMultipleChoice extends Pregunta {
         this.opciones = opciones;
     }
 
+    public static PreguntaMultipleChoice Clasico(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
+        PreguntaMultipleChoice miPreguntaMC = new PreguntaMultipleChoice(enunciado, opciones);
+        miPreguntaMC.respuestaCorrecta = RespuestaMultipleChoice.ConPuntaje(opcionesCorrectas, PuntajeClasico.ParaMultipleChoice(opcionesCorrectas));
+        miPreguntaMC.asString = "MultipleChoiceClasico";
+        return miPreguntaMC;
+    }
+
     public static PreguntaMultipleChoice Parcial(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
         PreguntaMultipleChoice miPreguntaMC = new PreguntaMultipleChoice(enunciado, opciones);
         miPreguntaMC.respuestaCorrecta = RespuestaMultipleChoice.ConPuntaje(opcionesCorrectas, new PuntajeParcial());
+        miPreguntaMC.asString = "MultipleChoiceParcial";
         return miPreguntaMC;
     }
 
     public static PreguntaMultipleChoice Penalidad(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
         PreguntaMultipleChoice miPreguntaMC = new PreguntaMultipleChoice(enunciado, opciones);
         miPreguntaMC.respuestaCorrecta = RespuestaMultipleChoice.ConPuntaje(opcionesCorrectas, new PuntajePenalidad());
-        return miPreguntaMC;
-    }
-
-    public static PreguntaMultipleChoice Clasico(String enunciado, List<String> opciones, Set<Integer> opcionesCorrectas) {
-        PreguntaMultipleChoice miPreguntaMC = new PreguntaMultipleChoice(enunciado, opciones);
-        miPreguntaMC.respuestaCorrecta = RespuestaMultipleChoice.ConPuntaje(opcionesCorrectas, PuntajeClasico.ParaMultipleChoice(opcionesCorrectas));
+        miPreguntaMC.asString = "MultipleChoicePenalidad";
         return miPreguntaMC;
     }
 }

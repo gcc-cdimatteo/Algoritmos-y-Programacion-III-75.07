@@ -37,8 +37,8 @@ public class AlgoKahoot implements Observable {
     }
 
     public void nuevaRonda() {
-        if (preguntas.isEmpty()) { finalizado = true; }
-        else { ronda = new Ronda(this.preguntas.poll(), jugadorActual); }
+        if (preguntas.isEmpty()) finalizado = true;
+        else ronda = new Ronda(this.preguntas.poll(), jugadorActual);
     }
 
     public List<Integer> puntajes() {
@@ -59,7 +59,7 @@ public class AlgoKahoot implements Observable {
         return nombres;
     }
 
-    public void jugadorNoResponde(){
+    public void jugadorNoResponde() {
         ronda.jugadorNoResponde();
         cambiarJugador();
         if (jugadorActual.vaPrimero()) {
@@ -117,5 +117,5 @@ public class AlgoKahoot implements Observable {
         observers.forEach(Observer::change);
     }
 
-    public Pregunta preguntaActual() { return ronda.preguntaActual();}
+    public String preguntaActual() { return ronda.preguntaActual();}
 }

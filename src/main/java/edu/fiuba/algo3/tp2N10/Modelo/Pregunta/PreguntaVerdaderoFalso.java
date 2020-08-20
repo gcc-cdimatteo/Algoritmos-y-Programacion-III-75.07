@@ -12,15 +12,17 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         this.opciones = Arrays.asList("Verdadero", "Falso");
     }
 
-    public static PreguntaVerdaderoFalso Penalidad(String enunciado, boolean respuestaCorrecta) {
-        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado);
-        miPreguntaVF.respuestaCorrecta = RespuestaVerdaderoFalso.ConPuntaje(respuestaCorrecta, new PuntajePenalidad());
-        return miPreguntaVF;
-    }
-
     public static PreguntaVerdaderoFalso Clasico(String enunciado, boolean respuestaCorrecta) {
         PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado);
         miPreguntaVF.respuestaCorrecta = RespuestaVerdaderoFalso.ConPuntaje(respuestaCorrecta, PuntajeClasico.ParaVerdaderoFalso());
+        miPreguntaVF.asString = "VerdaderoFalsoClasico";
+        return miPreguntaVF;
+    }
+
+    public static PreguntaVerdaderoFalso Penalidad(String enunciado, boolean respuestaCorrecta) {
+        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado);
+        miPreguntaVF.respuestaCorrecta = RespuestaVerdaderoFalso.ConPuntaje(respuestaCorrecta, new PuntajePenalidad());
+        miPreguntaVF.asString = "VerdaderoFalsoPenalidad";
         return miPreguntaVF;
     }
 }

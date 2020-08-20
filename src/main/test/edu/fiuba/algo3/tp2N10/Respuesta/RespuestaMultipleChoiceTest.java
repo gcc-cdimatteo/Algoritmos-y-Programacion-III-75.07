@@ -2,6 +2,8 @@ package edu.fiuba.algo3.tp2N10.Respuesta;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeClasico;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajeParcial;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntaje.PuntajePenalidad;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
@@ -17,14 +19,24 @@ public class RespuestaMultipleChoiceTest {
 
     private RespuestaMultipleChoice respuestaCorrecta;
 
-    public void setupRespuestaCorrecta() {
+    public void setupRespuestaCorrectaClasico() {
         Set<Integer> opcionesCorrectas = new HashSet<>(Arrays.asList(4, 5, 2));
         this.respuestaCorrecta = RespuestaMultipleChoice.ConPuntaje(opcionesCorrectas, PuntajeClasico.ParaMultipleChoice(opcionesCorrectas));
     }
 
+    public void setupRespuestaCorrectaParcial() {
+        Set<Integer> opcionesCorrectas = new HashSet<>(Arrays.asList(4, 5, 2));
+        this.respuestaCorrecta = RespuestaMultipleChoice.ConPuntaje(opcionesCorrectas, new PuntajeParcial());
+    }
+
+    public void setupRespuestaCorrectaPenalidad() {
+        Set<Integer> opcionesCorrectas = new HashSet<>(Arrays.asList(4, 5, 2));
+        this.respuestaCorrecta = RespuestaMultipleChoice.ConPuntaje(opcionesCorrectas, new PuntajePenalidad());
+    }
+
     @Test
     public void test01LaInterseccionEntreDosRespuestasMultipleChoiceEsLaInterseccionEntreSusOpciones() {
-        setupRespuestaCorrecta();
+        setupRespuestaCorrectaClasico();
         RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 1, 4)));
         assertEquals(new HashSet<>(Arrays.asList(2, 4)), respuestaCorrecta.intersection(respuesta));
     }
@@ -36,22 +48,65 @@ public class RespuestaMultipleChoiceTest {
     }
 
     @Test
-    public void test03UnaRespuestaMultipleChoiceCorrectaValeUnPunto() {
-        setupRespuestaCorrecta();
+    public void test03UnaRespuestaMultipleChoiceClasicoCorrectaValeUnPunto() {
+        setupRespuestaCorrectaClasico();
         Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 2, 5)));
         assertEquals(1, respuestaCorrecta.evaluar(respuesta));
     }
 
     @Test
-    public void test04UnaRespuestaMultipleChoiceIncorrectaValeCeroPuntosSinPenalidad() {
-        setupRespuestaCorrecta();
-        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(3, 5)));
+    public void test04UnaRespuestaMultipleChoiceClasicoIncorrectaValeCeroPuntos() {
+        setupRespuestaCorrectaClasico();
+        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 2, 3, 5)));
         assertEquals(0, respuestaCorrecta.evaluar(respuesta));
     }
 
     @Test
-    public void test05SiSeIngresaUnaRespuestaIncompatibleSeLanzaUnaExcepcion() {
-        setupRespuestaCorrecta();
+    public void test05UnaRespuestaMultipleChoiceClasicoIncompletaValeCeroPuntos() {
+        setupRespuestaCorrectaClasico();
+        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 5)));
+        assertEquals(0, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test06UnaRespuestaMultipleChoiceParcialVale2ConDosRespuestasCorrectas() {
+        setupRespuestaCorrectaParcial();
+        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 5)));
+        assertEquals(2, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test07UnaRespuestaMultipleChoiceParcialVale0ConTresRespuestasCorrectasYUnaIncorrecta() {
+        setupRespuestaCorrectaParcial();
+        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 2, 5, 3)));
+        assertEquals(0, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test08UnaRespuestaMultipleChoicePenalidadDevuelve2ConDosRespuestasCorrectas() {
+        setupRespuestaCorrectaPenalidad();
+        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 2)));
+        assertEquals(2, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test09UnaRespuestaMultipleChoicePenalidadDevuelve2ConTresRespuestasCorrectasYUnaIncorrecta() {
+        setupRespuestaCorrectaPenalidad();
+        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(4, 2, 5, 1)));
+        assertEquals(2, respuestaCorrecta.evaluar(respuesta));
+    }
+
+    @Test
+    public void test10UnaRespuestaMultipleChoicePenalidadRestaDosPuntosSiEnvioDosRespuestasIncorrectas() {
+        setupRespuestaCorrectaPenalidad();
+        Respuesta respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(3, 1)));
+        assertEquals(-2, respuestaCorrecta.evaluar(respuesta));
+    }
+
+
+    @Test
+    public void test11SiSeIngresaUnaRespuestaIncompatibleSeLanzaUnaExcepcion() {
+        setupRespuestaCorrectaClasico();
         Respuesta respuesta = new RespuestaOrderedChoice(Arrays.asList(1, 2, 3));
         assertThrows(RespuestaIncompatibleException.class, () -> respuestaCorrecta.evaluar(respuesta));
     }
