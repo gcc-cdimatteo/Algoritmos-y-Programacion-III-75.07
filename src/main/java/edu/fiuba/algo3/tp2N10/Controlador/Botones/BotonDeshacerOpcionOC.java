@@ -14,27 +14,19 @@ import static java.util.Arrays.asList;
 
 public class BotonDeshacerOpcionOC implements EventHandler<ActionEvent> {
 
-    private List<Integer> respuestaUsuario;
-    private ArrayList<Button> botones;
-    private Label respuestaOrdenada;
+    ArrayList<BotonSeleccionarOpcionOC> handlers;
 
-    public BotonDeshacerOpcionOC(List<Integer> respuestaUsuario, ArrayList<Button> botones, Label respuestaOrdenada){
-        this.respuestaOrdenada = respuestaOrdenada;
-        this.respuestaUsuario = respuestaUsuario;
-        this.botones = botones;
+    public BotonDeshacerOpcionOC(ArrayList<BotonSeleccionarOpcionOC> handlers){
+        this.handlers = handlers;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if(this.respuestaOrdenada.getText().equals("")) return;
-        LinkedList<String> respuestaParceada = new LinkedList(Arrays.asList((respuestaOrdenada.getText().split("-"))));
-        String respuesta = respuestaParceada.removeLast();
-        for(Button boton: this.botones ){
-            if(boton.getText().equals(respuesta)){
-                boton.setVisible(true);
-                this.respuestaUsuario.remove(this.respuestaUsuario.size() - 1);
+        for(BotonSeleccionarOpcionOC handler: this.handlers ){
+            if(handler.esUltimaRespuesta()){
+                handler.removerRespuesta();
+                return;
             }
         }
-        this.respuestaOrdenada.setText("".join("-", respuestaParceada));
     }
 }
