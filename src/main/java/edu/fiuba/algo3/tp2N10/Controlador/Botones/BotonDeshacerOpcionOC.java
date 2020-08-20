@@ -26,7 +26,7 @@ public class BotonDeshacerOpcionOC implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if(this.respuestaOrdenada.getText() == "") return;
+        if(this.respuestaOrdenada.getText().equals("")) return;
         LinkedList<String> respuestaParceada = new LinkedList(Arrays.asList((respuestaOrdenada.getText().split("-"))));
         String respuesta = respuestaParceada.removeLast();
         for(Button boton: this.botones ){
