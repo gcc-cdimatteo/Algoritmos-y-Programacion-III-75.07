@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonComenzarJuego;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonComenzarJuego;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

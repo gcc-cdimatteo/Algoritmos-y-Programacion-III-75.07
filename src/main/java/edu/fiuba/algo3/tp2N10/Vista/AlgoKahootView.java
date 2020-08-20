@@ -3,11 +3,13 @@ package edu.fiuba.algo3.tp2N10.Vista;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.Observer;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class AlgoKahootView implements Observer {
     private final Stage escenario;
     private final AlgoKahoot algoKahoot;
+    private int numeroTurno = 0;
 
     public AlgoKahootView(AlgoKahoot algoKahoot, Stage stage) {
         this.algoKahoot = algoKahoot;
@@ -16,16 +18,14 @@ public class AlgoKahootView implements Observer {
     }
 
     public void mostrar() {
-        if(this.algoKahoot.finalizado()) {
-            ContenedorPodio contenedorPodio = new ContenedorPodio(this.algoKahoot);
-            Scene escenaPodio = new Scene(contenedorPodio, 640, 480);
-            this.escenario.setScene(escenaPodio);
-        }
-        else {
-            ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(this.algoKahoot);
-            Scene escenaPrincipal = new Scene(contenedorPrincipal, 640, 480);
-            this.escenario.setScene(escenaPrincipal);
-        }
+        BorderPane contenedor;
+
+        this.numeroTurno = (numeroTurno+1)%3;
+        if(algoKahoot.finalizado()){ contenedor = new ContenedorPodio(this.algoKahoot); }
+        else if(numeroTurno == 0){ contenedor = new ContenedorEntreRondas(this.algoKahoot); }
+        else{ contenedor = new ContenedorPrincipal(this.algoKahoot); }
+
+        this.escenario.setScene(new Scene(contenedor, 640, 480));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonResponderGC;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonResponderGC;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;

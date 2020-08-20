@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonDeshacerOpcionOC;
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonResponderOC;
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonSeleccionarOpcionOC;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonDeshacerOpcionOC;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonResponderOC;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSeleccionarOpcionOC;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

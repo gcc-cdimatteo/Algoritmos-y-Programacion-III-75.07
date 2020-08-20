@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.Botones.BotonSalir;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -43,12 +44,8 @@ public class ContenedorPodio extends BorderPane {
 
         // Según quien gane varía la altura del podio
         // Caso default: empate misma altura.
-        int alturaPrimerPodio = 200;
-        int alturaSegundoPodio = 200;
-        if (puntosJugadorDos > puntosJugadorUno)
-            alturaPrimerPodio = 100;
-        if (puntosJugadorDos < puntosJugadorUno)
-            alturaSegundoPodio = 100;
+        int alturaPrimerPodio = 10*puntosJugadorUno;
+        int alturaSegundoPodio = 10*puntosJugadorDos;
 
         Rectangle recJugadorUno = new Rectangle(0, 0, 100, alturaPrimerPodio);
         Rectangle recJugadorDos = new Rectangle(0, 0, 100, alturaSegundoPodio);
@@ -70,7 +67,7 @@ public class ContenedorPodio extends BorderPane {
         BorderPane bpBotoneraListo = new BorderPane();
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
         Button btnListo = new Button("Salir");
-        btnListo.setOnAction( new BotonSalir());
+        btnListo.setOnAction( new BotonSalir()); ///////////////////////////////////////////////////////////////////
         bpBotoneraListo.setRight(btnListo);
 
         this.setPadding(new Insets(10, 10, 10, 10));
