@@ -1,0 +1,20 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title RespuestaMultipleChoiceEsEvaluadaConPuntajeParcial
+
+participant "respuestaCorrecta:\nRespuestaMultipleChoice" as respuesta
+participant ": PuntajeParcial" as puntaje
+
+activate respuesta
+    respuesta -> puntaje: puntuar(aciertos, errores)
+    activate puntaje
+        alt errores == 0
+            puntaje --> respuesta: aciertos
+        else 
+            puntaje --> respuesta: 0
+        end
+    deactivate puntaje
+deactivate respuesta
+
+@enduml

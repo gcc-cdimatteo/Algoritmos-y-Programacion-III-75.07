@@ -1,0 +1,119 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class AlgoKahoot {
+    - observers: List<Observer>
+    - finalizado: boolean
+    - nuevaRonda()
+    + cargarRespuesta(respuesta: Respuesta)
+    + cambiarJugador()
+    + jugadorUsaMultiplicador(unValor: int)
+    + jugadorUsaExclusividad()
+    + permiteMultiplicadores(): boolean
+    + multiplicadorDisponible(valor: int): boolean
+    + permiteExclusividad(): boolean
+    + addObserver(observer: Observer)
+    + notifyObservers()
+    + preguntaActual(): Pregunta
+}
+
+abstract class Pregunta {
+    # enunciado: String
+    # opciones: List<String>
+    + responder(respuestasUsuario: List<Respuesta>): List<Integer>
+    + permiteMultiplicadores(): boolean
+    + permiteExclusividad(): boolean
+}
+
+interface Puntaje {
+    + puntuar(aciertos: Integer, errores: Integer): Integer
+    + permiteMultiplicadores(): boolean
+    + permiteExclusividad(): boolean
+}
+
+class Jugador {
+    - nombre: String
+    - totalPuntos: int
+    - usosDisponiblesExclusividad: int
+    - siguienteJugador: Jugador
+    - vaPrimero: boolean
+    + ordenarCon(otroJugador: Jugador)
+    + puntuar(puntos: int)
+    + usarMultiplicador(valor: int)
+    + usarExclusividad()
+    + exclusividadDisponible(): boolean
+    + multiplicadorDisponible(valor: int): boolean
+}
+
+class Ronda {
+    + cargarRespuesta(respuesta: Respuesta)
+    + usarExclusividad(jugador: Jugador)
+    + asignarPuntos()
+    + permiteMultiplicadores(): boolean
+    + permiteExclusividad(): boolean
+    + preguntaActual(): Pregunta
+}
+
+class Multiplicador {
+    - valor: int
+    - usosDisponibles: int
+    + {static} Nulo()
+    + {static} PorDos()
+    + {static} PorTres()
+    + multiplicar(unPuntaje: Integer): Integer
+    + estaDisponible(): boolean
+}
+
+interface Puntuador {
+    + calcularPuntos(puntos: List<Integer>): List<Integer>
+    + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
+}
+
+class PuntuadorExclusividad {
+    - valor: int
+    + calcularPuntos(puntos: List<Integer>): List<Integer>
+    + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
+}
+
+class PuntuadorNulo {
+    + calcularPuntos(puntos: List<Integer>): List<Integer>
+    + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
+}
+
+interface Respuesta {
+    + evaluar(Respuesta respuestaUsuario): List<Integer>
+    + permiteMultiplicadores(): boolean
+    + permiteExclusividad(): boolean
+}
+
+
+'Ordenamiento De Cuadrados
+
+'Herencia --|> cumple la relación 'es un'
+
+'Asociacion --> un objeto guarda a otro
+Pregunta --> Respuesta
+Ronda -left-> "*" Pregunta
+Ronda -down-> Puntuador
+Ronda --> "*" Respuesta
+Ronda -right-> "2" Jugador
+AlgoKahoot --> Pregunta
+AlgoKahoot -down-> Ronda
+AlgoKahoot -down-> Jugador
+Jugador --> Jugador
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+Jugador "1" o-- "3" Multiplicador
+Respuesta o-- Puntaje
+
+'Composicion --* un objeto es dueño de otro
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+'Respuesta <.right. AlgoKahoot
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+PuntuadorExclusividad .up.|> Puntuador
+PuntuadorNulo .up.|> Puntuador
+
+
+@enduml

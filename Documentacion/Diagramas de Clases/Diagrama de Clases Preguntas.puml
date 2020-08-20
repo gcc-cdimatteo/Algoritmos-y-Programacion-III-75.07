@@ -1,0 +1,53 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Pregunta {
+    # enunciado: String
+    # opciones: List<String>
+    # respuestaCorrecta: Respuesta
+    + responder(respuestasUsuario: List<Respuesta>): List<Integer>
+    + getEnunciado(): String
+    + getOpciones(): List<String>
+    + permiteMultiplicadores(): boolean
+    + permiteExclusividad(): boolean
+}
+
+class PreguntaVerdaderoFalso {
+    + {static} Penalidad(enunciado: String, respuestaCorrecta: boolean)
+    + {static} Clasico(enunciado: String, respuestaCorrecta: boolean)
+}
+
+class PreguntaGroupChoice {
+    + PreguntaGroupChoice(enunciado: String, opciones: List<String>, opcionesGrupoA: Set<Integer>, opcionesGrupoB: Set<Integer>)
+}
+
+class PreguntaOrderedChoice {
+    + PreguntaOrderedChoice(enunciado: String, opciones: List<String>, ordenCorrecto: List<Integer>)
+}
+
+class PreguntaMultipleChoice {
+    + {static} Parcial(enunciado: String, opciones: List<String>, opcionesCorrectas: Set<Integer>)
+    + {static} Penalidad(enunciado: String, opciones: List<String>, opcionesCorrectas: Set<Integer>)
+    + {static} Clasico(enunciado: String, opciones: List<String>, opcionesCorrectas: Set<Integer>)
+}
+
+'Ordenamiento De Cuadrados
+
+'Herencia --|> cumple la relación 'es un'
+Pregunta <|-up- PreguntaGroupChoice
+Pregunta <|-left- PreguntaMultipleChoice
+Pregunta <|-down- PreguntaOrderedChoice
+Pregunta <|-right- PreguntaVerdaderoFalso
+
+'Asociacion --> un objeto guarda a otro
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+
+'Composicion --* un objeto es dueño de otro
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+
+
+@enduml

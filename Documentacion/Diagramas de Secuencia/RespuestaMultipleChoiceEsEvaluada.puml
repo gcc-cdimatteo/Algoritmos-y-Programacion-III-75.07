@@ -1,0 +1,22 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title RespuestaMultipleChoiceEsEvaluada
+
+participant "__: PreguntaMultipleChoice__" as PreguntaMultipleChoice
+participant "respuestaCorrecta:\nRespuestaMultipleChoice" as respuesta
+participant "Puntaje" as puntaje
+
+activate PreguntaMultipleChoice
+    PreguntaMultipleChoice -> respuesta: evaluar(unaRespuesta)
+    activate respuesta
+        respuesta -> respuesta: intersection(unaRespuesta)
+        respuesta -> puntaje: puntuar(aciertos, errores)
+        activate puntaje
+            puntaje --> respuesta: respuestaEvaluada
+        deactivate puntaje
+        respuesta --> PreguntaMultipleChoice: respuestaEvaluada
+    deactivate respuesta
+deactivate PreguntaMultipleChoice
+
+@enduml

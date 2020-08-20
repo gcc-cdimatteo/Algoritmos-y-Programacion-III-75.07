@@ -46,7 +46,7 @@ public class AlgoKahoot implements Observable {
         return ronda.opciones();
     }
 
-    public void nuevaRonda() {
+    private void nuevaRonda() {
         if (preguntas.isEmpty()) {
             this.finalizado = true;
         } else {

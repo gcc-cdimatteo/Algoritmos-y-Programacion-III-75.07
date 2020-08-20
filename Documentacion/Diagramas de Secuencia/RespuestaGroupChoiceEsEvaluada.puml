@@ -1,0 +1,17 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title RespuestaGroupChoiceEsEvaluada
+
+participant "__: PreguntaGroupChoice__" as PreguntaGroupChoice
+participant "respuestaCorrecta:\nRespuestaGroupChoice" as respuesta
+
+activate PreguntaGroupChoice
+    PreguntaGroupChoice -> respuesta: evaluar(unaRespuesta)
+    activate respuesta
+        respuesta -> respuesta: equals(unaRespuesta)
+        respuesta --> PreguntaGroupChoice: respuestaEvaluada
+    deactivate respuesta
+deactivate PreguntaGroupChoice
+
+@enduml

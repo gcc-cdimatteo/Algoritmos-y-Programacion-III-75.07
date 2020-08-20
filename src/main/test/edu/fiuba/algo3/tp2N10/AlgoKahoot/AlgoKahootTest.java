@@ -122,7 +122,7 @@ public class AlgoKahootTest {
     }
 
     @Test
-    public void test06PruebasIntegrales() {
+    public void test07PruebasIntegrales() {
         AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
 
         //// Ronda 1

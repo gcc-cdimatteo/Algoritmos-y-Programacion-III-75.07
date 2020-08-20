@@ -1,0 +1,25 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title PreguntaEvaluaUnaListaDeRespuestas
+
+actor Ronda
+participant "Pregunta" as pregunta
+participant "Respuesta" as respuesta
+
+activate Ronda
+    activate pregunta
+        Ronda -> pregunta: responder({respuestaUno, respuestaDos})
+        activate respuesta
+            loop porCadaRespuesta
+            pregunta -> respuesta: evaluar(respuesta)
+                activate respuesta #DarkSalmon
+                    respuesta --> pregunta: respuestaEvaluada
+                deactivate respuesta
+            end
+            pregunta --> Ronda: {puntosRespuestaUno, puntosRespuestaDos}
+        deactivate respuesta
+    deactivate pregunta
+deactivate Ronda
+
+@enduml

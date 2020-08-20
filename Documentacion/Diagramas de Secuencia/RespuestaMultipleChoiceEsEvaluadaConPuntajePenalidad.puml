@@ -1,0 +1,17 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title RespuestaMultipleChoiceEsEvaluadaConPuntajePenalidad
+
+participant "respuestaCorrecta:\nRespuestaMultipleChoice" as respuesta
+participant "__: PuntajePenalidad__" as puntaje
+
+activate respuesta
+    respuesta -> puntaje: puntuar(aciertos, errores)
+    activate puntaje
+        puntaje --> respuesta: aciertos - errores
+    deactivate puntaje
+deactivate respuesta
+
+
+@enduml

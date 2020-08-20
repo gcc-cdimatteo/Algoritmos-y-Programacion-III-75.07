@@ -1,0 +1,21 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title RespuestaVerdaderoFalsoEsEvaluadaConPuntajeClasico
+
+participant "respuestaCorrecta:\nRespuestaVerdaderoFalso" as respuesta
+participant "__: PuntajeClasico__" as puntaje
+
+activate respuesta
+    respuesta -> puntaje: puntuar(aciertos, errores)
+    activate puntaje
+        alt aciertos && errores == 0
+            puntaje --> respuesta: 1
+        else 
+            puntaje --> respuesta: 0
+        end
+    deactivate puntaje
+deactivate respuesta
+
+
+@enduml

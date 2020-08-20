@@ -1,0 +1,17 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title RespuestaOrderedChoiceEsEvaluada
+
+participant "__: PreguntaOrderedChoice__" as PreguntaOrderedChoice
+participant "respuestaCorrecta:\nRespuestaOrderedChoice" as respuesta
+
+activate PreguntaOrderedChoice
+    PreguntaOrderedChoice -> respuesta: evaluar(unaRespuesta)
+    activate respuesta
+        respuesta -> respuesta: equals(unaRespuesta)
+        respuesta --> PreguntaOrderedChoice: respuestaEvaluada
+    deactivate respuesta
+deactivate PreguntaOrderedChoice
+
+@enduml

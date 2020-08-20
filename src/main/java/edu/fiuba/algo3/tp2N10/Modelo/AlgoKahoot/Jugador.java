@@ -9,7 +9,7 @@ import java.util.List;
 public class Jugador {
 
     private final String nombre;
-    private int totalPuntos = 0;
+    private int puntaje = 0;
     private int usosDisponiblesExclusividad = 2;
     private final List<Multiplicador> multiplicadores = Arrays.asList(Multiplicador.Nulo(), Multiplicador.PorDos(), Multiplicador.PorTres());
     private Multiplicador multiplicadorActual = multiplicadores.get(0);
@@ -25,7 +25,7 @@ public class Jugador {
     }
 
     public int puntaje() {
-        return totalPuntos;
+        return puntaje;
     }
 
     public void ordenarCon(Jugador otroJugador) {
@@ -48,7 +48,7 @@ public class Jugador {
     }
 
     public void puntuar(int puntos) {
-        totalPuntos += multiplicadorActual.multiplicar(puntos);
+        puntaje += multiplicadorActual.multiplicar(puntos);
         multiplicadorActual = multiplicadores.get(0);
     }
 

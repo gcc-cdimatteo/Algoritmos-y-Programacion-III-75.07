@@ -32,4 +32,5 @@ public abstract class Pregunta {
     public boolean permiteExclusividad() {
         return respuestaCorrecta.permiteExclusividad();
     }
+
 }
