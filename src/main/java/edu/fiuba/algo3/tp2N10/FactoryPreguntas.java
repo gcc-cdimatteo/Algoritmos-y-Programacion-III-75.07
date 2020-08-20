@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2N10.Modelo;
+package edu.fiuba.algo3.tp2N10;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PreguntaDesconocidaException;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;

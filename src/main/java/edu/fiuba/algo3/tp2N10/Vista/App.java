@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.FactoryPreguntas;
+import edu.fiuba.algo3.tp2N10.FactoryPreguntas;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

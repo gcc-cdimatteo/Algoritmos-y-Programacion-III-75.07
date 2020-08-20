@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package Modelo {
+    package AlgoKahoot
+    package Excepciones
+    package Pregunta
+    package Puntaje
+    package Puntuadores
+    package Respuesta
+}
+
+package Vista 
+
+package Controlador {
+    package Alertas 
+    package EventHandlers 
+}
+
+'Ordenamiento De Cuadrados
+
+'Herencia --|> cumple la relación 'es un'
+
+'Asociacion --> un objeto guarda a otro
+Pregunta --> Respuesta
+AlgoKahoot -left-> Pregunta
+AlgoKahoot -down-> Puntuadores
+AlgoKahoot --> Respuesta
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+Respuesta o-- Puntaje
+Puntuadores ..> Excepciones
+
+'Composicion --* un objeto es dueño de otro
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+Vista .left.> AlgoKahoot
+EventHandlers ..> Alertas
+Vista .down.> Controlador
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+
+@enduml

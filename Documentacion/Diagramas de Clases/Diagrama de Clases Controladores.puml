@@ -1,0 +1,50 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package Controlador {
+
+    package Alertas {
+        class AlertaNombreFaltante
+        class AlertaOrdenarTodasLasOpcionesOC
+        class AlertaSeleccionarUnaOpcion
+    }
+
+    package EventHandlers {
+        class BotonComenzarJuego
+        class BotonContinuar
+        class BotonDeshacerOpcionOC
+        class BotonEntrar
+        class BotonResponder
+        class BotonSalir
+        class BotonSeleccionarOpcionOC
+        class BotonUsarExclusividad
+        class BotonUsarMultiplicador
+    }
+
+}
+
+'Ordenamiento De Cuadrados
+AlertaOrdenarTodasLasOpcionesOC -up[hidden]-> AlertaNombreFaltante
+AlertaNombreFaltante -up[hidden]-> AlertaSeleccionarUnaOpcion
+BotonContinuar -[hidden]-> BotonSalir
+BotonDeshacerOpcionOC -[hidden]-> BotonUsarExclusividad
+BotonEntrar -[hidden]-> BotonUsarMultiplicador
+BotonUsarMultiplicador -[hidden]-> BotonSeleccionarOpcionOC
+BotonUsarExclusividad -[hidden]-> BotonContinuar
+BotonResponder -[hidden]-> BotonComenzarJuego
+
+'Herencia --|> cumple la relación 'es un'
+
+'Asociacion --> un objeto guarda a otro
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+
+'Composicion --* un objeto es dueño de otro
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+BotonComenzarJuego .right.> AlertaNombreFaltante
+BotonResponder ..> AlertaSeleccionarUnaOpcion
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+
+@enduml

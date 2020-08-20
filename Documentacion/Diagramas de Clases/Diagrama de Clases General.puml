@@ -1,92 +1,96 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class AlgoKahoot {
-    - observers: List<Observer>
-    - finalizado: boolean
-    - nuevaRonda()
-    + cargarRespuesta(respuesta: Respuesta)
-    + puntajes(): List<Integer>
-    + nombres(): List<String>
-    + jugadorUsaMultiplicador(unValor: int)
-    + jugadorUsaExclusividad()
-    + permiteMultiplicadores(): boolean
-    + multiplicadorDisponible(valor: int): boolean
-    + permiteExclusividad(): boolean
-    + addObserver(observer: Observer)
-    + notifyObservers()
-    + preguntaActual(): Pregunta
+package AlgoKahoot {
+    class AlgoKahoot {
+        - observers: List<Observer>
+        - finalizado: boolean
+        - nuevaRonda()
+        + cargarRespuesta(respuesta: Respuesta)
+        + puntajes(): List<Integer>
+        + nombres(): List<String>
+        + jugadorUsaMultiplicador(unValor: int)
+        + jugadorUsaExclusividad()
+        + permiteMultiplicadores(): boolean
+        + multiplicadorDisponible(valor: int): boolean
+        + permiteExclusividad(): boolean
+        + addObserver(observer: Observer)
+        + notifyObservers()
+        + preguntaActual(): Pregunta
+    }
+    class Jugador {
+        - nombre: String
+        - totalPuntos: int
+        - usosDisponiblesExclusividad: int
+        - siguienteJugador: Jugador
+        - vaPrimero: boolean
+        + ordenarCon(otroJugador: Jugador)
+        + puntuar(puntos: int)
+        + usarMultiplicador(valor: int)
+        + usarExclusividad()
+        + exclusividadDisponible(): boolean
+        + multiplicadorDisponible(valor: int): boolean
+    }
+    class Ronda {
+        + cargarRespuesta(respuesta: Respuesta)
+        + usarExclusividad(jugador: Jugador)
+        + asignarPuntos()
+        + permiteMultiplicadores(): boolean
+        + permiteExclusividad(): boolean
+        + preguntaActual(): Pregunta
+    }
 }
 
-abstract class Pregunta {
-    # enunciado: String
-    # opciones: List<String>
-    + responder(respuestasUsuario: List<Respuesta>): List<Integer>
-    + permiteMultiplicadores(): boolean
-    + permiteExclusividad(): boolean
+package Pregunta {
+    abstract class Pregunta {
+        # enunciado: String
+        # opciones: List<String>
+        + responder(respuestasUsuario: List<Respuesta>): List<Integer>
+        + permiteMultiplicadores(): boolean
+        + permiteExclusividad(): boolean
+    }
 }
 
-interface Puntaje {
-    + puntuar(aciertos: Integer, errores: Integer): Integer
-    + permiteMultiplicadores(): boolean
-    + permiteExclusividad(): boolean
+package Puntaje {
+    interface Puntaje {
+        + puntuar(aciertos: Integer, errores: Integer): Integer
+        + permiteMultiplicadores(): boolean
+        + permiteExclusividad(): boolean
+    }
 }
 
-class Jugador {
-    - nombre: String
-    - totalPuntos: int
-    - usosDisponiblesExclusividad: int
-    - siguienteJugador: Jugador
-    - vaPrimero: boolean
-    + ordenarCon(otroJugador: Jugador)
-    + puntuar(puntos: int)
-    + usarMultiplicador(valor: int)
-    + usarExclusividad()
-    + exclusividadDisponible(): boolean
-    + multiplicadorDisponible(valor: int): boolean
+package Puntuadores {
+    class Multiplicador {
+        - valor: int
+        - usosDisponibles: int
+        + {static} Nulo()
+        + {static} PorDos()
+        + {static} PorTres()
+        + multiplicar(unPuntaje: Integer): Integer
+        + estaDisponible(): boolean
+    }
+    interface Puntuador {
+        + calcularPuntos(puntos: List<Integer>): List<Integer>
+        + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
+    }
+    class PuntuadorExclusividad {
+        - valor: int
+        + calcularPuntos(puntos: List<Integer>): List<Integer>
+        + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
+    }
+    class PuntuadorNulo {
+        + calcularPuntos(puntos: List<Integer>): List<Integer>
+        + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
+    }
 }
 
-class Ronda {
-    + cargarRespuesta(respuesta: Respuesta)
-    + usarExclusividad(jugador: Jugador)
-    + asignarPuntos()
-    + permiteMultiplicadores(): boolean
-    + permiteExclusividad(): boolean
-    + preguntaActual(): Pregunta
+package Respuesta {
+    interface Respuesta {
+        + evaluar(Respuesta respuestaUsuario): List<Integer>
+        + permiteMultiplicadores(): boolean
+        + permiteExclusividad(): boolean
+    }
 }
-
-class Multiplicador {
-    - valor: int
-    - usosDisponibles: int
-    + {static} Nulo()
-    + {static} PorDos()
-    + {static} PorTres()
-    + multiplicar(unPuntaje: Integer): Integer
-    + estaDisponible(): boolean
-}
-
-interface Puntuador {
-    + calcularPuntos(puntos: List<Integer>): List<Integer>
-    + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
-}
-
-class PuntuadorExclusividad {
-    - valor: int
-    + calcularPuntos(puntos: List<Integer>): List<Integer>
-    + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
-}
-
-class PuntuadorNulo {
-    + calcularPuntos(puntos: List<Integer>): List<Integer>
-    + usarExclusividad(jugador: Jugador): PuntuadorExclusividad
-}
-
-interface Respuesta {
-    + evaluar(Respuesta respuestaUsuario): List<Integer>
-    + permiteMultiplicadores(): boolean
-    + permiteExclusividad(): boolean
-}
-
 
 'Ordenamiento De Cuadrados
 

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.Observer;
+import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Observer;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;

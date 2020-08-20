@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package Vista {
+    class AlgoKahootView
+    class App
+    class ContenedorBienvenidos
+    class ContenedorEntreRondas
+    class ContenedorJugadores
+    class ContenedorPodio
+    class ContenedorPregunta
+    class ContenedorPrincipal
+}
+
+'Ordenamiento De Cuadrados
+
+'Herencia --|> cumple la relación 'es un'
+
+'Asociacion --> un objeto guarda a otro
+
+'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
+
+'Composicion --* un objeto es dueño de otro
+
+'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+App .left.> ContenedorBienvenidos
+App ..> ContenedorJugadores
+App ..> FactoryPreguntas
+App .up.> AlgoKahootView
+AlgoKahootView .up.> ContenedorPodio
+AlgoKahootView .left.> ContenedorEntreRondas
+AlgoKahootView .right.> ContenedorPrincipal
+ContenedorPrincipal .up.> ContenedorPregunta
+
+
+'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
+
+@enduml

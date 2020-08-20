@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.Modelo.FactoryPreguntas;
+import edu.fiuba.algo3.tp2N10.FactoryPreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
