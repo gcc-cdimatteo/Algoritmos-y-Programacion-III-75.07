@@ -11,6 +11,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
+import java.util.LinkedHashMap;
+
 public class ContenedorPodio extends BorderPane {
 
     public ContenedorPodio(AlgoKahoot algoKahoot) {
@@ -29,8 +31,10 @@ public class ContenedorPodio extends BorderPane {
         BorderPane bpJugadorDos = new BorderPane();
 
         String styLabel = "-fx-font-weight: bold; -fx-font-size: 130%";
+        LinkedHashMap<String, Integer> puntosJugadores = algoKahoot.getPuntos();
+
         int puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        Label lblJugadorUno = new Label(algoKahoot.jugadorNombre());
+        Label lblJugadorUno = new Label(puntosJugadores.);
         lblJugadorUno.setStyle(styLabel);
         Label lblPuntajeUno = new Label(String.valueOf(puntosJugadorUno));
         lblPuntajeUno.setStyle(styLabel);
