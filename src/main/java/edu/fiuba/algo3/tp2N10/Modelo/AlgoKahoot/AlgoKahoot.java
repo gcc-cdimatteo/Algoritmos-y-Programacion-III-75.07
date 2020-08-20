@@ -24,16 +24,6 @@ public class AlgoKahoot implements Observable {
         nuevaRonda();
     }
 
-    public void cargarRespuesta(Respuesta respuesta) {
-        ronda.cargarRespuesta(respuesta);
-        cambiarJugador();
-        if (jugadorActual.vaPrimero()) {
-            ronda.asignarPuntos();
-            nuevaRonda();
-        }
-        notifyObservers();
-    }
-
     public void nuevaRonda() {
         if (preguntas.isEmpty()) finalizado = true;
         else ronda = new Ronda(this.preguntas.poll(), jugadorActual);
@@ -57,14 +47,23 @@ public class AlgoKahoot implements Observable {
         return nombres;
     }
 
-    public void jugadorNoResponde() {
-        ronda.jugadorNoResponde();
+    private void cambiarTurno() {
         cambiarJugador();
         if (jugadorActual.vaPrimero()) {
             ronda.asignarPuntos();
             nuevaRonda();
         }
         notifyObservers();
+    }
+
+    public void jugadorNoResponde() {
+        ronda.jugadorNoResponde();
+        cambiarTurno();
+    }
+
+    public void cargarRespuesta(Respuesta respuesta) {
+        ronda.cargarRespuesta(respuesta);
+        cambiarTurno();
     }
 
     public int jugadorPuntaje() {
