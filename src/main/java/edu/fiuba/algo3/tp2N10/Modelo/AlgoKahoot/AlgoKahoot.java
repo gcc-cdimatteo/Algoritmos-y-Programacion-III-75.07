@@ -6,7 +6,6 @@ import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.tp2N10.Modelo.Observer;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Queue;
 
@@ -42,13 +41,22 @@ public class AlgoKahoot implements Observable {
         else { ronda = new Ronda(this.preguntas.poll(), jugadorActual); }
     }
 
-    public LinkedHashMap<String, Integer> getPuntos() {
-        LinkedHashMap<String, Integer> puntosJugadores = new LinkedHashMap<>();
+    public List<Integer> puntajes() {
+        List<Integer> puntos = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-            puntosJugadores.put(jugadorActual.nombre(), jugadorActual.puntaje());
+            puntos.add(jugadorActual.puntaje());
             cambiarJugador();
         }
-        return puntosJugadores;
+        return puntos;
+    }
+
+    public List<String> nombres() {
+        List<String> nombres = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            nombres.add(jugadorActual.nombre());
+            cambiarJugador();
+        }
+        return nombres;
     }
 
     public int jugadorPuntaje() {

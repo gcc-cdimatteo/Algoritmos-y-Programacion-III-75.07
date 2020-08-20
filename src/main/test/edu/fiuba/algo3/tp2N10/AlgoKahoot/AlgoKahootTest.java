@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,11 +36,7 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
 
-        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        algoKahoot.cambiarJugador();
-        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
-
-        assertEquals(Arrays.asList(1, -1), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
+        assertEquals(Arrays.asList(1, -1), algoKahoot.puntajes());
     }
 
     @Test
@@ -52,11 +47,8 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
         algoKahoot.jugadorUsaMultiplicador(2);
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        algoKahoot.cambiarJugador();
-        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
 
-        assertEquals(Arrays.asList(3, -2), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
+        assertEquals(Arrays.asList(3, -2), algoKahoot.puntajes());
     }
 
     @Test
@@ -87,10 +79,7 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1, 2))));
-        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        algoKahoot.cambiarJugador();
-        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
-        assertEquals(Arrays.asList(3, -1), Arrays.asList(puntosJugadorUno, puntosJugadorDos));
+        assertEquals(Arrays.asList(3, -1), algoKahoot.puntajes());
     }
 
     @Test
@@ -113,14 +102,6 @@ public class AlgoKahootTest {
         assertTrue(algoKahoot.finalizado());
     }
 
-    private List<Integer> jugadoresPuntos(AlgoKahoot algoKahoot) {
-        Integer puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        algoKahoot.cambiarJugador();
-        Integer puntosJugadorDos = algoKahoot.jugadorPuntaje();
-        algoKahoot.cambiarJugador();
-        return Arrays.asList(puntosJugadorUno, puntosJugadorDos);
-    }
-
     @Test
     public void test07PruebasIntegrales() {
         AlgoKahoot algoKahoot = creoUnAlgoKahoot("preguntas_test.json");
@@ -133,7 +114,7 @@ public class AlgoKahootTest {
         algoKahoot.jugadorUsaMultiplicador(3);
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
         // Puntos
-        assertEquals(Arrays.asList(2, -3), jugadoresPuntos(algoKahoot));
+        assertEquals(Arrays.asList(2, -3), algoKahoot.puntajes());
 
         //// Ronda 2
         // Camila
@@ -143,7 +124,7 @@ public class AlgoKahootTest {
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
         // Puntos
-        assertEquals(Arrays.asList(2, 1), jugadoresPuntos(algoKahoot));
+        assertEquals(Arrays.asList(2, 1), algoKahoot.puntajes());
 
         //// Ronda 3
         // Camila
@@ -153,7 +134,7 @@ public class AlgoKahootTest {
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(Arrays.asList(3, 1, 2, 0)));
         // Puntos
-        assertEquals(Arrays.asList(2, 5), jugadoresPuntos(algoKahoot));
+        assertEquals(Arrays.asList(2, 5), algoKahoot.puntajes());
 
         //// Ronda 4
         // Camila
@@ -161,7 +142,7 @@ public class AlgoKahootTest {
         // Delfina
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4))));
         // Puntos
-        assertEquals(Arrays.asList(3, 5), jugadoresPuntos(algoKahoot));
+        assertEquals(Arrays.asList(3, 5), algoKahoot.puntajes());
     }
 
 }

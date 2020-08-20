@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.geometry.Insets;
@@ -10,8 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-
-import java.util.LinkedHashMap;
 
 public class ContenedorPodio extends BorderPane {
 
@@ -31,15 +28,13 @@ public class ContenedorPodio extends BorderPane {
         BorderPane bpJugadorDos = new BorderPane();
 
         String styLabel = "-fx-font-weight: bold; -fx-font-size: 130%";
-        LinkedHashMap<String, Integer> puntosJugadores = algoKahoot.getPuntos();
 
         int puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        Label lblJugadorUno = new Label(puntosJugadores.);
+        Label lblJugadorUno = new Label(String.valueOf(puntosJugadorUno));
         lblJugadorUno.setStyle(styLabel);
         Label lblPuntajeUno = new Label(String.valueOf(puntosJugadorUno));
         lblPuntajeUno.setStyle(styLabel);
 
-        algoKahoot.cambiarJugador();
         int puntosJugadorDos = algoKahoot.jugadorPuntaje();
         Label lblJugadorDos = new Label(algoKahoot.jugadorNombre());
         lblJugadorDos.setStyle(styLabel);
