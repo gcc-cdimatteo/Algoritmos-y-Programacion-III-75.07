@@ -6,7 +6,8 @@ class AlgoKahoot {
     - finalizado: boolean
     - nuevaRonda()
     + cargarRespuesta(respuesta: Respuesta)
-    + getInforme()
+    + puntajes(): List<Integer>
+    + nombres(): List<String>
     + jugadorUsaMultiplicador(unValor: int)
     + jugadorUsaExclusividad()
     + permiteMultiplicadores(): boolean

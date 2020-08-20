@@ -9,19 +9,23 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import java.util.List;
 
 public class ContenedorPodio extends BorderPane {
 
     public ContenedorPodio(AlgoKahoot algoKahoot) {
         super();
-        Label lblPodio = new Label("Podio"); // + algoKahoot.jugadorActualNombre());
+
+        List<String> nombres = algoKahoot.nombres();
+        List<Integer> puntajes = algoKahoot.puntajes();
+
+        Label lblPodio = new Label("Podio");
         lblPodio.setStyle("-fx-font-size: 200%");
 
         BorderPane bpHeader = new BorderPane();
         bpHeader.setCenter(lblPodio);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
 
-        //BorderPane bpPreguntaPowerUps = new BorderPane();
         BorderPane bpPodio = new BorderPane();
         bpPodio.setPadding(new Insets(50, 150, 50, 150));
         BorderPane bpJugadorUno = new BorderPane();
@@ -29,22 +33,22 @@ public class ContenedorPodio extends BorderPane {
 
         String styLabel = "-fx-font-weight: bold; -fx-font-size: 130%";
 
-        int puntosJugadorUno = algoKahoot.jugadorPuntaje();
-        Label lblJugadorUno = new Label(String.valueOf(puntosJugadorUno));
+        int puntosJugadorUno = puntajes.get(0);
+        String nombreJugadorUno = nombres.get(0);
+        Label lblJugadorUno = new Label(String.valueOf(nombreJugadorUno));
         lblJugadorUno.setStyle(styLabel);
         Label lblPuntajeUno = new Label(String.valueOf(puntosJugadorUno));
         lblPuntajeUno.setStyle(styLabel);
 
-        int puntosJugadorDos = algoKahoot.jugadorPuntaje();
-        Label lblJugadorDos = new Label(algoKahoot.jugadorNombre());
+        int puntosJugadorDos = puntajes.get(1);
+        String nombreJugadorDos = nombres.get(1);
+        Label lblJugadorDos = new Label(nombreJugadorDos);
         lblJugadorDos.setStyle(styLabel);
         Label lblPuntajeDos = new Label(String.valueOf(puntosJugadorDos));
         lblPuntajeDos.setStyle(styLabel);
 
-        // Según quien gane varía la altura del podio
-        // Caso default: empate misma altura.
-        int alturaPrimerPodio = 10*puntosJugadorUno;
-        int alturaSegundoPodio = 10*puntosJugadorDos;
+        int alturaPrimerPodio = 30*puntosJugadorUno;
+        int alturaSegundoPodio = 30*puntosJugadorDos;
 
         Rectangle recJugadorUno = new Rectangle(0, 0, 100, alturaPrimerPodio);
         Rectangle recJugadorDos = new Rectangle(0, 0, 100, alturaSegundoPodio);
@@ -66,7 +70,7 @@ public class ContenedorPodio extends BorderPane {
         BorderPane bpBotoneraListo = new BorderPane();
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
         Button btnListo = new Button("Salir");
-        btnListo.setOnAction( new BotonSalir()); ///////////////////////////////////////////////////////////////////
+        btnListo.setOnAction( new BotonSalir());
         bpBotoneraListo.setRight(btnListo);
 
         this.setPadding(new Insets(10, 10, 10, 10));
