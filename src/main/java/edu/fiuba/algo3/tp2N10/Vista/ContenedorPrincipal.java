@@ -79,8 +79,7 @@ public class ContenedorPrincipal extends BorderPane {
         this.setBottom(bpBotoneraListo);
 
         Timer temporizador = new Timer();
-        final Integer[] contador = {16};
-        Label labelTemporizador = new Label(contador[0].toString());
+        Label labelTemporizador = new Label("16");
         labelTemporizador.setStyle("-fx-font-size: 200%");
         bpHeader.setCenter(labelTemporizador);
         TimerTask task = new TimerTask(){
@@ -91,11 +90,11 @@ public class ContenedorPrincipal extends BorderPane {
 
                 @Override
                 public void run(){
-                    contador[0]--;
-                    labelTemporizador.setText(contador[0].toString());
-                    if(contador[0] <= 5 && contador[0] > 0){
+                    Integer contador = Integer.parseInt(labelTemporizador.getText()) - 1;
+                    labelTemporizador.setText(contador.toString());
+                    if(contador <= 5 && contador > 0){
                         labelTemporizador.setTextFill(Color.web("#ff0000"));
-                    }else if(contador[0] == 0){
+                    }else if(contador == 0){
                         algoKahoot.jugadorNoResponde();
                     }
                 }
