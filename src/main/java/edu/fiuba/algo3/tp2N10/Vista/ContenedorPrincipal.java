@@ -4,11 +4,15 @@ import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonUsarExclusividad;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonUsarMultiplicador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ContenedorPrincipal extends BorderPane {
 
@@ -72,5 +76,19 @@ public class ContenedorPrincipal extends BorderPane {
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
         bpBotoneraListo.setRight(btnListo);
         this.setBottom(bpBotoneraListo);
+
+        Timer temporizador = new Timer();
+        TimerTask task = new TimerTask(){
+            @Override
+            public void run() {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run(){
+                    algoKahoot.jugadorNoResponde();
+                }
+            });
+         }
+        };
+        temporizador.schedule(task, 15000l);
     }
 }
