@@ -2,6 +2,7 @@ package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RespuestaOrderedChoice implements Respuesta {
@@ -37,6 +38,11 @@ public class RespuestaOrderedChoice implements Respuesta {
     @Override
     public boolean permiteExclusividad() {
         return true;
+    }
+
+    @Override
+    public Respuesta respuestaIncorrecta() {
+        return new RespuestaOrderedChoice(Collections.emptyList());
     }
 
 }

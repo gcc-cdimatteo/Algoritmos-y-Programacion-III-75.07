@@ -2,6 +2,8 @@ package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 public class RespuestaGroupChoice implements Respuesta {
@@ -39,6 +41,11 @@ public class RespuestaGroupChoice implements Respuesta {
     @Override
     public boolean permiteExclusividad() {
         return true;
+    }
+
+    @Override
+    public Respuesta respuestaIncorrecta() {
+        return new RespuestaGroupChoice(new HashSet<>(), new HashSet<>());
     }
 
 }

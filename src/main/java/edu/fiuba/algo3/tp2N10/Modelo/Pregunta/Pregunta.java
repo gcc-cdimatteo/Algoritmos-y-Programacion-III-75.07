@@ -33,4 +33,7 @@ public abstract class Pregunta {
         return respuestaCorrecta.permiteExclusividad();
     }
 
+    public Respuesta respuestaIncorrecta() {
+        return respuestaCorrecta.respuestaIncorrecta();
+    }
 }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Modelo.Respuesta;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import com.google.common.collect.Sets;
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.RespuestaIncompatibleException;
@@ -52,6 +54,11 @@ public class RespuestaMultipleChoice implements Respuesta {
     @Override
     public boolean permiteExclusividad() {
         return puntaje.permiteExclusividad();
+    }
+
+    @Override
+    public Respuesta respuestaIncorrecta() {
+        return new RespuestaMultipleChoice(new HashSet<>());
     }
 
 }

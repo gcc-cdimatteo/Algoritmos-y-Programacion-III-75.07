@@ -48,4 +48,9 @@ public class RespuestaVerdaderoFalso implements Respuesta {
         return puntaje.permiteExclusividad();
     }
 
+    @Override
+    public Respuesta respuestaIncorrecta() {
+        return new RespuestaVerdaderoFalso(!respuesta);
+    }
+
 }

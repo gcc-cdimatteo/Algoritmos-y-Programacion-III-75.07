@@ -53,4 +53,8 @@ public class Ronda {
     public Pregunta preguntaActual() {
         return pregunta;
     }
+
+    public void jugadorNoResponde() {
+        respuestas.add(pregunta.respuestaIncorrecta());
+    }
 }

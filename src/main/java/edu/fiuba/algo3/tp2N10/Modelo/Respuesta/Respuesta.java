@@ -7,4 +7,6 @@ public interface Respuesta {
     boolean permiteMultiplicadores();
 
     boolean permiteExclusividad();
+
+    Respuesta respuestaIncorrecta();
 }

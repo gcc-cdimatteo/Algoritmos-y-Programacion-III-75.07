@@ -57,7 +57,7 @@ public class PreguntaGroupChoiceTest {
 
     @Test
     public void test06UnaPreguntaGCPuntua0SiNoEnvioNada() {
-        RespuestaGroupChoice unaRespuesta = new RespuestaGroupChoice(new HashSet<>(Collections.emptyList()), new HashSet<>(Collections.emptyList()));
+        RespuestaGroupChoice unaRespuesta = new RespuestaGroupChoice(new HashSet<>(), new HashSet<>());
         assertEquals(Collections.singletonList(0), this.preguntaGC.responder(Collections.singletonList(unaRespuesta)));
     }
 
