@@ -10,15 +10,18 @@ import javafx.scene.control.CheckBox;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Timer;
 
 public class BotonResponderMC implements EventHandler<ActionEvent> {
 
     private final ArrayList<CheckBox> opcionesUsuario;
     private final AlgoKahoot algoKahoot;
+    private final Timer temporizador;
 
-    public BotonResponderMC(AlgoKahoot algoKahoot, ArrayList<CheckBox> opcionesUsuario){
+    public BotonResponderMC(AlgoKahoot algoKahoot, ArrayList<CheckBox> opcionesUsuario, Timer temporizador){
         this.algoKahoot = algoKahoot;
         this.opcionesUsuario = opcionesUsuario;
+        this.temporizador = temporizador;
     }
 
     public void handle(ActionEvent actionEvent) {
@@ -34,6 +37,7 @@ public class BotonResponderMC implements EventHandler<ActionEvent> {
         }
         else {
             this.algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(respuestas));
+            temporizador.cancel();
         }
     }
 }

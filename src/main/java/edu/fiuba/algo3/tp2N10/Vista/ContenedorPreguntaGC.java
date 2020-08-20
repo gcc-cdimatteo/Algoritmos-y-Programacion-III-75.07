@@ -8,10 +8,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class ContenedorPreguntaGC extends VBox {
 
-    public ContenedorPreguntaGC(Button btnListo, AlgoKahoot algoKahoot){
+    public ContenedorPreguntaGC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador){
         String grupoA = "Grupo A";
         String grupoB = "Grupo B";
         ArrayList<ToggleGroup> gruposDeOpciones = new ArrayList<>();
@@ -30,7 +31,7 @@ public class ContenedorPreguntaGC extends VBox {
 
             this.getChildren().add(bpOpcionMasRadio);
         }
-        btnListo.setOnAction(new BotonResponderGC(algoKahoot, gruposDeOpciones));
+        btnListo.setOnAction(new BotonResponderGC(algoKahoot, gruposDeOpciones, temporizador));
         this.setSpacing(25);
     }
 }

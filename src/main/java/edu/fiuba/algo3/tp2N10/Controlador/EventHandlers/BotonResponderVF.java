@@ -8,22 +8,28 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ToggleButton;
 
+import java.util.Timer;
+
 public class BotonResponderVF implements EventHandler<ActionEvent> {
     private final ToggleButton botonVerdadero;
     private final ToggleButton botonFalso;
     private final AlgoKahoot algoKahoot;
+    private final Timer temporizador;
 
-    public BotonResponderVF(AlgoKahoot algoKahoot, ToggleButton botonVerdadero, ToggleButton botonFalso){
+    public BotonResponderVF(AlgoKahoot algoKahoot, ToggleButton botonVerdadero, ToggleButton botonFalso, Timer temporizador){
         this.algoKahoot = algoKahoot;
         this.botonVerdadero = botonVerdadero;
         this.botonFalso = botonFalso;
+        this.temporizador = temporizador;
     }
 
     public void handle(ActionEvent actionEvent) {
         if (botonVerdadero.isSelected()) {
             algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
+            this.temporizador.cancel();
         } else if (botonFalso.isSelected()) {
             algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+            this.temporizador.cancel();
         } else {
             AlertaSeleccionarUnaOpcion alertaSeleccionarUnaOpcion = new AlertaSeleccionarUnaOpcion();
             alertaSeleccionarUnaOpcion.mostrar();

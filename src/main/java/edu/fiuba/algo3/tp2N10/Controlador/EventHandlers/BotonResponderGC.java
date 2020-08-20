@@ -11,15 +11,18 @@ import javafx.scene.control.ToggleGroup;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Timer;
 
 public class BotonResponderGC implements EventHandler<ActionEvent> {
 
     private final ArrayList<ToggleGroup> opcionesUsuario;
     private final AlgoKahoot algoKahoot;
+    private final Timer temporizador;
 
-    public BotonResponderGC(AlgoKahoot algoKahoot, ArrayList<ToggleGroup> opcionesUsuario) {
+    public BotonResponderGC(AlgoKahoot algoKahoot, ArrayList<ToggleGroup> opcionesUsuario, Timer temporizador) {
         this.algoKahoot = algoKahoot;
         this.opcionesUsuario = opcionesUsuario;
+        this.temporizador = temporizador;
     }
 
     public void handle(ActionEvent actionEvent) {
@@ -34,5 +37,6 @@ public class BotonResponderGC implements EventHandler<ActionEvent> {
             }
         }
         this.algoKahoot.cargarRespuesta(new RespuestaGroupChoice(grupoA, grupoB));
+        this.temporizador.cancel();
     }
 }

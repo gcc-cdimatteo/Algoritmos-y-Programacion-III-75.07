@@ -19,6 +19,8 @@ public class ContenedorPrincipal extends BorderPane {
     public ContenedorPrincipal(AlgoKahoot algoKahoot) {
         super();
 
+        Timer temporizador = new Timer();
+
         Label lblJugador = new Label("  Jugador: " + algoKahoot.jugadorNombre());
         lblJugador.setStyle("-fx-font-size: 200%");
         Label lblPuntaje = new Label("Puntaje: " + algoKahoot.jugadorPuntaje() + "  ");
@@ -58,18 +60,18 @@ public class ContenedorPrincipal extends BorderPane {
         switch (algoKahoot.preguntaActual()) {
             case ("VerdaderoFalsoClasico") :
             case ("VerdaderoFalsoPenalidad") :
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot, temporizador));
                 break;
             case ("MultipleChoiceClasico") :
             case ("MultipleChoiceParcial") :
             case ("MultipleChoicePenalidad") :
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot, temporizador));
                 break;
             case ("OrderedChoice") :
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot, temporizador));
                 break;
             case ("GroupChoice") :
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot, temporizador));
                 break;
         }
 
@@ -84,7 +86,6 @@ public class ContenedorPrincipal extends BorderPane {
         bpBotoneraListo.setRight(btnListo);
         this.setBottom(bpBotoneraListo);
 
-        Timer temporizador = new Timer();
         Label labelTemporizador = new Label("16");
         labelTemporizador.setStyle("-fx-font-size: 200%");
         bpHeader.setCenter(labelTemporizador);
@@ -95,10 +96,12 @@ public class ContenedorPrincipal extends BorderPane {
             Platform.runLater(() -> {
                 int contador = Integer.parseInt(labelTemporizador.getText()) - 1;
                 labelTemporizador.setText(Integer.toString(contador));
+                System.out.print(contador + "\n");
                 if(contador <= 5 && contador > 0){
                     labelTemporizador.setTextFill(Color.web("#ff0000"));
                 }else if(contador == 0){
                     algoKahoot.jugadorNoResponde();
+                    temporizador.cancel();
                 }
             });
          }

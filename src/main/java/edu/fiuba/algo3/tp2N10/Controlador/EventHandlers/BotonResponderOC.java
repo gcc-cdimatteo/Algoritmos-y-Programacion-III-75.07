@@ -8,16 +8,19 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 import java.util.List;
+import java.util.Timer;
 
 public class BotonResponderOC implements EventHandler<ActionEvent> {
     private final List<Integer> respuestaUsuario;
     private final List<Button> botones;
     private final AlgoKahoot algoKahoot;
+    private final Timer temporizador;
 
-    public BotonResponderOC(AlgoKahoot algoKahoot, List<Integer> respuestaUsuario, List<Button> botones){
+    public BotonResponderOC(AlgoKahoot algoKahoot, List<Integer> respuestaUsuario, List<Button> botones, Timer temporizador){
         this.algoKahoot = algoKahoot;
         this.respuestaUsuario = respuestaUsuario;
         this.botones = botones;
+        this.temporizador = temporizador;
     }
 
     public void handle(ActionEvent actionEvent) {
@@ -29,5 +32,6 @@ public class BotonResponderOC implements EventHandler<ActionEvent> {
             }
         }
         this.algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(this.respuestaUsuario));
+        this.temporizador.cancel();
     }
 }

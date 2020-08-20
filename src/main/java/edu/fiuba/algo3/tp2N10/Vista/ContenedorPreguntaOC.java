@@ -12,10 +12,11 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
 
 public class ContenedorPreguntaOC extends BorderPane {
 
-    public ContenedorPreguntaOC(Button btnListo, AlgoKahoot algoKahoot) {
+    public ContenedorPreguntaOC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador) {
         super();
 
         List<Integer> respuestaUsuario = new ArrayList<>();
@@ -25,7 +26,7 @@ public class ContenedorPreguntaOC extends BorderPane {
 
         ArrayList<Button> arrayBtnOpciones = new ArrayList<>();
         HBox hboxOpciones = new HBox(25);
-        btnListo.setOnAction(new BotonResponderOC(algoKahoot, respuestaUsuario, arrayBtnOpciones));
+        btnListo.setOnAction(new BotonResponderOC(algoKahoot, respuestaUsuario, arrayBtnOpciones, temporizador));
 
         ArrayList<BotonSeleccionarOpcionOC> handlersSeleccionarOpcion = new ArrayList<>();
 
