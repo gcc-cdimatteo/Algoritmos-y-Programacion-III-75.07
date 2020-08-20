@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -78,17 +79,29 @@ public class ContenedorPrincipal extends BorderPane {
         this.setBottom(bpBotoneraListo);
 
         Timer temporizador = new Timer();
+        final Integer[] contador = {16};
+        Label labelTemporizador = new Label(contador[0].toString());
+        labelTemporizador.setStyle("-fx-font-size: 200%");
+        bpHeader.setCenter(labelTemporizador);
         TimerTask task = new TimerTask(){
             @Override
+
             public void run() {
             Platform.runLater(new Runnable() {
+
                 @Override
                 public void run(){
-                    algoKahoot.jugadorNoResponde();
+                    contador[0]--;
+                    labelTemporizador.setText(contador[0].toString());
+                    if(contador[0] <= 5 && contador[0] > 0){
+                        labelTemporizador.setTextFill(Color.web("#ff0000"));
+                    }else if(contador[0] == 0){
+                        algoKahoot.jugadorNoResponde();
+                    }
                 }
             });
          }
         };
-        temporizador.schedule(task, 15000l);
+        temporizador.schedule(task, 0,1000l);
     }
 }
