@@ -24,22 +24,14 @@ public class ContenedorJugadores extends BorderPane {
         setTop(bpHeader);
 
         BorderPane bpRegistro = new BorderPane();
-        bpRegistro.setPadding(new Insets(100, 100, 100, 100));
-        VBox vboxJugadores = new VBox(10);
-
+        bpRegistro.setPadding(new Insets(200, 200, 200, 200));
 
         TextField nombreUno = new TextField();
-        HBox hboxNombre1 = new HBox(10);
-        hboxNombre1.getChildren().addAll(new Label("Jugador 1: "), nombreUno);
-
         TextField nombreDos = new TextField();
-        HBox hboxNombre2 = new HBox(10);
-        hboxNombre1.getChildren().addAll(new Label("Jugador 2: "), nombreDos);
-
-
-        vboxJugadores.getChildren().addAll(hboxNombre1, hboxNombre2);
-        bpRegistro.setCenter(vboxJugadores);
-
+        HBox hboxNombres = new HBox(100);
+        hboxNombres.getChildren().addAll(new Label("Jugador 1: "), nombreUno,
+                new Label("Jugador 2: "), nombreDos);
+        bpRegistro.setCenter(hboxNombres);
         setCenter(bpRegistro);
 
         // botonera Empezar a Jugar
