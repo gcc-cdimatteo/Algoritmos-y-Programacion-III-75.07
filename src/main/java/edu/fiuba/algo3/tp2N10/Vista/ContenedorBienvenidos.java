@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 
 public class ContenedorBienvenidos extends VBox {
 
-    Stage stage;
+    private Stage escenario;
 
     public ContenedorBienvenidos(Stage stage, Scene proximaEscena) {
 
         super();
 
-        this.stage = stage;
+        this.escenario = stage;
 
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);

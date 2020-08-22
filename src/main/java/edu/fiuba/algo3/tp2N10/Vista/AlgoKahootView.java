@@ -24,7 +24,6 @@ public class AlgoKahootView implements Observer {
     }
 
     public void mostrar() {
-
         BorderPane contenedor;
         String mediaPath;
         this.numeroTurno++;
@@ -49,7 +48,13 @@ public class AlgoKahootView implements Observer {
             this.reproductor.play();
         } catch (MediaException mediaException) {}
 
+        double ancho = this.escenario.getWidth();
+        double alto = this.escenario.getHeight();
+
         this.escenario.setScene(new Scene(contenedor, 640, 480));
+
+        this.escenario.setWidth(ancho);
+        this.escenario.setHeight(alto);
     }
 
     private MediaPlayer crearReproductor(String mediaPath){

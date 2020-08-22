@@ -24,6 +24,7 @@ public class App extends Application {
     public void start(Stage stage) {
 
         this.escenario = stage;
+        this.escenario.setMaximized(true);
 
         this.escenario.setTitle("AlgoKahoot");
 
@@ -50,5 +51,3 @@ public class App extends Application {
         algoKahootView.mostrar();
     }
 }
-
-//Música por https://patrickdearteaga.com

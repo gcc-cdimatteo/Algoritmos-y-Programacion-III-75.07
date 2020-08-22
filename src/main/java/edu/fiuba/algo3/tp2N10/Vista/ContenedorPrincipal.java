@@ -9,8 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -99,6 +102,8 @@ public class ContenedorPrincipal extends BorderPane {
                 if(contador <= 5 && contador > 0){
                     labelTemporizador.setTextFill(Color.web("#ff0000"));
                 }else if(contador == 0){
+                    MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/sinrespuesta.mp3").toURI().toString()));
+                    reproductor.play();
                     algoKahoot.jugadorNoResponde();
                     temporizador.cancel();
                 }
