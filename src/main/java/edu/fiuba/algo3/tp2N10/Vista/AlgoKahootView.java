@@ -35,7 +35,7 @@ public class AlgoKahootView implements Observer {
 
         if (algoKahoot.finalizado()) {
             contenedor = new ContenedorPodio(algoKahoot);
-            backgroundPath = "./resources/images/fondo.png";
+            backgroundPath = "./resources/images/final.png";
             mediaPath = "./resources/audio/final.mp3";
         } else if (numeroTurno == 5) {
             contenedor = new ContenedorEntreRondas(algoKahoot);
@@ -68,12 +68,9 @@ public class AlgoKahootView implements Observer {
         escenario.setScene(new Scene(contenedor, 1280, 720));
 
         escenario.setOnCloseRequest(event -> {
-            System.out.println("Stage AlgoKahootView is closing");
             if(reproductor != null) {
-                System.out.println("Reproductor AlgoKahootView is closing");
                 reproductor.stop();}
             if(temporizador != null){
-                System.out.println("Timer off");
                 temporizador.cancel();
             }
             Platform.exit();

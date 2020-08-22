@@ -28,7 +28,6 @@ public class App extends Application {
         //escenario.setMaximized(true);
         escenario.setTitle("AlgoKahoot");
         escenario.setOnCloseRequest(event -> {
-            System.out.println("Stage is closing");
             if(reproductor != null) {reproductor.stop();}
             Platform.exit();
         });
