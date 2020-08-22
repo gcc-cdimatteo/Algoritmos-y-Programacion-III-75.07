@@ -20,9 +20,8 @@ public class BotonEntrar implements EventHandler<ActionEvent> {
         double ancho = escenario.getWidth();
         double alto = escenario.getHeight();
 
-        escenario.setScene(proximaEscena);
-
         escenario.setWidth(ancho);
         escenario.setHeight(alto);
+        escenario.setScene(proximaEscena);
     }
 }
