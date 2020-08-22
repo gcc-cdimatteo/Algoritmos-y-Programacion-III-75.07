@@ -48,8 +48,14 @@ public class ContenedorEntreRondas extends BorderPane {
         Label lblPuntajeDos = new Label(String.valueOf(puntosJugadorDos));
         lblPuntajeDos.setStyle(styLabel);
 
-        int alturaPrimerPodio = 30 * puntosJugadorUno;
-        int alturaSegundoPodio = 30 * puntosJugadorDos;
+        // Según quien gane varía la altura del podio
+        // Caso default: empate misma altura.
+        int alturaPrimerPodio = 300;
+        int alturaSegundoPodio = 300;
+        if (puntosJugadorDos > puntosJugadorUno)
+            alturaPrimerPodio = 150;
+        if (puntosJugadorDos < puntosJugadorUno)
+            alturaSegundoPodio = 150;
 
         Rectangle recJugadorUno = new Rectangle(0, 0, 100, alturaPrimerPodio);
         Rectangle recJugadorDos = new Rectangle(0, 0, 100, alturaSegundoPodio);
