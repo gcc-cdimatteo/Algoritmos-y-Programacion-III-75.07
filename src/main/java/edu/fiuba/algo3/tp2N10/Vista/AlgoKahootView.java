@@ -12,12 +12,14 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Timer;
 
 public class AlgoKahootView implements Observer {
     private final Stage escenario;
     private final AlgoKahoot algoKahoot;
     private int numeroTurno = 0;
     private MediaPlayer reproductor;
+    private Timer temporizador;
 
     public AlgoKahootView(AlgoKahoot algoKahoot, Stage stage) {
         this.algoKahoot = algoKahoot;
@@ -45,7 +47,8 @@ public class AlgoKahootView implements Observer {
             backgroundPath = "./resources/images/fondo.png";
             mediaPath = "./resources/audio/pregunta.mp3";
         } else {
-            contenedor = new ContenedorPrincipal(algoKahoot);
+            this.temporizador = new Timer();
+            contenedor = new ContenedorPrincipal(algoKahoot, this.temporizador);
             backgroundPath = "./resources/images/fondo.png";
             mediaPath = "./resources/audio/jugar.mp3";
         }
@@ -69,6 +72,10 @@ public class AlgoKahootView implements Observer {
             if(reproductor != null) {
                 System.out.println("Reproductor AlgoKahootView is closing");
                 reproductor.stop();}
+            if(temporizador != null){
+                System.out.println("Timer off");
+                temporizador.cancel();
+            }
             Platform.exit();
         });
 
