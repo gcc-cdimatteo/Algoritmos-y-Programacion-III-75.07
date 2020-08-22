@@ -29,6 +29,7 @@ public class ContenedorPrincipal extends BorderPane {
         Label lblPuntaje = new Label("Puntaje: " + algoKahoot.jugadorPuntaje() + "  ");
         lblPuntaje.setStyle("-fx-font-size: 200%");
         Label lblEnunciado = new Label(algoKahoot.preguntaEnunciado());
+        lblEnunciado.setStyle("-fx-font-size: 250%");
 
         BorderPane bpPreguntaPowerUps = new BorderPane();
         bpPreguntaPowerUps.setPadding(new Insets(10, 10, 10, 10));
