@@ -79,7 +79,6 @@ public class ContenedorPodio extends BorderPane {
         btnListo.setOnAction( new BotonSalir());
         bpBotoneraListo.setRight(btnListo);
 
-        setPadding(new Insets(10, 10, 10, 10));
         setTop(bpHeader);
         setCenter(bpPodio);
         setBottom(bpBotoneraListo);

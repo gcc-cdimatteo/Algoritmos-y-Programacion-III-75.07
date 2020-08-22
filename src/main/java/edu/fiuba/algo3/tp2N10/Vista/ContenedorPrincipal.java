@@ -83,7 +83,6 @@ public class ContenedorPrincipal extends BorderPane {
         bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
         bpPreguntaPowerUps.setRight(vboxPowerUps);
 
-        setPadding(new Insets(10, 10, 10, 10));
         setTop(bpHeader);
         setCenter(bpPreguntaPowerUps);
         BorderPane bpBotoneraListo = new BorderPane();

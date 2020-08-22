@@ -82,7 +82,6 @@ public class ContenedorEntreRondas extends BorderPane {
         botonContinuar.setOnAction(new BotonContinuar(algoKahoot));
         bpBotoneraListo.setRight(botonContinuar);
 
-        setPadding(new Insets(10, 10, 10, 10));
         setTop(bpHeader);
         setCenter(bpPodio);
         setBottom(bpBotoneraListo);
