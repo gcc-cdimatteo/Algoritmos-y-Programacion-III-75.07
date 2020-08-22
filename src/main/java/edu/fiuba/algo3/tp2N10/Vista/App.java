@@ -40,7 +40,7 @@ public class App extends Application {
         Scene escenaJugadores = new Scene(contenedorJugadores, 1280, 720);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(escenario, escenaJugadores);
-        try { contenedorBienvenidos.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/fondo.png", 1280, 720));}
+        try { contenedorBienvenidos.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/bienvenida.png", 1280, 720));}
         catch (FileNotFoundException ignored) {}
 
         Scene escenaBienvenida = new Scene(contenedorBienvenidos, 1280, 720);
