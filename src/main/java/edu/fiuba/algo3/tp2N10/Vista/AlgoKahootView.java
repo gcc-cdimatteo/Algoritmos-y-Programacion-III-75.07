@@ -2,6 +2,7 @@ package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.Observer;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
@@ -42,22 +43,32 @@ public class AlgoKahootView implements Observer {
             contenedor = new ContenedorPrincipal(algoKahoot);
             mediaPath = "./resources/audio/jugar.mp3";
         }
+
         try {
-            if (reproductor != null) reproductor.stop();
             reproductor = crearReproductor(mediaPath);
             reproductor.play();
         } catch (MediaException ignored) {}
+
 
         double ancho = escenario.getWidth();
         double alto = escenario.getHeight();
 
         escenario.setScene(new Scene(contenedor, 640, 480));
 
+        escenario.setOnCloseRequest(event -> {
+            System.out.println("Stage AlgoKahootView is closing");
+            if(reproductor != null) {
+                System.out.println("Reproductor AlgoKahootView is closing");
+                reproductor.stop();}
+            Platform.exit();
+        });
+
         escenario.setWidth(ancho);
         escenario.setHeight(alto);
     }
 
     private MediaPlayer crearReproductor(String mediaPath) {
+        if (reproductor != null) reproductor.stop();
         MediaPlayer reproductor = new MediaPlayer(new Media(new File(mediaPath).toURI().toString()));
         reproductor.setCycleCount(MediaPlayer.INDEFINITE);
         return reproductor;

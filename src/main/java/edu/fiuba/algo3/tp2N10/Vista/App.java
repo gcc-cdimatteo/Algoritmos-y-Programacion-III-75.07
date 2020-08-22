@@ -2,6 +2,7 @@ package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.media.MediaException;
 import javafx.stage.Stage;
@@ -24,8 +25,12 @@ public class App extends Application {
 
         escenario = stage;
         escenario.setMaximized(true);
-
         escenario.setTitle("AlgoKahoot");
+        escenario.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            if(reproductor != null) {reproductor.stop();}
+            Platform.exit();
+        });
 
         ContenedorJugadores contenedorJugadores = new ContenedorJugadores(this);
         Scene escenaJugadores = new Scene(contenedorJugadores, 640, 480);
@@ -44,7 +49,7 @@ public class App extends Application {
     }
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
-        this.reproductor.stop();
+        if(reproductor != null) { this.reproductor.stop(); }
         AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_test.json", nombreUno, nombreDos);
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
         algoKahootView.mostrar();

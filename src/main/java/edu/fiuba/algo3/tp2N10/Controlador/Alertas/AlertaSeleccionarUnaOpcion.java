@@ -15,11 +15,12 @@ public class AlertaSeleccionarUnaOpcion extends Alert{
         super(AlertType.WARNING);
         this.setTitle("AlgoKahoot Error");
         this.setHeaderText("¡Debe seleccionar al menos una opcion!");
-        this.reproductor = new MediaPlayer(new Media(new File("./resources/audio/alerta.mp3").toURI().toString()));
+        try{ this.reproductor = new MediaPlayer(new Media(new File("./resources/audio/alerta.mp3").toURI().toString()));}
+        catch (MediaException ignored) {}
     }
 
     public void mostrar() {
-        this.reproductor.play();
+        if (reproductor != null) this.reproductor.play();
         this.showAndWait();
     }
 }
