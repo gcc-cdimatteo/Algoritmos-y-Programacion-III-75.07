@@ -44,8 +44,8 @@ public class ContenedorPreguntaOC extends BorderPane {
         Button botonDeshacer = new Button("Deshacer");
         botonDeshacer.setOnAction(new BotonDeshacerOpcionOC(handlersSeleccionarOpcion));
 
-        this.setLeft(hboxOpciones);
-        this.setRight(botonDeshacer);
-        this.setBottom(respuestaOrdenadaLabel);
+        setLeft(hboxOpciones);
+        setRight(botonDeshacer);
+        setBottom(respuestaOrdenadaLabel);
     }
 }

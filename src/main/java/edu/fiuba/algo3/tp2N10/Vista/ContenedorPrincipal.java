@@ -81,13 +81,13 @@ public class ContenedorPrincipal extends BorderPane {
         bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
         bpPreguntaPowerUps.setRight(vboxPowerUps);
 
-        this.setPadding(new Insets(10, 10, 10, 10));
-        this.setTop(bpHeader);
-        this.setCenter(bpPreguntaPowerUps);
+        setPadding(new Insets(10, 10, 10, 10));
+        setTop(bpHeader);
+        setCenter(bpPreguntaPowerUps);
         BorderPane bpBotoneraListo = new BorderPane();
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
         bpBotoneraListo.setRight(btnListo);
-        this.setBottom(bpBotoneraListo);
+        setBottom(bpBotoneraListo);
 
         Label labelTemporizador = new Label("16");
         labelTemporizador.setStyle("-fx-font-size: 200%");

@@ -1,15 +1,14 @@
-package edu.fiuba.algo3.tp2N10;
+package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PreguntaDesconocidaException;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-
 
 public class FactoryPreguntas {
 
@@ -144,5 +143,4 @@ public class FactoryPreguntas {
         }
         return new PreguntaOrderedChoice(obtenerEnunciado(pregunta), obtenerOpciones(pregunta), arrayRespuestas);
     }
-
 }

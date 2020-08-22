@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.FactoryPreguntas;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.media.MediaException;
@@ -23,30 +22,30 @@ public class App extends Application {
 
     public void start(Stage stage) {
 
-        this.escenario = stage;
-        this.escenario.setMaximized(true);
+        escenario = stage;
+        escenario.setMaximized(true);
 
-        this.escenario.setTitle("AlgoKahoot");
+        escenario.setTitle("AlgoKahoot");
 
         ContenedorJugadores contenedorJugadores = new ContenedorJugadores(this);
         Scene escenaJugadores = new Scene(contenedorJugadores, 640, 480);
 
-        ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(this.escenario, escenaJugadores);
+        ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(escenario, escenaJugadores);
         Scene escenaBienvenida = new Scene(contenedorBienvenidos, 640, 480);
 
         try {
-            this.reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));
-            this.reproductor.setCycleCount(MediaPlayer.INDEFINITE);
-            this.reproductor.play();
-        } catch (MediaException mediaException) {}
+            reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));
+            reproductor.setCycleCount(MediaPlayer.INDEFINITE);
+            reproductor.play();
+        } catch (MediaException ignored) {}
 
-        this.escenario.setScene(escenaBienvenida);
-        this.escenario.show();
+        escenario.setScene(escenaBienvenida);
+        escenario.show();
     }
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
         this.reproductor.stop();
-        AlgoKahoot algoKahoot = new AlgoKahoot(new FactoryPreguntas("preguntas_test.json").preguntas(), nombreUno, nombreDos);
+        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_test.json", nombreUno, nombreDos);
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
         algoKahootView.mostrar();
     }

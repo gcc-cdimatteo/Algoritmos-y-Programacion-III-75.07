@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.tp2N10.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import edu.fiuba.algo3.tp2N10.FactoryPreguntas;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaMultipleChoice;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.RespuestaOrderedChoice;
@@ -17,8 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AlgoKahootTest {
     public AlgoKahoot creoUnAlgoKahoot(String archivoNombre) {
         try {
-            FactoryPreguntas factory = new FactoryPreguntas(archivoNombre);
-            return new AlgoKahoot(factory.preguntas(), "Delfina", "Camila");
+            return new AlgoKahoot(archivoNombre, "Delfina", "Camila");
         } catch (IOException e) {
             return null;
         }

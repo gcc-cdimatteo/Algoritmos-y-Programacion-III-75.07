@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
 import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PowerUpNoDisponibleException;
-import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.*;
+import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Multiplicador;
 
 import java.util.Arrays;
 import java.util.List;

@@ -12,7 +12,7 @@ import java.util.Timer;
 
 public class ContenedorPreguntaGC extends VBox {
 
-    public ContenedorPreguntaGC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador){
+    public ContenedorPreguntaGC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador) {
         String grupoA = "Grupo A";
         String grupoB = "Grupo B";
         ArrayList<ToggleGroup> gruposDeOpciones = new ArrayList<>();
@@ -29,9 +29,9 @@ public class ContenedorPreguntaGC extends VBox {
             bpOpcionMasRadio.setLeft(new Label(op));
             bpOpcionMasRadio.setRight(hboxRadioButtons);
 
-            this.getChildren().add(bpOpcionMasRadio);
+            getChildren().add(bpOpcionMasRadio);
         }
         btnListo.setOnAction(new BotonResponderGC(algoKahoot, gruposDeOpciones, temporizador));
-        this.setSpacing(25);
+        setSpacing(25);
     }
 }

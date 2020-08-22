@@ -20,7 +20,7 @@ public class ContenedorPreguntaVF extends VBox {
         btnVerdadero.setToggleGroup(grupoOpciones);
         btnFalso.setToggleGroup(grupoOpciones);
         btnListo.setOnAction(new BotonResponderVF(algoKahoot, btnVerdadero, btnFalso, temporizador));
-        this.setSpacing(25);
-        this.getChildren().addAll(btnVerdadero, btnFalso);
+        setSpacing(25);
+        getChildren().addAll(btnVerdadero, btnFalso);
     }
 }

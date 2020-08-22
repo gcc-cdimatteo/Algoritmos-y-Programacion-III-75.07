@@ -17,12 +17,12 @@ public class BotonEntrar implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        double ancho = this.escenario.getWidth();
-        double alto = this.escenario.getHeight();
+        double ancho = escenario.getWidth();
+        double alto = escenario.getHeight();
 
         escenario.setScene(proximaEscena);
 
-        this.escenario.setWidth(ancho);
-        this.escenario.setHeight(alto);
+        escenario.setWidth(ancho);
+        escenario.setHeight(alto);
     }
 }

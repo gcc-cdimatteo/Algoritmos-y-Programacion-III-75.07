@@ -16,17 +16,13 @@ import javafx.stage.Stage;
 
 public class ContenedorBienvenidos extends VBox {
 
-    private Stage escenario;
-
     public ContenedorBienvenidos(Stage stage, Scene proximaEscena) {
 
         super();
 
-        this.escenario = stage;
-
-        this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
-        this.setPadding(new Insets(25));
+        setAlignment(Pos.CENTER);
+        setSpacing(20);
+        setPadding(new Insets(25));
 
         Label etiqueta = new Label();
         etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
@@ -43,6 +39,6 @@ public class ContenedorBienvenidos extends VBox {
         botonSalir.setText("Salir");
         botonSalir.setOnAction( new BotonSalir());
 
-        this.getChildren().addAll(etiqueta, botonEntrar, botonSalir);
+        getChildren().addAll(etiqueta, botonEntrar, botonSalir);
     }
 }

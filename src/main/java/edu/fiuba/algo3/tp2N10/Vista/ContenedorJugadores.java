@@ -21,7 +21,7 @@ public class ContenedorJugadores extends BorderPane {
         bpHeader.setCenter(lblRegistroJugadores);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
 
-        this.setTop(bpHeader);
+        setTop(bpHeader);
 
         BorderPane bpRegistro = new BorderPane();
         bpRegistro.setPadding(new Insets(100, 100, 100, 100));
@@ -40,7 +40,7 @@ public class ContenedorJugadores extends BorderPane {
         vboxJugadores.getChildren().addAll(hboxNombre1, hboxNombre2);
         bpRegistro.setCenter(vboxJugadores);
 
-        this.setCenter(bpRegistro);
+        setCenter(bpRegistro);
 
         // botonera Empezar a Jugar
         Button btnJugar = new Button("Empezar a Jugar");

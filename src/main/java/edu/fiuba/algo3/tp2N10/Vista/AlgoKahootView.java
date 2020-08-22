@@ -26,38 +26,38 @@ public class AlgoKahootView implements Observer {
     public void mostrar() {
         BorderPane contenedor;
         String mediaPath;
-        this.numeroTurno++;
+        numeroTurno++;
 
         if (algoKahoot.finalizado()) {
-            contenedor = new ContenedorPodio(this.algoKahoot);
+            contenedor = new ContenedorPodio(algoKahoot);
             mediaPath = "./resources/audio/final.mp3";
         } else if (numeroTurno == 5) {
-            contenedor = new ContenedorEntreRondas(this.algoKahoot);
+            contenedor = new ContenedorEntreRondas(algoKahoot);
             mediaPath = "./resources/audio/intermedio.mp3";
-            this.numeroTurno = 0;
+            numeroTurno = 0;
         } else if (numeroTurno % 2 != 0) {
-            contenedor = new ContenedorPregunta(this.algoKahoot);
+            contenedor = new ContenedorPregunta(algoKahoot);
             mediaPath = "./resources/audio/pregunta.mp3";
-        } else{
-            contenedor = new ContenedorPrincipal(this.algoKahoot);
+        } else {
+            contenedor = new ContenedorPrincipal(algoKahoot);
             mediaPath = "./resources/audio/jugar.mp3";
         }
         try {
-            if(this.reproductor != null) { this.reproductor.stop();}
-            this.reproductor = crearReproductor(mediaPath);
-            this.reproductor.play();
-        } catch (MediaException mediaException) {}
+            if (reproductor != null) reproductor.stop();
+            reproductor = crearReproductor(mediaPath);
+            reproductor.play();
+        } catch (MediaException ignored) {}
 
-        double ancho = this.escenario.getWidth();
-        double alto = this.escenario.getHeight();
+        double ancho = escenario.getWidth();
+        double alto = escenario.getHeight();
 
-        this.escenario.setScene(new Scene(contenedor, 640, 480));
+        escenario.setScene(new Scene(contenedor, 640, 480));
 
-        this.escenario.setWidth(ancho);
-        this.escenario.setHeight(alto);
+        escenario.setWidth(ancho);
+        escenario.setHeight(alto);
     }
 
-    private MediaPlayer crearReproductor(String mediaPath){
+    private MediaPlayer crearReproductor(String mediaPath) {
         MediaPlayer reproductor = new MediaPlayer(new Media(new File(mediaPath).toURI().toString()));
         reproductor.setCycleCount(MediaPlayer.INDEFINITE);
         return reproductor;

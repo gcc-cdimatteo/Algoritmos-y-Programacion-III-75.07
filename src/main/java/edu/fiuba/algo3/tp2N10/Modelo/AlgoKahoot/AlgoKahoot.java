@@ -3,6 +3,7 @@ package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Respuesta.Respuesta;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -15,8 +16,8 @@ public class AlgoKahoot implements Observable {
     private boolean finalizado = false;
     private final List<Observer> observers = new ArrayList<>();
 
-    public AlgoKahoot(Queue<Pregunta> preguntas, String jugadorUno, String jugadorDos) {
-        this.preguntas = preguntas;
+    public AlgoKahoot(String file, String jugadorUno, String jugadorDos) throws IOException {
+        this.preguntas = new FactoryPreguntas(file).preguntas();
         Jugador primerJugador = new Jugador(jugadorUno);
         Jugador segundoJugador = new Jugador(jugadorDos);
         primerJugador.ordenarCon(segundoJugador);
@@ -98,13 +99,17 @@ public class AlgoKahoot implements Observable {
         return finalizado;
     }
 
-    public boolean permiteMultiplicadores() { return ronda.permiteMultiplicadores(); }
+    public boolean permiteMultiplicadores() {
+        return ronda.permiteMultiplicadores();
+    }
 
     public boolean multiplicadorDisponible(int valor) {
         return jugadorActual.multiplicadorDisponible(valor);
     }
 
-    public boolean permiteExclusividad() { return ronda.permiteExclusividad() && jugadorActual.exclusividadDisponible(); }
+    public boolean permiteExclusividad() {
+        return ronda.permiteExclusividad() && jugadorActual.exclusividadDisponible();
+    }
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -114,5 +119,7 @@ public class AlgoKahoot implements Observable {
         observers.forEach(Observer::change);
     }
 
-    public String preguntaActual() { return ronda.preguntaActual();}
+    public String preguntaActual() {
+        return ronda.preguntaActual();
+    }
 }

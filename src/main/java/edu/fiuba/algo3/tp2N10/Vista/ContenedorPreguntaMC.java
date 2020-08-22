@@ -15,14 +15,10 @@ public class ContenedorPreguntaMC extends VBox {
         super();
 
         ArrayList<CheckBox> arrayChkOpciones = new ArrayList<>();
-        for (String op : algoKahoot.preguntaOpciones()) {
-            arrayChkOpciones.add(new CheckBox(op));
-        }
+        for (String op : algoKahoot.preguntaOpciones()) arrayChkOpciones.add(new CheckBox(op));
         btnListo.setOnAction(new BotonResponderMC(algoKahoot, arrayChkOpciones, temporizador));
 
-        this.setSpacing(25);
-        for (CheckBox chkOp : arrayChkOpciones) {
-            this.getChildren().addAll(chkOp);
-        }
+        setSpacing(25);
+        for (CheckBox chkOp : arrayChkOpciones) getChildren().addAll(chkOp);
     }
 }

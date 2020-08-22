@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
-import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,10 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 import java.util.List;
 
@@ -52,8 +48,8 @@ public class ContenedorEntreRondas extends BorderPane {
         Label lblPuntajeDos = new Label(String.valueOf(puntosJugadorDos));
         lblPuntajeDos.setStyle(styLabel);
 
-        int alturaPrimerPodio = 30*puntosJugadorUno;
-        int alturaSegundoPodio = 30*puntosJugadorDos;
+        int alturaPrimerPodio = 30 * puntosJugadorUno;
+        int alturaSegundoPodio = 30 * puntosJugadorDos;
 
         Rectangle recJugadorUno = new Rectangle(0, 0, 100, alturaPrimerPodio);
         Rectangle recJugadorDos = new Rectangle(0, 0, 100, alturaSegundoPodio);
@@ -80,10 +76,10 @@ public class ContenedorEntreRondas extends BorderPane {
         botonContinuar.setOnAction(new BotonContinuar(algoKahoot));
         bpBotoneraListo.setRight(botonContinuar);
 
-        this.setPadding(new Insets(10, 10, 10, 10));
-        this.setTop(bpHeader);
-        this.setCenter(bpPodio);
-        this.setBottom(bpBotoneraListo);
+        setPadding(new Insets(10, 10, 10, 10));
+        setTop(bpHeader);
+        setCenter(bpPodio);
+        setBottom(bpBotoneraListo);
 
 
 
