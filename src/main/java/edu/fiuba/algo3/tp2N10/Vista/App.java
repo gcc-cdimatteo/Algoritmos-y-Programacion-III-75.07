@@ -24,7 +24,7 @@ public class App extends Application {
     public void start(Stage stage) {
 
         escenario = stage;
-        escenario.setMaximized(true);
+        //escenario.setMaximized(true);
         escenario.setTitle("AlgoKahoot");
         escenario.setOnCloseRequest(event -> {
             System.out.println("Stage is closing");
@@ -33,10 +33,10 @@ public class App extends Application {
         });
 
         ContenedorJugadores contenedorJugadores = new ContenedorJugadores(this);
-        Scene escenaJugadores = new Scene(contenedorJugadores, 640, 480);
+        Scene escenaJugadores = new Scene(contenedorJugadores, 1280, 720);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(escenario, escenaJugadores);
-        Scene escenaBienvenida = new Scene(contenedorBienvenidos, 640, 480);
+        Scene escenaBienvenida = new Scene(contenedorBienvenidos, 1280, 720);
 
         try {
             reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));

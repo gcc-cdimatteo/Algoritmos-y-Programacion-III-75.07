@@ -53,7 +53,7 @@ public class AlgoKahootView implements Observer {
         double ancho = escenario.getWidth();
         double alto = escenario.getHeight();
 
-        escenario.setScene(new Scene(contenedor, 640, 480));
+        escenario.setScene(new Scene(contenedor, 1280, 720));
 
         escenario.setOnCloseRequest(event -> {
             System.out.println("Stage AlgoKahootView is closing");
