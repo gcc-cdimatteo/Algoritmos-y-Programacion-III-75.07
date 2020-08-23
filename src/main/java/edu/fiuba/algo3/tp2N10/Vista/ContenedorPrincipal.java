@@ -5,6 +5,7 @@ import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonUsarMultiplicador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -27,8 +28,10 @@ public class ContenedorPrincipal extends BorderPane {
 
         Label lblJugador = new Label("  Jugador: " + algoKahoot.jugadorNombre());
         lblJugador.setStyle("-fx-font-size: 200%");
+        lblJugador.setTextFill(Color.rgb(255, 255, 255));
         Label lblPuntaje = new Label("Puntaje: " + algoKahoot.jugadorPuntaje() + "  ");
         lblPuntaje.setStyle("-fx-font-size: 200%");
+        lblPuntaje.setTextFill(Color.rgb(255, 255, 255));
         Label lblEnunciado = new Label(algoKahoot.preguntaEnunciado());
         lblEnunciado.setStyle("-fx-font-size: 250%");
 
@@ -64,10 +67,12 @@ public class ContenedorPrincipal extends BorderPane {
         }
 
         Button btnListo = new Button("Listo");
+        btnListo.setAlignment(Pos.CENTER);
         BorderPane bpHeader = new BorderPane();
         bpHeader.setLeft(lblJugador);
         bpHeader.setRight(lblPuntaje);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
+        bpHeader.setMinHeight(50);
 
         switch (algoKahoot.preguntaActual()) {
             case ("Verdadero Falso Clasico"):
@@ -94,11 +99,13 @@ public class ContenedorPrincipal extends BorderPane {
         setCenter(bpPreguntaPowerUps);
         BorderPane bpBotoneraListo = new BorderPane();
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
-        bpBotoneraListo.setRight(btnListo);
+        bpBotoneraListo.setCenter(btnListo);
+        bpBotoneraListo.setMinHeight(50);
         setBottom(bpBotoneraListo);
 
         Label labelTemporizador = new Label("16");
         labelTemporizador.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
+        labelTemporizador.setTextFill(Color.rgb(255, 255, 255));
         bpHeader.setCenter(labelTemporizador);
 
         TimerTask task = new TimerTask() {
