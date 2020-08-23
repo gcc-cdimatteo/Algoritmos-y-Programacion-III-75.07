@@ -6,10 +6,12 @@ package Vista {
     class App
     class ContenedorBienvenidos
     class ContenedorEntreRondas
+    class ContenedorEnunciado
     class ContenedorJugadores
     class ContenedorPodio
     class ContenedorPregunta
     class ContenedorPrincipal
+    class FactoryBackgrounds
 }
 
 'Ordenamiento De Cuadrados
@@ -23,14 +25,16 @@ package Vista {
 'Composicion --* un objeto es dueño de otro
 
 'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
+AlgoKahootView .left.> ContenedorPodio
+AlgoKahootView ..> ContenedorEntreRondas
+AlgoKahootView ..> ContenedorEnunciado
+AlgoKahootView ..> ContenedorPrincipal
+AlgoKahootView ..> FactoryBackgrounds
+App .up.> ContenedorJugadores
+App ..> FactoryBackgrounds
 App .left.> ContenedorBienvenidos
-App ..> ContenedorJugadores
-App .up.> AlgoKahootView
-AlgoKahootView .up.> ContenedorPodio
-AlgoKahootView .left.> ContenedorEntreRondas
-AlgoKahootView .right.> ContenedorPrincipal
-ContenedorPrincipal .up.> ContenedorPregunta
-
+App ..> AlgoKahootView
+ContenedorPrincipal ..> ContenedorPregunta
 
 'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
 

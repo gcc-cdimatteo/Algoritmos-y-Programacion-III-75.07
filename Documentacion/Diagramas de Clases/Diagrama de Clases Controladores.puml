@@ -25,14 +25,15 @@ package Controlador {
 }
 
 'Ordenamiento De Cuadrados
-AlertaOrdenarTodasLasOpcionesOC -up[hidden]-> AlertaNombreFaltante
-AlertaNombreFaltante -up[hidden]-> AlertaSeleccionarUnaOpcion
+AlertaNombreFaltante -up[hidden]-> AlertaOrdenarTodasLasOpcionesOC
+AlertaOrdenarTodasLasOpcionesOC -up[hidden]-> AlertaSeleccionarUnaOpcion
 BotonContinuar -[hidden]-> BotonSalir
 BotonDeshacerOpcionOC -[hidden]-> BotonUsarExclusividad
 BotonEntrar -[hidden]-> BotonUsarMultiplicador
 BotonUsarMultiplicador -[hidden]-> BotonSeleccionarOpcionOC
 BotonUsarExclusividad -[hidden]-> BotonContinuar
 BotonResponder -[hidden]-> BotonComenzarJuego
+
 BotonSeleccionarOpcionOC -[hidden]-> BotonContinuarConTimer
 
 'Herencia --|> cumple la relación 'es un'
@@ -45,7 +46,8 @@ BotonSeleccionarOpcionOC -[hidden]-> BotonContinuarConTimer
 
 'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
 BotonComenzarJuego .right.> AlertaNombreFaltante
-BotonResponder ..> AlertaSeleccionarUnaOpcion
+BotonResponder .down.> AlertaSeleccionarUnaOpcion
+BotonResponder .right.> AlertaOrdenarTodasLasOpcionesOC
 
 'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
 

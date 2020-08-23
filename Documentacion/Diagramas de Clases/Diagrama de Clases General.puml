@@ -3,28 +3,41 @@ skinparam classAttributeIconSize 0
 
 package AlgoKahoot {
     class AlgoKahoot {
-        - observers: List<Observer>
-        - finalizado: boolean
-        - nuevaRonda()
-        + cargarRespuesta(respuesta: Respuesta)
-        + puntajes(): List<Integer>
-        + nombres(): List<String>
-        + jugadorUsaMultiplicador(unValor: int)
-        + jugadorUsaExclusividad()
-        + permiteMultiplicadores(): boolean
-        + multiplicadorDisponible(valor: int): boolean
-        + permiteExclusividad(): boolean
-        + addObserver(observer: Observer)
-        + notifyObservers()
-        + preguntaActual(): Pregunta
+    - finalizado: boolean
+    - observers: List<Observer>
+    - cambiarTurno()
+    - cambiarJugador()
+    + nuevaRonda()
+    + puntajes(): List<Integer>
+    + nombres(): List<String>
+    + jugadorNoResponde()
+    + cargarRespuesta(respuesta: Respuesta)
+    + jugadorPuntaje(): int
+    + jugadorNombre(): String
+    + preguntaEnunciado(): String
+    + preguntaOpciones(): List<String>
+    + jugadorUsaMultiplicador(unValor: int)
+    + jugadorUsaExclusividad()
+    + finalizado(): boolean
+    + permiteMultiplicadores(): boolean
+    + multiplicadorDisponible(valor: int): boolean
+    + permiteExclusividad(): boolean
+    + addObserver(observer: Observer)
+    + notifyObservers()
+    + preguntaActual(): String
     }
     class Jugador {
         - nombre: String
-        - totalPuntos: int
+        - puntaje: int
         - usosDisponiblesExclusividad: int
         - siguienteJugador: Jugador
         - vaPrimero: boolean
+        - asignarSiguiente(otroJugador: Jugador)
+        + nombre(): String
+        + puntaje(): int
         + ordenarCon(otroJugador: Jugador)
+        + vaPrimero(): boolean
+        + siguienteJugador(): Jugador
         + puntuar(puntos: int)
         + usarMultiplicador(valor: int)
         + usarExclusividad()
@@ -35,9 +48,12 @@ package AlgoKahoot {
         + cargarRespuesta(respuesta: Respuesta)
         + usarExclusividad(jugador: Jugador)
         + asignarPuntos()
+        + enunciado(): String
+        + opciones(): List<String>
         + permiteMultiplicadores(): boolean
         + permiteExclusividad(): boolean
-        + preguntaActual(): Pregunta
+        + preguntaActual(): String
+        + jugadorNoResponde()
     }
     class FactoryPreguntas {
         - preguntas: Queue<Pregunta>
@@ -55,17 +71,27 @@ package AlgoKahoot {
         - generarPreguntaOrderedChoice(pregunta: JSONObject): PreguntaOrderedChoice
         '/
     }
-    interface Observable
-    interface Observer
+    interface Observable {
+        + notifyObservers()
+        + addObserver(observer: Observer)
+    }
+    interface Observer {
+        + change()
+    }
 }
 
 package Pregunta {
     abstract class Pregunta {
+        # asString: String
         # enunciado: String
         # opciones: List<String>
         + responder(respuestasUsuario: List<Respuesta>): List<Integer>
+        + toString(): String
+        + getEnunciado(): String
+        + getOpciones(): List<String>
         + permiteMultiplicadores(): boolean
         + permiteExclusividad(): boolean
+        + respuestaIncorrecta(): Respuesta
     }
 }
 
@@ -107,6 +133,7 @@ package Respuesta {
         + evaluar(Respuesta respuestaUsuario): List<Integer>
         + permiteMultiplicadores(): boolean
         + permiteExclusividad(): boolean
+        + respuestaIncorrecta(): Respuesta
     }
 }
 
