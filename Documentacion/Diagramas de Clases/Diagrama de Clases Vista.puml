@@ -29,7 +29,7 @@ AlgoKahootView .left.> ContenedorPodio
 AlgoKahootView ..> ContenedorEntreRondas
 AlgoKahootView ..> ContenedorEnunciado
 AlgoKahootView ..> ContenedorPrincipal
-AlgoKahootView ..> FactoryBackgrounds
+AlgoKahootView .right.> FactoryBackgrounds
 App .up.> ContenedorJugadores
 App ..> FactoryBackgrounds
 App .left.> ContenedorBienvenidos
