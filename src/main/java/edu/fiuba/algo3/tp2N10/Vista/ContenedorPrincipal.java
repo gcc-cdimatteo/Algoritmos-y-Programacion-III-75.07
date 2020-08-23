@@ -27,8 +27,10 @@ public class ContenedorPrincipal extends BorderPane {
 
         Label lblJugador = new Label("  Jugador: " + algoKahoot.jugadorNombre());
         lblJugador.setStyle("-fx-font-size: 200%");
+        lblJugador.setTextFill(Color.rgb(255, 255, 255));
         Label lblPuntaje = new Label("Puntaje: " + algoKahoot.jugadorPuntaje() + "  ");
         lblPuntaje.setStyle("-fx-font-size: 200%");
+        lblPuntaje.setTextFill(Color.rgb(255, 255, 255));
         Label lblEnunciado = new Label(algoKahoot.preguntaEnunciado());
         lblEnunciado.setStyle("-fx-font-size: 250%");
 
@@ -68,6 +70,7 @@ public class ContenedorPrincipal extends BorderPane {
         bpHeader.setLeft(lblJugador);
         bpHeader.setRight(lblPuntaje);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
+        bpHeader.setMinHeight(50);
 
         switch (algoKahoot.preguntaActual()) {
             case ("Verdadero Falso Clasico"):
@@ -99,6 +102,7 @@ public class ContenedorPrincipal extends BorderPane {
 
         Label labelTemporizador = new Label("16");
         labelTemporizador.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
+        labelTemporizador.setTextFill(Color.rgb(255, 255, 255));
         bpHeader.setCenter(labelTemporizador);
 
         TimerTask task = new TimerTask() {

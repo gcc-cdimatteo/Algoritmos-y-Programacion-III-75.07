@@ -1,0 +1,9 @@
+{
+  "preguntas": [
+    {
+      "tipo": "verdaderoFalsoPenalidad" ,
+      "enunciado": "La manzana es una fruta" ,
+      "respuesta": true
+    }
+  ]
+}
