@@ -24,6 +24,7 @@ interface Respuesta {
     + evaluar(Respuesta respuestaUsuario): List<Integer>
     + permiteMultiplicadores(): boolean
     + permiteExclusividad(): boolean
+    + respuestaIncorrecta(): Respuesta
 }
 
 class RespuestaGroupChoice {
@@ -35,6 +36,7 @@ class RespuestaGroupChoice {
     + evaluar(respuestaUsuario: Respuesta): Integer
     + permiteMultiplicadores(): boolean
     + permiteExclusividad(): boolean
+    + respuestaIncorrecta(): Respuesta
 }
 
 class RespuestaMultipleChoice {
@@ -48,6 +50,7 @@ class RespuestaMultipleChoice {
     + evaluar(Respuesta respuestaUsuario): Integer
     + permiteMultiplicadores(): boolean
     + permiteExclusividad(): boolean
+    + respuestaIncorrecta(): Respuesta
 }
 
 class RespuestaVerdaderoFalso {
@@ -60,6 +63,7 @@ class RespuestaVerdaderoFalso {
     + evaluar(Respuesta respuestaUsuario): Integer
     + permiteMultiplicadores(): boolean
     + permiteExclusividad(): boolean
+    + respuestaIncorrecta(): Respuesta
 }
 
 class RespuestaOrderedChoice {
@@ -70,6 +74,7 @@ class RespuestaOrderedChoice {
     + evaluar(Respuesta respuestaUsuario): Integer
     + permiteMultiplicadores(): boolean
     + permiteExclusividad(): boolean
+    + respuestaIncorrecta(): Respuesta
 }
 
 'Ordenamiento De Cuadrados
