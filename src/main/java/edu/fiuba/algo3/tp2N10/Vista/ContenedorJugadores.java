@@ -2,48 +2,63 @@ package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonComenzarJuego;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class ContenedorJugadores extends BorderPane {
 
     public ContenedorJugadores(App app) {
         super();
-
-        Label lblRegistroJugadores = new Label("Registro de Jugadores");
-        lblRegistroJugadores.setStyle("-fx-font-size: 200%");
-
+        //Barra superior
         BorderPane bpHeader = new BorderPane();
-        bpHeader.setCenter(lblRegistroJugadores);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
+        bpHeader.setMinHeight(50);
 
-        setTop(bpHeader);
+        //Contenido
+        Label labelRegistroJugadores = new Label("Ingresen sus nombres");
+        labelRegistroJugadores.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
 
-        BorderPane bpRegistro = new BorderPane();
-        bpRegistro.setPadding(new Insets(200, 200, 200, 200));
+        Label labelJugadorUno = new Label("Jugador 1: ");
+        labelJugadorUno.setFont(Font.font("Tahoma", 30));
+
+        Label labelJugadorDos = new Label("Jugador 2: ");
+        labelJugadorDos.setFont(Font.font("Tahoma", 30));
 
         TextField nombreUno = new TextField();
         TextField nombreDos = new TextField();
-        HBox hboxNombres = new HBox(100);
-        Label lblJugador1 = new Label("Jugador 1: ");
-        lblJugador1.setStyle("-fx-font-size: 200%");
-        Label lblJugador2 = new Label("Jugador 2: ");
-        lblJugador2.setStyle("-fx-font-size: 200%");
-        hboxNombres.getChildren().addAll(lblJugador1, nombreUno,
-                lblJugador2, nombreDos);
-        bpRegistro.setCenter(hboxNombres);
-        setCenter(bpRegistro);
 
-        // botonera Empezar a Jugar
-        Button btnJugar = new Button("Empezar a Jugar");
-        btnJugar.setOnAction(new BotonComenzarJuego(nombreUno, nombreDos, app));
+        HBox hbJugadorUno = new HBox(labelJugadorUno,nombreUno);
+        hbJugadorUno.setAlignment(Pos.CENTER);
+        hbJugadorUno.setSpacing(50);
+
+        HBox hbJugadorDos = new HBox(labelJugadorDos,nombreDos);
+        hbJugadorDos.setAlignment(Pos.CENTER);
+        hbJugadorDos.setSpacing(50);
+
+        VBox vbJugadores = new VBox(labelRegistroJugadores,hbJugadorUno,hbJugadorDos);
+        vbJugadores.setAlignment(Pos.CENTER);
+        vbJugadores.setSpacing(50);
+
+        // Boton
+        Button botonJugar = new Button("Empezar a Jugar");
+        botonJugar.setOnAction(new BotonComenzarJuego(nombreUno, nombreDos, app));
+
+        //Barra inferior
         BorderPane bpBotoneraJugar = new BorderPane();
         bpBotoneraJugar.setStyle("-fx-background-color: cornflowerblue");
-        bpBotoneraJugar.setRight(btnJugar);
-        this.setBottom(bpBotoneraJugar);
+        bpBotoneraJugar.setCenter(botonJugar);
+        bpBotoneraJugar.setMinHeight(50);
+
+        //Posiciones
+        setTop(bpHeader);
+        setCenter(vbJugadores);
+        setBottom(bpBotoneraJugar);
     }
 }

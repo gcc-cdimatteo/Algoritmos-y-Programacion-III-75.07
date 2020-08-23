@@ -12,6 +12,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -68,19 +70,19 @@ public class ContenedorPrincipal extends BorderPane {
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
 
         switch (algoKahoot.preguntaActual()) {
-            case ("VerdaderoFalsoClasico"):
-            case ("VerdaderoFalsoPenalidad"):
+            case ("Verdadero Falso Clasico"):
+            case ("Verdadero Falso Penalidad"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot, temporizador));
                 break;
-            case ("MultipleChoiceClasico"):
-            case ("MultipleChoiceParcial"):
-            case ("MultipleChoicePenalidad"):
+            case ("Multiple Choice Clasico"):
+            case ("Multiple Choice Parcial"):
+            case ("Multiple Choice Penalidad"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot, temporizador));
                 break;
-            case ("OrderedChoice"):
+            case ("Ordered Choice"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot, temporizador));
                 break;
-            case ("GroupChoice"):
+            case ("Group Choice"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot, temporizador));
                 break;
         }
@@ -96,7 +98,7 @@ public class ContenedorPrincipal extends BorderPane {
         setBottom(bpBotoneraListo);
 
         Label labelTemporizador = new Label("16");
-        labelTemporizador.setStyle("-fx-font-size: 200%");
+        labelTemporizador.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
         bpHeader.setCenter(labelTemporizador);
 
         TimerTask task = new TimerTask() {
