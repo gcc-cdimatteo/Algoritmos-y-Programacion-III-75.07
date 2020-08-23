@@ -5,6 +5,7 @@ import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonUsarMultiplicador;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -66,6 +67,7 @@ public class ContenedorPrincipal extends BorderPane {
         }
 
         Button btnListo = new Button("Listo");
+        btnListo.setAlignment(Pos.CENTER);
         BorderPane bpHeader = new BorderPane();
         bpHeader.setLeft(lblJugador);
         bpHeader.setRight(lblPuntaje);
@@ -97,7 +99,8 @@ public class ContenedorPrincipal extends BorderPane {
         setCenter(bpPreguntaPowerUps);
         BorderPane bpBotoneraListo = new BorderPane();
         bpBotoneraListo.setStyle("-fx-background-color: cornflowerblue");
-        bpBotoneraListo.setRight(btnListo);
+        bpBotoneraListo.setCenter(btnListo);
+        bpBotoneraListo.setMinHeight(50);
         setBottom(bpBotoneraListo);
 
         Label labelTemporizador = new Label("16");

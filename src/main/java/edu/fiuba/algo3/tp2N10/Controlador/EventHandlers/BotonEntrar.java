@@ -19,9 +19,10 @@ public class BotonEntrar implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         double ancho = escenario.getWidth();
         double alto = escenario.getHeight();
-
+        boolean pantallaMaximizada = escenario.isMaximized();
+        escenario.setScene(proximaEscena);
         escenario.setWidth(ancho);
         escenario.setHeight(alto);
-        escenario.setScene(proximaEscena);
+        if (pantallaMaximizada) escenario.setMaximized(true);
     }
 }

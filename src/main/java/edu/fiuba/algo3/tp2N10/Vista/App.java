@@ -25,7 +25,7 @@ public class App extends Application {
     public void start(Stage stage) {
 
         escenario = stage;
-        //escenario.setMaximized(true);
+        escenario.setMaximized(true);
         escenario.setTitle("AlgoKahoot");
         escenario.setOnCloseRequest(event -> {
             if(reproductor != null) {reproductor.stop();}
@@ -42,13 +42,13 @@ public class App extends Application {
         try { contenedorBienvenidos.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/bienvenida.png", 1280, 720));}
         catch (FileNotFoundException ignored) {}
 
-        Scene escenaBienvenida = new Scene(contenedorBienvenidos, 1280, 720);
-
         try {
             reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));
             reproductor.setCycleCount(MediaPlayer.INDEFINITE);
             reproductor.play();
         } catch (MediaException ignored) {}
+
+        Scene escenaBienvenida = new Scene(contenedorBienvenidos, 1280, 720);
 
         escenario.setScene(escenaBienvenida);
         escenario.show();
