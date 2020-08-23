@@ -43,7 +43,8 @@ public class AlgoKahootView implements Observer {
             mediaPath = "./resources/audio/intermedio.mp3";
             numeroTurno = 0;
         } else if (numeroTurno % 2 != 0) {
-            contenedor = new ContenedorPregunta(algoKahoot);
+            this.temporizador = new Timer();
+            contenedor = new ContenedorEnunciado(algoKahoot, this.temporizador);
             backgroundPath = "./resources/images/fondo.png";
             mediaPath = "./resources/audio/pregunta.mp3";
         } else {
