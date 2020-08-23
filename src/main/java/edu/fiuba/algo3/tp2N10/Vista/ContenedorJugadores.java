@@ -42,23 +42,25 @@ public class ContenedorJugadores extends BorderPane {
         hbJugadorDos.setAlignment(Pos.CENTER);
         hbJugadorDos.setSpacing(50);
 
-        VBox vbJugadores = new VBox(labelRegistroJugadores,hbJugadorUno,hbJugadorDos);
-        vbJugadores.setAlignment(Pos.CENTER);
-        vbJugadores.setSpacing(50);
-
         // Boton
         Button botonJugar = new Button("Empezar a Jugar");
         botonJugar.setOnAction(new BotonComenzarJuego(nombreUno, nombreDos, app));
+        botonJugar.setAlignment(Pos.CENTER);
+
+        VBox vbJugadores = new VBox(labelRegistroJugadores,hbJugadorUno,hbJugadorDos,botonJugar);
+        vbJugadores.setAlignment(Pos.CENTER);
+        vbJugadores.setSpacing(50);
+
+
 
         //Barra inferior
-        BorderPane bpBotoneraJugar = new BorderPane();
-        bpBotoneraJugar.setStyle("-fx-background-color: cornflowerblue");
-        bpBotoneraJugar.setCenter(botonJugar);
-        bpBotoneraJugar.setMinHeight(50);
+        BorderPane bpFooter = new BorderPane();
+        bpFooter.setStyle("-fx-background-color: cornflowerblue");
+        bpFooter.setMinHeight(50);
 
         //Posiciones
         setTop(bpHeader);
         setCenter(vbJugadores);
-        setBottom(bpBotoneraJugar);
+        setBottom(bpFooter);
     }
 }
