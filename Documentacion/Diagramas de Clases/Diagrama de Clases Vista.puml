@@ -25,7 +25,6 @@ package Vista {
 'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
 App .left.> ContenedorBienvenidos
 App ..> ContenedorJugadores
-App ..> FactoryPreguntas
 App .up.> AlgoKahootView
 AlgoKahootView .up.> ContenedorPodio
 AlgoKahootView .left.> ContenedorEntreRondas

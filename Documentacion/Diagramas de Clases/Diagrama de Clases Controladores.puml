@@ -12,6 +12,7 @@ package Controlador {
     package EventHandlers {
         class BotonComenzarJuego
         class BotonContinuar
+        class BotonContinuarConTimer
         class BotonDeshacerOpcionOC
         class BotonEntrar
         class BotonResponder
@@ -32,6 +33,7 @@ BotonEntrar -[hidden]-> BotonUsarMultiplicador
 BotonUsarMultiplicador -[hidden]-> BotonSeleccionarOpcionOC
 BotonUsarExclusividad -[hidden]-> BotonContinuar
 BotonResponder -[hidden]-> BotonComenzarJuego
+BotonSeleccionarOpcionOC -[hidden]-> BotonContinuarConTimer
 
 'Herencia --|> cumple la relación 'es un'
 
