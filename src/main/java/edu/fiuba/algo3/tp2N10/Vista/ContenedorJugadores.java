@@ -29,8 +29,12 @@ public class ContenedorJugadores extends BorderPane {
         TextField nombreUno = new TextField();
         TextField nombreDos = new TextField();
         HBox hboxNombres = new HBox(100);
-        hboxNombres.getChildren().addAll(new Label("Jugador 1: "), nombreUno,
-                new Label("Jugador 2: "), nombreDos);
+        Label lblJugador1 = new Label("Jugador 1: ");
+        lblJugador1.setStyle("-fx-font-size: 200%");
+        Label lblJugador2 = new Label("Jugador 2: ");
+        lblJugador2.setStyle("-fx-font-size: 200%");
+        hboxNombres.getChildren().addAll(lblJugador1, nombreUno,
+                lblJugador2, nombreDos);
         bpRegistro.setCenter(hboxNombres);
         setCenter(bpRegistro);
 

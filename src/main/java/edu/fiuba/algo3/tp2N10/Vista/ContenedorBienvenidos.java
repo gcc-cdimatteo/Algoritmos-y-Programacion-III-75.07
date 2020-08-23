@@ -27,7 +27,7 @@ public class ContenedorBienvenidos extends VBox {
         Label etiqueta = new Label();
         etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
 
-        etiqueta.setText("Bienvenidos a AlgoKahoot. Haga click en entrar");
+        etiqueta.setText("¡Bienvenidos a AlgoKahoot, cuando esten listos hagan click en entrar!");
         etiqueta.setTextFill(Color.web("#66A7C5"));
 
         Button botonEntrar = new Button();

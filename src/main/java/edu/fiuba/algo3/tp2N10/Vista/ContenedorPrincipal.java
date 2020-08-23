@@ -20,16 +20,15 @@ import java.util.TimerTask;
 
 public class ContenedorPrincipal extends BorderPane {
 
-    public ContenedorPrincipal(AlgoKahoot algoKahoot) {
+    public ContenedorPrincipal(AlgoKahoot algoKahoot, Timer temporizador) {
         super();
-
-        Timer temporizador = new Timer();
 
         Label lblJugador = new Label("  Jugador: " + algoKahoot.jugadorNombre());
         lblJugador.setStyle("-fx-font-size: 200%");
         Label lblPuntaje = new Label("Puntaje: " + algoKahoot.jugadorPuntaje() + "  ");
         lblPuntaje.setStyle("-fx-font-size: 200%");
         Label lblEnunciado = new Label(algoKahoot.preguntaEnunciado());
+        lblEnunciado.setStyle("-fx-font-size: 250%");
 
         BorderPane bpPreguntaPowerUps = new BorderPane();
         bpPreguntaPowerUps.setPadding(new Insets(10, 10, 10, 10));

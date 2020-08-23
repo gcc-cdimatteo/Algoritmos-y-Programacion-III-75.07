@@ -12,12 +12,14 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Timer;
 
 public class AlgoKahootView implements Observer {
     private final Stage escenario;
     private final AlgoKahoot algoKahoot;
     private int numeroTurno = 0;
     private MediaPlayer reproductor;
+    private Timer temporizador;
 
     public AlgoKahootView(AlgoKahoot algoKahoot, Stage stage) {
         this.algoKahoot = algoKahoot;
@@ -33,7 +35,7 @@ public class AlgoKahootView implements Observer {
 
         if (algoKahoot.finalizado()) {
             contenedor = new ContenedorPodio(algoKahoot);
-            backgroundPath = "./resources/images/fondo.png";
+            backgroundPath = "./resources/images/final.png";
             mediaPath = "./resources/audio/final.mp3";
         } else if (numeroTurno == 5) {
             contenedor = new ContenedorEntreRondas(algoKahoot);
@@ -45,7 +47,8 @@ public class AlgoKahootView implements Observer {
             backgroundPath = "./resources/images/fondo.png";
             mediaPath = "./resources/audio/pregunta.mp3";
         } else {
-            contenedor = new ContenedorPrincipal(algoKahoot);
+            this.temporizador = new Timer();
+            contenedor = new ContenedorPrincipal(algoKahoot, this.temporizador);
             backgroundPath = "./resources/images/fondo.png";
             mediaPath = "./resources/audio/jugar.mp3";
         }
@@ -65,10 +68,11 @@ public class AlgoKahootView implements Observer {
         escenario.setScene(new Scene(contenedor, 1280, 720));
 
         escenario.setOnCloseRequest(event -> {
-            System.out.println("Stage AlgoKahootView is closing");
             if(reproductor != null) {
-                System.out.println("Reproductor AlgoKahootView is closing");
                 reproductor.stop();}
+            if(temporizador != null){
+                temporizador.cancel();
+            }
             Platform.exit();
         });
 
