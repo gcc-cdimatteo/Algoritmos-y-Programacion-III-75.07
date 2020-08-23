@@ -7,8 +7,7 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
@@ -37,7 +36,14 @@ public class ContenedorPrincipal extends BorderPane {
         VBox vboxEnunciadoOpciones = new VBox(100);
         vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
 
-        VBox vboxPowerUps = new VBox(5);
+        VBox vboxPowerUps = new VBox(20);
+        Label lblPowerUps = new Label("Power Ups");
+        lblPowerUps.setStyle("-fx-font-size: 150%");
+        vboxPowerUps.setPadding(new Insets(10,10,10,10));
+        vboxPowerUps.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        vboxPowerUps.getChildren().add(lblPowerUps);
+
         if (algoKahoot.permiteMultiplicadores()) {
             Button botonMultiplicador = new Button("x1");
             BotonUsarMultiplicador handler = new BotonUsarMultiplicador(algoKahoot, botonMultiplicador);
@@ -63,19 +69,19 @@ public class ContenedorPrincipal extends BorderPane {
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
 
         switch (algoKahoot.preguntaActual()) {
-            case ("VerdaderoFalsoClasico") :
-            case ("VerdaderoFalsoPenalidad") :
+            case ("VerdaderoFalsoClasico"):
+            case ("VerdaderoFalsoPenalidad"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot, temporizador));
                 break;
-            case ("MultipleChoiceClasico") :
-            case ("MultipleChoiceParcial") :
-            case ("MultipleChoicePenalidad") :
+            case ("MultipleChoiceClasico"):
+            case ("MultipleChoiceParcial"):
+            case ("MultipleChoicePenalidad"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot, temporizador));
                 break;
-            case ("OrderedChoice") :
+            case ("OrderedChoice"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot, temporizador));
                 break;
-            case ("GroupChoice") :
+            case ("GroupChoice"):
                 vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot, temporizador));
                 break;
         }
@@ -94,24 +100,25 @@ public class ContenedorPrincipal extends BorderPane {
         labelTemporizador.setStyle("-fx-font-size: 200%");
         bpHeader.setCenter(labelTemporizador);
 
-        TimerTask task = new TimerTask(){
+        TimerTask task = new TimerTask() {
             @Override
             public void run() {
-            Platform.runLater(() -> {
-                int contador = Integer.parseInt(labelTemporizador.getText()) - 1;
-                labelTemporizador.setText(Integer.toString(contador));
-                if(contador <= 5 && contador > 0){
-                    labelTemporizador.setTextFill(Color.web("#ff0000"));
-                }else if(contador == 0) {
-                    try {
-                        MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/sinrespuesta.mp3").toURI().toString()));
-                        if (reproductor != null ) reproductor.play();
-                        } catch ( MediaException ignored) {}
-                    algoKahoot.jugadorNoResponde();
-                    temporizador.cancel();
-                }
-            });
-         }
+                Platform.runLater(() -> {
+                    int contador = Integer.parseInt(labelTemporizador.getText()) - 1;
+                    labelTemporizador.setText(Integer.toString(contador));
+                    if (contador <= 5 && contador > 0) {
+                        labelTemporizador.setTextFill(Color.web("#ff0000"));
+                    } else if (contador == 0) {
+                        try {
+                            MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/sinrespuesta.mp3").toURI().toString()));
+                            if (reproductor != null) reproductor.play();
+                        } catch (MediaException ignored) {
+                        }
+                        algoKahoot.jugadorNoResponde();
+                        temporizador.cancel();
+                    }
+                });
+            }
         };
         temporizador.schedule(task, 0, 1000L);
     }
