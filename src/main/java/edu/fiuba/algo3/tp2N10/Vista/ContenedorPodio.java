@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -81,15 +78,13 @@ public class ContenedorPodio extends BorderPane {
         labelEmpate.setFont(Font.font("Tahoma", FontWeight.BOLD, 50));
         labelEmpate.setAlignment(Pos.CENTER);
 
-        if(puntajes.get(0) > puntajes.get(1)){
+        if (puntajes.get(0) > puntajes.get(1)) {
             hbPrimero = new HBox(labelJugadorUno,labelPuntajeUno);
             hbSegundo = new HBox(labelJugadorDos,labelPuntajeDos);
-        }
-        else if (puntajes.get(0) < puntajes.get(1)){
+        } else if (puntajes.get(0) < puntajes.get(1)) {
             hbPrimero = new HBox(labelJugadorDos,labelPuntajeDos);
             hbSegundo = new HBox(labelJugadorUno,labelPuntajeUno);
-        }
-        else {
+        } else {
             hbPrimero = new HBox(labelJugadorUno,labelPuntajeUno);
             hbSegundo = new HBox(labelJugadorDos,labelPuntajeDos);
             pathImagePrimero = "./resources/images/empateuno.png";
@@ -98,16 +93,16 @@ public class ContenedorPodio extends BorderPane {
         }
 
         ImageView imagePrimero = new ImageView();
-        try { imagePrimero.setImage(new Image(new FileInputStream(pathImagePrimero))); }
-        catch (FileNotFoundException ignored) {}
+        try { imagePrimero.setImage(new Image(new FileInputStream(pathImagePrimero)));
+        } catch (FileNotFoundException ignored) {}
         imagePrimero.setScaleX(1);
         imagePrimero.setScaleY(1);
         imagePrimero.setFitWidth(175);
         imagePrimero.setFitHeight(250);
 
         ImageView imageSegundo = new ImageView();
-        try { imageSegundo.setImage(new Image(new FileInputStream(pathImageSegundo))); }
-        catch (FileNotFoundException ignored) {}
+        try { imageSegundo.setImage(new Image(new FileInputStream(pathImageSegundo)));
+        } catch (FileNotFoundException ignored) {}
         imageSegundo.setScaleX(1);
         imageSegundo.setScaleY(1);
         imageSegundo.setFitWidth(175);
@@ -123,7 +118,7 @@ public class ContenedorPodio extends BorderPane {
         hbSegundo.setSpacing(20);
         hbSegundo.setStyle("-fx-background-color: #ffffff");
 
-        if(!empate) {
+        if (!empate) {
 
             VBox vbPrimero = new VBox(labelPrimero, hbPrimero, imagePrimero);
             vbPrimero.setAlignment(Pos.CENTER);
@@ -134,8 +129,7 @@ public class ContenedorPodio extends BorderPane {
             vbSegundo.setSpacing(20);
 
             hbPodio = new HBox(vbPrimero, vbSegundo);
-        }
-        else{
+        } else {
             VBox vbPrimero = new VBox(hbPrimero, imagePrimero);
             vbPrimero.setAlignment(Pos.CENTER);
             vbPrimero.setSpacing(20);
@@ -171,7 +165,6 @@ public class ContenedorPodio extends BorderPane {
         setTop(bpHeader);
         setCenter(hbPodio);
         setBottom(bpBotoneraListo);
-
     }
 
 }

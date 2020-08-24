@@ -9,7 +9,7 @@ import java.util.Timer;
 public class BotonContinuarConTimer implements EventHandler<ActionEvent> {
 
         private final AlgoKahoot algoKahoot;
-        private Timer temporizador;
+        private final Timer temporizador;
 
         public BotonContinuarConTimer(AlgoKahoot algoKahoot, Timer temporizador) {
             this.algoKahoot = algoKahoot;

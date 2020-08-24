@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuarConTimer;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.application.Platform;
@@ -37,7 +36,7 @@ public class ContenedorEnunciado extends BorderPane {
         labelEnunciadoPregunta.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
 
         Label labelTipoPregunta = new Label("Tipo: " + algoKahoot.preguntaActual());
-        labelTipoPregunta.setFont(Font.font("Tahoma", 30));;
+        labelTipoPregunta.setFont(Font.font("Tahoma", 30));
 
         VBox vbPregunta = new VBox(labelJugador, labelEnunciadoPregunta, labelTipoPregunta);
         vbPregunta.setAlignment(Pos.CENTER);
@@ -73,9 +72,8 @@ public class ContenedorEnunciado extends BorderPane {
                     if (contador == 0) {
                         try {
                             MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/comienzaturno.mp3").toURI().toString()));
-                            if (reproductor != null) reproductor.play();
-                        } catch (MediaException ignored) {
-                        }
+                            reproductor.play();
+                        } catch (MediaException ignored) {}
                         algoKahoot.notifyObservers();
                         temporizador.cancel();
                     }
