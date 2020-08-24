@@ -1,93 +1,61 @@
 {
   "preguntas": [
     {
-      "tipo": "verdaderoFalso",
-      "enunciado": "Java es un lenguaje que no hace verificación estática de tipos (sin penalidad)",
-      "respuesta": false,
-      "conPenalidad": false
-    },
-    {
-      "tipo": "multipleChoice",
-      "enunciado": "Cuales son patrones de diseño conocidos ?(clasico)",
-      "opciones": [
-        "Singleton",
-        "Observer",
-        "Poxy",
-        "State"
-      ],
-      "respuestas": [
-        0,
-        1,
-        3
-      ],
-      "tipoPuntaje": "clasico"
-    },
-    {
-      "tipo": "orderedChoice",
-      "enunciado": "Ordene de más largo a más corto las siguientes distancias",
-      "opciones": [
-        "1 ft",
-        "50 cm",
-        "100 mm"
-      ],
-      "respuestas": [
-        2,
-        1,
-        3
-      ]
-    },
-    {
-      "tipo": "multipleChoice",
-      "enunciado": "Que es verdadero con respecto a Java (parcial)",
-      "opciones": [
-        "Verificacion estática de tipos",
-        "Herencia múltiple",
-        "Lenguaje interpretado"
-      ],
-      "respuestas": [
-        0
-      ],
-      "tipoPuntaje": "parcial"
-    },
-    {
-      "tipo": "multipleChoice",
-      "enunciado": "Los alumnos de Algo 3... (penalidad)",
-      "opciones": [
-        "Programan en Smalltalk",
-        "Programan en Python",
-        "Usan Java para el último TP",
-        "Aprenden TDD"
-      ],
-      "respuestas": [
-        0,
-        2,
-        3
-      ],
-      "tipoPuntaje": "conPenalidad"
+      "tipo": "verdaderoFalsoClasico",
+      "enunciado": "Java y JavaScript son casi el mismo lenguaje pero desarrollado por distintas compañias",
+      "respuesta": false
     },
     {
       "tipo": "groupChoice",
-      "enunciado": "Agrupe según fue usado en el primer tp [A] o el segundo tp [B]",
-      "opciones": [
-        "Java",
-        "Smalltalk",
-        "JavaFX"
-      ],
-      "respuestas": {
-        "grupoUno": [
-          2
-        ],
-        "grupoDos": [
-          1,
-          3
-        ]
-      }
+      "enunciado": "Agrupe según canciones de Queen [A] o de The Beatles [B]",
+      "opciones": ["Hey Jude", "Love of My Life", "I Want to Break Free", "Something", "Somebody to Love"],
+      "respuestas": {"grupoUno": [1,2,4], "grupoDos": [0,3]}
     },
     {
-      "tipo": "verdaderoFalso",
-      "enunciado": "En javafx es super obvio como quedan organizados los componentes en la ventana (con penalidad)",
-      "respuesta": false,
-      "conPenalidad": true
+      "tipo": "multipleChoiceClasico",
+      "enunciado": "Seleccione de la siguiente lista los Patrones de Diseño",
+      "opciones": [ "Singleton" , "Observer" , "Poxy" , "State", "Fachade" ],
+      "respuestas": [ 0 , 3, 4 ]
+    },
+    {
+      "tipo": "orderedChoice",
+      "enunciado": "Ordene de menor a mayor las siguientes distancias",
+      "opciones": [ "1 ft", "50 cm", "100 mm", "10 dm" ],
+      "respuestas": [ 2, 0, 1, 3 ]
+    },
+    {
+      "tipo": "multipleChoiceParcial",
+      "enunciado": "¿Cuales de las siguientes selecciones de futbol ganaron al menos un mundial?",
+      "opciones": [ "Uruguay", "Holanda", "Inglaterra", "Croacia", "México", "Italia"],
+      "respuestas": [ 0,2,5 ]
+    },
+    {
+      "tipo": "verdaderoFalsoPenalidad",
+      "enunciado": "Serbia pertenece al continente europeo",
+      "respuesta": true
+    },
+    {
+      "tipo": "multipleChoicePenalidad",
+      "enunciado": "¿Cuáles de los siguientes lenguajes son interpretados?",
+      "opciones": ["Go","JavaScript","Python","C","Ruby"],
+      "respuestas": [1,2,4]
+    },
+    {
+      "tipo": "groupChoice",
+      "enunciado": "Agrupe según personajes de Star Wars [A] o Star Trek [B]",
+      "opciones": ["Hikaru Sulu","Leia Organa","Leonard McCoy","Almirante Ackbar","Spock"],
+      "respuestas": {"grupoUno": [1,3], "grupoDos": [0,2,4]}
+    },
+    {
+      "tipo": "verdaderoFalsoPenalidad",
+      "enunciado": "Vincent van Gogh fue el pintor del famoso cuadro El Grito",
+      "respuesta": false
+    },
+    {
+      "tipo": "orderedChoice",
+      "enunciado": "Ordene cronológicamente los siguientes acontecimientos históricos",
+      "opciones": [ "Caída del Muro de Berlín", "Llegada del hombre a la Luna", "Asesinato de John F. Kennedy","Comienza la Guerra de Vietnam" ],
+      "respuestas": [ 3, 2, 1, 0 ]
     }
   ]
 }
