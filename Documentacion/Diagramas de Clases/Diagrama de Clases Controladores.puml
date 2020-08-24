@@ -31,6 +31,14 @@ AlertaNombreLargo -up[hidden]-> AlertaNombreFaltante
 AlertaNombreFaltante -up[hidden]-> AlertaOrdenarTodasLasOpcionesOC
 AlertaOrdenarTodasLasOpcionesOC -up[hidden]-> AlertaSeleccionarUnaOpcion
 BotonResponder -[hidden]-> BotonComenzarJuego
+HandlerOpcionesOC -[hidden]-> BotonContinuar
+BotonContinuar -[hidden]-> BotonContinuarConTimer
+BotonContinuarConTimer -[hidden]-> BotonEntrar
+BotonSeleccionarOpcionOC -left[hidden]-> BotonDeshacerOpcionOC
+BotonDeshacerOpcionOC -[hidden]-> BotonSiguientePregunta
+BotonSiguientePregunta -[hidden]-> BotonSalir
+BotonSalir -[hidden]-> BotonUsarExclusividad
+BotonUsarExclusividad -[hidden]-> BotonUsarMultiplicador
 
 'Herencia --|> cumple la relación 'es un'
 

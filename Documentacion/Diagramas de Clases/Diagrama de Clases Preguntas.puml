@@ -6,6 +6,7 @@ abstract class Pregunta {
     # enunciado: String
     # opciones: List<String>
     # respuestaCorrecta: Respuesta
+    # respuestaCorrectaFormateada: String
     + toString(): String
     + responder(respuestasUsuario: List<Respuesta>): List<Integer>
     + getEnunciado(): String
@@ -13,6 +14,7 @@ abstract class Pregunta {
     + permiteMultiplicadores(): boolean
     + permiteExclusividad(): boolean
     + respuestaIncorrecta(): Respuesta
+    + respuestaCorrecta(): String
 }
 
 class PreguntaVerdaderoFalso {
@@ -21,14 +23,18 @@ class PreguntaVerdaderoFalso {
 }
 
 class PreguntaGroupChoice {
+    - parsearRespuesta(valoresGrupoA: Set<Integer>, valoresGrupoB: Set<Integer>): String
+    - listaOpciones(valoresGrupo: Set<Integer>): List<String>
     + PreguntaGroupChoice(enunciado: String, opciones: List<String>, opcionesGrupoA: Set<Integer>, opcionesGrupoB: Set<Integer>)
 }
 
 class PreguntaOrderedChoice {
+    - parsearRespuesta(ordenCorrecto: List<Integer>): String
     + PreguntaOrderedChoice(enunciado: String, opciones: List<String>, ordenCorrecto: List<Integer>)
 }
 
 class PreguntaMultipleChoice {
+    - parsearRespuesta(opcionesCorrectas: Set<Integer>): String
     + {static} Parcial(enunciado: String, opciones: List<String>, opcionesCorrectas: Set<Integer>)
     + {static} Penalidad(enunciado: String, opciones: List<String>, opcionesCorrectas: Set<Integer>)
     + {static} Clasico(enunciado: String, opciones: List<String>, opcionesCorrectas: Set<Integer>)

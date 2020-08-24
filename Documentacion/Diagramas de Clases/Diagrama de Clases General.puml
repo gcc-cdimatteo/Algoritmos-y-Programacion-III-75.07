@@ -5,26 +5,27 @@ package AlgoKahoot {
     class AlgoKahoot {
     - finalizado: boolean
     - observers: List<Observer>
-    - cambiarTurno()
     - cambiarJugador()
     + nuevaRonda()
     + puntajes(): List<Integer>
     + nombres(): List<String>
+    + siguientePregunta()
     + jugadorNoResponde()
-    + cargarRespuesta(respuesta: Respuesta)
+    + cargarRespuesta(Respuesta respuesta)
     + jugadorPuntaje(): int
     + jugadorNombre(): String
     + preguntaEnunciado(): String
     + preguntaOpciones(): List<String>
-    + jugadorUsaMultiplicador(unValor: int)
+    + jugadorUsaMultiplicador(int unValor)
     + jugadorUsaExclusividad()
     + finalizado(): boolean
     + permiteMultiplicadores(): boolean
-    + multiplicadorDisponible(valor: int): boolean
+    + multiplicadorDisponible(int valor): boolean
     + permiteExclusividad(): boolean
-    + addObserver(observer: Observer)
+    + addObserver(Observer observer)
     + notifyObservers()
     + preguntaActual(): String
+    + respuestaCorrecta(): String
     }
     class Jugador {
         - nombre: String
@@ -85,6 +86,7 @@ package Pregunta {
         # asString: String
         # enunciado: String
         # opciones: List<String>
+        # respuestaCorrectaFormateada: String
         + responder(respuestasUsuario: List<Respuesta>): List<Integer>
         + toString(): String
         + getEnunciado(): String
@@ -92,6 +94,7 @@ package Pregunta {
         + permiteMultiplicadores(): boolean
         + permiteExclusividad(): boolean
         + respuestaIncorrecta(): Respuesta
+        + respuestaCorrecta(): String
     }
 }
 
