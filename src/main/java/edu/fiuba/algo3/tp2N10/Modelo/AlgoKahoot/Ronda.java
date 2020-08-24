@@ -51,10 +51,14 @@ public class Ronda {
     public boolean permiteExclusividad() { return this.pregunta.permiteExclusividad(); }
 
     public String preguntaActual() {
-        return pregunta.toString();
+        return pregunta.tipoPregunta();
     }
 
     public void jugadorNoResponde() {
         respuestas.add(pregunta.respuestaIncorrecta());
+    }
+
+    public String respuestaCorrecta() {
+        return pregunta.respuestaCorrecta();
     }
 }

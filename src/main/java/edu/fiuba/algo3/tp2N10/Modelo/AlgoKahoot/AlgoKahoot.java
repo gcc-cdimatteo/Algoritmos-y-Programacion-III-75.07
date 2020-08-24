@@ -122,4 +122,8 @@ public class AlgoKahoot implements Observable {
     public String preguntaActual() {
         return ronda.preguntaActual();
     }
+
+    public String respuestaCorrecta() {
+        return ronda.respuestaCorrecta();
+    }
 }

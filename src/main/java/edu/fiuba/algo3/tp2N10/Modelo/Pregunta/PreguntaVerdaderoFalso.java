@@ -7,22 +7,23 @@ import java.util.Arrays;
 
 public class PreguntaVerdaderoFalso extends Pregunta {
 
-    private PreguntaVerdaderoFalso(String enunciado) {
+    private PreguntaVerdaderoFalso(String enunciado, boolean respuestaCorrecta) {
         this.enunciado = enunciado;
-        this.opciones = Arrays.asList("Verdadero", "Falso");
+        opciones = Arrays.asList("Verdadero", "Falso");
+        respuestaCorrectaFormateada = respuestaCorrecta ? "Verdadero" : "Falso";
     }
 
     public static PreguntaVerdaderoFalso Clasico(String enunciado, boolean respuestaCorrecta) {
-        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado);
+        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado, respuestaCorrecta);
         miPreguntaVF.respuestaCorrecta = RespuestaVerdaderoFalso.ConPuntaje(respuestaCorrecta, PuntajeClasico.ParaVerdaderoFalso());
-        miPreguntaVF.asString = "Verdadero Falso Clasico";
+        miPreguntaVF.tipoPregunta = "Verdadero Falso Clasico";
         return miPreguntaVF;
     }
 
     public static PreguntaVerdaderoFalso Penalidad(String enunciado, boolean respuestaCorrecta) {
-        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado);
+        PreguntaVerdaderoFalso miPreguntaVF = new PreguntaVerdaderoFalso(enunciado, respuestaCorrecta);
         miPreguntaVF.respuestaCorrecta = RespuestaVerdaderoFalso.ConPuntaje(respuestaCorrecta, new PuntajePenalidad());
-        miPreguntaVF.asString = "Verdadero Falso Penalidad";
+        miPreguntaVF.tipoPregunta = "Verdadero Falso Penalidad";
         return miPreguntaVF;
     }
 }

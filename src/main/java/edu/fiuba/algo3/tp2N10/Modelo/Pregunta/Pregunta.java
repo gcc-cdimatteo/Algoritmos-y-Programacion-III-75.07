@@ -7,10 +7,11 @@ import java.util.List;
 
 public abstract class Pregunta {
 
-    protected String asString;
+    protected String tipoPregunta;
     protected String enunciado;
     protected List<String> opciones;
     protected Respuesta respuestaCorrecta;
+    protected String respuestaCorrectaFormateada;
 
     public List<Integer> responder(List<Respuesta> respuestasUsuario) {
         List<Integer> puntos = new ArrayList<>();
@@ -20,8 +21,8 @@ public abstract class Pregunta {
         return puntos;
     }
 
-    public String toString() {
-        return asString;
+    public String tipoPregunta() {
+        return tipoPregunta;
     }
 
     public String getEnunciado() {
@@ -40,5 +41,9 @@ public abstract class Pregunta {
 
     public Respuesta respuestaIncorrecta() {
         return respuestaCorrecta.respuestaIncorrecta();
+    }
+
+    public String respuestaCorrecta() {
+        return respuestaCorrectaFormateada;
     }
 }

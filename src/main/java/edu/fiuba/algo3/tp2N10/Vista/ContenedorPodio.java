@@ -50,16 +50,11 @@ public class ContenedorPodio extends BorderPane {
         HBox hbSegundo;
         String pathImagePrimero = "./resources/images/primerpuesto.png";
         String pathImageSegundo = "./resources/images/segundopuesto.png";
-        boolean empate = false;
 
-        Label labelPrimero = armarPodioLabels("Primer puesto", Pos.CENTER);
-        Label labelSegundo = armarPodioLabels("Segundo puesto", Pos.CENTER);
-        Label labelEmpate = armarPodioLabels("Empate", Pos.CENTER);
-
-        hbPrimero = armoHBPorJugador(labelJugadorUno, labelPuntajeUno);
-        hbSegundo = armoHBPorJugador(labelJugadorDos,labelPuntajeDos);
-        ImageView imagePrimero = armoImagenPuesto(pathImagePrimero);
-        ImageView imageSegundo = armoImagenPuesto(pathImageSegundo);
+        hbPrimero = armarHBoxJugador(labelJugadorUno, labelPuntajeUno);
+        hbSegundo = armarHBoxJugador(labelJugadorDos,labelPuntajeDos);
+        ImageView imagePrimero = armarImagenPuesto(pathImagePrimero);
+        ImageView imageSegundo = armarImagenPuesto(pathImageSegundo);
         HBox hbPodio;
 
         if (!puntajes.get(0).equals(puntajes.get(1))) {
@@ -72,25 +67,25 @@ public class ContenedorPodio extends BorderPane {
                 imagePrimero = imageAux;
             }
 
-            VBox vbPrimero = armoVBox(hbPrimero, imagePrimero);
-            VBox vbSegundo = armoVBox(hbSegundo, imageSegundo);
+            VBox vbPrimero = armarVBox(hbPrimero, imagePrimero);
+            VBox vbSegundo = armarVBox(hbSegundo, imageSegundo);
 
             hbPodio = new HBox(vbPrimero, vbSegundo);
 
         } else {
             pathImagePrimero = "./resources/images/empateuno.png";
             pathImageSegundo = "./resources/images/empatedos.png";
-            imagePrimero = armoImagenPuesto(pathImagePrimero);
-            imageSegundo = armoImagenPuesto(pathImageSegundo);
+            imagePrimero = armarImagenPuesto(pathImagePrimero);
+            imageSegundo = armarImagenPuesto(pathImageSegundo);
 
-            VBox vbPrimero = armoVBox(hbPrimero, imagePrimero);
-            VBox vbSegundo = armoVBox(hbSegundo, imageSegundo);
+            VBox vbPrimero = armarVBox(hbPrimero, imagePrimero);
+            VBox vbSegundo = armarVBox(hbSegundo, imageSegundo);
 
             HBox hbJugadores = new HBox(vbPrimero, vbSegundo);
             hbJugadores.setAlignment(Pos.CENTER);
             hbJugadores.setSpacing(200);
 
-            VBox vbEmpate = new VBox(labelEmpate,hbJugadores);
+            VBox vbEmpate = new VBox(empatePodioLabels(), hbJugadores);
             vbEmpate.setAlignment(Pos.CENTER);
             vbEmpate.setSpacing(30);
             hbPodio = new HBox(vbEmpate);
@@ -116,14 +111,14 @@ public class ContenedorPodio extends BorderPane {
         setBottom(bpBotoneraListo);
     }
 
-    private VBox armoVBox(HBox hb, ImageView image) {
+    private VBox armarVBox(HBox hb, ImageView image) {
         VBox miVB = new VBox(hb, image);
         miVB.setAlignment(Pos.CENTER);
         miVB.setSpacing(20);
         return miVB;
     }
 
-    private HBox armoHBPorJugador(Label jugador, Label puntaje) {
+    private HBox armarHBoxJugador(Label jugador, Label puntaje) {
         HBox miHB = new HBox(jugador,puntaje);
         miHB.setAlignment(Pos.CENTER);
         miHB.setSpacing(20);
@@ -131,7 +126,7 @@ public class ContenedorPodio extends BorderPane {
         return miHB;
     }
 
-    private ImageView armoImagenPuesto(String pathImage) {
+    private ImageView armarImagenPuesto(String pathImage) {
         ImageView miImagen = new ImageView();
         try { miImagen.setImage(new Image(new FileInputStream(pathImage)));
         } catch (FileNotFoundException ignored) {}
@@ -142,10 +137,10 @@ public class ContenedorPodio extends BorderPane {
         return miImagen;
     }
 
-    private Label armarPodioLabels(String nombre, Pos alignment) {
-        Label miLabel = new Label(nombre);
+    private Label empatePodioLabels() {
+        Label miLabel = new Label("Empate");
         miLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 50));
-        miLabel.setAlignment(alignment);
+        miLabel.setAlignment(Pos.CENTER);
         return miLabel;
     }
 
