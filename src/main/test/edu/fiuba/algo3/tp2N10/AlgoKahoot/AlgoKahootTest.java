@@ -34,6 +34,8 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
 
+        algoKahoot.siguientePregunta();
+
         assertEquals(Arrays.asList(1, -1), algoKahoot.puntajes());
     }
 
@@ -46,6 +48,8 @@ public class AlgoKahootTest {
         algoKahoot.jugadorUsaMultiplicador(2);
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
 
+        algoKahoot.siguientePregunta();
+
         assertEquals(Arrays.asList(3, -2), algoKahoot.puntajes());
     }
 
@@ -56,9 +60,14 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
 
+        algoKahoot.siguientePregunta();
+
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1))));
+
+        algoKahoot.siguientePregunta();
+
         assertEquals(1, algoKahoot.jugadorPuntaje());
     }
 
@@ -68,6 +77,8 @@ public class AlgoKahootTest {
 
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
         algoKahoot.jugadorNoResponde();
+
+        algoKahoot.siguientePregunta();
 
         assertEquals(Arrays.asList(1, -1), algoKahoot.puntajes());
     }
@@ -79,10 +90,15 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
 
+        algoKahoot.siguientePregunta();
+
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(0, 1, 2))));
+
+        algoKahoot.siguientePregunta();
+
         assertEquals(Arrays.asList(3, -1), algoKahoot.puntajes());
     }
 
@@ -93,16 +109,27 @@ public class AlgoKahootTest {
         //// Ronda 1
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+
+        algoKahoot.siguientePregunta();
+
         //// Ronda 2
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 3))));
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
+
+        algoKahoot.siguientePregunta();
+
         //// Ronda 3
         algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(Arrays.asList(3, 0, 1, 2)));
         algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(Arrays.asList(3, 1, 2, 0)));
+
+        algoKahoot.siguientePregunta();
+
         //// Ronda 4
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 2, 4)), new HashSet<>(Arrays.asList(0, 3))));
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4))));
-        
+
+        algoKahoot.siguientePregunta();
+
         assertTrue(algoKahoot.finalizado());
     }
 
@@ -114,9 +141,13 @@ public class AlgoKahootTest {
         // Camila
         algoKahoot.jugadorUsaMultiplicador(2);
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
+
         // Delfina
         algoKahoot.jugadorUsaMultiplicador(3);
         algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+
+        algoKahoot.siguientePregunta();
+
         // Puntos
         assertEquals(Arrays.asList(2, -3), algoKahoot.puntajes());
 
@@ -127,6 +158,9 @@ public class AlgoKahootTest {
         // Delfina
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(1, 2))));
+
+        algoKahoot.siguientePregunta();
+
         // Puntos
         assertEquals(Arrays.asList(2, 1), algoKahoot.puntajes());
 
@@ -137,6 +171,9 @@ public class AlgoKahootTest {
         // Delfina
         algoKahoot.jugadorUsaExclusividad();
         algoKahoot.cargarRespuesta(new RespuestaOrderedChoice(Arrays.asList(3, 1, 2, 0)));
+
+        algoKahoot.siguientePregunta();
+
         // Puntos
         assertEquals(Arrays.asList(2, 5), algoKahoot.puntajes());
 
@@ -145,6 +182,9 @@ public class AlgoKahootTest {
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 2, 4)), new HashSet<>(Arrays.asList(0, 3))));
         // Delfina
         algoKahoot.cargarRespuesta(new RespuestaGroupChoice(new HashSet<>(Arrays.asList(1, 3)), new HashSet<>(Arrays.asList(0, 2, 4))));
+
+        algoKahoot.siguientePregunta();
+        
         // Puntos
         assertEquals(Arrays.asList(3, 5), algoKahoot.puntajes());
         assertTrue(algoKahoot.finalizado());
