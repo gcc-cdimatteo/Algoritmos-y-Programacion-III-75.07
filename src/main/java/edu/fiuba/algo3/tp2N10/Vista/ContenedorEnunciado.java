@@ -72,6 +72,7 @@ public class ContenedorEnunciado extends BorderPane {
                     if (contador == 0) {
                         try {
                             MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/comienzaturno.mp3").toURI().toString()));
+                            reproductor.setVolume(0.3);
                             reproductor.play();
                         } catch (MediaException ignored) {}
                         algoKahoot.notifyObservers();

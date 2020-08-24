@@ -85,6 +85,7 @@ public class AlgoKahootView implements Observer {
         if (reproductor != null) reproductor.stop();
         MediaPlayer reproductor = new MediaPlayer(new Media(new File(mediaPath).toURI().toString()));
         reproductor.setCycleCount(MediaPlayer.INDEFINITE);
+        reproductor.setVolume(0.3);
         return reproductor;
     }
 

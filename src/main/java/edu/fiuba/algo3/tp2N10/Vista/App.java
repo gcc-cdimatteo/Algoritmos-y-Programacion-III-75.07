@@ -47,6 +47,7 @@ public class App extends Application {
         try {
             reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));
             reproductor.setCycleCount(MediaPlayer.INDEFINITE);
+            reproductor.setVolume(0.3);
             reproductor.play();
         } catch (MediaException ignored) {}
 

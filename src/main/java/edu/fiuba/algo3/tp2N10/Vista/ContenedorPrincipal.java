@@ -119,7 +119,10 @@ public class ContenedorPrincipal extends BorderPane {
                     } else if (contador == 0) {
                         try {
                             MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/sinrespuesta.mp3").toURI().toString()));
-                            if (reproductor != null) reproductor.play();
+                            if (reproductor != null) {
+                                reproductor.setVolume(0.3);
+                                reproductor.play();
+                            }
                         } catch (MediaException ignored) {
                         }
                         algoKahoot.jugadorNoResponde();

@@ -14,6 +14,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+
 
 public class ContenedorBienvenidos extends BorderPane {
 

@@ -38,26 +38,12 @@ public class ContenedorPodio extends BorderPane {
         List<Integer> puntajes = algoKahoot.puntajes();
 
         //Jugador Uno
-        Label labelJugadorUno = new Label(String.valueOf(nombres.get(0)));
-        labelJugadorUno.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
-        labelJugadorUno.setMinWidth(200);
-        labelJugadorUno.setAlignment(Pos.CENTER_LEFT);
+        Label labelJugadorUno = armarJugadorLables(nombres.get(0), 200, Pos.CENTER_LEFT);
+        Label labelPuntajeUno = armarJugadorLables(String.valueOf(puntajes.get(0)), 50, Pos.CENTER_RIGHT);
 
-        Label labelPuntajeUno = new Label(String.valueOf(puntajes.get(0)));
-        labelPuntajeUno.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
-        labelPuntajeUno.setMinWidth(50);
-        labelPuntajeUno.setAlignment(Pos.CENTER_RIGHT);
-
-        //Jugador Dos
-        Label labelJugadorDos = new Label(nombres.get(1));
-        labelJugadorDos.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
-        labelJugadorDos.setMinWidth(200);
-        labelJugadorDos.setAlignment(Pos.CENTER_LEFT);
-
-        Label labelPuntajeDos = new Label(String.valueOf(puntajes.get(1)));
-        labelPuntajeDos.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
-        labelPuntajeDos.setMinWidth(50);
-        labelPuntajeDos.setAlignment(Pos.CENTER_RIGHT);
+        //Jugador Uno
+        Label labelJugadorDos = armarJugadorLables(nombres.get(1), 200, Pos.CENTER_LEFT);
+        Label labelPuntajeDos = armarJugadorLables(String.valueOf(puntajes.get(1)), 50, Pos.CENTER_RIGHT);
 
         //Podio
         HBox hbPrimero;
@@ -66,17 +52,9 @@ public class ContenedorPodio extends BorderPane {
         String pathImageSegundo = "./resources/images/segundopuesto.png";
         boolean empate = false;
 
-        Label labelPrimero = new Label("Primer puesto");
-        labelPrimero.setFont(Font.font("Tahoma", FontWeight.BOLD, 50));
-        labelPrimero.setAlignment(Pos.CENTER);
-
-        Label labelSegundo = new Label("Segundo puesto");
-        labelSegundo.setFont(Font.font("Tahoma", FontWeight.BOLD,50));
-        labelSegundo.setAlignment(Pos.CENTER);
-
-        Label labelEmpate = new Label("Empate");
-        labelEmpate.setFont(Font.font("Tahoma", FontWeight.BOLD, 50));
-        labelEmpate.setAlignment(Pos.CENTER);
+        Label labelPrimero = armarPodioLabels("Primer puesto", Pos.CENTER);
+        Label labelSegundo = armarPodioLabels("Segundo puesto", Pos.CENTER);
+        Label labelEmpate = armarPodioLabels("Empate", Pos.CENTER);
 
         if (puntajes.get(0) > puntajes.get(1)) {
             hbPrimero = new HBox(labelJugadorUno,labelPuntajeUno);
@@ -165,6 +143,21 @@ public class ContenedorPodio extends BorderPane {
         setTop(bpHeader);
         setCenter(hbPodio);
         setBottom(bpBotoneraListo);
+    }
+
+    private Label armarPodioLabels(String nombre, Pos alignment) {
+        Label miLabel = new Label(nombre);
+        miLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 50));
+        miLabel.setAlignment(alignment);
+        return miLabel;
+    }
+
+    private Label armarJugadorLables(String nombre, int minWidth, Pos alignment){
+        Label label = new Label(nombre);
+        label.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
+        label.setMinWidth(minWidth);
+        label.setAlignment(alignment);
+        return label;
     }
 
 }
