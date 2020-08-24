@@ -28,19 +28,21 @@ public class App extends Application {
         escenario.setMaximized(true);
         escenario.setTitle("AlgoKahoot");
         escenario.setOnCloseRequest(event -> {
-            if(reproductor != null) {reproductor.stop();}
+            if (reproductor != null) reproductor.stop();
             Platform.exit();
         });
 
         ContenedorJugadores contenedorJugadores = new ContenedorJugadores(this);
 
-        try { contenedorJugadores.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/fondo.png", 1280, 720));}
-        catch (FileNotFoundException ignored) {}
+        try {
+            contenedorJugadores.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/fondo.png", 1280, 720));
+        } catch (FileNotFoundException ignored) {}
         Scene escenaJugadores = new Scene(contenedorJugadores, 1280, 720);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(escenario, escenaJugadores);
-        try { contenedorBienvenidos.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/bienvenida.png", 1280, 720));}
-        catch (FileNotFoundException ignored) {}
+        try {
+            contenedorBienvenidos.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/bienvenida.png", 1280, 720));
+        } catch (FileNotFoundException ignored) {}
 
         try {
             reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));
@@ -55,8 +57,8 @@ public class App extends Application {
     }
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
-        if(reproductor != null) { this.reproductor.stop(); }
-        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_single_test.json", nombreUno, nombreDos);
+        if (reproductor != null) this.reproductor.stop();
+        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_test.json", nombreUno, nombreDos);
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
         algoKahootView.mostrar();
     }

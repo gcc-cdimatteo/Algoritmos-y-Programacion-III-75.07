@@ -24,15 +24,13 @@ public class BotonResponderVF implements EventHandler<ActionEvent> {
     }
 
     public void handle(ActionEvent actionEvent) {
-        if (botonVerdadero.isSelected()) {
-            algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
-            this.temporizador.cancel();
-        } else if (botonFalso.isSelected()) {
-            algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
-            this.temporizador.cancel();
-        } else {
+        if (botonVerdadero.isSelected()) algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(true));
+        else if (botonFalso.isSelected()) algoKahoot.cargarRespuesta(new RespuestaVerdaderoFalso(false));
+        else {
             AlertaSeleccionarUnaOpcion alertaSeleccionarUnaOpcion = new AlertaSeleccionarUnaOpcion();
             alertaSeleccionarUnaOpcion.mostrar();
+            return;
         }
+        this.temporizador.cancel();
     }
 }

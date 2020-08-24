@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonDeshacerOpcionOC;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.HandlerOpcionesOC;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonResponderOC;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSeleccionarOpcionOC;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
@@ -19,30 +19,27 @@ public class ContenedorPreguntaOC extends BorderPane {
     public ContenedorPreguntaOC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador) {
         super();
 
-        List<Integer> respuestaUsuario = new ArrayList<>();
+        LinkedList<Integer> respuestaUsuario = new LinkedList<>();
 
         Label respuestaOrdenadaLabel = new Label("");
         respuestaOrdenadaLabel.setStyle("-fx-font-size: 150%");
 
-        ArrayList<Button> arrayBtnOpciones = new ArrayList<>();
+        List<Button> arrayBtnOpciones = new ArrayList<>();
         HBox hboxOpciones = new HBox(25);
         btnListo.setOnAction(new BotonResponderOC(algoKahoot, respuestaUsuario, arrayBtnOpciones, temporizador));
 
-        ArrayList<BotonSeleccionarOpcionOC> handlersSeleccionarOpcion = new ArrayList<>();
-
-        LinkedList<String> respuestaOrdenada = new LinkedList<>();
+        HandlerOpcionesOC handlerOpciones = new HandlerOpcionesOC(respuestaOrdenadaLabel, respuestaUsuario);
 
         for (int i = 0; i < algoKahoot.preguntaOpciones().size(); i++) {
             Button boton = new Button(algoKahoot.preguntaOpciones().get(i));
-            BotonSeleccionarOpcionOC handler = new BotonSeleccionarOpcionOC(boton, i, respuestaUsuario, respuestaOrdenadaLabel, respuestaOrdenada);
+            BotonSeleccionarOpcionOC handler = new BotonSeleccionarOpcionOC(boton, i, handlerOpciones);
             boton.setOnAction(handler);
             arrayBtnOpciones.add(boton);
-            handlersSeleccionarOpcion.add(handler);
             hboxOpciones.getChildren().add(boton);
         }
 
         Button botonDeshacer = new Button("Deshacer");
-        botonDeshacer.setOnAction(new BotonDeshacerOpcionOC(handlersSeleccionarOpcion));
+        botonDeshacer.setOnAction(handlerOpciones);
 
         setLeft(hboxOpciones);
         setRight(botonDeshacer);
