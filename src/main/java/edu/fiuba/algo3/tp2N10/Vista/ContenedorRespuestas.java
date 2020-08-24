@@ -23,7 +23,7 @@ public class ContenedorRespuestas extends BorderPane {
         Label labelEnunciadoPregunta = new Label(algoKahoot.preguntaEnunciado());
         labelEnunciadoPregunta.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
 
-        Label labelRespuesta = new Label("Respuesta");
+        Label labelRespuesta = new Label("Respuesta correcta");
         labelRespuesta.setFont(Font.font("Tahoma", 30));
 
         Label labelCorrecta = new Label(algoKahoot.respuestaCorrecta());

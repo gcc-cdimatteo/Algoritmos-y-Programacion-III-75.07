@@ -34,7 +34,7 @@ public class ContenedorBienvenidos extends BorderPane {
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
-        botonSalir.setOnAction( new BotonSalir());
+        //botonSalir.setOnAction( new BotonSalir());
 
         HBox hbBotones = new HBox(botonEntrar,botonSalir);
         hbBotones.setAlignment(Pos.CENTER);

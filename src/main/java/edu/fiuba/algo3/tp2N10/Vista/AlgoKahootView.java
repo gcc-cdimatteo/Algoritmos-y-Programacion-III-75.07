@@ -34,38 +34,59 @@ public class AlgoKahootView implements Observer {
         numeroTurno++;
 
         if (numeroTurno == 5){
-            this.temporizador = new Timer();
-            contenedor = new ContenedorRespuestas(algoKahoot);
             backgroundPath = "./resources/images/fondo.png";
             mediaPath = "./resources/audio/intermedio.mp3";
+            try {
+                reproductor = crearReproductor(mediaPath);
+                reproductor.play();
+            } catch (MediaException ignored) {}
+            contenedor = new ContenedorRespuestas(algoKahoot);
+
         } else if (algoKahoot.finalizado()) {
-            contenedor = new ContenedorPodio(algoKahoot);
-            backgroundPath = "./resources/images/final.png";
             mediaPath = "./resources/audio/final.mp3";
+            try {
+                reproductor = crearReproductor(mediaPath);
+                reproductor.play();
+            } catch (MediaException ignored) {}
+            contenedor = new ContenedorPodio(algoKahoot,reproductor);
+            backgroundPath = "./resources/images/final.png";
         } else if (numeroTurno == 1 || numeroTurno == 3) {
+            mediaPath = "./resources/audio/pregunta.mp3";
+            try {
+                reproductor = crearReproductor(mediaPath);
+                reproductor.play();
+            } catch (MediaException ignored) {}
             this.temporizador = new Timer();
             contenedor = new ContenedorEnunciado(algoKahoot, this.temporizador);
             backgroundPath = "./resources/images/fondo.png";
-            mediaPath = "./resources/audio/pregunta.mp3";
         } else if (numeroTurno == 6) {
+            mediaPath = "./resources/audio/intermedio.mp3";
+            try {
+                reproductor = crearReproductor(mediaPath);
+                reproductor.play();
+            } catch (MediaException ignored) {}
             contenedor = new ContenedorEntreRondas(algoKahoot);
             backgroundPath = "./resources/images/fondo.png";
-            mediaPath = "./resources/audio/intermedio.mp3";
             numeroTurno = 0;
         } else {
+            mediaPath = "./resources/audio/jugar.mp3";
+            try {
+                reproductor = crearReproductor(mediaPath);
+                reproductor.play();
+            } catch (MediaException ignored) {}
             this.temporizador = new Timer();
             contenedor = new ContenedorPrincipal(algoKahoot, this.temporizador);
             backgroundPath = "./resources/images/fondo.png";
-            mediaPath = "./resources/audio/jugar.mp3";
+
         }
 
         try { contenedor.setBackground(new FactoryBackgrounds().crearBackground(backgroundPath, 1280, 720));}
         catch (FileNotFoundException ignored) {}
 
-        try {
-            reproductor = crearReproductor(mediaPath);
-            reproductor.play();
-        } catch (MediaException ignored) {}
+//        try {
+//            reproductor = crearReproductor(mediaPath);
+//            reproductor.play();
+//        } catch (MediaException ignored) {}
 
 
         double ancho = escenario.getWidth();

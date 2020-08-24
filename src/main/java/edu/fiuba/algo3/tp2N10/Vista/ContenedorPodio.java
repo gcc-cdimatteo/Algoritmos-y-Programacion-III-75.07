@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class ContenedorPodio extends BorderPane {
 
-    public ContenedorPodio(AlgoKahoot algoKahoot) {
+    public ContenedorPodio(AlgoKahoot algoKahoot, MediaPlayer reproductor) {
         super();
 
         //Barra superior
@@ -97,7 +98,7 @@ public class ContenedorPodio extends BorderPane {
 
         //Barra Inferior
         Button botonSalir = new Button("Salir");
-        botonSalir.setOnAction( new BotonSalir());
+        botonSalir.setOnAction( new BotonSalir(reproductor));
         botonSalir.setAlignment(Pos.CENTER);
 
         BorderPane bpBotoneraListo = new BorderPane();
