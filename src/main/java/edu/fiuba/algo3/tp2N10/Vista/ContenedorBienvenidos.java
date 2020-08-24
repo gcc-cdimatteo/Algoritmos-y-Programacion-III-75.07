@@ -2,7 +2,6 @@ package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonEntrar;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,14 +9,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+
 public class ContenedorBienvenidos extends BorderPane {
 
-    public ContenedorBienvenidos(Stage stage, Scene proximaEscena) {
+    public ContenedorBienvenidos(Stage stage, Scene proximaEscena, MediaPlayer reproductor) {
 
         super();
 
@@ -32,7 +33,7 @@ public class ContenedorBienvenidos extends BorderPane {
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
-        //botonSalir.setOnAction( new BotonSalir());
+        botonSalir.setOnAction( new BotonSalir(reproductor));
 
         HBox hbBotones = new HBox(botonEntrar,botonSalir);
         hbBotones.setAlignment(Pos.CENTER);

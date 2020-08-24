@@ -32,6 +32,13 @@ public class App extends Application {
             Platform.exit();
         });
 
+        try {
+            reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));
+            reproductor.setCycleCount(MediaPlayer.INDEFINITE);
+            reproductor.setVolume(0.3);
+            reproductor.play();
+        } catch (MediaException ignored) {}
+
         ContenedorJugadores contenedorJugadores = new ContenedorJugadores(this);
 
         try {
@@ -39,17 +46,12 @@ public class App extends Application {
         } catch (FileNotFoundException ignored) {}
         Scene escenaJugadores = new Scene(contenedorJugadores, 1280, 720);
 
-        ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(escenario, escenaJugadores);
+        ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(escenario, escenaJugadores, reproductor);
         try {
             contenedorBienvenidos.setBackground(new FactoryBackgrounds().crearBackground("./resources/images/bienvenida.png", 1280, 720));
         } catch (FileNotFoundException ignored) {}
 
-        try {
-            reproductor = new MediaPlayer(new Media(new File("./resources/audio/intro.mp3").toURI().toString()));
-            reproductor.setCycleCount(MediaPlayer.INDEFINITE);
-            reproductor.setVolume(0.3);
-            reproductor.play();
-        } catch (MediaException ignored) {}
+
 
         Scene escenaBienvenida = new Scene(contenedorBienvenidos, 1280, 720);
 
@@ -59,7 +61,7 @@ public class App extends Application {
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
         if(reproductor != null) { this.reproductor.stop(); }
-        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_single_test.json", nombreUno, nombreDos);
+        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_variadas.json", nombreUno, nombreDos);
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
         algoKahootView.mostrar();
     }
