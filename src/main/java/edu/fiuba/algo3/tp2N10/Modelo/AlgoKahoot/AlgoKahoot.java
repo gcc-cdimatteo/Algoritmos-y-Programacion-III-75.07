@@ -48,23 +48,22 @@ public class AlgoKahoot implements Observable {
         return nombres;
     }
 
-    private void cambiarTurno() {
-        cambiarJugador();
-        if (jugadorActual.vaPrimero()) {
-            ronda.asignarPuntos();
-            nuevaRonda();
-        }
+    public void siguientePregunta() {
+        ronda.asignarPuntos();
+        nuevaRonda();
         notifyObservers();
     }
 
     public void jugadorNoResponde() {
         ronda.jugadorNoResponde();
-        cambiarTurno();
+        cambiarJugador();
+        notifyObservers();
     }
 
     public void cargarRespuesta(Respuesta respuesta) {
         ronda.cargarRespuesta(respuesta);
-        cambiarTurno();
+        cambiarJugador();
+        notifyObservers();
     }
 
     public int jugadorPuntaje() {

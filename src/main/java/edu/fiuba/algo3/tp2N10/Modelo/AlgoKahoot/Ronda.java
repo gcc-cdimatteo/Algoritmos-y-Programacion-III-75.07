@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot;
 
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.FaltanRespuestasException;
 import edu.fiuba.algo3.tp2N10.Modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.Puntuador;
 import edu.fiuba.algo3.tp2N10.Modelo.Puntuadores.PuntuadorNulo;
@@ -31,9 +32,10 @@ public class Ronda {
     }
 
     public void asignarPuntos() {
+        if (respuestas.size() < 2) throw new FaltanRespuestasException();
         List<Integer> puntos = puntuador.calcularPuntos(pregunta.responder(respuestas));
-        for (Integer punto : puntos) {
-            jugador.puntuar(punto);
+        for (Integer puntosJugador : puntos) {
+            jugador.puntuar(puntosJugador);
             jugador = jugador.siguienteJugador();
         }
     }
