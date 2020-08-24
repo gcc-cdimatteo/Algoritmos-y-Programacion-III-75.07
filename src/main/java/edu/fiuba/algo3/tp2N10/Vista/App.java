@@ -59,8 +59,8 @@ public class App extends Application {
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
         if(reproductor != null) { this.reproductor.stop(); }
-        //AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_single_test.json", nombreUno, nombreDos);
-        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_test.json", nombreUno, nombreDos);
+        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_single_test.json", nombreUno, nombreDos);
+//        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_test.json", nombreUno, nombreDos);
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
         algoKahootView.mostrar();
     }

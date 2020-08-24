@@ -56,65 +56,35 @@ public class ContenedorPodio extends BorderPane {
         Label labelSegundo = armarPodioLabels("Segundo puesto", Pos.CENTER);
         Label labelEmpate = armarPodioLabels("Empate", Pos.CENTER);
 
-        if (puntajes.get(0) > puntajes.get(1)) {
-            hbPrimero = new HBox(labelJugadorUno,labelPuntajeUno);
-            hbSegundo = new HBox(labelJugadorDos,labelPuntajeDos);
-        } else if (puntajes.get(0) < puntajes.get(1)) {
-            hbPrimero = new HBox(labelJugadorDos,labelPuntajeDos);
-            hbSegundo = new HBox(labelJugadorUno,labelPuntajeUno);
-        } else {
-            hbPrimero = new HBox(labelJugadorUno,labelPuntajeUno);
-            hbSegundo = new HBox(labelJugadorDos,labelPuntajeDos);
-            pathImagePrimero = "./resources/images/empateuno.png";
-            pathImageSegundo = "./resources/images/empatedos.png";
-            empate = true;
-        }
-
-        ImageView imagePrimero = new ImageView();
-        try { imagePrimero.setImage(new Image(new FileInputStream(pathImagePrimero)));
-        } catch (FileNotFoundException ignored) {}
-        imagePrimero.setScaleX(1);
-        imagePrimero.setScaleY(1);
-        imagePrimero.setFitWidth(175);
-        imagePrimero.setFitHeight(250);
-
-        ImageView imageSegundo = new ImageView();
-        try { imageSegundo.setImage(new Image(new FileInputStream(pathImageSegundo)));
-        } catch (FileNotFoundException ignored) {}
-        imageSegundo.setScaleX(1);
-        imageSegundo.setScaleY(1);
-        imageSegundo.setFitWidth(175);
-        imageSegundo.setFitHeight(250);
-
+        hbPrimero = armoHBPorJugador(labelJugadorUno, labelPuntajeUno);
+        hbSegundo = armoHBPorJugador(labelJugadorDos,labelPuntajeDos);
+        ImageView imagePrimero = armoImagenPuesto(pathImagePrimero);
+        ImageView imageSegundo = armoImagenPuesto(pathImageSegundo);
         HBox hbPodio;
 
-        hbPrimero.setAlignment(Pos.CENTER);
-        hbPrimero.setSpacing(20);
-        hbPrimero.setStyle("-fx-background-color: #ffffff");
+        if (!puntajes.get(0).equals(puntajes.get(1))) {
+            if (puntajes.get(0) < puntajes.get(1)) {
+                HBox aux = hbSegundo;
+                hbSegundo = hbPrimero;
+                hbPrimero = aux;
+                ImageView imageAux = imageSegundo;
+                imageSegundo = imagePrimero;
+                imagePrimero = imageAux;
+            }
 
-        hbSegundo.setAlignment(Pos.CENTER);
-        hbSegundo.setSpacing(20);
-        hbSegundo.setStyle("-fx-background-color: #ffffff");
-
-        if (!empate) {
-
-            VBox vbPrimero = new VBox(labelPrimero, hbPrimero, imagePrimero);
-            vbPrimero.setAlignment(Pos.CENTER);
-            vbPrimero.setSpacing(20);
-
-            VBox vbSegundo = new VBox(labelSegundo, hbSegundo, imageSegundo);
-            vbSegundo.setAlignment(Pos.CENTER);
-            vbSegundo.setSpacing(20);
+            VBox vbPrimero = armoVBox(hbPrimero, imagePrimero);
+            VBox vbSegundo = armoVBox(hbSegundo, imageSegundo);
 
             hbPodio = new HBox(vbPrimero, vbSegundo);
-        } else {
-            VBox vbPrimero = new VBox(hbPrimero, imagePrimero);
-            vbPrimero.setAlignment(Pos.CENTER);
-            vbPrimero.setSpacing(20);
 
-            VBox vbSegundo = new VBox(hbSegundo, imageSegundo);
-            vbSegundo.setAlignment(Pos.CENTER);
-            vbSegundo.setSpacing(20);
+        } else {
+            pathImagePrimero = "./resources/images/empateuno.png";
+            pathImageSegundo = "./resources/images/empatedos.png";
+            imagePrimero = armoImagenPuesto(pathImagePrimero);
+            imageSegundo = armoImagenPuesto(pathImageSegundo);
+
+            VBox vbPrimero = armoVBox(hbPrimero, imagePrimero);
+            VBox vbSegundo = armoVBox(hbSegundo, imageSegundo);
 
             HBox hbJugadores = new HBox(vbPrimero, vbSegundo);
             hbJugadores.setAlignment(Pos.CENTER);
@@ -124,6 +94,7 @@ public class ContenedorPodio extends BorderPane {
             vbEmpate.setAlignment(Pos.CENTER);
             vbEmpate.setSpacing(30);
             hbPodio = new HBox(vbEmpate);
+
         }
 
         hbPodio.setAlignment(Pos.CENTER);
@@ -143,6 +114,32 @@ public class ContenedorPodio extends BorderPane {
         setTop(bpHeader);
         setCenter(hbPodio);
         setBottom(bpBotoneraListo);
+    }
+
+    private VBox armoVBox(HBox hb, ImageView image) {
+        VBox miVB = new VBox(hb, image);
+        miVB.setAlignment(Pos.CENTER);
+        miVB.setSpacing(20);
+        return miVB;
+    }
+
+    private HBox armoHBPorJugador(Label jugador, Label puntaje) {
+        HBox miHB = new HBox(jugador,puntaje);
+        miHB.setAlignment(Pos.CENTER);
+        miHB.setSpacing(20);
+        miHB.setStyle("-fx-background-color: #ffffff");
+        return miHB;
+    }
+
+    private ImageView armoImagenPuesto(String pathImage) {
+        ImageView miImagen = new ImageView();
+        try { miImagen.setImage(new Image(new FileInputStream(pathImage)));
+        } catch (FileNotFoundException ignored) {}
+        miImagen.setScaleX(1);
+        miImagen.setScaleY(1);
+        miImagen.setFitWidth(175);
+        miImagen.setFitHeight(250);
+        return miImagen;
     }
 
     private Label armarPodioLabels(String nombre, Pos alignment) {
