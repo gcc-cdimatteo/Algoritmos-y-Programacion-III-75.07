@@ -19,7 +19,7 @@ public class Ronda {
     public Ronda(Pregunta pregunta, Jugador primerJugador) {
         this.pregunta = pregunta;
         this.puntuador = new PuntuadorNulo();
-        this.respuestas = new ArrayList<>();
+        this.respuestas = new ArrayList<>(2);
         this.jugador = primerJugador;
     }
 

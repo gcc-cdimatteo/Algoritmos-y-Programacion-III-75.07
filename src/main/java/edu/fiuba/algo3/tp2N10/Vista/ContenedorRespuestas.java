@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSiguientePregunta;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -35,7 +36,7 @@ public class ContenedorRespuestas extends BorderPane {
         //Barra Inferior
         Button botonContinuar = new Button();
         botonContinuar.setText("Continuar");
-        botonContinuar.setOnAction(new BotonContinuar(algoKahoot));
+        botonContinuar.setOnAction(new BotonSiguientePregunta(algoKahoot));
 
         BorderPane bpContinuar = new BorderPane();
         bpContinuar.setStyle("-fx-background-color: cornflowerblue");
