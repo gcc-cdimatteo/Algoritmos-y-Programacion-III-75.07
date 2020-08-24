@@ -2,7 +2,7 @@
   "preguntas": [
     {
       "tipo": "verdaderoFalsoClasico",
-      "enunciado": "Java y JavaScript son casi el mismo lenguaje pero desarrollado por distintas compañias",
+      "enunciado": "Java y JavaScript son casi el mismo lenguaje",
       "respuesta": false
     },
     {
@@ -14,7 +14,7 @@
     {
       "tipo": "multipleChoiceClasico",
       "enunciado": "Seleccione de la siguiente lista los Patrones de Diseño",
-      "opciones": [ "Singleton" , "Observer" , "Poxy" , "State", "Fachade" ],
+      "opciones": [ "Singleton" , "Observer" , "Poxy" , "State", "Facade" ],
       "respuestas": [ 0 , 3, 4 ]
     },
     {
@@ -25,7 +25,7 @@
     },
     {
       "tipo": "multipleChoiceParcial",
-      "enunciado": "¿Cuales de las siguientes selecciones de futbol ganaron al menos un mundial?",
+      "enunciado": "¿Qué selecciones de futbol ganaron al menos un mundial?",
       "opciones": [ "Uruguay", "Holanda", "Inglaterra", "Croacia", "México", "Italia"],
       "respuestas": [ 0,2,5 ]
     },
