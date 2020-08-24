@@ -5,6 +5,7 @@ package Controlador {
 
     package Alertas {
         class AlertaNombreFaltante
+        class AlertaNombreLargo
         class AlertaOrdenarTodasLasOpcionesOC
         class AlertaSeleccionarUnaOpcion
     }
@@ -18,23 +19,18 @@ package Controlador {
         class BotonResponder
         class BotonSalir
         class BotonSeleccionarOpcionOC
+        class BotonSiguientePregunta
         class BotonUsarExclusividad
         class BotonUsarMultiplicador
-    }
+        class HandlerOpcionesOC
 
 }
 
 'Ordenamiento De Cuadrados
+AlertaNombreLargo -up[hidden]-> AlertaNombreFaltante
 AlertaNombreFaltante -up[hidden]-> AlertaOrdenarTodasLasOpcionesOC
 AlertaOrdenarTodasLasOpcionesOC -up[hidden]-> AlertaSeleccionarUnaOpcion
-BotonContinuar -[hidden]-> BotonSalir
-BotonDeshacerOpcionOC -[hidden]-> BotonUsarExclusividad
-BotonEntrar -[hidden]-> BotonUsarMultiplicador
-BotonUsarMultiplicador -[hidden]-> BotonSeleccionarOpcionOC
-BotonUsarExclusividad -[hidden]-> BotonContinuar
 BotonResponder -[hidden]-> BotonComenzarJuego
-
-BotonSeleccionarOpcionOC -[hidden]-> BotonContinuarConTimer
 
 'Herencia --|> cumple la relación 'es un'
 
@@ -45,9 +41,11 @@ BotonSeleccionarOpcionOC -[hidden]-> BotonContinuarConTimer
 'Composicion --* un objeto es dueño de otro
 
 'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
-BotonComenzarJuego .right.> AlertaNombreFaltante
-BotonResponder .down.> AlertaSeleccionarUnaOpcion
+BotonComenzarJuego ..> AlertaNombreFaltante
+BotonComenzarJuego ..> AlertaNombreLargo
+BotonResponder ..> AlertaSeleccionarUnaOpcion
 BotonResponder .right.> AlertaOrdenarTodasLasOpcionesOC
+BotonSeleccionarOpcionOC ..> HandlerOpcionesOC
 
 'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
 
