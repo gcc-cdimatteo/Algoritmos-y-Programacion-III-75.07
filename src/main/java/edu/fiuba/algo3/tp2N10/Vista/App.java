@@ -1,10 +1,13 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
+import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaErrorArchivoJson;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
+import edu.fiuba.algo3.tp2N10.Modelo.Excepciones.PreguntaDesconocidaException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.media.MediaException;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -12,6 +15,7 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 public class App extends Application {
 
@@ -61,7 +65,14 @@ public class App extends Application {
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
         if(reproductor != null) { this.reproductor.stop(); }
-        AlgoKahoot algoKahoot = new AlgoKahoot("preguntas_variadas.json", nombreUno, nombreDos);
+        AlgoKahoot algoKahoot;
+        try{ algoKahoot = new AlgoKahoot("preguntas_variadas.json", nombreUno, nombreDos);
+        } catch (NoSuchFileException | org.json.JSONException | PreguntaDesconocidaException ignored) {
+            FileChooser fileChooser = new FileChooser();
+            AlertaErrorArchivoJson alertaErrorArchivoJson = new AlertaErrorArchivoJson();
+            alertaErrorArchivoJson.mostrar();
+            algoKahoot = new AlgoKahoot(fileChooser.showOpenDialog(this.escenario).getAbsolutePath(), nombreUno, nombreDos);
+        }
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
         algoKahootView.mostrar();
     }
