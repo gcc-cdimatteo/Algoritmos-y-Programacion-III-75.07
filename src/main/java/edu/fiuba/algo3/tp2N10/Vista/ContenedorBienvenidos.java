@@ -2,6 +2,7 @@ package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonEntrar;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonSalir;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,9 +14,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
-import java.io.FileNotFoundException;
-
 
 public class ContenedorBienvenidos extends BorderPane {
 

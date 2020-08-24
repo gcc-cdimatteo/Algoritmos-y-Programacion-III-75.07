@@ -63,9 +63,6 @@ public class ContenedorPodio extends BorderPane {
                 HBox aux = hbSegundo;
                 hbSegundo = hbPrimero;
                 hbPrimero = aux;
-                ImageView imageAux = imageSegundo;
-                imageSegundo = imagePrimero;
-                imagePrimero = imageAux;
             }
 
             VBox vbPrimero = armarVBox(hbPrimero, imagePrimero);
