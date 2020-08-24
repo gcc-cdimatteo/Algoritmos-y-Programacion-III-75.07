@@ -33,20 +33,25 @@ public class AlgoKahootView implements Observer {
         String mediaPath;
         numeroTurno++;
 
-        if (algoKahoot.finalizado()) {
+        if (numeroTurno == 5){
+            this.temporizador = new Timer();
+            contenedor = new ContenedorRespuestas(algoKahoot);
+            backgroundPath = "./resources/images/fondo.png";
+            mediaPath = "./resources/audio/intermedio.mp3";
+        } else if (algoKahoot.finalizado()) {
             contenedor = new ContenedorPodio(algoKahoot);
             backgroundPath = "./resources/images/final.png";
             mediaPath = "./resources/audio/final.mp3";
-        } else if (numeroTurno == 5) {
-            contenedor = new ContenedorEntreRondas(algoKahoot);
-            backgroundPath = "./resources/images/fondo.png";
-            mediaPath = "./resources/audio/intermedio.mp3";
-            numeroTurno = 0;
-        } else if (numeroTurno % 2 != 0) {
+        } else if (numeroTurno == 1 || numeroTurno == 3) {
             this.temporizador = new Timer();
             contenedor = new ContenedorEnunciado(algoKahoot, this.temporizador);
             backgroundPath = "./resources/images/fondo.png";
             mediaPath = "./resources/audio/pregunta.mp3";
+        } else if (numeroTurno == 6) {
+            contenedor = new ContenedorEntreRondas(algoKahoot);
+            backgroundPath = "./resources/images/fondo.png";
+            mediaPath = "./resources/audio/intermedio.mp3";
+            numeroTurno = 0;
         } else {
             this.temporizador = new Timer();
             contenedor = new ContenedorPrincipal(algoKahoot, this.temporizador);

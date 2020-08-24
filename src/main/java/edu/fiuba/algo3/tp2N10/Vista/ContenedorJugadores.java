@@ -51,8 +51,6 @@ public class ContenedorJugadores extends BorderPane {
         vbJugadores.setAlignment(Pos.CENTER);
         vbJugadores.setSpacing(50);
 
-
-
         //Barra inferior
         BorderPane bpFooter = new BorderPane();
         bpFooter.setStyle("-fx-background-color: cornflowerblue");

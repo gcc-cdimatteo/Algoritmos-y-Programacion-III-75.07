@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.tp2N10.Controlador.EventHandlers;
 
 import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaNombreFaltante;
+import edu.fiuba.algo3.tp2N10.Controlador.Alertas.AlertaNombreLargo;
 import edu.fiuba.algo3.tp2N10.Vista.App;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +13,7 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
     private final TextField nombreUno;
     private final TextField nombreDos;
     private final App app;
+    private final Integer largoMaximo = 30;
 
 
     public BotonComenzarJuego(TextField nombreUno, TextField nombreDos, App app) {
@@ -25,6 +27,9 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
         if (this.nombreUno.getText().isEmpty() || this.nombreDos.getText().isEmpty()) {
             AlertaNombreFaltante alertaNombreFaltante = new AlertaNombreFaltante();
             alertaNombreFaltante.mostrar();
+        } else if (this.nombreUno.getLength() > largoMaximo || this.nombreDos.getLength() > largoMaximo) {
+            AlertaNombreLargo alertaNombreLargo = new AlertaNombreLargo(largoMaximo);
+            alertaNombreLargo.mostrar();
         } else {
             try {
                 this.app.jugar(this.nombreUno.getText(), this.nombreDos.getText());

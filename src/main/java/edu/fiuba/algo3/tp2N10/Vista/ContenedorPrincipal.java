@@ -103,7 +103,7 @@ public class ContenedorPrincipal extends BorderPane {
         bpBotoneraListo.setMinHeight(50);
         setBottom(bpBotoneraListo);
 
-        Label labelTemporizador = new Label("16");
+        Label labelTemporizador = new Label("31");
         labelTemporizador.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
         labelTemporizador.setTextFill(Color.rgb(255, 255, 255));
         bpHeader.setCenter(labelTemporizador);
@@ -119,12 +119,9 @@ public class ContenedorPrincipal extends BorderPane {
                     } else if (contador == 0) {
                         try {
                             MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/sinrespuesta.mp3").toURI().toString()));
-                            if (reproductor != null) {
-                                reproductor.setVolume(0.3);
-                                reproductor.play();
-                            }
-                        } catch (MediaException ignored) {
-                        }
+                            reproductor.setVolume(0.6);
+                            reproductor.play();
+                        } catch (MediaException ignored) {}
                         algoKahoot.jugadorNoResponde();
                         temporizador.cancel();
                     }
