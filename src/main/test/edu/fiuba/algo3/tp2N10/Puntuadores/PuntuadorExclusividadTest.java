@@ -13,8 +13,8 @@ public class PuntuadorExclusividadTest {
 
     @Test
     public void test01ExclusividadDuplicaElPuntajeAlQueHayaContestadoBien() {
-        List<Integer> puntos = Arrays.asList(1, 0);
-        List<Integer> puntosEsperados = Arrays.asList(2, 0);
+        List<Integer> puntos = Arrays.asList(3, 0);
+        List<Integer> puntosEsperados = Arrays.asList(6, 0);
         PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("X Æ A-12"));
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
@@ -46,4 +46,11 @@ public class PuntuadorExclusividadTest {
         assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
     }
 
+    @Test
+    public void test05ExclusividadNoIncrementaElPuntajeSiAmbasRespuestasSonParcialmenteCorrectas() {
+        List<Integer> puntos = Arrays.asList(1, 2);
+        List<Integer> puntosEsperados = Arrays.asList(0, 0);
+        PuntuadorExclusividad puntuador = new PuntuadorExclusividad(new Jugador("Caro"));
+        assertEquals(puntosEsperados, puntuador.calcularPuntos(puntos));
+    }
 }

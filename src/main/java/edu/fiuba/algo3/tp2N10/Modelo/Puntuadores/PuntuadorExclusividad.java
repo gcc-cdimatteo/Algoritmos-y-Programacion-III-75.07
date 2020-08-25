@@ -15,15 +15,10 @@ public class PuntuadorExclusividad implements Puntuador {
 
     @Override
     public List<Integer> calcularPuntos(List<Integer> puntos) {
-        List<Integer> puntosNuevos = new ArrayList<>();
-        int auxiliar = puntos.get(0) - puntos.get(1);
+        List<Integer> puntosNuevos = new ArrayList<>(2);
         for (int i = 0; i < 2; i++) {
-            if (auxiliar < 1) {
-                puntosNuevos.add(0);
-            } else {
-                puntosNuevos.add(valor);
-            }
-            auxiliar *= -1;
+            if (puntos.get((i + 1) % 2) == 0) puntosNuevos.add(valor * puntos.get(i));
+            else puntosNuevos.add(0);
         }
         return puntosNuevos;
     }
