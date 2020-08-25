@@ -4,6 +4,7 @@ skinparam classAttributeIconSize 0
 package Controlador {
 
     package Alertas {
+        class AlertaErrorArchivoJson
         class AlertaNombreFaltante
         class AlertaNombreLargo
         class AlertaOrdenarTodasLasOpcionesOC
