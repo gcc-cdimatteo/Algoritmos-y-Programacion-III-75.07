@@ -186,7 +186,7 @@ public class AlgoKahootTest {
         algoKahoot.siguientePregunta();
         
         // Puntos
-        assertEquals(Arrays.asList(3, 5), algoKahoot.puntajes());
+        assertEquals(Arrays.asList(2, 5), algoKahoot.puntajes());
         assertTrue(algoKahoot.finalizado());
     }
 
