@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.tp2N10.Vista;
 
-import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuarConTimer;
+import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonComenzarTurno;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -45,7 +45,7 @@ public class ContenedorEnunciado extends BorderPane {
         //Barra Inferior
         Button botonContinuar = new Button();
         botonContinuar.setText("Continuar");
-        botonContinuar.setOnAction(new BotonContinuarConTimer(algoKahoot,temporizador));
+        botonContinuar.setOnAction(new BotonComenzarTurno(algoKahoot,temporizador));
 
         BorderPane bpContinuar = new BorderPane();
         bpContinuar.setStyle("-fx-background-color: cornflowerblue");
@@ -70,13 +70,7 @@ public class ContenedorEnunciado extends BorderPane {
                     int contador = Integer.parseInt(labelTemporizador.getText()) - 1;
                     labelTemporizador.setText(Integer.toString(contador));
                     if (contador == 0) {
-                        try {
-                            MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/comienzaturno.mp3").toURI().toString()));
-                            reproductor.setVolume(0.3);
-                            reproductor.play();
-                        } catch (MediaException ignored) {}
-                        algoKahoot.notifyObservers();
-                        temporizador.cancel();
+                        botonContinuar.fire();
                     }
                 });
             }

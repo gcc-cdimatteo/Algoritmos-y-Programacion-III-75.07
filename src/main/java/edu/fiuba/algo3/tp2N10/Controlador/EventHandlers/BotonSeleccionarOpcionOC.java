@@ -3,7 +3,11 @@ package edu.fiuba.algo3.tp2N10.Controlador.EventHandlers;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.List;
 
 public class BotonSeleccionarOpcionOC implements EventHandler<ActionEvent> {
@@ -27,6 +31,11 @@ public class BotonSeleccionarOpcionOC implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        try {
+            MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/click.mp3").toURI().toString()));
+            reproductor.setVolume(0.6);
+            reproductor.play();
+        } catch (MediaException ignored) {}
         boton.setVisible(false);
         handlerOpciones.agregar(this);
     }

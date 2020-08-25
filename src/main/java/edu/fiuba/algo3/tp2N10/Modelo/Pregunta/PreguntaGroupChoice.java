@@ -17,8 +17,8 @@ public class PreguntaGroupChoice extends Pregunta {
     }
 
     private String parsearRespuesta(Set<Integer> valoresGrupoA, Set<Integer> valoresGrupoB) {
-        return String.format("Grupo A: {%s}\n", String.join("; ", listaOpciones(valoresGrupoA))) +
-                String.format("Grupo B: {%s}", String.join("; ", listaOpciones(valoresGrupoB)));
+        return String.format("Grupo A: %s\n", String.join(", ", listaOpciones(valoresGrupoA))) +
+                String.format("Grupo B: %s", String.join(", ", listaOpciones(valoresGrupoB)));
     }
 
     private List<String> listaOpciones(Set<Integer> valoresGrupo) {

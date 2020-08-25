@@ -13,10 +13,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ContenedorPreguntaOC extends BorderPane {
 
-    public ContenedorPreguntaOC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador) {
+    public ContenedorPreguntaOC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador, AtomicBoolean sinTiempo) {
         super();
 
         LinkedList<Integer> respuestaUsuario = new LinkedList<>();
@@ -26,7 +27,7 @@ public class ContenedorPreguntaOC extends BorderPane {
 
         List<Button> arrayBtnOpciones = new ArrayList<>();
         HBox hboxOpciones = new HBox(25);
-        btnListo.setOnAction(new BotonResponderOC(algoKahoot, respuestaUsuario, arrayBtnOpciones, temporizador));
+        btnListo.setOnAction(new BotonResponderOC(algoKahoot, respuestaUsuario, arrayBtnOpciones, temporizador, sinTiempo));
 
         HandlerOpcionesOC handlerOpciones = new HandlerOpcionesOC(respuestaOrdenadaLabel, respuestaUsuario);
 

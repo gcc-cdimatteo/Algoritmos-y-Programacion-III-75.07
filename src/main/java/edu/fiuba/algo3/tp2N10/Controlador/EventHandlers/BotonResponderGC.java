@@ -7,22 +7,29 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BotonResponderGC implements EventHandler<ActionEvent> {
 
     private final ArrayList<ToggleGroup> opcionesUsuario;
     private final AlgoKahoot algoKahoot;
     private final Timer temporizador;
+    private AtomicBoolean sinTiempo;
 
-    public BotonResponderGC(AlgoKahoot algoKahoot, ArrayList<ToggleGroup> opcionesUsuario, Timer temporizador) {
+    public BotonResponderGC(AlgoKahoot algoKahoot, ArrayList<ToggleGroup> opcionesUsuario, Timer temporizador, AtomicBoolean sinTiempo) {
         this.algoKahoot = algoKahoot;
         this.opcionesUsuario = opcionesUsuario;
         this.temporizador = temporizador;
+        this.sinTiempo = sinTiempo;
     }
 
     public void handle(ActionEvent actionEvent) {
@@ -36,7 +43,12 @@ public class BotonResponderGC implements EventHandler<ActionEvent> {
                 grupoB.add(i);
             }
         }
-        this.algoKahoot.cargarRespuesta(new RespuestaGroupChoice(grupoA, grupoB));
         this.temporizador.cancel();
+        try {
+            MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/click.mp3").toURI().toString()));
+            reproductor.setVolume(0.6);
+            reproductor.play();
+        } catch (MediaException ignored) {}
+        this.algoKahoot.cargarRespuesta(new RespuestaGroupChoice(grupoA, grupoB));
     }
 }

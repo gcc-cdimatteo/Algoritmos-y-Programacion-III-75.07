@@ -9,10 +9,11 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ContenedorPreguntaGC extends VBox {
 
-    public ContenedorPreguntaGC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador) {
+    public ContenedorPreguntaGC(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador, AtomicBoolean sinTiempo) {
         String grupoA = "Grupo A";
         String grupoB = "Grupo B";
         ArrayList<ToggleGroup> gruposDeOpciones = new ArrayList<>();
@@ -31,7 +32,7 @@ public class ContenedorPreguntaGC extends VBox {
 
             getChildren().add(bpOpcionMasRadio);
         }
-        btnListo.setOnAction(new BotonResponderGC(algoKahoot, gruposDeOpciones, temporizador));
+        btnListo.setOnAction(new BotonResponderGC(algoKahoot, gruposDeOpciones, temporizador, sinTiempo));
         setSpacing(25);
     }
 }

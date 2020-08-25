@@ -1,10 +1,10 @@
 {
   "preguntas": [
     {
-      "tipo": "multipleChoiceParcial",
-      "enunciado": "¿Qué selecciones de futbol ganaron al menos un mundial?",
-      "opciones": [ "Uruguay", "Holanda", "Inglaterra", "Croacia", "México", "Italia"],
-      "respuestas": [ 0,2,5 ]
+      "tipo": "groupChoice" ,
+      "enunciado": "Agrupe según frutas (A) y verduras (B)",
+      "opciones": [ "Lechuga" , "Naranja" , "Banana" , "Zanahoria" , "Espinaca" ] ,
+      "respuestas": { "grupoUno": [ 1 , 2 ] , "grupoDos": [ 0 , 3 , 4] }
     }
   ]
 }

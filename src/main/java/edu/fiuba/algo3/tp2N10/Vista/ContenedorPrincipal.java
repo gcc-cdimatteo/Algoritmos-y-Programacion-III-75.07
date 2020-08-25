@@ -15,11 +15,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ContenedorPrincipal extends BorderPane {
 
@@ -74,21 +74,22 @@ public class ContenedorPrincipal extends BorderPane {
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
         bpHeader.setMinHeight(50);
 
+        AtomicBoolean sinTiempo = new AtomicBoolean(false);
         switch (algoKahoot.preguntaActual()) {
             case ("Verdadero Falso Clasico"):
             case ("Verdadero Falso Penalidad"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot, temporizador));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot, temporizador, sinTiempo));
                 break;
             case ("Multiple Choice Clasico"):
             case ("Multiple Choice Parcial"):
             case ("Multiple Choice Penalidad"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot, temporizador));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot, temporizador, sinTiempo));
                 break;
             case ("Ordered Choice"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot, temporizador));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot, temporizador, sinTiempo));
                 break;
             case ("Group Choice"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot, temporizador));
+                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot, temporizador, sinTiempo));
                 break;
         }
 
@@ -118,13 +119,8 @@ public class ContenedorPrincipal extends BorderPane {
                     if (contador <= 5 && contador > 0) {
                         labelTemporizador.setTextFill(Color.web("#ff0000"));
                     } else if (contador == 0) {
-                        try {
-                            MediaPlayer reproductor = new MediaPlayer(new Media(new File("./resources/audio/sinrespuesta.mp3").toURI().toString()));
-                            reproductor.setVolume(0.6);
-                            reproductor.play();
-                        } catch (MediaException ignored) {}
-                        algoKahoot.jugadorNoResponde(); // ENVIAR RESPUESTA VACIA
-                        temporizador.cancel();
+                        sinTiempo.set(true);
+                        btnListo.fire();
                     }
                 });
             }

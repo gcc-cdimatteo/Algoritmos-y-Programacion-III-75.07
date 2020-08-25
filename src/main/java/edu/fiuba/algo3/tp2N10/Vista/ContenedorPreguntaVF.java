@@ -8,10 +8,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
 import java.util.Timer;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ContenedorPreguntaVF extends VBox {
 
-    public ContenedorPreguntaVF(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador) {
+    public ContenedorPreguntaVF(Button btnListo, AlgoKahoot algoKahoot, Timer temporizador, AtomicBoolean sinTiempo) {
         super();
 
         ToggleGroup grupoOpciones = new ToggleGroup();
@@ -19,7 +20,7 @@ public class ContenedorPreguntaVF extends VBox {
         ToggleButton btnFalso = new ToggleButton("Falso");
         btnVerdadero.setToggleGroup(grupoOpciones);
         btnFalso.setToggleGroup(grupoOpciones);
-        btnListo.setOnAction(new BotonResponderVF(algoKahoot, btnVerdadero, btnFalso, temporizador));
+        btnListo.setOnAction(new BotonResponderVF(algoKahoot, btnVerdadero, btnFalso, temporizador, sinTiempo));
         setSpacing(25);
         getChildren().addAll(btnVerdadero, btnFalso);
     }
