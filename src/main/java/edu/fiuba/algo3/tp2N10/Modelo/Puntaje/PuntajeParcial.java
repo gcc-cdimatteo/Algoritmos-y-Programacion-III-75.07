@@ -14,7 +14,7 @@ public class PuntajeParcial implements Puntaje {
 
     @Override
     public boolean permiteExclusividad() {
-        return false;
+        return true;
     }
 
 }

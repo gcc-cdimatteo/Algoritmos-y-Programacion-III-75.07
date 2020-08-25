@@ -103,6 +103,7 @@ public class ContenedorPrincipal extends BorderPane {
         bpBotoneraListo.setMinHeight(50);
         setBottom(bpBotoneraListo);
 
+        //Temporizador
         Label labelTemporizador = new Label("31");
         labelTemporizador.setFont(Font.font("Tahoma", FontWeight.BOLD, 30));
         labelTemporizador.setTextFill(Color.rgb(255, 255, 255));
@@ -122,7 +123,7 @@ public class ContenedorPrincipal extends BorderPane {
                             reproductor.setVolume(0.6);
                             reproductor.play();
                         } catch (MediaException ignored) {}
-                        algoKahoot.jugadorNoResponde();
+                        algoKahoot.jugadorNoResponde(); // ENVIAR RESPUESTA VACIA
                         temporizador.cancel();
                     }
                 });

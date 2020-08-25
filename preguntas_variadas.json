@@ -6,6 +6,12 @@
       "respuesta": false
     },
     {
+      "tipo": "multipleChoicePenalidad",
+      "enunciado": "¿Cuáles de los siguientes lenguajes son interpretados?",
+      "opciones": ["Go","JavaScript","Python","C","Ruby"],
+      "respuestas": [1,2,4]
+    },
+    {
       "tipo": "groupChoice",
       "enunciado": "Agrupe según canciones de Queen [A] o de The Beatles [B]",
       "opciones": ["Hey Jude", "Love of My Life", "I Want to Break Free", "Something", "Somebody to Love"],
@@ -16,6 +22,11 @@
       "enunciado": "Seleccione de la siguiente lista los Patrones de Diseño",
       "opciones": [ "Singleton" , "Observer" , "Poxy" , "State", "Facade" ],
       "respuestas": [ 0 , 3, 4 ]
+    },
+    {
+      "tipo": "verdaderoFalsoPenalidad",
+      "enunciado": "Vincent van Gogh fue el pintor del famoso cuadro El Grito",
+      "respuesta": false
     },
     {
       "tipo": "orderedChoice",
@@ -35,21 +46,10 @@
       "respuesta": true
     },
     {
-      "tipo": "multipleChoicePenalidad",
-      "enunciado": "¿Cuáles de los siguientes lenguajes son interpretados?",
-      "opciones": ["Go","JavaScript","Python","C","Ruby"],
-      "respuestas": [1,2,4]
-    },
-    {
       "tipo": "groupChoice",
       "enunciado": "Agrupe según personajes de Star Wars [A] o Star Trek [B]",
       "opciones": ["Hikaru Sulu","Leia Organa","Leonard McCoy","Almirante Ackbar","Spock"],
       "respuestas": {"grupoUno": [1,3], "grupoDos": [0,2,4]}
-    },
-    {
-      "tipo": "verdaderoFalsoPenalidad",
-      "enunciado": "Vincent van Gogh fue el pintor del famoso cuadro El Grito",
-      "respuesta": false
     },
     {
       "tipo": "orderedChoice",

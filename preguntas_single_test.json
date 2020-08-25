@@ -1,9 +1,10 @@
 {
   "preguntas": [
     {
-      "tipo": "verdaderoFalsoPenalidad" ,
-      "enunciado": "La manzana es una fruta" ,
-      "respuesta": true
+      "tipo": "multipleChoiceParcial",
+      "enunciado": "¿Qué selecciones de futbol ganaron al menos un mundial?",
+      "opciones": [ "Uruguay", "Holanda", "Inglaterra", "Croacia", "México", "Italia"],
+      "respuestas": [ 0,2,5 ]
     }
   ]
 }
