@@ -2,13 +2,13 @@
 skinparam classAttributeIconSize 0
 
 abstract class Pregunta {
-    # asString: String
+    # tipoPregunta: String
     # enunciado: String
     # opciones: List<String>
     # respuestaCorrecta: Respuesta
     # respuestaCorrectaFormateada: String
-    + toString(): String
     + responder(respuestasUsuario: List<Respuesta>): List<Integer>
+    + tipoPregunta: String
     + getEnunciado(): String
     + getOpciones(): List<String>
     + permiteMultiplicadores(): boolean
