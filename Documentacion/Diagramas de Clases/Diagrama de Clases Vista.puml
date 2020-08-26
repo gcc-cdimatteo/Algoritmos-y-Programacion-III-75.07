@@ -9,8 +9,12 @@ package Vista {
     class ContenedorEnunciado
     class ContenedorJugadores
     class ContenedorPodio
-    class ContenedorPregunta
+    class ContenedorPreguntaVF
+    class ContenedorPreguntaMC
+    class ContenedorPreguntaOC
+    class ContenedorPreguntaGC
     class ContenedorPrincipal
+    class ContenedorRespuestas
     class FactoryBackgrounds
 }
 
@@ -29,12 +33,16 @@ AlgoKahootView .left.> ContenedorPodio
 AlgoKahootView ..> ContenedorEntreRondas
 AlgoKahootView ..> ContenedorEnunciado
 AlgoKahootView ..> ContenedorPrincipal
+AlgoKahootView ..> ContenedorRespuestas
 AlgoKahootView .right.> FactoryBackgrounds
 App .up.> ContenedorJugadores
 App ..> FactoryBackgrounds
 App .left.> ContenedorBienvenidos
 App ..> AlgoKahootView
-ContenedorPrincipal ..> ContenedorPregunta
+ContenedorPrincipal ..> ContenedorPreguntaVF
+ContenedorPrincipal ..> ContenedorPreguntaMC
+ContenedorPrincipal ..> ContenedorPreguntaOC
+ContenedorPrincipal ..> ContenedorPreguntaGC
 
 'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
 
