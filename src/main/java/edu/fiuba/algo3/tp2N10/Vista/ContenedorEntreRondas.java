@@ -42,6 +42,9 @@ public class ContenedorEntreRondas extends BorderPane {
         labelPuntajeUno.setMinWidth(50);
         labelPuntajeUno.setAlignment(Pos.CENTER_RIGHT);
 
+        HBox hBoxJugadorUno = new HBox(labelJugadorUno,labelPuntajeUno);
+        hBoxJugadorUno.setAlignment(Pos.CENTER);
+        hBoxJugadorUno.setSpacing(50);
         //Jugador Dos
         Label labelJugadorDos = new Label(nombres.get(1));
         labelJugadorDos.setFont(Font.font("Tahoma", 30));
@@ -51,46 +54,40 @@ public class ContenedorEntreRondas extends BorderPane {
         labelPuntajeDos.setMinWidth(50);
         labelPuntajeDos.setAlignment(Pos.CENTER_RIGHT);
 
+        HBox hBoxJugadorDos = new HBox(labelJugadorDos,labelPuntajeDos);
+        hBoxJugadorDos.setAlignment(Pos.CENTER);
+        hBoxJugadorDos.setSpacing(50);
+
         //Tabla posiciones
-        HBox hbPrimero;
         Label labelPrimero = new Label("Primer puesto:");
         labelPrimero.setFont(Font.font("Tahoma", 30));
         labelPrimero.setMinWidth(250);
         labelPrimero.setAlignment(Pos.CENTER_LEFT);
 
-        HBox hbSegundo;
         Label labelSegundo = new Label("Segundo puesto:");
         labelSegundo.setFont(Font.font("Tahoma", 30));
         labelSegundo.setMinWidth(250);
         labelSegundo.setAlignment(Pos.CENTER_LEFT);
 
-        Label labelEmpate = new Label("");
+        Label labelEmpate = new Label("Empate:");
         labelEmpate.setFont(Font.font("Tahoma", 30));
         labelEmpate.setMinWidth(250);
         labelEmpate.setAlignment(Pos.CENTER_LEFT);
 
-        if(puntajes.get(0) > puntajes.get(1)) {
-            hbPrimero = new HBox(labelPrimero,labelJugadorUno,labelPuntajeUno);
-            hbSegundo = new HBox(labelSegundo,labelJugadorDos,labelPuntajeDos);
-        }
-        else if (puntajes.get(0) < puntajes.get(1)) {
-            hbPrimero = new HBox(labelPrimero,labelJugadorDos,labelPuntajeDos);
-            hbSegundo = new HBox(labelSegundo,labelJugadorUno,labelPuntajeUno);
-        }
-        else {
-            hbPrimero = new HBox(labelEmpate,labelJugadorUno,labelPuntajeUno);
-            hbSegundo = new HBox(labelEmpate,labelJugadorDos,labelPuntajeDos);
-        }
+        VBox vBoxJugadores;
+        VBox vBoxPuestos;
+        if (puntajes.get(1) > puntajes.get(0)) vBoxJugadores = new VBox(hBoxJugadorDos, hBoxJugadorUno);
+        else vBoxJugadores = new VBox(hBoxJugadorUno, hBoxJugadorDos);
 
-        hbPrimero.setAlignment(Pos.CENTER);
-        hbPrimero.setSpacing(50);
-        hbSegundo.setAlignment(Pos.CENTER);
-        hbSegundo.setSpacing(50);
+        if (puntajes.get(1).equals(puntajes.get(0))) vBoxPuestos = new VBox(labelEmpate);
+        else vBoxPuestos = new VBox(labelPrimero, labelSegundo);
 
-        VBox vbPosiciones = new VBox(hbPrimero,hbSegundo);
-        vbPosiciones.setAlignment(Pos.CENTER);
-        vbPosiciones.setSpacing(30);
-
+        vBoxPuestos.setAlignment(Pos.CENTER);
+        vBoxPuestos.setSpacing(30);
+        vBoxJugadores.setAlignment(Pos.CENTER);
+        vBoxJugadores.setSpacing(30);
+        HBox hBoxPosiciones = new HBox(vBoxPuestos, vBoxJugadores);
+        hBoxPosiciones.setAlignment(Pos.CENTER);
         //Barra Inferior
         Button botonContinuar = new Button();
         botonContinuar.setText("Continuar");
@@ -103,9 +100,8 @@ public class ContenedorEntreRondas extends BorderPane {
 
         //Posiciones
         setTop(bpHeader);
-        setCenter(vbPosiciones);
+        setCenter(hBoxPosiciones);
         setBottom(bpBotoneraListo);
-
     }
 }
 
