@@ -39,26 +39,24 @@ public class ContenedorPodio extends BorderPane {
         List<Integer> puntajes = algoKahoot.puntajes();
 
         //Jugador Uno
-        Label labelJugadorUno = armarJugadorLables(nombres.get(0), 200, Pos.CENTER_LEFT);
+        Label labelJugadorUno = armarJugadorLables(nombres.get(0), 300, Pos.CENTER_LEFT);
         Label labelPuntajeUno = armarJugadorLables(String.valueOf(puntajes.get(0)), 50, Pos.CENTER_RIGHT);
 
         //Jugador Uno
-        Label labelJugadorDos = armarJugadorLables(nombres.get(1), 200, Pos.CENTER_LEFT);
+        Label labelJugadorDos = armarJugadorLables(nombres.get(1), 300, Pos.CENTER_LEFT);
         Label labelPuntajeDos = armarJugadorLables(String.valueOf(puntajes.get(1)), 50, Pos.CENTER_RIGHT);
 
         //Podio
-        HBox hbPrimero;
-        HBox hbSegundo;
-        String pathImagePrimero = "./resources/images/primerpuesto.png";
-        String pathImageSegundo = "./resources/images/segundopuesto.png";
-
-        hbPrimero = armarHBoxJugador(labelJugadorUno, labelPuntajeUno);
-        hbSegundo = armarHBoxJugador(labelJugadorDos,labelPuntajeDos);
-        ImageView imagePrimero = armarImagenPuesto(pathImagePrimero);
-        ImageView imageSegundo = armarImagenPuesto(pathImageSegundo);
+        HBox hbPrimero = armarHBoxJugador(labelJugadorUno, labelPuntajeUno);
+        HBox hbSegundo = armarHBoxJugador(labelJugadorDos,labelPuntajeDos);
+        ImageView imagePrimero;
+        ImageView imageSegundo;
         HBox hbPodio;
 
         if (!puntajes.get(0).equals(puntajes.get(1))) {
+            imagePrimero = armarImagenPuesto("./resources/images/primerpuesto.png");
+            imageSegundo = armarImagenPuesto("./resources/images/segundopuesto.png");
+
             if (puntajes.get(0) < puntajes.get(1)) {
                 HBox aux = hbSegundo;
                 hbSegundo = hbPrimero;
@@ -71,10 +69,8 @@ public class ContenedorPodio extends BorderPane {
             hbPodio = new HBox(vbPrimero, vbSegundo);
 
         } else {
-            pathImagePrimero = "./resources/images/empateuno.png";
-            pathImageSegundo = "./resources/images/empatedos.png";
-            imagePrimero = armarImagenPuesto(pathImagePrimero);
-            imageSegundo = armarImagenPuesto(pathImageSegundo);
+            imagePrimero = armarImagenPuesto("./resources/images/empateuno.png");
+            imageSegundo = armarImagenPuesto("./resources/images/empatedos.png");
 
             VBox vbPrimero = armarVBox(hbPrimero, imagePrimero);
             VBox vbSegundo = armarVBox(hbSegundo, imageSegundo);
@@ -142,10 +138,10 @@ public class ContenedorPodio extends BorderPane {
         return miLabel;
     }
 
-    private Label armarJugadorLables(String nombre, int minWidth, Pos alignment){
+    private Label armarJugadorLables(String nombre, int prefWidth, Pos alignment) {
         Label label = new Label(nombre);
         label.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
-        label.setMinWidth(minWidth);
+        label.setPrefWidth(prefWidth);
         label.setAlignment(alignment);
         return label;
     }

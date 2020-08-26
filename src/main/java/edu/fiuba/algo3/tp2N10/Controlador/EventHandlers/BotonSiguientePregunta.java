@@ -25,8 +25,9 @@ public class BotonSiguientePregunta implements EventHandler<ActionEvent> {
                 reproductor.setVolume(0.6);
                 reproductor.play();
             } catch (MediaException ignored) {}
-            try { this.algoKahoot.siguientePregunta(); }
-            catch (FaltanRespuestasException ignored) {}
+            try {
+                this.algoKahoot.siguientePregunta();
+            } catch (FaltanRespuestasException ignored) {}
         }
 }
 

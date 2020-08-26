@@ -3,6 +3,7 @@ package edu.fiuba.algo3.tp2N10.Vista;
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -34,60 +35,43 @@ public class ContenedorEntreRondas extends BorderPane {
         List<Integer> puntajes = algoKahoot.puntajes();
 
         //Jugador Uno
-        Label labelJugadorUno = new Label(String.valueOf(nombres.get(0)));
-        labelJugadorUno.setFont(Font.font("Tahoma", 30));
-        labelJugadorUno.setMinWidth(300);
-        Label labelPuntajeUno = new Label(String.valueOf(puntajes.get(0)));
-        labelPuntajeUno.setFont(Font.font("Tahoma", 30));
-        labelPuntajeUno.setMinWidth(50);
-        labelPuntajeUno.setAlignment(Pos.CENTER_RIGHT);
+        Label labelJugadorUno = armarLabel(nombres.get(0), 300, Pos.CENTER_LEFT);
+        Label labelPuntajeUno = armarLabel(String.valueOf(puntajes.get(0)), 40, Pos.CENTER_RIGHT);
 
         HBox hBoxJugadorUno = new HBox(labelJugadorUno,labelPuntajeUno);
         hBoxJugadorUno.setAlignment(Pos.CENTER);
         hBoxJugadorUno.setSpacing(50);
+
         //Jugador Dos
-        Label labelJugadorDos = new Label(nombres.get(1));
-        labelJugadorDos.setFont(Font.font("Tahoma", 30));
-        labelJugadorDos.setMinWidth(300);
-        Label labelPuntajeDos = new Label(String.valueOf(puntajes.get(1)));
-        labelPuntajeDos.setFont(Font.font("Tahoma", 30));
-        labelPuntajeDos.setMinWidth(50);
-        labelPuntajeDos.setAlignment(Pos.CENTER_RIGHT);
+        Label labelJugadorDos = armarLabel(nombres.get(1), 300, Pos.CENTER_LEFT);
+        Label labelPuntajeDos = armarLabel(String.valueOf(puntajes.get(1)), 40, Pos.CENTER_RIGHT);
 
         HBox hBoxJugadorDos = new HBox(labelJugadorDos,labelPuntajeDos);
         hBoxJugadorDos.setAlignment(Pos.CENTER);
         hBoxJugadorDos.setSpacing(50);
 
-        //Tabla posiciones
-        Label labelPrimero = new Label("Primer puesto:");
-        labelPrimero.setFont(Font.font("Tahoma", 30));
-        labelPrimero.setMinWidth(250);
-        labelPrimero.setAlignment(Pos.CENTER_LEFT);
-
-        Label labelSegundo = new Label("Segundo puesto:");
-        labelSegundo.setFont(Font.font("Tahoma", 30));
-        labelSegundo.setMinWidth(250);
-        labelSegundo.setAlignment(Pos.CENTER_LEFT);
-
-        Label labelEmpate = new Label("Empate:");
-        labelEmpate.setFont(Font.font("Tahoma", 30));
-        labelEmpate.setMinWidth(250);
-        labelEmpate.setAlignment(Pos.CENTER_LEFT);
-
         VBox vBoxJugadores;
-        VBox vBoxPuestos;
         if (puntajes.get(1) > puntajes.get(0)) vBoxJugadores = new VBox(hBoxJugadorDos, hBoxJugadorUno);
         else vBoxJugadores = new VBox(hBoxJugadorUno, hBoxJugadorDos);
-
-        if (puntajes.get(1).equals(puntajes.get(0))) vBoxPuestos = new VBox(labelEmpate);
-        else vBoxPuestos = new VBox(labelPrimero, labelSegundo);
-
-        vBoxPuestos.setAlignment(Pos.CENTER);
-        vBoxPuestos.setSpacing(30);
         vBoxJugadores.setAlignment(Pos.CENTER);
         vBoxJugadores.setSpacing(30);
-        HBox hBoxPosiciones = new HBox(vBoxPuestos, vBoxJugadores);
+
+        Node panePuestos;
+        if (puntajes.get(1).equals(puntajes.get(0))) {
+            panePuestos = armarLabel("Empate:", 250, Pos.CENTER_LEFT);
+        } else {
+            Label labelPrimero = armarLabel("Primer puesto:", 300, Pos.CENTER_RIGHT);
+            Label labelSegundo = armarLabel("Segundo puesto:", 300, Pos.CENTER_RIGHT);
+
+            VBox vBoxPuestos = new VBox(labelPrimero, labelSegundo);
+            vBoxPuestos.setAlignment(Pos.CENTER);
+            vBoxPuestos.setSpacing(30);
+            panePuestos = vBoxPuestos;
+        }
+
+        HBox hBoxPosiciones = new HBox(panePuestos, vBoxJugadores);
         hBoxPosiciones.setAlignment(Pos.CENTER);
+
         //Barra Inferior
         Button botonContinuar = new Button();
         botonContinuar.setText("Continuar");
@@ -102,6 +86,14 @@ public class ContenedorEntreRondas extends BorderPane {
         setTop(bpHeader);
         setCenter(hBoxPosiciones);
         setBottom(bpBotoneraListo);
+    }
+
+    private Label armarLabel(String s, int prefWidth, Pos alignment) {
+        Label label = new Label(s);
+        label.setFont(Font.font("Tahoma", 30));
+        label.setPrefWidth(prefWidth);
+        label.setAlignment(alignment);
+        return label;
     }
 }
 

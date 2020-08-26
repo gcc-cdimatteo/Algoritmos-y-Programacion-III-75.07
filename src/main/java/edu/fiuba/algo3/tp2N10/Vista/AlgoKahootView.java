@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.util.Timer;
 
 public class AlgoKahootView implements Observer {
+
     private final Stage escenario;
     private final AlgoKahoot algoKahoot;
     private int numeroTurno = 0;
@@ -33,48 +34,43 @@ public class AlgoKahootView implements Observer {
         String mediaPath;
         numeroTurno++;
 
-        if (numeroTurno == 5){
-            backgroundPath = "./resources/images/fondo.png";
-            mediaPath = "./resources/audio/intermedio.mp3";
-            contenedor = new ContenedorRespuestas(algoKahoot);
-        }
-        else if (algoKahoot.finalizado()) {
+        if (algoKahoot.finalizado()) {
             mediaPath = "./resources/audio/final.mp3";
             backgroundPath = "./resources/images/final.png";
-            try {
-                reproductor = crearReproductor(mediaPath);
-                reproductor.play();
-            } catch (MediaException ignored) {}
             contenedor = new ContenedorPodio(algoKahoot,reproductor);
-        }
-        else if (numeroTurno == 1 || numeroTurno == 3) {
-            mediaPath = "./resources/audio/pregunta.mp3";
+        } else {
             backgroundPath = "./resources/images/fondo.png";
-            this.temporizador = new Timer();
-            contenedor = new ContenedorEnunciado(algoKahoot, this.temporizador);
-        }
-        else if (numeroTurno == 6) {
-            mediaPath = "./resources/audio/intermedio.mp3";
-            backgroundPath = "./resources/images/fondo.png";
-            contenedor = new ContenedorEntreRondas(algoKahoot);
-            numeroTurno = 0;
-        }
-        else {
-            mediaPath = "./resources/audio/jugar.mp3";
-            backgroundPath = "./resources/images/fondo.png";
-            this.temporizador = new Timer();
-            contenedor = new ContenedorPrincipal(algoKahoot, this.temporizador);
+            switch (numeroTurno % 6) {
+                case 1:
+                case 3:
+                    mediaPath = "./resources/audio/pregunta.mp3";
+                    temporizador = new Timer();
+                    contenedor = new ContenedorEnunciado(algoKahoot, temporizador);
+                    break;
+                case 2:
+                case 4:
+                    mediaPath = "./resources/audio/jugar.mp3";
+                    temporizador = new Timer();
+                    contenedor = new ContenedorPrincipal(algoKahoot, temporizador);
+                    break;
+                case 5:
+                    mediaPath = "./resources/audio/intermedio.mp3";
+                    contenedor = new ContenedorRespuestas(algoKahoot);
+                    break;
+                default:
+                    mediaPath = "./resources/audio/intermedio.mp3";
+                    contenedor = new ContenedorEntreRondas(algoKahoot);
+            }
         }
 
-        try { contenedor.setBackground(new FactoryBackgrounds().crearBackground(backgroundPath, 1280, 720));}
-        catch (FileNotFoundException ignored) {}
+        try {
+            contenedor.setBackground(new FactoryBackgrounds().crearBackground(backgroundPath, 1280, 720));
+        } catch (FileNotFoundException ignored) {}
 
-        if(!algoKahoot.finalizado()) {
-            try {
-                reproductor = crearReproductor(mediaPath);
-                reproductor.play();
-            } catch (MediaException ignored) {}
-        }
+        try {
+            reproductor = crearReproductor(mediaPath);
+            reproductor.play();
+        } catch (MediaException ignored) {}
 
         double ancho = escenario.getWidth();
         double alto = escenario.getHeight();
@@ -82,11 +78,8 @@ public class AlgoKahootView implements Observer {
         escenario.setScene(new Scene(contenedor, 1280, 720));
 
         escenario.setOnCloseRequest(event -> {
-            if(reproductor != null) {
-                reproductor.stop();}
-            if(temporizador != null){
-                temporizador.cancel();
-            }
+            if (reproductor != null) reproductor.stop();
+            if (temporizador != null) temporizador.cancel();
             Platform.exit();
         });
 

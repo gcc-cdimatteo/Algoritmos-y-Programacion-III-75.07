@@ -75,7 +75,7 @@ public class App extends Application {
         algoKahootView.mostrar();
     }
 
-    public AlgoKahoot cargarArchivo(String nombreUno, String nombreDos) throws IOException {
+    private AlgoKahoot cargarArchivo(String nombreUno, String nombreDos) throws IOException {
         AlgoKahoot algoKahoot;
         try { FileChooser fileChooser = new FileChooser();
             AlertaErrorArchivoJson alertaErrorArchivoJson = new AlertaErrorArchivoJson();
