@@ -13,11 +13,13 @@ package Controlador {
 
     package EventHandlers {
         class BotonComenzarJuego
+        class BotonComenzarTurno
         class BotonContinuar
-        class BotonContinuarConTimer
-        class BotonDeshacerOpcionOC
         class BotonEntrar
-        class BotonResponder
+        class BotonResponderMC
+        class BotonResponderOC
+        class BotonResponderVF
+        class BotonResponderOC
         class BotonSalir
         class BotonSeleccionarOpcionOC
         class BotonSiguientePregunta
@@ -31,12 +33,10 @@ package Controlador {
 AlertaNombreLargo -up[hidden]-> AlertaNombreFaltante
 AlertaNombreFaltante -up[hidden]-> AlertaOrdenarTodasLasOpcionesOC
 AlertaOrdenarTodasLasOpcionesOC -up[hidden]-> AlertaSeleccionarUnaOpcion
-BotonResponder -[hidden]-> BotonComenzarJuego
+BotonResponderMC -[hidden]-> BotonComenzarJuego
 HandlerOpcionesOC -[hidden]-> BotonContinuar
-BotonContinuar -[hidden]-> BotonContinuarConTimer
-BotonContinuarConTimer -[hidden]-> BotonEntrar
-BotonSeleccionarOpcionOC -left[hidden]-> BotonDeshacerOpcionOC
-BotonDeshacerOpcionOC -[hidden]-> BotonSiguientePregunta
+BotonResponderOC -[hidden]-> BotonContinuar
+BotonResponderVF -[hidden]-> BotonContinuar
 BotonSiguientePregunta -[hidden]-> BotonSalir
 BotonSalir -[hidden]-> BotonUsarExclusividad
 BotonUsarExclusividad -[hidden]-> BotonUsarMultiplicador
@@ -52,8 +52,9 @@ BotonUsarExclusividad -[hidden]-> BotonUsarMultiplicador
 'Dependencia ..> un objeto utiliza a otro porque lo recibe/devuelve
 BotonComenzarJuego ..> AlertaNombreFaltante
 BotonComenzarJuego ..> AlertaNombreLargo
-BotonResponder ..> AlertaSeleccionarUnaOpcion
-BotonResponder .right.> AlertaOrdenarTodasLasOpcionesOC
+BotonResponderMC ..> AlertaSeleccionarUnaOpcion
+BotonResponderVF ..> AlertaSeleccionarUnaOpcion
+BotonResponderOC .right.> AlertaOrdenarTodasLasOpcionesOC
 BotonSeleccionarOpcionOC ..> HandlerOpcionesOC
 
 'Interfaces ..|> colección de declaraciones de métodos sin implemetnar
