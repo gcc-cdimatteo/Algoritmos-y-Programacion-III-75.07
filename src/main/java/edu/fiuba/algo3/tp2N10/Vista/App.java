@@ -64,13 +64,12 @@ public class App extends Application {
     }
 
     public void jugar(String nombreUno, String nombreDos) throws IOException {
-        if(reproductor != null) { this.reproductor.stop(); }
+        if (reproductor != null) this.reproductor.stop();
         AlgoKahoot algoKahoot;
-        try{ algoKahoot = new AlgoKahoot("preguntas_variadas.json", nombreUno, nombreDos);
-        }catch (NoSuchFileException | org.json.JSONException | PreguntaDesconocidaException ignored) {
-           do{
-               algoKahoot = cargarArchivo(nombreUno, nombreDos);
-           }while (algoKahoot == null);
+        try { algoKahoot = new AlgoKahoot("preguntas_variadas.json", nombreUno, nombreDos);
+        } catch (NoSuchFileException | org.json.JSONException | PreguntaDesconocidaException ignored) {
+           do algoKahoot = cargarArchivo(nombreUno, nombreDos);
+           while (algoKahoot == null);
         }
         AlgoKahootView algoKahootView = new AlgoKahootView(algoKahoot, escenario);
         algoKahootView.mostrar();
@@ -78,10 +77,10 @@ public class App extends Application {
 
     public AlgoKahoot cargarArchivo(String nombreUno, String nombreDos) throws IOException {
         AlgoKahoot algoKahoot;
-        try{ FileChooser fileChooser = new FileChooser();
+        try { FileChooser fileChooser = new FileChooser();
             AlertaErrorArchivoJson alertaErrorArchivoJson = new AlertaErrorArchivoJson();
             alertaErrorArchivoJson.mostrar();
-            algoKahoot = new AlgoKahoot(fileChooser.showOpenDialog(this.escenario).getAbsolutePath(), nombreUno, nombreDos);;
+            algoKahoot = new AlgoKahoot(fileChooser.showOpenDialog(this.escenario).getAbsolutePath(), nombreUno, nombreDos);
         } catch (NoSuchFileException | org.json.JSONException | PreguntaDesconocidaException ignored) {
             return null;
         }

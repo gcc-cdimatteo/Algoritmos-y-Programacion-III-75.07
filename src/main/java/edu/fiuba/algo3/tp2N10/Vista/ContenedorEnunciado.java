@@ -8,21 +8,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaException;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
-import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ContenedorEnunciado extends BorderPane {
 
 
-    public ContenedorEnunciado(AlgoKahoot algoKahoot, Timer temporizador){
+    public ContenedorEnunciado(AlgoKahoot algoKahoot, Timer temporizador) {
         //Barra superior
         BorderPane bpHeader = new BorderPane();
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
@@ -33,7 +30,9 @@ public class ContenedorEnunciado extends BorderPane {
         labelJugador.setFont(Font.font("Tahoma", 30));
 
         Label labelEnunciadoPregunta = new Label(algoKahoot.preguntaEnunciado());
+        labelEnunciadoPregunta.setWrapText(true);
         labelEnunciadoPregunta.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
+        labelEnunciadoPregunta.setTextAlignment(TextAlignment.CENTER);
 
         Label labelTipoPregunta = new Label("Tipo: " + algoKahoot.preguntaActual());
         labelTipoPregunta.setFont(Font.font("Tahoma", 30));

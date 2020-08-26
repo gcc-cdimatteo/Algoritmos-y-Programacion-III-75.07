@@ -8,10 +8,8 @@ import java.io.FileNotFoundException;
 
 public class FactoryBackgrounds {
 
-    private Image imagenDeFondo;
-
     public Background crearBackground(String direccion, int ancho, int alto) throws FileNotFoundException {
-        imagenDeFondo = new Image(new FileInputStream(direccion));
+        Image imagenDeFondo = new Image(new FileInputStream(direccion));
         return new Background(new BackgroundImage(imagenDeFondo,
                 BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,

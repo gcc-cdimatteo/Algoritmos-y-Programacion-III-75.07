@@ -9,14 +9,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaException;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
-import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -26,27 +23,29 @@ public class ContenedorPrincipal extends BorderPane {
     public ContenedorPrincipal(AlgoKahoot algoKahoot, Timer temporizador) {
         super();
 
-        Label lblJugador = new Label("  Jugador: " + algoKahoot.jugadorNombre());
-        lblJugador.setStyle("-fx-font-size: 200%");
-        lblJugador.setTextFill(Color.rgb(255, 255, 255));
-        Label lblPuntaje = new Label("Puntaje: " + algoKahoot.jugadorPuntaje() + "  ");
-        lblPuntaje.setStyle("-fx-font-size: 200%");
-        lblPuntaje.setTextFill(Color.rgb(255, 255, 255));
-        Label lblEnunciado = new Label(algoKahoot.preguntaEnunciado());
-        lblEnunciado.setStyle("-fx-font-size: 250%");
+        Label labelJugador = new Label("  Jugador: " + algoKahoot.jugadorNombre());
+        labelJugador.setStyle("-fx-font-size: 200%");
+        labelJugador.setTextFill(Color.rgb(255, 255, 255));
+        Label labelPuntaje = new Label("Puntaje: " + algoKahoot.jugadorPuntaje() + "  ");
+        labelPuntaje.setStyle("-fx-font-size: 200%");
+        labelPuntaje.setTextFill(Color.rgb(255, 255, 255));
+        Label labelEnunciado = new Label(algoKahoot.preguntaEnunciado());
+        labelEnunciado.setWrapText(true);
+        labelEnunciado.setStyle("-fx-font-size: 250%");
+        labelEnunciado.setTextAlignment(TextAlignment.CENTER);
 
         BorderPane bpPreguntaPowerUps = new BorderPane();
         bpPreguntaPowerUps.setPadding(new Insets(10, 10, 10, 10));
         VBox vboxEnunciadoOpciones = new VBox(100);
-        vboxEnunciadoOpciones.getChildren().add(lblEnunciado);
+        vboxEnunciadoOpciones.getChildren().add(labelEnunciado);
 
         VBox vboxPowerUps = new VBox(20);
-        Label lblPowerUps = new Label("Power Ups");
-        lblPowerUps.setStyle("-fx-font-size: 150%");
+        Label labelPowerUps = new Label("Power Ups");
+        labelPowerUps.setStyle("-fx-font-size: 150%");
         vboxPowerUps.setPadding(new Insets(10,10,10,10));
         vboxPowerUps.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-        vboxPowerUps.getChildren().add(lblPowerUps);
+        vboxPowerUps.getChildren().add(labelPowerUps);
 
         if (algoKahoot.permiteMultiplicadores()) {
             Button botonMultiplicador = new Button("x1");
@@ -69,33 +68,37 @@ public class ContenedorPrincipal extends BorderPane {
         Button btnListo = new Button("Listo");
         btnListo.setAlignment(Pos.CENTER);
         BorderPane bpHeader = new BorderPane();
-        bpHeader.setLeft(lblJugador);
-        bpHeader.setRight(lblPuntaje);
+        bpHeader.setLeft(labelJugador);
+        bpHeader.setRight(labelPuntaje);
         bpHeader.setStyle("-fx-background-color: cornflowerblue");
         bpHeader.setMinHeight(50);
 
         AtomicBoolean sinTiempo = new AtomicBoolean(false);
+        Pane contenedor;
         switch (algoKahoot.preguntaActual()) {
             case ("Verdadero Falso Clasico"):
             case ("Verdadero Falso Penalidad"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaVF(btnListo, algoKahoot, temporizador, sinTiempo));
+                contenedor = new ContenedorPreguntaVF(btnListo, algoKahoot, temporizador, sinTiempo);
                 break;
             case ("Multiple Choice Clasico"):
             case ("Multiple Choice Parcial"):
             case ("Multiple Choice Penalidad"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaMC(btnListo, algoKahoot, temporizador, sinTiempo));
+                contenedor = new ContenedorPreguntaMC(btnListo, algoKahoot, temporizador, sinTiempo);
                 break;
             case ("Ordered Choice"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaOC(btnListo, algoKahoot, temporizador, sinTiempo));
+                contenedor = new ContenedorPreguntaOC(btnListo, algoKahoot, temporizador, sinTiempo);
                 break;
             case ("Group Choice"):
-                vboxEnunciadoOpciones.getChildren().add(new ContenedorPreguntaGC(btnListo, algoKahoot, temporizador, sinTiempo));
+                contenedor = new ContenedorPreguntaGC(btnListo, algoKahoot, temporizador, sinTiempo);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + algoKahoot.preguntaActual());
         }
 
+        vboxEnunciadoOpciones.getChildren().add(contenedor);
         bpPreguntaPowerUps.setLeft(vboxEnunciadoOpciones);
         bpPreguntaPowerUps.setRight(vboxPowerUps);
-
+        vboxEnunciadoOpciones.maxWidthProperty().bind(bpPreguntaPowerUps.widthProperty().subtract(200));
         setTop(bpHeader);
         setCenter(bpPreguntaPowerUps);
         BorderPane bpBotoneraListo = new BorderPane();

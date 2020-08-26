@@ -2,7 +2,6 @@ package edu.fiuba.algo3.tp2N10.Vista;
 
 import edu.fiuba.algo3.tp2N10.Controlador.EventHandlers.BotonContinuar;
 import edu.fiuba.algo3.tp2N10.Modelo.AlgoKahoot.AlgoKahoot;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +9,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -71,16 +69,16 @@ public class ContenedorEntreRondas extends BorderPane {
         labelEmpate.setMinWidth(250);
         labelEmpate.setAlignment(Pos.CENTER_LEFT);
 
-        if(puntajes.get(0) > puntajes.get(1)){
+        if(puntajes.get(0) > puntajes.get(1)) {
             hbPrimero = new HBox(labelPrimero,labelJugadorUno,labelPuntajeUno);
             hbSegundo = new HBox(labelSegundo,labelJugadorDos,labelPuntajeDos);
         }
-        else if (puntajes.get(0) < puntajes.get(1)){
+        else if (puntajes.get(0) < puntajes.get(1)) {
             hbPrimero = new HBox(labelPrimero,labelJugadorDos,labelPuntajeDos);
             hbSegundo = new HBox(labelSegundo,labelJugadorUno,labelPuntajeUno);
         }
         else {
-            hbPrimero = new HBox(labelPrimero,labelJugadorUno,labelPuntajeUno);
+            hbPrimero = new HBox(labelEmpate,labelJugadorUno,labelPuntajeUno);
             hbSegundo = new HBox(labelEmpate,labelJugadorDos,labelPuntajeDos);
         }
 
