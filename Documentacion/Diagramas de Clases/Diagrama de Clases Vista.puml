@@ -1,4 +1,4 @@
-@startuml
+@startuml Diagrama de Clases Vista
 skinparam classAttributeIconSize 0
 
 package Vista {

@@ -1,4 +1,4 @@
-@startuml
+@startuml Diagrama de Clases General
 skinparam classAttributeIconSize 0
 
 package AlgoKahoot {
@@ -54,6 +54,7 @@ package AlgoKahoot {
         + permiteMultiplicadores(): boolean
         + permiteExclusividad(): boolean
         + preguntaActual(): String
+        + respuestaCorrecta(): String
         + jugadorNoResponde()
     }
     class FactoryPreguntas {
@@ -154,6 +155,7 @@ AlgoKahoot --> Pregunta
 AlgoKahoot -down-> Ronda
 AlgoKahoot -down-> Jugador
 Jugador --> Jugador
+Observable -up-> "*" Observer
 
 'Agregacion --o un objeto esta compuesto por otro pero no lo necesita para vivir
 Jugador "1" o-- "3" Multiplicador

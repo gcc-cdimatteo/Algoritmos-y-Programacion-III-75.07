@@ -1,4 +1,4 @@
-@startuml
+@startuml Diagrama de Clases Respuesta
 skinparam classAttributeIconSize 0
 
 interface Puntaje {

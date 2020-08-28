@@ -1,4 +1,4 @@
-@startuml
+@startuml Diagrama de Clases Controladores
 skinparam classAttributeIconSize 0
 
 package Controlador {

@@ -1,4 +1,4 @@
-@startuml
+@startuml Diagrama de Clases Pregunta
 skinparam classAttributeIconSize 0
 
 abstract class Pregunta {
